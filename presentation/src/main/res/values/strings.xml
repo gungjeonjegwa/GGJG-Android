@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">궁전제과</string>
+    <string name="all">전체</string>
+    <string name="bread">빵</string>
+    <string name="cake">케이크</string>
+    <string name="cookie">쿠키, 센베이</string>
+    <string name="present">선물용</string>
 </resources>
