@@ -18,4 +18,9 @@ object RoomModule {
     ): GGJGDataBase = Room
         .databaseBuilder(context, GGJGDataBase::class.java, "GGJGDataBase")
         .build()
+
+    @Provides
+    fun provideRecentSearchDao(
+        ggjgDataBase: GGJGDataBase
+    ): RecentSearchDao = ggjgDataBase.resentSearchDao()
 }
