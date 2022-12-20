@@ -35,8 +35,21 @@
                     android:id="@+id/bannerContainer"
                     android:layout_width="match_parent"
                     android:layout_height="240dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="17dp"
                     app:layout_constraintTop_toBottomOf="@id/logo" />
+
+
+                <TextView
+                    android:id="@+id/bannerIndicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/dark_shadow_black"
+                    android:gravity="center"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="4dp"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@id/bannerContainer"
+                    app:layout_constraintEnd_toEndOf="@id/bannerContainer" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -66,7 +79,7 @@
                 <View
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/breadBtn"
@@ -82,7 +95,7 @@
                 <View
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/cakeBtn"
@@ -99,7 +112,7 @@
                 <View
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/cookieBtn"
@@ -115,7 +128,7 @@
                 <View
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/presentBtn"
