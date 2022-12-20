@@ -42,7 +42,7 @@
 
             <LinearLayout
                 android:id="@+id/menuBar"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="16dp"
@@ -63,17 +63,26 @@
                     android:text="@string/all"
                     android:textColor="@drawable/selector_menu_txt" />
 
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+
                 <TextView
                     android:id="@+id/breadBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
                     android:background="@drawable/selector_menu"
                     android:gravity="center"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="7dp"
                     android:text="@string/bread"
                     android:textColor="@drawable/selector_menu_txt" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"/>
 
                 <TextView
                     android:id="@+id/cakeBtn"
@@ -86,17 +95,27 @@
                     android:text="@string/cake"
                     android:textColor="@drawable/selector_menu_txt" />
 
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+
                 <TextView
                     android:id="@+id/cookieBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
                     android:background="@drawable/selector_menu"
                     android:gravity="center"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="7dp"
                     android:text="@string/cookie"
                     android:textColor="@drawable/selector_menu_txt" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"/>
 
                 <TextView
                     android:id="@+id/presentBtn"
