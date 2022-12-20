@@ -77,23 +77,14 @@
             android:background="@color/shadow_black"
             app:layout_constraintTop_toTopOf="@id/searchBottomLine" />
 
-        <TextView
-            android:id="@+id/recentSearchTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:text="@string/recent_search"
-            app:layout_constraintStart_toStartOf="@id/startLine"
-            app:layout_constraintTop_toBottomOf="@id/searchBottomLine" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recentSearchList"
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/searchContainer"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:layout_constraintEnd_toEndOf="@id/endLine"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@id/searchBottomLine"
             app:layout_constraintStart_toStartOf="@id/startLine"
-            app:layout_constraintTop_toBottomOf="@id/recentSearchTxt" />
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
