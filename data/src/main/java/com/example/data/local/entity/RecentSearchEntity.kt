@@ -5,7 +5,6 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "recent_search")
 data class RecentSearchEntity(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @PrimaryKey val search: String
 )
 
