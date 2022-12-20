@@ -72,6 +72,9 @@ dependencies {
     implementation(Dependency.Hilt.HILT_ANDROID)
     kapt(Dependency.Hilt.HILT_ANDROID_COMPILER)
 
+    implementation(Dependency.Room.ROOM)
+    annotationProcessor(Dependency.Room.ROOM_COMPILER)
+
     implementation(Dependency.Google.MATERIAL)
 
     implementation(Dependency.Retrofit.RETROFIT)

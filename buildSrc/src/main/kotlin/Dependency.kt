@@ -31,6 +31,11 @@ object Dependency {
         const val HILT_ANDROID_COMPILER = "com.google.dagger:hilt-android-compiler:${Version.HILT}"
     }
 
+    object Room {
+        const val ROOM = "androidx.room:room-runtime:${Version.ROOM}"
+        const val ROOM_COMPILER = "androidx.room:room-compiler:${Version.ROOM}"
+    }
+
     object Google {
         const val MATERIAL = "com.google.android.material:material:${Version.MATERIAL}"
     }

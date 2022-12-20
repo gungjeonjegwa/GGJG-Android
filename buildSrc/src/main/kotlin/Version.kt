@@ -20,6 +20,8 @@ object Version {
     const val HILT = "2.38.1"
     const val MATERIAL = "1.3.0"
 
+    const val ROOM = "2.4.3"
+
     const val RETROFIT = "2.7.1"
     const val OKHTTP = "3.14.9"
 
