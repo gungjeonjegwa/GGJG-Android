@@ -5,4 +5,7 @@
     <string name="cake">케이크</string>
     <string name="cookie">쿠키, 센베이</string>
     <string name="present">선물용</string>
+
+    <string name="search_bread">찾고싶은 빵을 검색해 보세요</string>
+    <string name="recent_search">최근검색어</string>
 </resources>
