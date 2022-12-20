@@ -32,12 +32,13 @@ object Dependency {
     }
 
     object Room {
-        const val ROOM = "androidx.room:room-runtime:${Version.ROOM}"
+        const val ROOM = "androidx.room:room-ktx:${Version.ROOM}"
         const val ROOM_COMPILER = "androidx.room:room-compiler:${Version.ROOM}"
     }
 
     object Google {
         const val MATERIAL = "com.google.android.material:material:${Version.MATERIAL}"
+        const val FLEX_BOX = "com.google.android.flexbox:flexbox:${Version.FLEX_BOX}"
     }
 
     object Retrofit {

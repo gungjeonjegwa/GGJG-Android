@@ -19,6 +19,7 @@ object Version {
 
     const val HILT = "2.38.1"
     const val MATERIAL = "1.3.0"
+    const val FLEX_BOX = "3.0.0"
 
     const val ROOM = "2.4.3"
 

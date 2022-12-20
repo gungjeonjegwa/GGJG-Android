@@ -45,7 +45,7 @@ dependencies {
     kapt(Dependency.Hilt.HILT_ANDROID_COMPILER)
 
     implementation(Dependency.Room.ROOM)
-    annotationProcessor(Dependency.Room.ROOM_COMPILER)
+    kapt(Dependency.Room.ROOM_COMPILER)
 
     implementation(Dependency.Google.MATERIAL)
 
