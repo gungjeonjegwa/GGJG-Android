@@ -6,6 +6,7 @@ import com.example.domain.entity.RecentSearchEntity
 import com.example.domain.usecase.search.DeleteRecentSearchUseCase
 import com.example.domain.usecase.search.GetRecentSearchUseCase
 import com.example.domain.usecase.search.SearchUseCase
+import com.example.ggjg_andorid.adapter.RecentSearchAdapter
 import com.example.ggjg_andorid.utils.MutableEventFlow
 import com.example.ggjg_andorid.utils.asEventFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,6 +22,10 @@ class SearchViewModel @Inject constructor(
     private val _eventFlow = MutableEventFlow<Event>()
     val eventFlow = _eventFlow.asEventFlow()
 
+    companion object {
+        val adapter = RecentSearchAdapter()
+    }
+
     fun recentSearch() = viewModelScope.launch {
         kotlin.runCatching {
             getRecentSearchUseCase.execute()
@@ -33,7 +38,9 @@ class SearchViewModel @Inject constructor(
         kotlin.runCatching {
             searchUseCase.execute(RecentSearchEntity(search))
         }.onSuccess {
+
         }
+        event(Event.Search(search))
     }
 
     fun deleteRecentSearch(search: String) = viewModelScope.launch {
@@ -50,6 +57,7 @@ class SearchViewModel @Inject constructor(
 
     sealed class Event {
         data class RecentSearch(val recentSearch: List<RecentSearchEntity?>) : Event()
-        object SuccessDelete: Event()
+        data class Search(val search: String) : Event()
+        object SuccessDelete : Event()
     }
 }

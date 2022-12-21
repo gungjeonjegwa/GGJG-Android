@@ -18,12 +18,28 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         binding.search = this
         mainViewModel.hiddenNav(true)
         initView()
+        repeatOnStart {
+            searchViewModel.eventFlow.collect { event -> handleEvent(event) }
+        }
+    }
+
+    private fun handleEvent(event: SearchViewModel.Event) = when (event) {
+        is SearchViewModel.Event.RecentSearch -> {
+            SearchViewModel.adapter.submitList(event.recentSearch)
+        }
+        is SearchViewModel.Event.SuccessDelete -> {
+            searchViewModel.recentSearch()
+        }
+        is SearchViewModel.Event.Search -> {
+            binding.searchBread.setText(event.search)
+            keyboardHide(requireActivity(), listOf(binding.searchBread))
+            viewFragment(SearchResultFragment())
+        }
     }
 
     fun onClick(view: View) {
         when (view.id) {
             R.id.backBtn -> {
-                mainViewModel.hiddenNav(false)
                 keyboardHide(requireActivity(), listOf(binding.searchBread))
                 requireActivity().findNavController(R.id.mainContainer).popBackStack()
             }

@@ -8,14 +8,25 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.entity.RecentSearchEntity
 import com.example.ggjg_andorid.databinding.ItemRecentSearchBinding
 
-class RecentSearchAdapter(val clickListener: (RecentSearchEntity) -> Unit) :
+class RecentSearchAdapter :
     ListAdapter<RecentSearchEntity, RecentSearchAdapter.RecentSearchViewHolder>(diffUtil) {
-    class RecentSearchViewHolder(val binding: ItemRecentSearchBinding, val clickListener: (RecentSearchEntity) -> Unit) :
+
+    private lateinit var itemClickListener: OnItemClickListener
+
+    class RecentSearchViewHolder(
+        val binding: ItemRecentSearchBinding,
+        val listener: OnItemClickListener
+    ) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: RecentSearchEntity) {
-            binding.recentSearch = item
-            binding.deleteRecentSearch.setOnClickListener {
-                clickListener(item)
+        fun bind(item: RecentSearchEntity) = binding.apply {
+            recentSearch = item
+            if (listener != null) {
+                deleteRecentSearch.setOnClickListener {
+                    listener.delete(item)
+                }
+                recentSearchTxt.setOnClickListener {
+                    listener.search(item)
+                }
             }
         }
     }
@@ -27,12 +38,21 @@ class RecentSearchAdapter(val clickListener: (RecentSearchEntity) -> Unit) :
                 parent,
                 false
             ),
-            clickListener
+            itemClickListener
         )
     }
 
     override fun onBindViewHolder(holder: RecentSearchViewHolder, position: Int) {
         holder.bind(currentList[position])
+    }
+
+    interface OnItemClickListener {
+        fun delete(item: RecentSearchEntity)
+        fun search(item: RecentSearchEntity)
+    }
+
+    fun setItemOnClickListener(onItemClickListener: OnItemClickListener) {
+        this.itemClickListener = onItemClickListener
     }
 
     companion object {
