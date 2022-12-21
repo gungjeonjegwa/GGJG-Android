@@ -24,14 +24,14 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         when (view.id) {
             R.id.backBtn -> {
                 mainViewModel.hiddenNav(false)
-                keyboardHide(requireActivity(), binding.searchBread)
+                keyboardHide(requireActivity(), listOf(binding.searchBread))
                 requireActivity().findNavController(R.id.mainContainer).popBackStack()
             }
             R.id.searchLayout -> {
-                keyboardHide(requireActivity(), binding.searchBread)
+                keyboardHide(requireActivity(), listOf(binding.searchBread))
             }
             R.id.searchBtn -> {
-                keyboardHide(requireActivity(), binding.searchBread)
+                keyboardHide(requireActivity(), listOf(binding.searchBread))
                 searchViewModel.search(binding.searchBread.text.toString())
                 viewFragment(SearchResultFragment())
             }
@@ -50,11 +50,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
                 }
             }
             setOnFocusChangeListener { _, b ->
-                if (b) {
-                    binding.searchDivide.setVisible()
-                } else {
-                    binding.searchDivide.setVisible(false)
-                }
+                binding.searchDivide.setVisible(b)
             }
         }
     }
