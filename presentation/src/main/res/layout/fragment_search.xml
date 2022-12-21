@@ -13,6 +13,7 @@
         android:id="@+id/searchLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/background"
         android:onClick="@{search::onClick}">
 
         <androidx.constraintlayout.widget.Guideline
@@ -91,6 +92,7 @@
             android:id="@+id/searchContainer"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginTop="1dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/endLine"
             app:layout_constraintStart_toStartOf="@id/startLine"

@@ -10,6 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/background"
         tools:context=".ui.main.MainActivity">
 
         <androidx.constraintlayout.widget.Guideline
@@ -33,10 +34,10 @@
             android:id="@+id/bottomNav"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:itemTextAppearanceActive="@style/Medium10"
-            app:itemTextAppearanceInactive="@style/Medium10"
             app:itemIconTint="@drawable/selector_main_nav"
             app:itemRippleColor="@color/light_gray"
+            app:itemTextAppearanceActive="@style/Medium10"
+            app:itemTextAppearanceInactive="@style/Medium10"
             app:itemTextColor="@drawable/selector_main_nav"
             app:labelVisibilityMode="labeled"
             app:layout_constraintBottom_toBottomOf="parent"
