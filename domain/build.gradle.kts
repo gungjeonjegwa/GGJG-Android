@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -42,11 +43,6 @@ dependencies {
     implementation(Dependency.Hilt.HILT_ANDROID_COMPILER)
 
     implementation(Dependency.Google.MATERIAL)
-
-    implementation(Dependency.Retrofit.RETROFIT)
-    implementation(Dependency.Retrofit.RETROFIT_CONVERTER_GSON)
-    implementation(Dependency.Retrofit.OKHTTP)
-    implementation(Dependency.Retrofit.OKHTTP_LOGGING_INTERCEPTOR)
 
     testImplementation(Dependency.UnitTest.JUNIT)
 
