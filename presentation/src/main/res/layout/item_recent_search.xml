@@ -20,10 +20,12 @@
         android:paddingVertical="8dp">
 
         <TextView
+            style="@style/Medium14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="@{recentSearch.search}" />
+            android:text="@{recentSearch.search}"
+            android:textColor="@color/very_dark_gray" />
 
         <ImageView
             android:id="@+id/deleteRecentSearch"
