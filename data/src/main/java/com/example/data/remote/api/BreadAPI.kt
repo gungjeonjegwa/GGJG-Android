@@ -1,0 +1,13 @@
+package com.example.data.remote.api
+
+import com.example.data.remote.response.BreadResponse
+import retrofit2.http.GET
+import retrofit2.http.Query
+
+interface BreadAPI {
+    @GET("/bread")
+    suspend fun allBread(
+        @Query("page") page: String,
+        @Query("size") size: String
+    ): BreadResponse
+}
