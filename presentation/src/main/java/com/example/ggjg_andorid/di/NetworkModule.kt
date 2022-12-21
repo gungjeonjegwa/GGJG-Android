@@ -1,5 +1,6 @@
 package com.example.ggjg_andorid.di
 
+import com.example.data.remote.api.BreadAPI
 import com.example.ggjg_andorid.BuildConfig
 import dagger.Module
 import dagger.Provides
@@ -39,4 +40,8 @@ object NetworkModule {
     fun provideGsonConverterFactory(): GsonConverterFactory {
         return GsonConverterFactory.create()
     }
+
+    @Provides
+    fun provideBreadAPI(retrofit: Retrofit): BreadAPI =
+        retrofit.create(BreadAPI::class.java)
 }
