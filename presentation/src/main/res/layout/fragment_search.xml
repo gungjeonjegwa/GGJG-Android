@@ -72,9 +72,10 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <View
+            android:id="@+id/searchDivide"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/shadow_black"
+            android:background="@color/primary"
             app:layout_constraintTop_toTopOf="@id/searchBottomLine" />
 
         <androidx.fragment.app.FragmentContainerView
