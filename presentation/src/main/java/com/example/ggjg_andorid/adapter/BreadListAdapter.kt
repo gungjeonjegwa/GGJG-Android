@@ -2,6 +2,7 @@ package com.example.ggjg_andorid.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.DiffUtil
@@ -35,7 +36,15 @@ class BreadListAdapter :
             breadImg.load(item.imgUrl) {
                 transformations(RoundedCornersTransformation(0f))
             }
-            breadCostTxt.text = DecimalFormat("#,###").format(item.price)
+            if (item.price == null) {
+                breadCostTxt.text = context.getString(R.string.sell_shop)
+                wonTxt.visibility = View.GONE
+            } else {
+                breadCostTxt.text = DecimalFormat("#,###").format(item.price)
+            }
+            if (item.isSoldOut) {
+                soldOutLayout.visibility = View.VISIBLE
+            }
             likeBtn.setOnClickListener {
                 listener.like(item)
             }
