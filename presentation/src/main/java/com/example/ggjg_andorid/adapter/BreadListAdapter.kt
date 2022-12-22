@@ -14,24 +14,34 @@ import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.ItemBreadBinding
 import java.text.DecimalFormat
 
-class BreadListAdapter(val clickListener: (BreadEntity.Bread) -> Unit) :
+class BreadListAdapter :
     ListAdapter<BreadEntity.Bread, BreadListAdapter.BreadListViewHolder>(diffUtil) {
+
+    private lateinit var itemClickListener: OnItemClickListener
+
     class BreadListViewHolder(
         val context: Context,
         val binding: ItemBreadBinding,
-        val clickListener: (BreadEntity.Bread) -> Unit
+        val listener: OnItemClickListener
     ) :
         RecyclerView.ViewHolder(binding.root) {
         var currentDeliveryView = 0
-        fun bind(item: BreadEntity.Bread) {
-            binding.bread = item
+
+        fun bind(item: BreadEntity.Bread) = binding.apply {
+            bread = item
             val height = (context.resources.displayMetrics.heightPixels * 0.24).toInt()
-            binding.breadImg.layoutParams =
+            breadImg.layoutParams =
                 ViewGroup.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, height)
-            binding.breadImg.load(item.imgUrl) {
+            breadImg.load(item.imgUrl) {
                 transformations(RoundedCornersTransformation(0f))
             }
-            binding.breadCostTxt.text = DecimalFormat("#,###").format(item.price)
+            breadCostTxt.text = DecimalFormat("#,###").format(item.price)
+            likeBtn.setOnClickListener {
+                listener.like(item)
+            }
+            breadItemLayout.setOnClickListener {
+                listener.detail(item)
+            }
             item.sellDeliveryType.forEach {
                 when (it.type) {
                     "GWANGJU" -> {
@@ -64,11 +74,20 @@ class BreadListAdapter(val clickListener: (BreadEntity.Bread) -> Unit) :
                 parent,
                 false
             ),
-            clickListener
+            itemClickListener
         )
 
     override fun onBindViewHolder(holder: BreadListViewHolder, position: Int) {
         holder.bind(currentList[position])
+    }
+
+    interface OnItemClickListener {
+        fun detail(item: BreadEntity.Bread)
+        fun like(item: BreadEntity.Bread)
+    }
+
+    fun setItemOnClickListener(onItemClickListener: OnItemClickListener) {
+        this.itemClickListener = onItemClickListener
     }
 
     companion object {

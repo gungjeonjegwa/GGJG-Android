@@ -8,6 +8,7 @@ import androidx.core.view.size
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewpager.widget.ViewPager
+import com.example.domain.entity.BreadEntity
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.adapter.BannerAdapter
 import com.example.ggjg_andorid.adapter.BreadListAdapter
@@ -67,9 +68,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     private fun initView() = binding.apply {
         categoryList = listOf(allBtn, breadBtn, cakeBtn, cookieBtn, presentBtn)
-        adapter = BreadListAdapter {
+        adapter = BreadListAdapter()
+        adapter.setItemOnClickListener(object : BreadListAdapter.OnItemClickListener {
+            override fun detail(item: BreadEntity.Bread) {
 
-        }
+            }
+
+            override fun like(item: BreadEntity.Bread) {
+            }
+        })
         scrollView.run {
             header = binding.menuBar
             stickListener = {
@@ -83,6 +90,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         }
         categoryList.forEach {
             it.setOnClickListener { tag ->
+                if (tag.id != R.id.allBtn) {
+                    homeViewModel.categoryBread(tag)
+                } else {
+                    homeViewModel.allBread()
+                }
                 homeViewModel.setTag(tag)
             }
         }

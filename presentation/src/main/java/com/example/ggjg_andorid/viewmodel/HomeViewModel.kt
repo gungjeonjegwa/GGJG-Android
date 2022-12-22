@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.entity.BreadEntity
 import com.example.domain.usecase.bread.AllBreadUseCase
+import com.example.domain.usecase.bread.CategoryBreadUseCase
+import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.utils.MutableEventFlow
 import com.example.ggjg_andorid.utils.asEventFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val allBreadUseCase: AllBreadUseCase
+    private val allBreadUseCase: AllBreadUseCase,
+    private val categoryBreadUseCase: CategoryBreadUseCase
 ) : ViewModel() {
 
     private val _eventFlow = MutableEventFlow<HomeViewModel.Event>()
@@ -28,6 +31,23 @@ class HomeViewModel @Inject constructor(
                 list = list.plus(it.breadList)
             }
             event(Event.Bread(list))
+        }
+    }
+
+    fun categoryBread(view: View) = viewModelScope.launch {
+        val category = when (view.id) {
+            R.id.breadBtn -> "BREAD"
+            R.id.cakeBtn -> "CAKE"
+            R.id.cookieBtn -> "COOKIE"
+            R.id.presentBtn -> "PRESENT"
+            else -> "BREAD"
+        }
+        kotlin.runCatching {
+            categoryBreadUseCase.execute("0", "10", category)
+        }.onSuccess {
+            event(Event.Bread(it.breadList))
+        }.onFailure {
+
         }
     }
 
