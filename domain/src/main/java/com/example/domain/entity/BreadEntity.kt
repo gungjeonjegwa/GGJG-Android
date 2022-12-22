@@ -7,7 +7,7 @@ data class BreadEntity(
     data class Bread(
         val id: String,
         val name: String,
-        val price: Int,
+        val price: Int?,
         val category: String,
         val isSoldOut: Boolean,
         val imgUrl: String,

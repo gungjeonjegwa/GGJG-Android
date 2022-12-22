@@ -15,7 +15,7 @@ data class BreadResponse(
         @SerializedName("title")
         val name: String,
         @SerializedName("price")
-        val price: Int,
+        val price: Int?,
         @SerializedName("category")
         val category: String,
         @SerializedName("isSoldOut")
