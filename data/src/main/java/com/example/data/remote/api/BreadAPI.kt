@@ -10,4 +10,11 @@ interface BreadAPI {
         @Query("page") page: String,
         @Query("size") size: String
     ): BreadResponse
+
+    @GET("/bread/kind")
+    suspend fun categoryBread(
+        @Query("page") page: String,
+        @Query("size") size: String,
+        @Query("category") category: String
+    ): BreadResponse
 }

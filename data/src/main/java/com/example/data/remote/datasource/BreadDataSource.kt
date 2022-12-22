@@ -4,4 +4,5 @@ import com.example.data.remote.response.BreadResponse
 
 interface BreadDataSource {
     suspend fun allBread(page: String, size: String): BreadResponse
+    suspend fun categoryBread(page: String, size: String, category: String): BreadResponse
 }

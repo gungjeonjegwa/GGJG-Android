@@ -11,4 +11,7 @@ class BreadRepositoryImpl @Inject constructor(
 ): BreadRepository {
     override suspend fun allBread(page: String, size: String): BreadEntity =
         breadDataSource.allBread(page, size).toEntity()
+
+    override suspend fun categoryBread(page: String, size: String, category: String): BreadEntity =
+        breadDataSource.categoryBread(page, size, category).toEntity()
 }

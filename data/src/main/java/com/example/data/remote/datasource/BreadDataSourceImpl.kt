@@ -12,4 +12,13 @@ class BreadDataSourceImpl @Inject constructor(
         HttpHandler<BreadResponse>()
             .httpRequest { breadAPI.allBread(page, size) }
             .sendRequest()
+
+    override suspend fun categoryBread(
+        page: String,
+        size: String,
+        category: String
+    ): BreadResponse =
+        HttpHandler<BreadResponse>()
+            .httpRequest { breadAPI.categoryBread(page, size, category) }
+            .sendRequest()
 }
