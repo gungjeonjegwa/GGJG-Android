@@ -9,7 +9,6 @@ import android.widget.Button
 import androidx.fragment.app.activityViewModels
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.FragmentAgreementBinding
-import com.example.ggjg_andorid.utils.changeActivated
 import com.example.ggjg_andorid.utils.changeActivatedWithEnabled
 import com.example.ggjg_andorid.viewmodel.RegisterViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
