@@ -1,11 +1,13 @@
 package com.example.ggjg_andorid.ui.login
 
+import android.content.Intent
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.ActivityLoginBinding
 import com.example.ggjg_andorid.ui.base.BaseActivity
+import com.example.ggjg_andorid.ui.register.RegisterActivity
 import com.example.ggjg_andorid.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,7 +22,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         editId.run {
             setOnTextChanged { p0, _, _, _ ->
                 binding.deleteIdBtn.setVisible(!p0.isNullOrBlank())
-                binding.loginBtn.changeActivated(!p0.isNullOrBlank() && !binding.editPw.text.isNullOrBlank())
+                binding.loginBtn.changeActivatedWithEnabled(!p0.isNullOrBlank() && !binding.editPw.text.isNullOrBlank())
             }
             setOnFocusChangeListener { _, b ->
                 binding.writeId.isActivated = b
@@ -29,7 +31,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         editPw.run {
             setOnTextChanged { p0, _, _, _ ->
                 binding.visibleBtn.setVisible(!p0.isNullOrBlank())
-                binding.loginBtn.changeActivated(!p0.isNullOrBlank() && !binding.editId.text.isNullOrBlank())
+                binding.loginBtn.changeActivatedWithEnabled(!p0.isNullOrBlank() && !binding.editId.text.isNullOrBlank())
             }
             setOnFocusChangeListener { _, b ->
                 binding.writePw.isActivated = b
@@ -49,10 +51,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                 binding.editPw.apply {
                     if (transformationMethod == HideReturnsTransformationMethod.getInstance()) {
                         transformationMethod = PasswordTransformationMethod.getInstance()
-                        binding.visibleBtn.setBackgroundResource(R.drawable.ic_pw_visible)
+                        view.setBackgroundResource(R.drawable.ic_pw_visible)
                     } else {
                         transformationMethod = HideReturnsTransformationMethod.getInstance()
-                        binding.visibleBtn.setBackgroundResource(R.drawable.ic_pw_invisible)
+                        view.setBackgroundResource(R.drawable.ic_pw_invisible)
                     }
                     setSelection(length())
                 }
@@ -60,6 +62,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             R.id.deleteIdBtn -> {
                 keyboardShow(this, binding.editId)
                 binding.editId.setText(null)
+            }
+            R.id.registerBtn -> {
+                startActivity(Intent(this, RegisterActivity::class.java))
             }
         }
     }

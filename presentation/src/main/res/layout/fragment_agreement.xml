@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="agreement"
+            type="com.example.ggjg_andorid.ui.register.AgreementFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/startLine"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/endLine"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/allAgreeBtn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/selector_checkbox"
+            android:onClick="@{agreement::onClick}"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            style="@style/Bold16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:text="@string/all_agree"
+            android:textColor="@color/real_black"
+            app:layout_constraintBottom_toBottomOf="@id/allAgreeBtn"
+            app:layout_constraintStart_toEndOf="@id/allAgreeBtn"
+            app:layout_constraintTop_toTopOf="@id/allAgreeBtn" />
+
+        <View
+            android:id="@+id/agreeDivide"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/light_gray"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/allAgreeBtn" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/agree1Btn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/selector_agree"
+            android:onClick="@{agreement::onClick}"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/agreeDivide" />
+
+        <TextView
+            style="@style/Regular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/agree_1"
+            android:textColor="@color/dark_gray"
+            app:layout_constraintBottom_toBottomOf="@id/agree1Btn"
+            app:layout_constraintStart_toEndOf="@id/agree1Btn"
+            app:layout_constraintTop_toTopOf="@id/agree1Btn" />
+
+        <TextView
+            android:id="@+id/detailAgree1Btn"
+            style="@style/Regular12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{agreement::onClick}"
+            android:text="@string/detail_agree"
+            android:textColor="@color/gray"
+            app:layout_constraintBottom_toBottomOf="@id/agree1Btn"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintTop_toTopOf="@id/agree1Btn" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/gray"
+            app:layout_constraintEnd_toEndOf="@id/detailAgree1Btn"
+            app:layout_constraintStart_toStartOf="@id/detailAgree1Btn"
+            app:layout_constraintTop_toBottomOf="@id/detailAgree1Btn" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/agree2Btn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/selector_agree"
+            android:onClick="@{agreement::onClick}"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/agree1Btn" />
+
+        <TextView
+            style="@style/Regular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/agree_2"
+            android:textColor="@color/dark_gray"
+            app:layout_constraintBottom_toBottomOf="@id/agree2Btn"
+            app:layout_constraintStart_toEndOf="@id/agree2Btn"
+            app:layout_constraintTop_toTopOf="@id/agree2Btn" />
+
+        <TextView
+            android:id="@+id/detailAgree2Btn"
+            style="@style/Regular12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{agreement::onClick}"
+            android:text="@string/detail_agree"
+            android:textColor="@color/gray"
+            app:layout_constraintBottom_toBottomOf="@id/agree2Btn"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintTop_toTopOf="@id/agree2Btn" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/gray"
+            app:layout_constraintEnd_toEndOf="@id/detailAgree2Btn"
+            app:layout_constraintStart_toStartOf="@id/detailAgree2Btn"
+            app:layout_constraintTop_toBottomOf="@id/detailAgree2Btn" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/agree3Btn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/selector_agree"
+            android:onClick="@{agreement::onClick}"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/agree2Btn" />
+
+        <TextView
+            style="@style/Regular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/agree_3"
+            android:textColor="@color/dark_gray"
+            app:layout_constraintBottom_toBottomOf="@id/agree3Btn"
+            app:layout_constraintStart_toEndOf="@id/agree3Btn"
+            app:layout_constraintTop_toTopOf="@id/agree3Btn" />
+
+        <TextView
+            android:id="@+id/detailAgree3Btn"
+            style="@style/Regular12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{agreement::onClick}"
+            android:text="@string/detail_agree"
+            android:textColor="@color/gray"
+            app:layout_constraintBottom_toBottomOf="@id/agree3Btn"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintTop_toTopOf="@id/agree3Btn" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/gray"
+            app:layout_constraintEnd_toEndOf="@id/detailAgree3Btn"
+            app:layout_constraintStart_toStartOf="@id/detailAgree3Btn"
+            app:layout_constraintTop_toBottomOf="@id/detailAgree3Btn" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/completeBtn"
+            style="@style/Bold14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/selector_form_btn"
+            android:enabled="false"
+            android:onClick="@{agreement::onClick}"
+            android:paddingVertical="17dp"
+            android:text="@string/complicate"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/agree3Btn" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="registerSecond"
+            type="com.example.ggjg_andorid.ui.register.RegisterSecondFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/registerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:onClick="@{registerSecond::onClick}">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/registerBarBottomLine"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="48dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/startLine"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/endLine"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <ImageView
+            android:id="@+id/backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_back"
+            android:onClick="@{registerSecond::onClick}"
+            app:layout_constraintBottom_toBottomOf="@id/registerBarBottomLine"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            style="@style/Regular16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/register"
+            android:textColor="@color/real_black"
+            app:layout_constraintBottom_toBottomOf="@id/registerBarBottomLine"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/idTxt"
+            style="@style/Bold12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:text="@string/id"
+            android:textColor="@color/real_black"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/registerBarBottomLine" />
+
+        <EditText
+            android:id="@+id/writeId"
+            style="@style/Medium14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/selector_input_layout"
+            android:hint="@string/request_id"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="17dp"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/idTxt" />
+
+
+        <TextView
+            android:id="@+id/errorIdTxt"
+            style="@style/Regular12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/red"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/writeId" />
+
+        <TextView
+            android:id="@+id/pwTxt"
+            style="@style/Bold12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:text="@string/pw"
+            android:textColor="@color/real_black"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/errorIdTxt" />
+
+        <LinearLayout
+            android:id="@+id/writePw"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/selector_input_layout"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="12dp"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/pwTxt">
+
+            <EditText
+                android:id="@+id/editPw"
+                style="@style/Medium14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:hint="@string/request_pw_option"
+                android:inputType="textPassword"
+                android:paddingVertical="5dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                android:textCursorDrawable="@drawable/ic_cursor" />
+
+            <ImageView
+                android:id="@+id/visibleBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/ic_pw_visible"
+                android:onClick="@{registerSecond::onClick}"
+                android:visibility="gone" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/errorPwTxt"
+            style="@style/Regular12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/red"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/writePw" />
+
+        <TextView
+            android:id="@+id/rePwTxt"
+            style="@style/Bold12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:text="@string/re_pw"
+            android:textColor="@color/real_black"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/errorPwTxt" />
+
+        <LinearLayout
+            android:id="@+id/writeRePw"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/selector_input_layout"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="12dp"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/rePwTxt">
+
+            <EditText
+                android:id="@+id/editRePw"
+                style="@style/Medium14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:hint="@string/request_re_pw"
+                android:inputType="textPassword"
+                android:paddingVertical="5dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                android:textCursorDrawable="@drawable/ic_cursor" />
+
+            <ImageView
+                android:id="@+id/rePwVisibleBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/ic_pw_visible"
+                android:onClick="@{registerSecond::onClick}"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/errorRePwTxt"
+            style="@style/Regular12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/red"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/writeRePw" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/okayBtn"
+            style="@style/Bold14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="21dp"
+            android:background="@drawable/selector_form_btn"
+            android:enabled="false"
+            android:onClick="@{registerSecond::onClick}"
+            android:paddingVertical="17dp"
+            android:text="@string/okay"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
