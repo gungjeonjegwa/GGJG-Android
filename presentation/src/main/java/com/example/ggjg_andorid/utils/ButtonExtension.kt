@@ -2,7 +2,7 @@ package com.example.ggjg_andorid.utils
 
 import android.widget.Button
 
-fun Button.changeActivated(activated: Boolean) {
+fun Button.changeActivatedWithEnabled(activated: Boolean) {
     isActivated = activated
     isEnabled = isActivated
 }
