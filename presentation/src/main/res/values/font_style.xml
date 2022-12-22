@@ -11,9 +11,19 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="Bold16">
+        <item name="android:fontFamily">@font/spoqahansansneo_bold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
     <style name="Bold18">
         <item name="android:fontFamily">@font/spoqahansansneo_bold</item>
         <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Bold20">
+        <item name="android:fontFamily">@font/spoqahansansneo_bold</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
     <style name="Bold24">
