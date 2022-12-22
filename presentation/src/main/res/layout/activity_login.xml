@@ -13,6 +13,8 @@
         android:id="@+id/loginLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/background"
+
         android:onClick="@{login::onClick}">
 
         <androidx.constraintlayout.widget.Guideline
@@ -20,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.075" />
+            app:layout_constraintGuide_begin="48dp"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/startLine"
@@ -190,10 +192,12 @@
             app:layout_constraintTop_toBottomOf="@id/loginBtn">
 
             <TextView
+                android:id="@+id/registerBtn"
                 style="@style/Regular12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:onClick="@{login::onClick}"
                 android:text="@string/register"
                 android:textColor="@color/very_dark_gray" />
 
