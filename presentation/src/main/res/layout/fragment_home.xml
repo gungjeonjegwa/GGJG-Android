@@ -9,7 +9,8 @@
     <com.example.ggjg_andorid.utils.CustomScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/background">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -59,7 +60,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="16dp"
+                android:background="@color/background"
                 android:orientation="horizontal"
+                android:outlineProvider="none"
+                android:paddingVertical="12dp"
                 android:paddingTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -148,12 +152,12 @@
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/itemList"
+                android:id="@+id/breadList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="4dp"
+                android:nestedScrollingEnabled="false"
                 app:layout_constraintTop_toBottomOf="@id/menuBar" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

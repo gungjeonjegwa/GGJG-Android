@@ -6,18 +6,24 @@ import android.os.Message
 import android.view.View
 import androidx.core.view.size
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewpager.widget.ViewPager
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.adapter.BannerAdapter
+import com.example.ggjg_andorid.adapter.BreadListAdapter
+import com.example.ggjg_andorid.adapter.BreadListDecorator
 import com.example.ggjg_andorid.databinding.FragmentHomeBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.utils.repeatOnStart
 import com.example.ggjg_andorid.viewmodel.HomeViewModel
+import com.example.ggjg_andorid.viewmodel.MainViewModel
 import kotlin.math.max
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private val homeViewModel by activityViewModels<HomeViewModel>()
+    private val mainViewModel by activityViewModels<MainViewModel>()
     private lateinit var categoryList: List<View>
+    private lateinit var adapter: BreadListAdapter
     private val autoTime: Long = 3000
     private var maxSize = 0
     private val handler = HomeBannerHandler()
@@ -34,8 +40,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     override fun createView() {
         initView()
+        mainViewModel.hiddenNav(false)
         homeViewModel.setTag(binding.allBtn)
         homeViewModel.getBanner()
+        homeViewModel.allBread()
         repeatOnStart {
             homeViewModel.eventFlow.collect { event -> handleEvent(event) }
         }
@@ -52,17 +60,36 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             binding.bannerContainer.adapter = BannerAdapter(event.bannerList)
             changePage()
         }
+        is HomeViewModel.Event.Bread -> {
+            adapter.submitList(event.breadList)
+        }
     }
 
     private fun initView() = binding.apply {
         categoryList = listOf(allBtn, breadBtn, cakeBtn, cookieBtn, presentBtn)
+        adapter = BreadListAdapter {
+
+        }
         scrollView.run {
             header = binding.menuBar
+            stickListener = {
+                scrollView.isNestedScrollingEnabled = false
+                breadList.isNestedScrollingEnabled = true
+            }
+            freeListener = {
+                scrollView.isNestedScrollingEnabled = true
+                breadList.isNestedScrollingEnabled = false
+            }
         }
         categoryList.forEach {
             it.setOnClickListener { tag ->
                 homeViewModel.setTag(tag)
             }
+        }
+        breadList.run {
+            adapter = this@HomeFragment.adapter
+            layoutManager = GridLayoutManager(requireContext(), 2)
+            addItemDecoration(BreadListDecorator(context))
         }
         bannerContainer.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(
