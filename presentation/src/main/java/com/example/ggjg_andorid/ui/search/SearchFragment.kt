@@ -1,5 +1,6 @@
 package com.example.ggjg_andorid.ui.search
 
+import android.os.Handler
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -9,14 +10,14 @@ import com.example.ggjg_andorid.databinding.FragmentSearchBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.utils.*
 import com.example.ggjg_andorid.viewmodel.MainViewModel
+import com.example.ggjg_andorid.viewmodel.RegisterViewModel
 import com.example.ggjg_andorid.viewmodel.SearchViewModel
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_search) {
-    private val mainViewModel by activityViewModels<MainViewModel>()
     private val searchViewModel by activityViewModels<SearchViewModel>()
+
     override fun createView() {
         binding.search = this
-        mainViewModel.hiddenNav(true)
         initView()
         repeatOnStart {
             searchViewModel.eventFlow.collect { event -> handleEvent(event) }
@@ -31,7 +32,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
             searchViewModel.recentSearch()
         }
         is SearchViewModel.Event.Search -> {
-            binding.searchBread.setText(event.search)
+            binding.searchBread.setText(SearchViewModel.search)
             keyboardHide(requireActivity(), listOf(binding.searchBread))
             viewFragment(SearchResultFragment())
         }
@@ -48,7 +49,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
             }
             R.id.searchBtn -> {
                 keyboardHide(requireActivity(), listOf(binding.searchBread))
-                searchViewModel.search(binding.searchBread.text.toString())
+                searchViewModel.search()
                 viewFragment(SearchResultFragment())
             }
         }
@@ -56,17 +57,21 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
 
     private fun initView() = binding.apply {
         viewFragment(SearchRecentFragment())
-        keyboardShow(requireActivity(), binding.searchBread)
+        keyboardShow(requireActivity(), searchBread)
         searchBread.run {
-            setOnTextChanged { p0, _, _, _ ->
-                if (p0.isNullOrBlank()) {
-                    viewFragment(SearchRecentFragment())
-                } else {
-                    viewFragment(SearchingFragment())
+            Handler().postDelayed({
+                text = null
+                setOnTextChanged { p0, _, _, _ ->
+                    SearchViewModel.search = p0.toString()
+                    if (!p0.isNullOrBlank()) {
+                        viewFragment(SearchingFragment())
+                    } else {
+                        viewFragment(SearchRecentFragment())
+                    }
                 }
-            }
+            }, 1)
             setOnFocusChangeListener { _, b ->
-                binding.searchDivide.setVisible(b)
+                searchDivide.setVisible(b)
             }
         }
     }

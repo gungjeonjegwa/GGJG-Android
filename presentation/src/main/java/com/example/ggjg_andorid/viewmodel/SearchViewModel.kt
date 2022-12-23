@@ -24,6 +24,7 @@ class SearchViewModel @Inject constructor(
 
     companion object {
         val adapter = RecentSearchAdapter()
+        var search: String? = null
     }
 
     fun recentSearch() = viewModelScope.launch {
@@ -34,13 +35,15 @@ class SearchViewModel @Inject constructor(
         }
     }
 
-    fun search(search: String) = viewModelScope.launch {
-        kotlin.runCatching {
-            searchUseCase.execute(RecentSearchEntity(search))
-        }.onSuccess {
+    fun search() = viewModelScope.launch {
+        if (search != null) {
+            kotlin.runCatching {
+                searchUseCase.execute(RecentSearchEntity(search!!))
+            }.onSuccess {
 
+            }
+            event(Event.Search)
         }
-        event(Event.Search(search))
     }
 
     fun deleteRecentSearch(search: String) = viewModelScope.launch {
@@ -57,7 +60,7 @@ class SearchViewModel @Inject constructor(
 
     sealed class Event {
         data class RecentSearch(val recentSearch: List<RecentSearchEntity?>) : Event()
-        data class Search(val search: String) : Event()
+        object Search : Event()
         object SuccessDelete : Event()
     }
 }
