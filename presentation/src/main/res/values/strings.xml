@@ -44,11 +44,13 @@
     <string name="email_none">존재하지 않는 이메일입니다.</string>
     <string name="email_wrong">이메일 형식에 맞게 입력해주세요.</string>
     <string name="id">아이디 *</string>
+    <string name="id_no_star">아이디</string>
     <string name="id_already">이미있는 아이디 입니다.</string>
     <string name="pw">비밀번호 *</string>
     <string name="request_pw_option">8~30자 이내 특수문자 1개</string>
     <string name="pw_wrong_option">비밀번호를 8~30자 이내 특수문자 1개를 포함해야 합니다.</string>
     <string name="re_pw">비밀번호 확인 *</string>
+    <string name="re_pw_no_star">비밀번호 확인</string>
     <string name="request_re_pw">비밀번호를 한 번 더 입력해주세요</string>
     <string name="re_pw_wrong">비밀번호가 일치하지 않습니다.</string>
     <string name="new_pw">새로운 비밀번호</string>
