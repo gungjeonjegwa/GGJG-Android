@@ -10,8 +10,10 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/findIdLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:onClick="@{findIdCertify::onClick}">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/findIdBarBottomLine"

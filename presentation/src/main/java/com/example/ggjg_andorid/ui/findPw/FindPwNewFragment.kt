@@ -61,6 +61,9 @@ class FindPwNewFragment : BaseFragment<FragmentFindPwNewBinding>(R.layout.fragme
             R.id.backBtn -> {
                 requireActivity().findNavController(R.id.findPwContainer).popBackStack()
             }
+            R.id.findPwLayout -> {
+                keyboardHide(requireActivity(), listOf(binding.editPw, binding.editRePw))
+            }
             R.id.completeBtn -> {
                 var possibleComplete = true
                 if (binding.editPw.text.toString() != binding.editRePw.text.toString()) {

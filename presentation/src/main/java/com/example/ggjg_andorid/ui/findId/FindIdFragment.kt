@@ -31,6 +31,9 @@ class FindIdFragment : BaseFragment<FragmentFindIdBinding>(R.layout.fragment_fin
             R.id.backBtn -> {
                 requireActivity().finish()
             }
+            R.id.findIdLayout -> {
+                keyboardHide(requireActivity(), listOf(binding.writeEmail))
+            }
             R.id.certifyBtn -> {
                 if (binding.writeEmail.text.toString().isEmail()) {
                     binding.errorEmailTxt.onError(

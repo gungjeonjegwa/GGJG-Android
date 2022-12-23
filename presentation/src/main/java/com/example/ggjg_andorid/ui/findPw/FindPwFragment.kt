@@ -7,7 +7,7 @@ import com.example.ggjg_andorid.databinding.FragmentFindPwBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.utils.*
 
-class FindPwFragment: BaseFragment<FragmentFindPwBinding> (R.layout.fragment_find_pw) {
+class FindPwFragment : BaseFragment<FragmentFindPwBinding>(R.layout.fragment_find_pw) {
     override fun createView() {
         binding.findPw = this
         initView()
@@ -35,6 +35,9 @@ class FindPwFragment: BaseFragment<FragmentFindPwBinding> (R.layout.fragment_fin
             R.id.backBtn -> {
                 requireActivity().finish()
             }
+            R.id.findPwLayout -> {
+                keyboardHide(requireActivity(), listOf(binding.writeEmail, binding.writeId))
+            }
             R.id.certifyBtn -> {
                 if (binding.writeEmail.text.toString().isEmail()) {
                     binding.errorEmailTxt.onError(
@@ -43,7 +46,8 @@ class FindPwFragment: BaseFragment<FragmentFindPwBinding> (R.layout.fragment_fin
                         requireActivity()
                     )
                 } else {
-                    requireActivity().findNavController(R.id.findPwContainer).navigate(R.id.action_findPwFragment_to_findPwCertifyFragment)
+                    requireActivity().findNavController(R.id.findPwContainer)
+                        .navigate(R.id.action_findPwFragment_to_findPwCertifyFragment)
                 }
             }
         }

@@ -5,10 +5,7 @@ import androidx.navigation.findNavController
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.FragmentFindPwCertifyBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
-import com.example.ggjg_andorid.utils.changeActivatedWithEnabled
-import com.example.ggjg_andorid.utils.keyboardShow
-import com.example.ggjg_andorid.utils.onError
-import com.example.ggjg_andorid.utils.setOnTextChanged
+import com.example.ggjg_andorid.utils.*
 import java.util.*
 import kotlin.concurrent.timer
 
@@ -65,6 +62,9 @@ class FindPwCertifyFragment :
         when (view.id) {
             R.id.backBtn -> {
                 requireActivity().findNavController(R.id.findPwContainer).popBackStack()
+            }
+            R.id.findPwLayout -> {
+                keyboardHide(requireActivity(), listOf(binding.writeCertify))
             }
             R.id.okayBtn -> {
                 if (second == 0 && minute == 0) {
