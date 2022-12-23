@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/find_pw_graph"
+    app:startDestination="@id/findPwFragment">
+
+    <fragment
+        android:id="@+id/findPwFragment"
+        android:name="com.example.ggjg_andorid.ui.findPw.FindPwFragment"
+        android:label="FindPwFragment"
+        tools:layout="@layout/fragment_find_pw" >
+        <action
+            android:id="@+id/action_findPwFragment_to_findPwCertifyFragment"
+            app:destination="@id/findPwCertifyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/findPwCertifyFragment"
+        android:name="com.example.ggjg_andorid.ui.findPw.FindPwCertifyFragment"
+        android:label="FindPwCertifyFragment"
+        tools:layout="@layout/fragment_find_pw_certify" >
+        <action
+            android:id="@+id/action_findPwCertifyFragment_to_findPwNewFragment"
+            app:destination="@id/findPwNewFragment"
+            app:popUpTo="@id/findPwFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/findPwNewFragment"
+        android:name="com.example.ggjg_andorid.ui.findPw.FindPwNewFragment"
+        android:label="FindPwNewFragment"
+        tools:layout="@layout/fragment_find_pw_new" >
+        <action
+            android:id="@+id/action_findPwNewFragment_to_findPwSuccessFragment"
+            app:destination="@id/findPwSuccessFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/findPwSuccessFragment"
+        android:name="com.example.ggjg_andorid.ui.findPw.FindPwSuccessFragment"
+        android:label="FindPwSuccessFragment"
+        tools:layout="@layout/fragment_find_pw_success" />
+</navigation>

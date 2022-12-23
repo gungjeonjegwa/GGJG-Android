@@ -8,6 +8,7 @@ import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.ActivityLoginBinding
 import com.example.ggjg_andorid.ui.base.BaseActivity
 import com.example.ggjg_andorid.ui.findId.FindIdActivity
+import com.example.ggjg_andorid.ui.findPw.FindPwActivity
 import com.example.ggjg_andorid.ui.register.RegisterActivity
 import com.example.ggjg_andorid.utils.*
 import dagger.hilt.android.AndroidEntryPoint
@@ -69,6 +70,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             }
             R.id.findIdBtn -> {
                 startActivity(Intent(this, FindIdActivity::class.java))
+            }
+            R.id.findPwBtn -> {
+                startActivity(Intent(this, FindPwActivity::class.java))
             }
         }
     }

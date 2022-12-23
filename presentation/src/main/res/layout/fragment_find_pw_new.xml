@@ -5,20 +5,16 @@
     <data>
 
         <variable
-            name="login"
-            type="com.example.ggjg_andorid.ui.login.LoginActivity" />
+            name="findPwNew"
+            type="com.example.ggjg_andorid.ui.findPw.FindPwNewFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/loginLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background"
-
-        android:onClick="@{login::onClick}">
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/backBottomLine"
+            android:id="@+id/findPwBarBottomLine"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:orientation="horizontal"
@@ -43,75 +39,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_back"
-            android:onClick="@{login::onClick}"
-            app:layout_constraintBottom_toBottomOf="@id/backBottomLine"
+            android:onClick="@{findPwNew::onClick}"
+            app:layout_constraintBottom_toBottomOf="@id/findPwBarBottomLine"
             app:layout_constraintStart_toStartOf="@id/startLine"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/loginTxt"
-            style="@style/Bold24"
+            style="@style/Regular16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/login"
+            android:text="@string/find_pw"
             android:textColor="@color/real_black"
-            app:layout_constraintStart_toStartOf="@id/startLine"
-            app:layout_constraintTop_toTopOf="@id/backBottomLine" />
-
-        <TextView
-            android:id="@+id/loginCommentTxt"
-            style="@style/Regular14"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/login_comment"
-            android:textColor="@color/dark_gray"
-            app:layout_constraintStart_toStartOf="@id/startLine"
-            app:layout_constraintTop_toBottomOf="@id/loginTxt" />
-
-        <LinearLayout
-            android:id="@+id/writeId"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/selector_input_layout"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="12dp"
+            app:layout_constraintBottom_toBottomOf="@id/findPwBarBottomLine"
             app:layout_constraintEnd_toEndOf="@id/endLine"
             app:layout_constraintStart_toStartOf="@id/startLine"
-            app:layout_constraintTop_toBottomOf="@id/loginCommentTxt">
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/ic_id" />
-
-            <EditText
-                android:id="@+id/editId"
-                style="@style/Medium14"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="12dp"
-                android:layout_weight="1"
-                android:background="@color/transparent"
-                android:hint="@string/request_id"
-                android:paddingVertical="5dp"
-                android:singleLine="true"
-                android:textColor="@color/black"
-                android:textColorHint="@color/gray"
-                android:textCursorDrawable="@drawable/ic_cursor" />
-
-            <ImageView
-                android:id="@+id/deleteIdBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/ic_all_delete"
-                android:onClick="@{login::onClick}"
-                android:visibility="gone" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/pwTxt"
+            style="@style/Bold12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:text="@string/new_pw"
+            android:textColor="@color/real_black"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/findPwBarBottomLine" />
 
         <LinearLayout
             android:id="@+id/writePw"
@@ -123,13 +76,7 @@
             android:paddingVertical="12dp"
             app:layout_constraintEnd_toEndOf="@id/endLine"
             app:layout_constraintStart_toStartOf="@id/startLine"
-            app:layout_constraintTop_toBottomOf="@id/writeId">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/ic_pw" />
+            app:layout_constraintTop_toBottomOf="@id/pwTxt">
 
             <EditText
                 android:id="@+id/editPw"
@@ -137,10 +84,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="12dp"
                 android:layout_weight="1"
                 android:background="@color/transparent"
-                android:hint="@string/request_pw"
+                android:hint="@string/request_new_pw"
                 android:inputType="textPassword"
                 android:paddingVertical="5dp"
                 android:singleLine="true"
@@ -154,12 +100,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:background="@drawable/ic_pw_visible"
-                android:onClick="@{login::onClick}"
+                android:onClick="@{findPwNew::onClick}"
                 android:visibility="gone" />
         </LinearLayout>
 
         <TextView
-            android:id="@+id/errorTxt"
+            android:id="@+id/errorPwTxt"
+            style="@style/Regular12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -167,74 +114,78 @@
             app:layout_constraintStart_toStartOf="@id/startLine"
             app:layout_constraintTop_toBottomOf="@id/writePw" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/loginBtn"
-            style="@style/Bold14"
+        <TextView
+            android:id="@+id/rePwTxt"
+            style="@style/Bold12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:text="@string/re_pw_no_star"
+            android:textColor="@color/real_black"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/errorPwTxt" />
+
+        <LinearLayout
+            android:id="@+id/writeRePw"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/selector_input_layout"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="12dp"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/rePwTxt">
+
+            <EditText
+                android:id="@+id/editRePw"
+                style="@style/Medium14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:hint="@string/request_re_pw"
+                android:inputType="textPassword"
+                android:paddingVertical="5dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                android:textCursorDrawable="@drawable/ic_cursor" />
+
+            <ImageView
+                android:id="@+id/rePwVisibleBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/ic_pw_visible"
+                android:onClick="@{findPwNew::onClick}"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/errorRePwTxt"
+            style="@style/Regular12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/red"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/writeRePw" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/completeBtn"
+            style="@style/Bold14"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="21dp"
             android:background="@drawable/selector_form_btn"
             android:enabled="false"
+            android:onClick="@{findPwNew::onClick}"
             android:paddingVertical="17dp"
-            android:text="@string/login"
+            android:text="@string/complicate"
             android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="@id/endLine"
-            app:layout_constraintStart_toStartOf="@id/startLine"
-            app:layout_constraintTop_toBottomOf="@id/errorTxt" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="@id/endLine"
-            app:layout_constraintStart_toStartOf="@id/startLine"
-            app:layout_constraintTop_toBottomOf="@id/loginBtn">
-
-            <TextView
-                android:id="@+id/registerBtn"
-                style="@style/Regular12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:onClick="@{login::onClick}"
-                android:text="@string/register"
-                android:textColor="@color/very_dark_gray" />
-
-            <View
-                android:layout_width="0.7dp"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="8dp"
-                android:layout_marginVertical="2dp"
-                android:background="@color/very_dark_gray" />
-
-            <TextView
-                android:id="@+id/findIdBtn"
-                style="@style/Regular12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:onClick="@{login::onClick}"
-                android:text="@string/find_id"
-                android:textColor="@color/very_dark_gray" />
-
-            <View
-                android:layout_width="0.7dp"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="8dp"
-                android:layout_marginVertical="2dp"
-                android:background="@color/very_dark_gray" />
-
-            <TextView
-                android:id="@+id/findPwBtn"
-                style="@style/Regular12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:onClick="@{login::onClick}"
-                android:text="@string/find_pw"
-                android:textColor="@color/very_dark_gray" />
-        </LinearLayout>
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
