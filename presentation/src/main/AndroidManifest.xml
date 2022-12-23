@@ -41,6 +41,10 @@
         <activity
             android:name=".ui.register.DetailAgreementActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.findId.FindIdActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

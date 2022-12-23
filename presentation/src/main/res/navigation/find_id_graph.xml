@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/find_id_graph"
+    app:startDestination="@id/findIdFragment">
+
+    <fragment
+        android:id="@+id/findIdFragment"
+        android:name="com.example.ggjg_andorid.ui.findId.FindIdFragment"
+        android:label="FindIdFragment"
+        tools:layout="@layout/fragment_find_id">
+        <action
+            android:id="@+id/action_findIdFragment_to_findIdCertifyFragment"
+            app:destination="@id/findIdCertifyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/findIdCertifyFragment"
+        android:name="com.example.ggjg_andorid.ui.findId.FindIdCertifyFragment"
+        android:label="FindIdCertifyFragment"
+        tools:layout="@layout/fragment_find_id_certify">
+        <action
+            android:id="@+id/action_findIdCertifyFragment_to_findIdSuccessFragment"
+            app:destination="@id/findIdSuccessFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/findIdSuccessFragment"
+        android:name="com.example.ggjg_andorid.ui.findId.FindIdSuccessFragment"
+        android:label="FindIdSuccessFragment"
+        tools:layout="@layout/fragment_find_id_success" />
+</navigation>

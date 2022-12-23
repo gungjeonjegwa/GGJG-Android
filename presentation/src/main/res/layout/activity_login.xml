@@ -209,7 +209,9 @@
                 android:background="@color/very_dark_gray" />
 
             <TextView
+                android:id="@+id/findIdBtn"
                 style="@style/Regular12"
+                android:onClick="@{login::onClick}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
