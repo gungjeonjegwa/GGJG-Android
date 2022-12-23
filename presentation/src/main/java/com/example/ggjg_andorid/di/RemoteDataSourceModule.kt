@@ -1,5 +1,7 @@
 package com.example.ggjg_andorid.di
 
+import com.example.data.remote.datasource.AuthDataSource
+import com.example.data.remote.datasource.AuthDataSourceImpl
 import com.example.data.remote.datasource.BreadDataSource
 import com.example.data.remote.datasource.BreadDataSourceImpl
 import dagger.Binds
@@ -14,4 +16,9 @@ abstract class RemoteDataSourceModule {
     abstract fun provideBreadDataSource(
         breadDataSourceImpl: BreadDataSourceImpl
     ): BreadDataSource
+
+    @Binds
+    abstract fun provideAuthDataSource(
+        authDataSourceImpl: AuthDataSourceImpl
+    ): AuthDataSource
 }

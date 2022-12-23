@@ -1,5 +1,6 @@
 package com.example.ggjg_andorid.di
 
+import com.example.data.remote.api.AuthAPI
 import com.example.data.remote.api.BreadAPI
 import com.example.ggjg_andorid.BuildConfig
 import dagger.Module
@@ -44,4 +45,8 @@ object NetworkModule {
     @Provides
     fun provideBreadAPI(retrofit: Retrofit): BreadAPI =
         retrofit.create(BreadAPI::class.java)
+
+    @Provides
+    fun provideAuthAPI(retrofit: Retrofit): AuthAPI =
+        retrofit.create(AuthAPI::class.java)
 }

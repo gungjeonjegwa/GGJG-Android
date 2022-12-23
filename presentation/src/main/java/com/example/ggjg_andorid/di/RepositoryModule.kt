@@ -1,7 +1,9 @@
 package com.example.ggjg_andorid.di
 
+import com.example.data.repository.AuthRepositoryImpl
 import com.example.data.repository.BreadRepositoryImpl
 import com.example.data.repository.SearchRepositoryImpl
+import com.example.domain.repository.AuthRepository
 import com.example.domain.repository.BreadRepository
 import com.example.domain.repository.SearchRepository
 import dagger.Binds
@@ -21,4 +23,9 @@ abstract class RepositoryModule {
     abstract fun provideBreadRepository(
         breadRepositoryImpl: BreadRepositoryImpl
     ): BreadRepository
+
+    @Binds
+    abstract fun provideAuthRepository(
+        authRepositoryImpl: AuthRepositoryImpl
+    ): AuthRepository
 }
