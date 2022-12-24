@@ -4,7 +4,6 @@ import android.os.Handler
 import android.os.Looper
 import android.os.Message
 import android.view.View
-import androidx.core.view.size
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewpager.widget.ViewPager
@@ -12,13 +11,12 @@ import com.example.domain.entity.BreadEntity
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.adapter.BannerAdapter
 import com.example.ggjg_andorid.adapter.BreadListAdapter
-import com.example.ggjg_andorid.adapter.BreadListDecorator
+import com.example.ggjg_andorid.adapter.decorator.BreadListDecorator
 import com.example.ggjg_andorid.databinding.FragmentHomeBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.utils.repeatOnStart
 import com.example.ggjg_andorid.viewmodel.HomeViewModel
 import com.example.ggjg_andorid.viewmodel.MainViewModel
-import kotlin.math.max
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private val homeViewModel by activityViewModels<HomeViewModel>()

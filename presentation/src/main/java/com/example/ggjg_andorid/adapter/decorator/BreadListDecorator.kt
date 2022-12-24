@@ -1,4 +1,4 @@
-package com.example.ggjg_andorid.adapter
+package com.example.ggjg_andorid.adapter.decorator
 
 import android.content.Context
 import android.graphics.Rect

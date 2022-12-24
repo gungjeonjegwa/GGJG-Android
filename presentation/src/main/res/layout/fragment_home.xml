@@ -6,7 +6,7 @@
 
     </data>
 
-    <com.example.ggjg_andorid.utils.CustomScrollView
+    <com.example.ggjg_andorid.utils.custom_view.CustomScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -161,5 +161,5 @@
                 app:layout_constraintTop_toBottomOf="@id/menuBar" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.example.ggjg_andorid.utils.CustomScrollView>
+    </com.example.ggjg_andorid.utils.custom_view.CustomScrollView>
 </layout>

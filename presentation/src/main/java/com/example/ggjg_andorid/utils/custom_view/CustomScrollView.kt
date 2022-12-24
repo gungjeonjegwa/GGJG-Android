@@ -1,4 +1,4 @@
-package com.example.ggjg_andorid.utils
+package com.example.ggjg_andorid.utils.custom_view
 
 import android.content.Context
 import android.util.AttributeSet
