@@ -22,15 +22,24 @@ class HomeViewModel @Inject constructor(
     private val _eventFlow = MutableEventFlow<HomeViewModel.Event>()
     val eventFlow = _eventFlow.asEventFlow()
 
+    companion object {
+        var page = 0
+        var isLast = false
+    }
+
     fun allBread() = viewModelScope.launch {
-        kotlin.runCatching {
-            allBreadUseCase.execute("0", "10")
-        }.onSuccess {
-            var list = listOf<BreadEntity.Bread>()
-            for (i in 0..100) {
-                list = list.plus(it.breadList)
+        if (!isLast) {
+            kotlin.runCatching {
+                allBreadUseCase.execute(page.toString(), "10")
+            }.onSuccess {
+                if (page == 0) {
+                    event(Event.Bread(it.breadList))
+                } else {
+                    event(Event.AddBread(it.breadList))
+                }
+                isLast = it.isLast
+                page++
             }
-            event(Event.Bread(list))
         }
     }
 
@@ -42,17 +51,21 @@ class HomeViewModel @Inject constructor(
             R.id.presentBtn -> "PRESENT"
             else -> "BREAD"
         }
-        kotlin.runCatching {
-            categoryBreadUseCase.execute("0", "10", category)
-        }.onSuccess {
-            event(Event.Bread(it.breadList))
-        }.onFailure {
+        if (!isLast) {
+            kotlin.runCatching {
+                categoryBreadUseCase.execute(page.toString(), "10", category)
+            }.onSuccess {
+                if (page == 0) {
+                    event(Event.Bread(it.breadList))
+                } else {
+                    event(Event.AddBread(it.breadList))
+                }
+                isLast = it.isLast
+                page++
+            }.onFailure {
 
+            }
         }
-    }
-
-    fun setTag(tag: View) {
-        event(Event.Category(tag))
     }
 
     fun getBanner() = viewModelScope.launch {
@@ -72,8 +85,8 @@ class HomeViewModel @Inject constructor(
     }
 
     sealed class Event {
-        data class Category(val tag: View) : Event()
         data class Banner(val bannerList: List<String>) : Event()
         data class Bread(val breadList: List<BreadEntity.Bread>) : Event()
+        data class AddBread(val breadList: List<BreadEntity.Bread>) : Event()
     }
 }

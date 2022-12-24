@@ -6,15 +6,18 @@ import android.os.Message
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.example.domain.entity.BreadEntity
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.adapter.BannerAdapter
 import com.example.ggjg_andorid.adapter.BreadListAdapter
 import com.example.ggjg_andorid.adapter.decorator.BreadListDecorator
+import com.example.ggjg_andorid.adapter.listener.EndlessRecyclerViewScrollListener
 import com.example.ggjg_andorid.databinding.FragmentHomeBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.utils.repeatOnStart
+import com.example.ggjg_andorid.utils.setVisible
 import com.example.ggjg_andorid.viewmodel.HomeViewModel
 import com.example.ggjg_andorid.viewmodel.MainViewModel
 
@@ -22,6 +25,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private val homeViewModel by activityViewModels<HomeViewModel>()
     private val mainViewModel by activityViewModels<MainViewModel>()
     private lateinit var categoryList: List<View>
+    private lateinit var listener: EndlessRecyclerViewScrollListener
+    private lateinit var layoutManager: GridLayoutManager
     private lateinit var adapter: BreadListAdapter
     private val autoTime: Long = 3000
     private var maxSize = 0
@@ -40,7 +45,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     override fun createView() {
         initView()
         mainViewModel.hiddenNav(false)
-        homeViewModel.setTag(binding.allBtn)
         homeViewModel.getBanner()
         homeViewModel.allBread()
         repeatOnStart {
@@ -49,11 +53,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     }
 
     private fun handleEvent(event: HomeViewModel.Event) = when (event) {
-        is HomeViewModel.Event.Category -> {
-            categoryList.forEach {
-                it.isSelected = it == event.tag
-            }
-        }
         is HomeViewModel.Event.Banner -> {
             maxSize = event.bannerList.size
             binding.bannerContainer.adapter = BannerAdapter(event.bannerList)
@@ -62,10 +61,35 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         is HomeViewModel.Event.Bread -> {
             adapter.submitList(event.breadList)
         }
+        is HomeViewModel.Event.AddBread -> {
+            adapter.submitList(adapter.currentList.plus(event.breadList))
+            binding.moreProgress.setVisible(false)
+        }
     }
 
     private fun initView() = binding.apply {
+        allBtn.isSelected = true
         categoryList = listOf(allBtn, breadBtn, cakeBtn, cookieBtn, presentBtn)
+        layoutManager = GridLayoutManager(requireContext(), 2)
+        listener =
+            object : EndlessRecyclerViewScrollListener(layoutManager) {
+                override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
+                    if (!HomeViewModel.isLast) {
+                        binding.moreProgress.setVisible()
+                        Handler().postDelayed({
+                            categoryList.forEach {
+                                if (it.isSelected) {
+                                    if (it == allBtn) {
+                                        homeViewModel.allBread()
+                                    } else {
+                                        homeViewModel.categoryBread(it)
+                                    }
+                                }
+                            }
+                        }, 1000)
+                    }
+                }
+            }
         adapter = BreadListAdapter()
         adapter.setItemOnClickListener(object : BreadListAdapter.OnItemClickListener {
             override fun detail(item: BreadEntity.Bread) {
@@ -88,18 +112,26 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         }
         categoryList.forEach {
             it.setOnClickListener { tag ->
+                listener.resetState()
+                HomeViewModel.apply {
+                    page = 0
+                    isLast = false
+                }
                 if (tag.id != R.id.allBtn) {
                     homeViewModel.categoryBread(tag)
                 } else {
                     homeViewModel.allBread()
                 }
-                homeViewModel.setTag(tag)
+                categoryList.forEach { view ->
+                    view.isSelected = view == tag
+                }
             }
         }
         breadList.run {
             adapter = this@HomeFragment.adapter
-            layoutManager = GridLayoutManager(requireContext(), 2)
+            layoutManager = this@HomeFragment.layoutManager
             addItemDecoration(BreadListDecorator(context))
+            addOnScrollListener(listener)
         }
         bannerContainer.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(
