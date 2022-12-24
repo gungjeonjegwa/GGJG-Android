@@ -65,6 +65,7 @@ dependencies {
     implementation(Dependency.AndroidX.CONSTRAINT_LAYOUT)
     implementation(Dependency.AndroidX.LIFECYCLE_VIEWMODEL_KTX)
     implementation(Dependency.AndroidX.LIFECYCLE)
+    implementation(Dependency.AndroidX.PAGING)
 
     implementation(Dependency.Kotlin.COROUTINES_CORE)
     implementation(Dependency.Kotlin.COROUTINES_ANDROID)

@@ -2,7 +2,8 @@ object Dependency {
 
     object GradlePlugin {
         const val GRADLE_ANDROID = "com.android.tools.build:gradle:${Version.GRADLE_ANDROID}"
-        const val GRADLE_KOTLIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Version.GRADLE_KOTLIN}"
+        const val GRADLE_KOTLIN =
+            "org.jetbrains.kotlin:kotlin-gradle-plugin:${Version.GRADLE_KOTLIN}"
         const val GRADLE_HILT = "com.google.dagger:hilt-android-gradle-plugin:${Version.HILT}"
     }
 
@@ -14,7 +15,8 @@ object Dependency {
     }
 
     object AndroidX {
-        const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:${Version.CONSTRAINT_LAYOUT}"
+        const val CONSTRAINT_LAYOUT =
+            "androidx.constraintlayout:constraintlayout:${Version.CONSTRAINT_LAYOUT}"
 
         const val CORE_KTX = "androidx.core:core-ktx:${Version.CORE_KTX}"
         const val APP_COMPAT = "androidx.appcompat:appcompat:${Version.APP_COMPAT}"
@@ -24,6 +26,8 @@ object Dependency {
         const val LIFECYCLE_VIEWMODEL_KTX =
             "androidx.lifecycle:lifecycle-viewmodel-ktx:${Version.LIFECYCLE_KTX}"
         const val LIFECYCLE = "androidx.lifecycle:lifecycle-runtime-ktx:${Version.LIFECYCLE_KTX}"
+
+        const val PAGING = "androidx.paging:paging-runtime-ktx:${Version.PAGING}"
     }
 
     object Hilt {
