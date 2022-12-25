@@ -2,22 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/homeFragment"
-        android:title="홈"
-        android:icon="@drawable/ic_home"/>
+        android:icon="@drawable/ic_home"
+        android:title="@string/home" />
     <item
         android:id="@+id/searchFragment"
-        android:title="검색"
-        android:icon="@drawable/ic_search"/>
+        android:icon="@drawable/ic_search"
+        android:title="@string/search" />
     <item
         android:id="@+id/shoppingListFragment"
-        android:title="장바구니"
-        android:icon="@drawable/ic_shopping_list"/>
+        android:icon="@drawable/ic_shopping_list"
+        android:title="@string/shopping_list" />
     <item
         android:id="@+id/favoriteFragment"
-        android:title="관심상품"
-        android:icon="@drawable/ic_favorite"/>
+        android:icon="@drawable/ic_favorite"
+        android:title="@string/favorite" />
     <item
         android:id="@+id/myPageFragment"
-        android:title="마이페이지"
-        android:icon="@drawable/ic_my_page"/>
+        android:icon="@drawable/ic_my_page"
+        android:title="@string/profile" />
 </menu>
