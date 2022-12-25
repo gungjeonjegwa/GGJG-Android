@@ -26,8 +26,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private fun handleEvent(event: MainViewModel.Event) = when (event) {
         is MainViewModel.Event.IsHiddenNav -> {
             if (event.status) {
-                binding.bottomNav.visibility = View.GONE
+                binding.bottomNavTopLine.setGuidelinePercent(1f)
             } else {
+                binding.bottomNavTopLine.setGuidelinePercent(0.93f)
                 binding.bottomNav.visibility = View.VISIBLE
             }
         }
