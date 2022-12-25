@@ -8,10 +8,10 @@ data class RecentSearchEntity(
     @PrimaryKey val search: String
 )
 
-fun com.example.domain.entity.RecentSearchEntity.toDbEntity() = RecentSearchEntity(
+fun com.example.domain.entity.search.RecentSearchEntity.toDbEntity() = RecentSearchEntity(
     search = search
 )
 
-fun RecentSearchEntity.toEntity() = com.example.domain.entity.RecentSearchEntity(
+fun RecentSearchEntity.toEntity() = com.example.domain.entity.search.RecentSearchEntity(
     search = search
 )

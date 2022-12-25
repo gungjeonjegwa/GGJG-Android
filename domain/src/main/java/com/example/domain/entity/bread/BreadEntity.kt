@@ -1,4 +1,4 @@
-package com.example.domain.entity
+package com.example.domain.entity.bread
 
 data class BreadEntity(
     val breadList: List<Bread>,

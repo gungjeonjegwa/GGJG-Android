@@ -2,7 +2,7 @@ package com.example.data.repository
 
 import com.example.data.remote.datasource.BreadDataSource
 import com.example.data.remote.response.toEntity
-import com.example.domain.entity.BreadEntity
+import com.example.domain.entity.bread.BreadEntity
 import com.example.domain.repository.BreadRepository
 import javax.inject.Inject
 

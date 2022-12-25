@@ -8,7 +8,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
-import com.example.domain.entity.BreadEntity
+import com.example.domain.entity.bread.BreadEntity
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.adapter.BannerAdapter
 import com.example.ggjg_andorid.adapter.BreadListAdapter

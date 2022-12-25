@@ -1,6 +1,6 @@
 package com.example.domain.repository
 
-import com.example.domain.entity.RecentSearchEntity
+import com.example.domain.entity.search.RecentSearchEntity
 
 interface SearchRepository {
     suspend fun searchBread(recentSearchEntity: RecentSearchEntity)

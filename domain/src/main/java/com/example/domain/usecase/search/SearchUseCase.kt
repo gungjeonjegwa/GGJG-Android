@@ -1,6 +1,6 @@
 package com.example.domain.usecase.search
 
-import com.example.domain.entity.RecentSearchEntity
+import com.example.domain.entity.search.RecentSearchEntity
 import com.example.domain.repository.SearchRepository
 import javax.inject.Inject
 

@@ -2,7 +2,7 @@ package com.example.ggjg_andorid.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.entity.RecentSearchEntity
+import com.example.domain.entity.search.RecentSearchEntity
 import com.example.domain.usecase.search.DeleteRecentSearchUseCase
 import com.example.domain.usecase.search.GetRecentSearchUseCase
 import com.example.domain.usecase.search.SearchUseCase

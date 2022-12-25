@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import coil.transform.RoundedCornersTransformation
-import com.example.domain.entity.BreadEntity
+import com.example.domain.entity.bread.BreadEntity
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.ItemBreadBinding
 import java.text.DecimalFormat

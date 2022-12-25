@@ -1,6 +1,6 @@
-package com.example.data.remote.response
+package com.example.data.remote.response.bread
 
-import com.example.domain.entity.BreadEntity
+import com.example.domain.entity.bread.BreadEntity
 import com.google.gson.annotations.SerializedName
 
 data class BreadResponse(

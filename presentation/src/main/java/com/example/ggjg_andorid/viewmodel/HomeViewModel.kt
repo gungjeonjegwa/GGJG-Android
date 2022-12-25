@@ -3,7 +3,7 @@ package com.example.ggjg_andorid.viewmodel
 import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.entity.BreadEntity
+import com.example.domain.entity.bread.BreadEntity
 import com.example.domain.usecase.bread.AllBreadUseCase
 import com.example.domain.usecase.bread.CategoryBreadUseCase
 import com.example.ggjg_andorid.R

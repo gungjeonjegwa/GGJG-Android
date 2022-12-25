@@ -1,7 +1,7 @@
 package com.example.ggjg_andorid.ui.search
 
 import androidx.fragment.app.activityViewModels
-import com.example.domain.entity.RecentSearchEntity
+import com.example.domain.entity.search.RecentSearchEntity
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.adapter.RecentSearchAdapter
 import com.example.ggjg_andorid.databinding.FragmentSearchRecentBinding
