@@ -68,6 +68,7 @@
                 style="@style/Regular14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:lineHeight="21sp"
                 android:textColor="@color/very_dark_gray" />
         </ScrollView>
 
