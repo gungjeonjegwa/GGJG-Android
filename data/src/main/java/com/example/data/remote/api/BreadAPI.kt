@@ -1,6 +1,6 @@
 package com.example.data.remote.api
 
-import com.example.data.remote.response.BreadResponse
+import com.example.data.remote.response.bread.BreadResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

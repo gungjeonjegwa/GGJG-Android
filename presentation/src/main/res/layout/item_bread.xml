@@ -6,7 +6,7 @@
 
         <variable
             name="bread"
-            type="com.example.domain.entity.bread.BreadEntity" />
+            type="com.example.domain.entity.bread.BreadEntity.Bread" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

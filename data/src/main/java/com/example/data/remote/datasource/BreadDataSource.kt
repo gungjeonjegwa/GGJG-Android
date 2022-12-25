@@ -1,6 +1,6 @@
 package com.example.data.remote.datasource
 
-import com.example.data.remote.response.BreadResponse
+import com.example.data.remote.response.bread.BreadResponse
 
 interface BreadDataSource {
     suspend fun allBread(page: String, size: String): BreadResponse
