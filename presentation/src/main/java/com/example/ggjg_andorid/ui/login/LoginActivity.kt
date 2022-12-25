@@ -4,6 +4,7 @@ import android.content.Intent
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
+import androidx.activity.viewModels
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.ActivityLoginBinding
 import com.example.ggjg_andorid.ui.base.BaseActivity
@@ -11,13 +12,26 @@ import com.example.ggjg_andorid.ui.findId.FindIdActivity
 import com.example.ggjg_andorid.ui.findPw.FindPwActivity
 import com.example.ggjg_andorid.ui.register.RegisterActivity
 import com.example.ggjg_andorid.utils.*
+import com.example.ggjg_andorid.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
+    private val loginViewModel by viewModels<LoginViewModel>()
+
     override fun createView() {
         binding.login = this
         initView()
+        repeatOnStart {
+            loginViewModel.eventFlow.collect { event -> handleEvent(event) }
+        }
+    }
+
+    private fun handleEvent(event: LoginViewModel.Event) = when (event) {
+        is LoginViewModel.Event.Success -> {
+            setResult(0)
+            finish()
+        }
     }
 
     private fun initView() = binding.apply {
@@ -44,6 +58,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     fun onClick(view: View) {
         when (view.id) {
             R.id.backBtn -> {
+                setResult(1)
                 finish()
             }
             R.id.loginLayout -> {
@@ -73,6 +88,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             }
             R.id.findPwBtn -> {
                 startActivity(Intent(this, FindPwActivity::class.java))
+            }
+            R.id.loginBtn -> {
+                loginViewModel.login(binding.editId.text.toString(), binding.editPw.text.toString())
             }
         }
     }

@@ -14,7 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background"
-
         android:onClick="@{login::onClick}">
 
         <androidx.constraintlayout.widget.Guideline
@@ -175,6 +174,7 @@
             android:layout_marginTop="21dp"
             android:background="@drawable/selector_form_btn"
             android:enabled="false"
+            android:onClick="@{login::onClick}"
             android:paddingVertical="17dp"
             android:text="@string/login"
             android:textColor="@color/white"

@@ -9,7 +9,20 @@ import com.example.ggjg_andorid.ui.login.LoginActivity
 
 class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
     override fun createView() {
-        requireActivity().findNavController(R.id.mainContainer).popBackStack()
-        requireActivity().startActivity(Intent(requireActivity(), LoginActivity::class.java))
+        this.startActivityForResult(
+            Intent(
+                requireActivity(),
+                LoginActivity::class.java
+            ), 0
+        )
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode != 0) {
+            requireActivity().findNavController(R.id.mainContainer).popBackStack()
+        } else {
+
+        }
     }
 }
