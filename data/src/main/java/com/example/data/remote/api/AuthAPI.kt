@@ -2,7 +2,7 @@ package com.example.data.remote.api
 
 import com.example.data.remote.request.auth.LoginRequest
 import com.example.data.remote.request.auth.SignUpRequest
-import com.example.data.remote.response.auth.IdCheckResponse
+import com.example.data.remote.response.auth.CheckResponse
 import com.example.data.remote.response.auth.LoginResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -15,13 +15,18 @@ interface AuthAPI {
         @Body signUpRequest: SignUpRequest
     )
 
-    @POST("users/signin")
+    @POST("/users/signin")
     suspend fun login(
         @Body loginRequest: LoginRequest
     ): LoginResponse
 
-    @GET("users/idcheck")
+    @GET("/users/idcheck")
     suspend fun idCheck(
         @Query("id") id: String
-    ): IdCheckResponse
+    ): CheckResponse
+
+    @GET("/users/emailcheck")
+    suspend fun emailCheck(
+        @Query("email") email: String
+    ): CheckResponse
 }
