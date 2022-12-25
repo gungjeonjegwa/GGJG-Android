@@ -4,6 +4,6 @@ data class SignUpParam(
     val id: String,
     val pw: String,
     val name: String,
-    val phone: String,
-    val email: String,
+    val phone: String?,
+    val email: String
 )
