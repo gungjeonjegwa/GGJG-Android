@@ -43,10 +43,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     }
 
     override fun createView() {
-        initView()
+        HomeViewModel.apply {
+            page = 0
+            isLast = false
+        }
         mainViewModel.hiddenNav(false)
         homeViewModel.getBanner()
         homeViewModel.allBread()
+        initView()
         repeatOnStart {
             homeViewModel.eventFlow.collect { event -> handleEvent(event) }
         }
