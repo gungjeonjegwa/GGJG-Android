@@ -19,7 +19,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode != 0) {
+        if (resultCode != 1) {
             requireActivity().findNavController(R.id.mainContainer).popBackStack()
         } else {
 

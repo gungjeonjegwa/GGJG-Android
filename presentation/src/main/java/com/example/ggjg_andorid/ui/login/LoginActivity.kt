@@ -29,7 +29,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
     private fun handleEvent(event: LoginViewModel.Event) = when (event) {
         is LoginViewModel.Event.Success -> {
-            setResult(0)
+            setResult(1)
             finish()
         }
     }
@@ -58,7 +58,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     fun onClick(view: View) {
         when (view.id) {
             R.id.backBtn -> {
-                setResult(1)
                 finish()
             }
             R.id.loginLayout -> {
