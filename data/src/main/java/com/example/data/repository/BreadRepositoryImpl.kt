@@ -3,6 +3,7 @@ package com.example.data.repository
 import com.example.data.remote.datasource.BreadDataSource
 import com.example.data.remote.response.bread.toEntity
 import com.example.domain.entity.bread.BreadEntity
+import com.example.domain.entity.bread.DetailBreadEntity
 import com.example.domain.repository.BreadRepository
 import javax.inject.Inject
 
@@ -14,4 +15,7 @@ class BreadRepositoryImpl @Inject constructor(
 
     override suspend fun categoryBread(page: String, size: String, category: String): BreadEntity =
         breadDataSource.categoryBread(page, size, category).toEntity()
+
+    override suspend fun detailBread(id: String): DetailBreadEntity =
+        breadDataSource.detailBread(id).toEntity()
 }

@@ -2,6 +2,7 @@ package com.example.data.remote.datasource
 
 import com.example.data.remote.api.BreadAPI
 import com.example.data.remote.response.bread.BreadResponse
+import com.example.data.remote.response.bread.DetailBreadResponse
 import com.example.data.utils.HttpHandler
 import javax.inject.Inject
 
@@ -20,5 +21,10 @@ class BreadDataSourceImpl @Inject constructor(
     ): BreadResponse =
         HttpHandler<BreadResponse>()
             .httpRequest { breadAPI.categoryBread(page, size, category) }
+            .sendRequest()
+
+    override suspend fun detailBread(id: String): DetailBreadResponse =
+        HttpHandler<DetailBreadResponse>()
+            .httpRequest { breadAPI.detailBread(id) }
             .sendRequest()
 }
