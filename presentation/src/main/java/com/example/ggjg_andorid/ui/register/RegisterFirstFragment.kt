@@ -50,7 +50,7 @@ class RegisterFirstFragment :
                         binding.writeEmail,
                         requireActivity()
                     )
-                    possibleNext = true
+                    possibleNext = false
                 }
                 if (binding.writePhone.text.toString()
                         .isPhoneNumber() && !binding.writePhone.text.isNullOrBlank()
@@ -60,7 +60,7 @@ class RegisterFirstFragment :
                         binding.writePhone,
                         requireActivity()
                     )
-                    possibleNext = true
+                    possibleNext = false
                 }
                 if (possibleNext) {
                     RegisterViewModel.apply {

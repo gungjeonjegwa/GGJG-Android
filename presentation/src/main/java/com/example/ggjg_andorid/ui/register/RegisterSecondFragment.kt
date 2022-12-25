@@ -79,7 +79,7 @@ class RegisterSecondFragment :
                         binding.editRePw,
                         requireActivity()
                     )
-                    possibleComplete = true
+                    possibleComplete = false
                 }
                 if (binding.editPw.text.toString().isPassword()) {
                     binding.errorPwTxt.onError(
@@ -87,7 +87,7 @@ class RegisterSecondFragment :
                         binding.editPw,
                         requireActivity()
                     )
-                    possibleComplete = true
+                    possibleComplete = false
                 }
                 if (possibleComplete) {
                     RegisterViewModel.apply {

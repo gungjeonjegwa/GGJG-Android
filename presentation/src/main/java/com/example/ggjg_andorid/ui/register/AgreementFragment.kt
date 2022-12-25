@@ -55,7 +55,7 @@ class AgreementFragment : BottomSheetDialogFragment() {
                 }
             }
             R.id.completeBtn -> {
-
+                registerViewModel.signUp()
             }
         }
     }
