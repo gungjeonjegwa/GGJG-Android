@@ -1,6 +1,7 @@
 package com.example.ggjg_andorid.ui.register
 
 import android.view.View
+import androidx.fragment.app.activityViewModels
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.FragmentRegisterFirstBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
@@ -9,9 +10,34 @@ import com.example.ggjg_andorid.viewmodel.RegisterViewModel
 
 class RegisterFirstFragment :
     BaseFragment<FragmentRegisterFirstBinding>(R.layout.fragment_register_first) {
+    private val registerViewModel by activityViewModels<RegisterViewModel>()
+
     override fun createView() {
         binding.registerFirst = this
         initView()
+        repeatOnStart {
+            registerViewModel.registerFirstEventFlow.collect { event -> eventHandler(event) }
+        }
+    }
+
+    private fun eventHandler(event: RegisterViewModel.RegisterFirstEvent) = when (event) {
+        is RegisterViewModel.RegisterFirstEvent.EmailCheck -> {
+            if (event.state) {
+                RegisterViewModel.apply {
+                    name = binding.writeName.text.toString()
+                    phone = binding.writePhone.text.toString()
+                    email = binding.writeEmail.text.toString()
+                }
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .add(R.id.registerContainer, RegisterSecondFragment()).commit()
+            } else {
+                binding.errorEmailTxt.onError(
+                    getString(R.string.email_already),
+                    binding.writeEmail,
+                    requireActivity()
+                )
+            }
+        }
     }
 
     private fun initView() = binding.apply {
@@ -63,13 +89,7 @@ class RegisterFirstFragment :
                     possibleNext = false
                 }
                 if (possibleNext) {
-                    RegisterViewModel.apply {
-                        name = binding.writeName.text.toString()
-                        phone = binding.writePhone.text.toString()
-                        email = binding.writeEmail.text.toString()
-                    }
-                    requireActivity().supportFragmentManager.beginTransaction()
-                        .add(R.id.registerContainer, RegisterSecondFragment()).commit()
+                    registerViewModel.emailCheck(binding.writeEmail.text.toString())
                 }
             }
         }
