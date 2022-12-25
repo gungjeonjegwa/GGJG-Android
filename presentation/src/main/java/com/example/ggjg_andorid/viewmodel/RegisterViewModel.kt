@@ -15,7 +15,8 @@ import javax.inject.Inject
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
     private val signUpUseCase: SignUpUseCase,
-    private val emailCheckUseCase: EmailCheckUseCase
+    private val emailCheckUseCase: EmailCheckUseCase,
+    private val idCheckUseCase: IdCheckUseCase
 ) : ViewModel() {
 
     private val _eventFlow = MutableEventFlow<Event>()
@@ -23,6 +24,9 @@ class RegisterViewModel @Inject constructor(
 
     private val _registerFirstEventFlow = MutableEventFlow<RegisterFirstEvent>()
     val registerFirstEventFlow = _registerFirstEventFlow.asEventFlow()
+
+    private val _registerSecondEventFlow = MutableEventFlow<RegisterSecondEvent>()
+    val registerSecondEventFlow = _registerSecondEventFlow.asEventFlow()
 
     companion object {
         var title = ""
@@ -57,6 +61,14 @@ class RegisterViewModel @Inject constructor(
         }
     }
 
+    fun idCheck(id: String) = viewModelScope.launch {
+        kotlin.runCatching {
+            idCheckUseCase.execute(id)
+        }.onSuccess {
+            event(RegisterSecondEvent.IdCheck(!it.isDuplicated))
+        }
+    }
+
     fun event(event: Event) = viewModelScope.launch {
         _eventFlow.emit(event)
     }
@@ -65,11 +77,19 @@ class RegisterViewModel @Inject constructor(
         _registerFirstEventFlow.emit(event)
     }
 
+    fun event(event: RegisterSecondEvent) = viewModelScope.launch {
+        _registerSecondEventFlow.emit(event)
+    }
+
     sealed class Event {
         object Success : Event()
     }
 
     sealed class RegisterFirstEvent {
         data class EmailCheck(val state: Boolean) : RegisterFirstEvent()
+    }
+
+    sealed class RegisterSecondEvent {
+        data class IdCheck(val state: Boolean) : RegisterSecondEvent()
     }
 }

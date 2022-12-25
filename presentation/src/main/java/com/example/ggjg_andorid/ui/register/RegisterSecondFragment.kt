@@ -4,6 +4,7 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
 import android.widget.EditText
+import androidx.fragment.app.activityViewModels
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.FragmentRegisterSecondBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
@@ -12,9 +13,35 @@ import com.example.ggjg_andorid.viewmodel.RegisterViewModel
 
 class RegisterSecondFragment :
     BaseFragment<FragmentRegisterSecondBinding>(R.layout.fragment_register_second) {
+    private val registerViewModel by activityViewModels<RegisterViewModel>()
     override fun createView() {
         binding.registerSecond = this
         initView()
+        repeatOnStart {
+            registerViewModel.registerSecondEventFlow.collect { event -> handleEvent(event) }
+        }
+    }
+
+    private fun handleEvent(event: RegisterViewModel.RegisterSecondEvent) = when (event) {
+        is RegisterViewModel.RegisterSecondEvent.IdCheck -> {
+            if (event.state) {
+                RegisterViewModel.apply {
+                    id = binding.writeId.text.toString()
+                    pw = binding.editPw.text.toString()
+                    rePw = binding.editRePw.text.toString()
+                }
+                AgreementFragment().show(
+                    requireActivity().supportFragmentManager,
+                    "AgreementFragment"
+                )
+            } else {
+                binding.errorIdTxt.onError(
+                    getString(R.string.id_already),
+                    binding.writeId,
+                    requireActivity()
+                )
+            }
+        }
     }
 
     private fun initView() = binding.apply {
@@ -29,6 +56,9 @@ class RegisterSecondFragment :
                     editRePw -> {
                         errorRePwTxt.text = null
                         rePwVisibleBtn.setVisible(!p0.isNullOrBlank())
+                    }
+                    writeId -> {
+                        errorIdTxt.text = null
                     }
                 }
             }
@@ -90,15 +120,7 @@ class RegisterSecondFragment :
                     possibleComplete = false
                 }
                 if (possibleComplete) {
-                    RegisterViewModel.apply {
-                        id = binding.writeId.text.toString()
-                        pw = binding.editPw.text.toString()
-                        rePw = binding.editRePw.text.toString()
-                    }
-                    AgreementFragment().show(
-                        requireActivity().supportFragmentManager,
-                        "AgreementFragment"
-                    )
+                    registerViewModel.idCheck(binding.writeId.text.toString())
                 }
             }
             R.id.visibleBtn -> {
