@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewTreeObserver
 import android.widget.ScrollView
 
-class CustomScrollView : ScrollView, ViewTreeObserver.OnGlobalLayoutListener  {
+class CustomScrollView : ScrollView, ViewTreeObserver.OnGlobalLayoutListener {
     constructor(context: Context) : this(context, null, 0)
     constructor(context: Context, attr: AttributeSet?) : this(context, attr, 0)
     constructor(context: Context, attr: AttributeSet?, defStyleAttr: Int) : super(
@@ -26,24 +26,36 @@ class CustomScrollView : ScrollView, ViewTreeObserver.OnGlobalLayoutListener  {
             }
         }
 
+    var item: View? = null
+
     var stickListener: (View) -> Unit = {}
     var freeListener: (View) -> Unit = {}
+    var itemOverListener: (View) -> Unit = {}
+    var itemUnOverListener: (View) -> Unit = {}
 
     private var mIsHeaderSticky = false
 
     private var mHeaderInitPosition = 0f
+    private var mHeaderBottomPosition = 0f
+    private var mItemInitPosition: Float? = null
 
     override fun onGlobalLayout() {
         mHeaderInitPosition = header?.top?.toFloat() ?: 0f
+        mHeaderBottomPosition = header?.bottom?.toFloat() ?: 0f
+        mItemInitPosition = item?.bottom?.toFloat()
     }
 
     override fun onScrollChanged(l: Int, t: Int, oldl: Int, oldt: Int) {
         super.onScrollChanged(l, t, oldl, oldt)
-
         if (t > mHeaderInitPosition) {
             stickHeader(t - mHeaderInitPosition)
         } else {
             freeHeader()
+        }
+        if (mItemInitPosition != null && t > mItemInitPosition!! - mHeaderBottomPosition!!) {
+            itemOverListener(header ?: return)
+        } else {
+            itemUnOverListener(header ?: return)
         }
     }
 
