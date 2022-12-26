@@ -16,8 +16,10 @@ import com.example.ggjg_andorid.adapter.decorator.BreadListDecorator
 import com.example.ggjg_andorid.adapter.listener.EndlessRecyclerViewScrollListener
 import com.example.ggjg_andorid.databinding.FragmentHomeBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
+import com.example.ggjg_andorid.ui.detail.DetailBreadFragment
 import com.example.ggjg_andorid.utils.repeatOnStart
 import com.example.ggjg_andorid.utils.setVisible
+import com.example.ggjg_andorid.viewmodel.DetailViewModel
 import com.example.ggjg_andorid.viewmodel.HomeViewModel
 import com.example.ggjg_andorid.viewmodel.MainViewModel
 
@@ -43,11 +45,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     }
 
     override fun createView() {
+        mainViewModel.hiddenNav(false)
         HomeViewModel.apply {
             page = 0
             isLast = false
         }
-        mainViewModel.hiddenNav(false)
         homeViewModel.getBanner()
         homeViewModel.allBread()
         initView()
@@ -97,7 +99,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         adapter = BreadListAdapter()
         adapter.setItemOnClickListener(object : BreadListAdapter.OnItemClickListener {
             override fun detail(item: BreadEntity.Bread) {
-
+                DetailViewModel.id = item.id
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.mainContainer, DetailBreadFragment()).commit()
             }
 
             override fun like(item: BreadEntity.Bread) {
