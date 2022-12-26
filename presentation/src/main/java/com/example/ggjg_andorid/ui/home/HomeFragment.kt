@@ -151,6 +151,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             }
         }
         breadList.run {
+            itemAnimator = null
             adapter = this@HomeFragment.adapter
             layoutManager = this@HomeFragment.layoutManager
             addItemDecoration(BreadListDecorator(context))
@@ -165,7 +166,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             override fun onPageScrolled(
                 position: Int,
                 positionOffset: Float,
-                positionOffsetPixels: Int
+                positionOffsetPixels: Int,
             ) = Unit
 
             override fun onPageSelected(position: Int) {
