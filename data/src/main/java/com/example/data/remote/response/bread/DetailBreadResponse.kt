@@ -76,7 +76,7 @@ fun DetailBreadResponse.toEntity() = DetailBreadEntity(
     id = id,
     name = name,
     content = content,
-    price = if (price == null) "매장판매" else "${DecimalFormat("#,###").format(price)}원",
+    price = if (price == null) "매장판매" else DecimalFormat("#,###").format(price),
     deliveryPrice = "${DecimalFormat("#,###").format(deliveryPrice)}원",
     isSoldOut = isSoldOut,
     size = size,
