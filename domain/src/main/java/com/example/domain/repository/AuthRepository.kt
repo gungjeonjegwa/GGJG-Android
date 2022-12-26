@@ -10,4 +10,5 @@ interface AuthRepository {
     suspend fun login(loginParam: LoginParam): LoginEntity
     suspend fun idCheck(id: String): CheckEntity
     suspend fun emailCheck(email: String): CheckEntity
+    suspend fun saveToken(access: String?, refresh: String?, expiredAt: String?)
 }
