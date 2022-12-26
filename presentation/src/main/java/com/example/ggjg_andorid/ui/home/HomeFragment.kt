@@ -4,8 +4,11 @@ import android.os.Handler
 import android.os.Looper
 import android.os.Message
 import android.view.View
+import android.widget.AbsListView.OnScrollListener
+import android.widget.ScrollView
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.example.domain.entity.bread.BreadEntity
@@ -32,6 +35,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private lateinit var adapter: BreadListAdapter
     private val autoTime: Long = 3000
     private var maxSize = 0
+    private var isMoveTop = false
     private val handler = HomeBannerHandler()
 
     override fun onResume() {
@@ -45,6 +49,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     }
 
     override fun createView() {
+        binding.home = this
         mainViewModel.hiddenNav(false)
         HomeViewModel.apply {
             page = 0
@@ -79,6 +84,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         layoutManager = GridLayoutManager(requireContext(), 2)
         listener =
             object : EndlessRecyclerViewScrollListener(layoutManager) {
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    super.onScrollStateChanged(recyclerView, newState)
+                    println("안녕 $isMoveTop")
+                    if (!recyclerView.canScrollVertically(-1) && isMoveTop) {
+                        binding.scrollView.smoothScrollTo(0, 0)
+                        isMoveTop = false
+                    } else if (isMoveTop) {
+                        binding.breadList.smoothScrollToPosition(0)
+                    }
+                }
+
                 override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
                     if (!HomeViewModel.isLast) {
                         binding.moreProgress.setVisible()
@@ -140,6 +156,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             layoutManager = this@HomeFragment.layoutManager
             addItemDecoration(BreadListDecorator(context))
             addOnScrollListener(listener)
+            setOnTouchListener { _, _ ->
+                binding.breadList.stopScroll()
+                isMoveTop = false
+                false
+            }
         }
         bannerContainer.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(
@@ -185,6 +206,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                     )
                 }
                 autoScroll(autoTime)
+            }
+        }
+    }
+
+    fun onClick(view: View) {
+        when (view.id) {
+            R.id.topScrollBtn -> {
+                binding.breadList.smoothScrollToPosition(0)
+                isMoveTop = true
             }
         }
     }
