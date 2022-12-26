@@ -7,10 +7,13 @@ data class LoginResponse(
     @SerializedName("accessToken")
     val accessToken: String,
     @SerializedName("refreshToken")
-    val refreshToken: String
+    val refreshToken: String,
+    @SerializedName("expiredAt")
+    val expiredAt: String
 )
 
 fun LoginResponse.toEntity() = LoginEntity(
     accessToken = accessToken,
-    refreshToken = refreshToken
+    refreshToken = refreshToken,
+    expiredAt = expiredAt
 )
