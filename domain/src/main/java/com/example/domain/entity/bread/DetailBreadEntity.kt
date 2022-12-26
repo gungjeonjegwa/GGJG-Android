@@ -2,8 +2,12 @@ package com.example.domain.entity.bread
 
 data class DetailBreadEntity(
     val id: String,
+    val name: String,
     val content: String,
-    val size: String,
+    val price: String,
+    val deliveryPrice: String,
+    val isSoldOut: Boolean,
+    val size: String?,
     val storage: String,
     val expirationDate: String,
     val imgUrl: String,
@@ -13,16 +17,18 @@ data class DetailBreadEntity(
     val ingredient: String,
     val isLike: Boolean,
     val breadSize: List<BreadSize>,
-    val breadImage: List<BreadImage>
+    val breadImage: List<String>,
+    val breadImageInfo: List<String>,
+    val deliveryType: List<DeliveryType>
 ) {
     data class BreadSize(
         val size: String,
-        val extraMoney: Int,
+        val extraMoney: String?,
         val unit: String
     )
 
-    data class BreadImage(
-        val imgUrl: String,
-        val isInfo: Boolean
+    data class DeliveryType(
+        val id: String,
+        val sellType: String
     )
 }

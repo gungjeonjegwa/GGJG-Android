@@ -2,15 +2,24 @@ package com.example.data.remote.response.bread
 
 import com.example.domain.entity.bread.DetailBreadEntity
 import com.google.gson.annotations.SerializedName
+import java.text.DecimalFormat
 
 data class DetailBreadResponse(
     @SerializedName("id")
     val id: String,
+    @SerializedName("title")
+    val name: String,
     @SerializedName("content")
     val content: String,
+    @SerializedName("price")
+    val price: Int?,
+    @SerializedName("deliveryPrice")
+    val deliveryPrice: Int,
+    @SerializedName("isSoldOut")
+    val isSoldOut: Boolean,
     @SerializedName("size")
-    val size: String,
-    @SerializedName("stroage")
+    val size: String?,
+    @SerializedName("storage")
     val storage: String,
     @SerializedName("expirationDate")
     val expirationDate: String,
@@ -29,7 +38,11 @@ data class DetailBreadResponse(
     @SerializedName("breadSize")
     val breadSize: List<BreadSize>,
     @SerializedName("breadImage")
-    val breadImage: List<BreadImage>
+    val breadImage: List<String>,
+    @SerializedName("breadImageInfo")
+    val breadImageInfo: List<String>,
+    @SerializedName("sellDeliveryType")
+    val deliveryType: List<DeliveryType>
 ) {
     data class BreadSize(
         @SerializedName("size")
@@ -42,26 +55,30 @@ data class DetailBreadResponse(
 
     fun BreadSize.toEntity() = DetailBreadEntity.BreadSize(
         size = size,
-        extraMoney = extraMoney,
+        extraMoney = if (extraMoney == 0) null else "${DecimalFormat("#,###").format(extraMoney)}원",
         unit = unit
     )
 
-    data class BreadImage(
-        @SerializedName("imageUrl")
-        val imgUrl: String,
-        @SerializedName("isImageInfo")
-        val isInfo: Boolean
+    data class DeliveryType(
+        @SerializedName("id")
+        val id: String,
+        @SerializedName("sellType")
+        val sellType: String
     )
 
-    fun BreadImage.toEntity() = DetailBreadEntity.BreadImage(
-        imgUrl = imgUrl,
-        isInfo = isInfo
+    fun DeliveryType.toEntity() = DetailBreadEntity.DeliveryType(
+        id = id,
+        sellType = sellType
     )
 }
 
 fun DetailBreadResponse.toEntity() = DetailBreadEntity(
     id = id,
+    name = name,
     content = content,
+    price = if (price == null) "매장판매" else "${DecimalFormat("#,###").format(price)}원",
+    deliveryPrice = "${DecimalFormat("#,###").format(deliveryPrice)}원",
+    isSoldOut = isSoldOut,
     size = size,
     storage = storage,
     expirationDate = expirationDate,
@@ -72,5 +89,7 @@ fun DetailBreadResponse.toEntity() = DetailBreadEntity(
     ingredient = ingredient,
     isLike = isLike,
     breadSize = breadSize.map { it.toEntity() },
-    breadImage = breadImage.map { it.toEntity() }
+    breadImage = breadImage,
+    breadImageInfo = breadImageInfo,
+    deliveryType = deliveryType.map { it.toEntity() }
 )
