@@ -25,12 +25,6 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
     private lateinit var ageAdapter: AgeOptionAdapter
     private lateinit var breadPayAdapter: DetailBreadPayAdapter
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        PayViewModel.size = null
-        PayViewModel.breadList = listOf()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,7 +33,9 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
         binding = FragmentDetailBreadPayBinding.inflate(layoutInflater)
         binding.detailBreadPay = this
         initView()
-        sizeAdapter.submitList(PayViewModel.breadData.breadSize)
+        if (PayViewModel.breadData != null) {
+            sizeAdapter.submitList(PayViewModel.breadData!!.breadSize)
+        }
         ageAdapter.submitList(listOf(getString(R.string.no_select)).plus((1..100).map { it.toString() }))
         return binding.root
     }
@@ -83,10 +79,11 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
                     ageOptionClick(true)
                     PayViewModel.breadList = PayViewModel.breadList.plus(
                         PayViewModel.Bread(
-                            PayViewModel.breadData.price.filter { it != ',' && it != '원' }.toInt(),
+                            PayViewModel.breadData?.price?.filter { it != ',' && it != '원' }
+                                ?.toInt() ?: 0,
                             PayViewModel.size!!.extraMoney?.filter { it != ',' && it != '원' }
                                 ?.toInt() ?: 0,
-                            PayViewModel.breadData.name,
+                            PayViewModel.breadData?.name ?: "",
                             PayViewModel.size!!.unit,
                             PayViewModel.size!!.size,
                             1,
@@ -133,8 +130,14 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
             })
         }
         paymentList.apply {
+            itemAnimator = null
             adapter = breadPayAdapter
             layoutManager = LinearLayoutManager(context)
+        }
+        if (PayViewModel.breadList.isNotEmpty()) {
+            paymentLayout.setVisible()
+            breadPayAdapter.submitList(PayViewModel.breadList)
+            totalCost()
         }
     }
 

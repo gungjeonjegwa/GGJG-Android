@@ -47,6 +47,11 @@ class DetailBreadFragment :
     override fun onDetach() {
         super.onDetach()
         mainViewModel.hiddenNav(false)
+        PayViewModel.apply {
+            breadData = null
+            size = null
+            breadList = listOf()
+        }
     }
 
     override fun createView() {

@@ -17,7 +17,7 @@ class PayViewModel @Inject constructor(
     val eventFlow = _eventFlow.asEventFlow()
 
     companion object {
-        lateinit var breadData: DetailBreadEntity
+        var breadData: DetailBreadEntity? = null
         var size: DetailBreadEntity.BreadSize? = null
         var breadList = listOf<Bread>()
     }
