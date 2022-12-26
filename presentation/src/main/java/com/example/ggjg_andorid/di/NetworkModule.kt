@@ -1,5 +1,6 @@
 package com.example.ggjg_andorid.di
 
+import com.example.data.interceptor.AuthorizationInterceptor
 import com.example.data.remote.api.AuthAPI
 import com.example.data.remote.api.BreadAPI
 import com.example.ggjg_andorid.BuildConfig
@@ -17,11 +18,13 @@ import java.util.concurrent.TimeUnit
 object NetworkModule {
     @Provides
     fun provideOkhttpClient(
+        authorizationInterceptor: AuthorizationInterceptor
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
+            .addInterceptor(authorizationInterceptor)
             .build()
     }
 
