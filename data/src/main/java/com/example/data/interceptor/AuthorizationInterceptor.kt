@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 class AuthorizationInterceptor @Inject constructor(
-    private val authDataStorage: AuthStorage
+    private val authDataStorage: AuthStorage,
 ) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
@@ -20,7 +20,6 @@ class AuthorizationInterceptor @Inject constructor(
             "/users/signup",
             "/users/signin",
             "/users/refresh",
-            "/users/signout",
             "/users/idcheck",
             "/users/emailcheck"
         )
@@ -29,9 +28,10 @@ class AuthorizationInterceptor @Inject constructor(
         if (!refreshToken.isNullOrBlank()) {
             val expiredAt = LocalDateTime.parse(
                 authDataStorage.getExpiredAt(),
+                DateTimeFormatter.ISO_ZONED_DATE_TIME
             )
             val currentTime = LocalDateTime.now(ZoneId.systemDefault())
-            if (expiredAt.isAfter(currentTime)) {
+            if (currentTime.isAfter(expiredAt)) {
                 val client = OkHttpClient()
                 val request = Request.Builder()
                     .url("${BuildConfig.BASE_URL}users/refresh")
@@ -42,9 +42,9 @@ class AuthorizationInterceptor @Inject constructor(
                 val response = client.newCall(request).execute()
                 if (response.isSuccessful) {
                     val token = jsonParser.parse(response.body()!!.string()) as JsonObject
-                    authDataStorage.setAccessToken(token["accessToken"].toString())
-                    authDataStorage.setRefreshToken(token["refreshToken"].toString())
-                    authDataStorage.setExpiredAt(token["expiredAt"].toString())
+                    authDataStorage.setAccessToken(token["accessToken"].toString().removeDot())
+                    authDataStorage.setRefreshToken(token["refreshToken"].toString().removeDot())
+                    authDataStorage.setExpiredAt(token["expiredAt"].toString().removeDot())
                 } else {
                     authDataStorage.setAccessToken(null)
                     authDataStorage.setRefreshToken(null)
@@ -60,4 +60,8 @@ class AuthorizationInterceptor @Inject constructor(
         }
         return chain.proceed(request)
     }
+}
+
+private fun String.removeDot(): String {
+    return this.replace("^\"|\"$".toRegex(), "")
 }
