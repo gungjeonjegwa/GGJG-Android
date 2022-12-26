@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="detailBread"
+            type="com.example.ggjg_andorid.ui.detail.DetailBreadFragment" />
+
+        <variable
+            name="breadData"
+            type="com.example.domain.entity.bread.DetailBreadEntity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.example.ggjg_andorid.utils.custom_view.CustomScrollView
+            android:id="@+id/infoScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/background"
+            app:layout_constraintBottom_toTopOf="@id/payLayout"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/infoBarBottomLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="48dp" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/startLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.05" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/endLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.95" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/optionStartLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.21" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/tabLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="@id/infoBarBottomLine"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/tabStartLine"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.05" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/tabEndLine"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.95" />
+
+                    <ImageView
+                        android:id="@+id/backBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_back"
+                        android:onClick="@{detailBread::onClick}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/tabStartLine"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        style="@style/Regular16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/detail_info"
+                        android:textColor="@color/real_black"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/imgContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/imgIndicator"
+                    style="@style/Regular12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/dark_shadow_black"
+                    android:gravity="center"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="4dp"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@id/imgContainer"
+                    app:layout_constraintEnd_toEndOf="@id/imgContainer" />
+
+                <TextView
+                    android:id="@+id/nameTxt"
+                    style="@style/Medium16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@{breadData.name}"
+                    android:textColor="@color/very_dark_gray"
+                    app:layout_constraintStart_toStartOf="@id/startLine"
+                    app:layout_constraintTop_toBottomOf="@id/imgContainer" />
+
+                <TextView
+                    android:id="@+id/contentTxt"
+                    style="@style/Regular12"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@{breadData.content}"
+                    android:textColor="@color/dark_gray"
+                    app:layout_constraintEnd_toEndOf="@id/endLine"
+                    app:layout_constraintStart_toStartOf="@id/startLine"
+                    app:layout_constraintTop_toBottomOf="@id/nameTxt" />
+
+                <TextView
+                    android:id="@+id/costTxt"
+                    style="@style/Bold24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@{breadData.price}"
+                    android:textColor="@color/real_black"
+                    app:layout_constraintStart_toStartOf="@id/startLine"
+                    app:layout_constraintTop_toBottomOf="@id/contentTxt" />
+
+                <TextView
+                    android:id="@+id/wonTxt"
+                    style="@style/Bold16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="원"
+                    android:textColor="@color/real_black"
+                    app:layout_constraintBottom_toBottomOf="@id/costTxt"
+                    app:layout_constraintStart_toEndOf="@id/costTxt" />
+
+                <ImageView
+                    android:id="@+id/deliveryOption1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintStart_toStartOf="@id/startLine"
+                    app:layout_constraintTop_toBottomOf="@id/costTxt" />
+
+                <ImageView
+                    android:id="@+id/deliveryOption2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintStart_toEndOf="@id/deliveryOption1"
+                    app:layout_constraintTop_toBottomOf="@id/costTxt" />
+
+                <View
+                    android:id="@+id/breadInfoDivide"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="24dp"
+                    android:background="@color/light_gray"
+                    app:layout_constraintTop_toBottomOf="@id/deliveryOption1" />
+
+                <TextView
+                    android:id="@+id/deliveryCost"
+                    style="@style/Regular14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/delivery_cost"
+                    android:textColor="@color/dark_gray"
+                    app:layout_constraintStart_toStartOf="@id/startLine"
+                    app:layout_constraintTop_toBottomOf="@id/breadInfoDivide" />
+
+                <TextView
+                    android:id="@+id/deliveryCostTxt"
+                    style="@style/Regular14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{breadData.deliveryPrice}"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="@id/optionStartLine"
+                    app:layout_constraintTop_toTopOf="@id/deliveryCost" />
+
+                <TextView
+                    android:id="@+id/storage"
+                    style="@style/Regular14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/storage"
+                    android:textColor="@color/dark_gray"
+                    app:layout_constraintStart_toStartOf="@id/startLine"
+                    app:layout_constraintTop_toBottomOf="@id/deliveryCost" />
+
+                <TextView
+                    android:id="@+id/storageTxt"
+                    style="@style/Regular14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{breadData.storage}"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="@id/optionStartLine"
+                    app:layout_constraintTop_toTopOf="@id/storage" />
+
+                <TextView
+                    android:id="@+id/expirationDate"
+                    style="@style/Regular14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/expiration_date"
+                    android:textColor="@color/dark_gray"
+                    app:layout_constraintStart_toStartOf="@id/startLine"
+                    app:layout_constraintTop_toBottomOf="@id/storage" />
+
+                <TextView
+                    android:id="@+id/expirationDateTxt"
+                    style="@style/Regular14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{breadData.expirationDate}"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="@id/optionStartLine"
+                    app:layout_constraintTop_toTopOf="@id/expirationDate" />
+
+                <TextView
+                    android:id="@+id/size"
+                    style="@style/Regular14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/size"
+                    android:textColor="@color/dark_gray"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="@id/startLine"
+                    app:layout_constraintTop_toBottomOf="@id/expirationDate" />
+
+                <TextView
+                    android:id="@+id/sizeTxt"
+                    style="@style/Regular14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{breadData.size}"
+                    android:textColor="@color/black"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="@id/optionStartLine"
+                    app:layout_constraintTop_toTopOf="@id/size" />
+
+                <View
+                    android:id="@+id/optionDivide"
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="24dp"
+                    android:background="@color/light_gray"
+                    app:layout_constraintTop_toBottomOf="@id/size" />
+
+                <TextView
+                    android:id="@+id/warning"
+                    style="@style/Bold16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/warning"
+                    android:textColor="@color/real_black"
+                    app:layout_constraintStart_toStartOf="@id/startLine"
+                    app:layout_constraintTop_toBottomOf="@id/optionDivide" />
+
+                <TextView
+                    android:id="@+id/warningTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@{breadData.deliveryNotice}"
+                    android:textColor="@color/very_dark_gray"
+                    app:layout_constraintStart_toStartOf="@id/startLine"
+                    app:layout_constraintTop_toBottomOf="@id/warning" />
+
+                <View
+                    android:id="@+id/warningDivide"
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="32dp"
+                    android:background="@color/light_gray"
+                    app:layout_constraintTop_toBottomOf="@id/warningTxt" />
+
+                <TextView
+                    android:id="@+id/itemInfo"
+                    style="@style/Bold16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/item_info"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="@id/startLine"
+                    app:layout_constraintTop_toBottomOf="@id/warningDivide" />
+
+                <TextView
+                    android:id="@+id/itemInfoTxt"
+                    style="@style/Medium14"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:gravity="center_horizontal"
+                    android:text="@{breadData.precaution}"
+                    android:textColor="@color/dark_red"
+                    app:layout_constraintEnd_toEndOf="@id/endLine"
+                    app:layout_constraintStart_toStartOf="@id/startLine"
+                    app:layout_constraintTop_toBottomOf="@id/itemInfo" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/infoImgList"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:nestedScrollingEnabled="false"
+                    app:layout_constraintEnd_toEndOf="@id/endLine"
+                    app:layout_constraintStart_toStartOf="@id/startLine"
+                    app:layout_constraintTop_toBottomOf="@id/itemInfoTxt" />
+
+                <TextView
+                    android:id="@+id/allergy"
+                    style="@style/Medium12"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:background="@color/light_gray"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="12dp"
+                    android:text="@string/allergy"
+                    android:textColor="@color/very_dark_gray"
+                    app:layout_constraintEnd_toEndOf="@id/endLine"
+                    app:layout_constraintStart_toStartOf="@id/startLine"
+                    app:layout_constraintTop_toBottomOf="@id/infoImgList" />
+
+                <TextView
+                    android:id="@+id/allergyTxt"
+                    style="@style/Medium12"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_bread_info"
+                    android:gravity="center_horizontal"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="8dp"
+                    android:text="@{breadData.allergy}"
+                    android:textColor="@color/dark_gray"
+                    app:layout_constraintEnd_toEndOf="@id/endLine"
+                    app:layout_constraintStart_toStartOf="@id/startLine"
+                    app:layout_constraintTop_toBottomOf="@id/allergy" />
+
+                <TextView
+                    android:id="@+id/ingredient"
+                    style="@style/Medium12"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:background="@color/light_gray"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="12dp"
+                    android:text="@string/ingredient"
+                    android:textColor="@color/very_dark_gray"
+                    app:layout_constraintEnd_toEndOf="@id/endLine"
+                    app:layout_constraintStart_toStartOf="@id/startLine"
+                    app:layout_constraintTop_toBottomOf="@id/allergyTxt" />
+
+                <TextView
+                    android:id="@+id/ingredientTxt"
+                    style="@style/Medium12"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_bread_info"
+                    android:gravity="center_horizontal"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="8dp"
+                    android:text="@{breadData.ingredient}"
+                    android:textColor="@color/dark_gray"
+                    app:layout_constraintEnd_toEndOf="@id/endLine"
+                    app:layout_constraintStart_toStartOf="@id/startLine"
+                    app:layout_constraintTop_toBottomOf="@id/ingredient" />
+
+                <View
+                    android:id="@+id/itemInfoDivide"
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="40dp"
+                    android:background="@color/light_gray"
+                    app:layout_constraintTop_toBottomOf="@id/ingredientTxt" />
+
+                <View
+                    android:id="@+id/commentDivide"
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="32dp"
+                    android:background="@color/light_gray"
+                    app:layout_constraintTop_toBottomOf="@id/itemInfoDivide" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/deliveryAndPaymentInfoBtn"
+                    style="@style/Medium14"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="37dp"
+                    android:background="@drawable/bg_delivery_detail_btn"
+                    android:onClick="@{detailBread::onClick}"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="18dp"
+                    android:text="@string/delivery_and_payment_info"
+                    android:textColor="@color/gray"
+                    app:layout_constraintEnd_toEndOf="@id/endLine"
+                    app:layout_constraintStart_toStartOf="@id/startLine"
+                    app:layout_constraintTop_toBottomOf="@id/commentDivide" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/changeAndRecallInfoBtn"
+                    style="@style/Medium14"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="40dp"
+                    android:background="@drawable/bg_delivery_detail_btn"
+                    android:onClick="@{detailBread::onClick}"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="18dp"
+                    android:text="@string/change_and_recall_info"
+                    android:textColor="@color/gray"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/endLine"
+                    app:layout_constraintStart_toStartOf="@id/startLine"
+                    app:layout_constraintTop_toBottomOf="@id/deliveryAndPaymentInfoBtn" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.example.ggjg_andorid.utils.custom_view.CustomScrollView>
+
+        <LinearLayout
+            android:id="@+id/payLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="37dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/likeBtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:background="@drawable/bg_heart_btn"
+                android:onClick="@{detailBread::onClick}">
+
+                <ImageView
+                    android:id="@+id/like"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginVertical="12dp"
+                    android:background="@drawable/selector_like"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/payBtn"
+                style="@style/Bold14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="9"
+                android:background="@drawable/selector_form_btn"
+                android:onClick="@{detailBread::onClick}"
+                android:paddingVertical="17dp"
+                android:text="@string/pay"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -49,6 +49,9 @@
             android:name=".ui.findPw.FindPwActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.detail.DetailDeliveryAndPayActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
