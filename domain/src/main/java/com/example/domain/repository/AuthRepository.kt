@@ -8,6 +8,7 @@ import com.example.domain.param.auth.SignUpParam
 interface AuthRepository {
     suspend fun signUp(signUpParam: SignUpParam)
     suspend fun login(loginParam: LoginParam): LoginEntity
+    suspend fun logout()
     suspend fun idCheck(id: String): CheckEntity
     suspend fun emailCheck(email: String): CheckEntity
     suspend fun saveToken(access: String?, refresh: String?, expiredAt: String?)

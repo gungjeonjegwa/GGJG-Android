@@ -20,6 +20,9 @@ interface AuthAPI {
         @Body loginRequest: LoginRequest
     ): LoginResponse
 
+    @POST("/users/signout")
+    suspend fun logout()
+
     @GET("/users/idcheck")
     suspend fun idCheck(
         @Query("id") id: String

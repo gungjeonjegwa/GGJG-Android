@@ -16,6 +16,9 @@ class AuthDataSourceImpl @Inject constructor(
     override suspend fun login(loginRequest: LoginRequest): LoginResponse =
         authAPI.login(loginRequest)
 
+    override suspend fun logout() =
+        authAPI.logout()
+
     override suspend fun idCheck(id: String): CheckResponse =
         authAPI.idCheck(id)
 

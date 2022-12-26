@@ -21,6 +21,9 @@ class AuthRepositoryImpl @Inject constructor(
     override suspend fun login(loginParam: LoginParam): LoginEntity =
         authDataSource.login(loginParam.toRequest()).toEntity()
 
+    override suspend fun logout() =
+        authDataSource.logout()
+
     override suspend fun idCheck(id: String): CheckEntity =
         authDataSource.idCheck(id).toEntity()
 
