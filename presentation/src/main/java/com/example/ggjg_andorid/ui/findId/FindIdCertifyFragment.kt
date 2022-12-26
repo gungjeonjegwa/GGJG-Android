@@ -61,6 +61,7 @@ class FindIdCertifyFragment :
     fun onClick(view: View) {
         when (view.id) {
             R.id.backBtn -> {
+                timer.cancel()
                 requireActivity().findNavController(R.id.findIdContainer).popBackStack()
             }
             R.id.findIdLayout -> {

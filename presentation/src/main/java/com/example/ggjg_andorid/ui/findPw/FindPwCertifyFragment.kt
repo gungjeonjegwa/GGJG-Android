@@ -61,6 +61,7 @@ class FindPwCertifyFragment :
     fun onClick(view: View) {
         when (view.id) {
             R.id.backBtn -> {
+                timer.cancel()
                 requireActivity().findNavController(R.id.findPwContainer).popBackStack()
             }
             R.id.findPwLayout -> {
