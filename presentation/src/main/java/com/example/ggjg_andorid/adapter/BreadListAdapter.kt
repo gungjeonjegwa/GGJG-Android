@@ -14,6 +14,8 @@ import com.example.domain.entity.bread.BreadEntity
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.ItemBreadBinding
 import com.example.ggjg_andorid.utils.heartChange
+import com.example.ggjg_andorid.viewmodel.HomeViewModel
+import com.example.ggjg_andorid.viewmodel.MainViewModel
 import java.text.DecimalFormat
 
 class BreadListAdapter :
@@ -47,8 +49,10 @@ class BreadListAdapter :
                 soldOutLayout.visibility = View.VISIBLE
             }
             likeBtn.setOnClickListener {
-                it.heartChange(!it.isActivated, context)
-                listener.like(item)
+                if (MainViewModel.isLogin) {
+                    it.heartChange(!it.isActivated, context)
+                    listener.like(item)
+                }
             }
             breadItemLayout.setOnClickListener {
                 listener.detail(item)

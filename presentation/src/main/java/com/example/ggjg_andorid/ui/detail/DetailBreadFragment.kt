@@ -21,6 +21,7 @@ import com.example.ggjg_andorid.utils.heartChange
 import com.example.ggjg_andorid.utils.repeatOnStart
 import com.example.ggjg_andorid.utils.setVisible
 import com.example.ggjg_andorid.viewmodel.DetailViewModel
+import com.example.ggjg_andorid.viewmodel.HomeViewModel
 import com.example.ggjg_andorid.viewmodel.MainViewModel
 import com.example.ggjg_andorid.viewmodel.PayViewModel
 import java.text.DecimalFormat
@@ -132,7 +133,7 @@ class DetailBreadFragment :
                 override fun onPageScrolled(
                     position: Int,
                     positionOffset: Float,
-                    positionOffsetPixels: Int
+                    positionOffsetPixels: Int,
                 ) = Unit
 
                 override fun onPageScrollStateChanged(state: Int) =
@@ -177,8 +178,10 @@ class DetailBreadFragment :
                 )
             }
             R.id.likeBtn -> {
-                binding.likeBtn.isActivated = !binding.likeBtn.isActivated
-                binding.like.heartChange(binding.likeBtn.isActivated, requireContext())
+                if (MainViewModel.isLogin) {
+                    binding.likeBtn.isActivated = !binding.likeBtn.isActivated
+                    binding.like.heartChange(binding.likeBtn.isActivated, requireContext())
+                }
             }
             R.id.payBtn -> {
                 detailViewModel.isLogin()

@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase,
-    private val saveTokenUseCase: SaveTokenUseCase
+    private val saveTokenUseCase: SaveTokenUseCase,
 ) : ViewModel() {
 
     private val _eventFlow = MutableEventFlow<Event>()
@@ -29,6 +29,7 @@ class LoginViewModel @Inject constructor(
             )
         }.onSuccess {
             saveTokenUseCase.execute(it.accessToken, it.refreshToken, it.expiredAt)
+            MainViewModel.isLogin = true
             event(Event.Success)
         }.onFailure {
         }
