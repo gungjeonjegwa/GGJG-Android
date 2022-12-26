@@ -32,6 +32,7 @@ class CustomScrollView : ScrollView, ViewTreeObserver.OnGlobalLayoutListener {
     var freeListener: (View) -> Unit = {}
     var itemOverListener: (View) -> Unit = {}
     var itemUnOverListener: (View) -> Unit = {}
+    var position = 0f
 
     private var mIsHeaderSticky = false
 
@@ -47,12 +48,13 @@ class CustomScrollView : ScrollView, ViewTreeObserver.OnGlobalLayoutListener {
 
     override fun onScrollChanged(l: Int, t: Int, oldl: Int, oldt: Int) {
         super.onScrollChanged(l, t, oldl, oldt)
-        if (t > mHeaderInitPosition) {
+        position = t.toFloat()
+        if (position > mHeaderInitPosition) {
             stickHeader(t - mHeaderInitPosition)
         } else {
             freeHeader()
         }
-        if (mItemInitPosition != null && t > mItemInitPosition!! - mHeaderBottomPosition!!) {
+        if (mItemInitPosition != null && position > mItemInitPosition!! - mHeaderBottomPosition!!) {
             itemOverListener(header ?: return)
         } else {
             itemUnOverListener(header ?: return)
