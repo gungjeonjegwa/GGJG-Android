@@ -52,6 +52,9 @@
         <activity
             android:name=".ui.detail.DetailDeliveryAndPayActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.detail.DetailChangeAndRecallActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
