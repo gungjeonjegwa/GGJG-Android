@@ -86,7 +86,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             object : EndlessRecyclerViewScrollListener(layoutManager) {
                 override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                     super.onScrollStateChanged(recyclerView, newState)
-                    println("안녕 $isMoveTop")
                     if (!recyclerView.canScrollVertically(-1) && isMoveTop) {
                         binding.scrollView.smoothScrollTo(0, 0)
                         isMoveTop = false
