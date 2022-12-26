@@ -33,6 +33,13 @@
     <string name="change_and_recall_info">교환및 반품 정보 ></string>
     <string name="change_and_recall_info_no_arrow">교환및 반품 정보</string>
     <string name="size">사이즈</string>
+    <string name="size_korean">크기</string>
+    <string name="select_option">옵션을 선택해 주세요</string>
+    <string name="age">나이</string>
+    <string name="select_age">나이를 선택해 주세요</string>
+    <string name="no_select">선택하지 않음</string>
+    <string name="select_first_option">상위옵션을 먼저 선택해주세요.</string>
+    <string name="select_already_option">이미 선택된 옵션입니다.</string>
     <string name="login">로그인</string>
     <string name="login_comment">맛있는 궁전제과 빵들을 구매해보세요!</string>
     <string name="login_wrong">아이디 또는 비밀번호가 일치하지 않습니다.</string>
