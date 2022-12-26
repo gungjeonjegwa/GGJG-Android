@@ -7,7 +7,7 @@ data class BreadResponse(
     @SerializedName("list")
     val breadList: List<Bread>,
     @SerializedName("last")
-    val isLast: Boolean
+    val isLast: Boolean,
 ) {
     data class Bread(
         @SerializedName("id")
@@ -23,7 +23,9 @@ data class BreadResponse(
         @SerializedName("previewUrl")
         val imgUrl: String,
         @SerializedName("sellDeliveryType")
-        val sellDeliveryType: List<SellType>
+        val sellDeliveryType: List<SellType>,
+        @SerializedName("isLikeItem")
+        val isLike: Boolean,
     ) {
         data class SellType(
             @SerializedName("id")
@@ -45,7 +47,8 @@ data class BreadResponse(
         category = category,
         isSoldOut = isSoldOut,
         imgUrl = imgUrl,
-        sellDeliveryType = sellDeliveryType.map { it.toEntity() }
+        sellDeliveryType = sellDeliveryType.map { it.toEntity() },
+        isLike = isLike
     )
 }
 

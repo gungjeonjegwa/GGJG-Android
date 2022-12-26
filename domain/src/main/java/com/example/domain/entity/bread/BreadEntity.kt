@@ -2,7 +2,7 @@ package com.example.domain.entity.bread
 
 data class BreadEntity(
     val breadList: List<Bread>,
-    val isLast: Boolean
+    val isLast: Boolean,
 ) {
     data class Bread(
         val id: String,
@@ -11,11 +11,12 @@ data class BreadEntity(
         val category: String,
         val isSoldOut: Boolean,
         val imgUrl: String,
-        val sellDeliveryType: List<SellType>
+        val sellDeliveryType: List<SellType>,
+        val isLike: Boolean,
     ) {
         data class SellType(
             val id: String,
-            val type: String
+            val type: String,
         )
     }
 }
