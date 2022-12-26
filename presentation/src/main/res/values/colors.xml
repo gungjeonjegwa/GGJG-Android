@@ -19,5 +19,6 @@
     <color name="very_dark_gray">#5C5C5C</color>
     <color name="primary">#222222</color>
     <color name="red">#FB3535</color>
+    <color name="dark_red">#9D292C</color>
     <color name="transparent">#00000000</color>
 </resources>
