@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.param.auth.LoginParam
 import com.example.domain.usecase.auth.LoginUseCase
+import com.example.domain.usecase.auth.SaveTokenUseCase
 import com.example.ggjg_andorid.utils.MutableEventFlow
 import com.example.ggjg_andorid.utils.asEventFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,7 +13,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val loginUseCase: LoginUseCase
+    private val loginUseCase: LoginUseCase,
+    private val saveTokenUseCase: SaveTokenUseCase
 ) : ViewModel() {
 
     private val _eventFlow = MutableEventFlow<Event>()
@@ -26,6 +28,7 @@ class LoginViewModel @Inject constructor(
                 )
             )
         }.onSuccess {
+            saveTokenUseCase.execute(it.accessToken, it.refreshToken, it.expiredAt)
             event(Event.Success)
         }.onFailure {
         }
