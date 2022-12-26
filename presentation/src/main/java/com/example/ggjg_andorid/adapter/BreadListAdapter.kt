@@ -13,6 +13,7 @@ import coil.transform.RoundedCornersTransformation
 import com.example.domain.entity.bread.BreadEntity
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.ItemBreadBinding
+import com.example.ggjg_andorid.utils.heartChange
 import java.text.DecimalFormat
 
 class BreadListAdapter :
@@ -46,6 +47,7 @@ class BreadListAdapter :
                 soldOutLayout.visibility = View.VISIBLE
             }
             likeBtn.setOnClickListener {
+                it.heartChange(!it.isActivated, context)
                 listener.like(item)
             }
             breadItemLayout.setOnClickListener {
