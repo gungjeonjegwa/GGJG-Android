@@ -60,21 +60,6 @@ class DetailBreadFragment :
     }
 
     private fun handleEvent(event: DetailViewModel.Event) = when (event) {
-        is DetailViewModel.Event.IsLogin -> {
-            if (!event.isLogin) {
-                this.startActivityForResult(
-                    Intent(
-                        requireActivity(),
-                        LoginActivity::class.java
-                    ), 0
-                )
-            } else {
-                DetailBreadPayFragment().show(
-                    requireActivity().supportFragmentManager,
-                    "DetailBreadPayFragment"
-                )
-            }
-        }
         is DetailViewModel.Event.DetailBread -> {
             PayViewModel.breadData = event.detailBread
             binding.apply {
@@ -184,7 +169,19 @@ class DetailBreadFragment :
                 }
             }
             R.id.payBtn -> {
-                detailViewModel.isLogin()
+                if (MainViewModel.isLogin) {
+                    DetailBreadPayFragment().show(
+                        requireActivity().supportFragmentManager,
+                        "DetailBreadPayFragment"
+                    )
+                } else {
+                    this.startActivityForResult(
+                        Intent(
+                            requireActivity(),
+                            LoginActivity::class.java
+                        ), 0
+                    )
+                }
             }
         }
     }

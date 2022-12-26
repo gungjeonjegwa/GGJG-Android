@@ -9,30 +9,34 @@ import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.ui.login.LoginActivity
 import com.example.ggjg_andorid.utils.repeatOnStart
 import com.example.ggjg_andorid.viewmodel.FavoriteViewModel
+import com.example.ggjg_andorid.viewmodel.MainViewModel
 import com.example.ggjg_andorid.viewmodel.ShoppingListViewModel
 
 class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment_favorite) {
     private val favoriteViewModel by activityViewModels<FavoriteViewModel>()
     override fun createView() {
-        favoriteViewModel.isLogin()
-        repeatOnStart {
-            favoriteViewModel.eventFlow.collect { event -> handleEvent(event) }
+        if (MainViewModel.isLogin) {
+            initView()
+            repeatOnStart {
+                favoriteViewModel.eventFlow.collect { event -> handleEvent(event) }
+            }
+        } else {
+            this.startActivityForResult(
+                Intent(
+                    requireActivity(),
+                    LoginActivity::class.java
+                ), 0
+            )
         }
     }
 
     private fun handleEvent(event: FavoriteViewModel.Event) = when (event) {
-        is FavoriteViewModel.Event.IsLogin -> {
-            if (!event.isLogin) {
-                this.startActivityForResult(
-                    Intent(
-                        requireActivity(),
-                        LoginActivity::class.java
-                    ), 0
-                )
-            } else {
 
-            }
-        }
+        else -> {}
+    }
+
+    private fun initView() = binding.apply {
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -40,7 +44,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment
         if (resultCode != 1) {
             requireActivity().findNavController(R.id.mainContainer).popBackStack()
         } else {
-
+            initView()
         }
     }
 }

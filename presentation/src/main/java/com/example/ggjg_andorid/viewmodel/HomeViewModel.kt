@@ -19,7 +19,7 @@ class HomeViewModel @Inject constructor(
     private val categoryBreadUseCase: CategoryBreadUseCase
 ) : ViewModel() {
 
-    private val _eventFlow = MutableEventFlow<HomeViewModel.Event>()
+    private val _eventFlow = MutableEventFlow<Event>()
     val eventFlow = _eventFlow.asEventFlow()
 
     companion object {

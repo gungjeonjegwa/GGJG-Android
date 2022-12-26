@@ -8,30 +8,34 @@ import com.example.ggjg_andorid.databinding.FragmentMyPageBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.ui.login.LoginActivity
 import com.example.ggjg_andorid.utils.repeatOnStart
+import com.example.ggjg_andorid.viewmodel.MainViewModel
 import com.example.ggjg_andorid.viewmodel.ProfileViewModel
 
 class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
     private val profileViewModel by activityViewModels<ProfileViewModel>()
     override fun createView() {
-        profileViewModel.isLogin()
-        repeatOnStart {
-            profileViewModel.eventFlow.collect { event -> handleEvent(event) }
+        if (MainViewModel.isLogin) {
+            initView()
+            repeatOnStart {
+                profileViewModel.eventFlow.collect { event -> handleEvent(event) }
+            }
+        } else {
+            this.startActivityForResult(
+                Intent(
+                    requireActivity(),
+                    LoginActivity::class.java
+                ), 0
+            )
         }
     }
 
     private fun handleEvent(event: ProfileViewModel.Event) = when (event) {
-        is ProfileViewModel.Event.IsLogin -> {
-            if (!event.isLogin) {
-                this.startActivityForResult(
-                    Intent(
-                        requireActivity(),
-                        LoginActivity::class.java
-                    ), 0
-                )
-            } else {
 
-            }
-        }
+        else -> {}
+    }
+
+    private fun initView() = binding.apply {
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -39,7 +43,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
         if (resultCode != 1) {
             requireActivity().findNavController(R.id.mainContainer).popBackStack()
         } else {
-
+            initView()
         }
     }
 }

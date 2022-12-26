@@ -13,8 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    private val detailBreadUseCase: DetailBreadUseCase,
-    private val isLoginUseCase: IsLoginUseCase
+    private val detailBreadUseCase: DetailBreadUseCase
 ) : ViewModel() {
     private val _eventFlow = MutableEventFlow<Event>()
     val eventFlow = _eventFlow.asEventFlow()
@@ -32,20 +31,11 @@ class DetailViewModel @Inject constructor(
         }
     }
 
-    fun isLogin() = viewModelScope.launch {
-        kotlin.runCatching {
-            isLoginUseCase.execute()
-        }.onSuccess {
-            event(Event.IsLogin(it))
-        }
-    }
-
     private fun event(event: Event) = viewModelScope.launch {
         _eventFlow.emit(event)
     }
 
     sealed class Event {
         data class DetailBread(val detailBread: DetailBreadEntity) : Event()
-        data class IsLogin(val isLogin: Boolean) : Event()
     }
 }
