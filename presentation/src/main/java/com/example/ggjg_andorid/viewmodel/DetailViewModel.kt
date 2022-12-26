@@ -3,6 +3,7 @@ package com.example.ggjg_andorid.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.entity.bread.DetailBreadEntity
+import com.example.domain.usecase.auth.IsLoginUseCase
 import com.example.domain.usecase.bread.DetailBreadUseCase
 import com.example.ggjg_andorid.utils.MutableEventFlow
 import com.example.ggjg_andorid.utils.asEventFlow
@@ -12,7 +13,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    private val detailBreadUseCase: DetailBreadUseCase
+    private val detailBreadUseCase: DetailBreadUseCase,
+    private val isLoginUseCase: IsLoginUseCase
 ) : ViewModel() {
     private val _eventFlow = MutableEventFlow<Event>()
     val eventFlow = _eventFlow.asEventFlow()
@@ -25,10 +27,16 @@ class DetailViewModel @Inject constructor(
         kotlin.runCatching {
             detailBreadUseCase.execute(id)
         }.onSuccess {
-            println("안녕 ${it}")
             event(Event.DetailBread(it))
         }.onFailure {
-            println("안녕 ${it}")
+        }
+    }
+
+    fun isLogin() = viewModelScope.launch {
+        kotlin.runCatching {
+            isLoginUseCase.execute()
+        }.onSuccess {
+            event(Event.IsLogin(it))
         }
     }
 
@@ -38,5 +46,6 @@ class DetailViewModel @Inject constructor(
 
     sealed class Event {
         data class DetailBread(val detailBread: DetailBreadEntity) : Event()
+        data class IsLogin(val isLogin: Boolean) : Event()
     }
 }
