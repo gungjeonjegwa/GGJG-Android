@@ -27,6 +27,12 @@ class ShoppingListFragment :
     private val shoppingListViewModel by activityViewModels<ShoppingListViewModel>()
     private val mainViewModel by activityViewModels<MainViewModel>()
     private lateinit var shoppingListAdapter: ShoppingListAdapter
+
+    override fun onDetach() {
+        super.onDetach()
+        ShoppingListViewModel.allSelected = true
+    }
+
     override fun createView() {
         binding.shoppingList = this
         if (MainViewModel.isLogin) {
