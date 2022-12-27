@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -9,6 +10,429 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/startLine"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/endLine"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <TextView
+            android:id="@+id/welcomeTxt"
+            style="@style/Bold20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="34dp"
+            android:textColor="@color/real_black"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/settingBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_setting"
+            app:layout_constraintBottom_toBottomOf="@id/welcomeTxt"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintTop_toTopOf="@id/welcomeTxt" />
+
+        <LinearLayout
+            android:id="@+id/couponAndStampLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/welcomeTxt">
+
+            <TextView
+                style="@style/Bold14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:text="@string/coupon"
+                android:textColor="@color/dark_gray" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                style="@style/Bold14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/dark_gray" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="9.5dp"
+                android:background="@color/gray" />
+
+            <TextView
+                style="@style/Bold14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:text="@string/stamp"
+                android:textColor="@color/dark_gray" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                style="@style/Bold14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:gravity="center"
+                android:text="0 / 10"
+                android:textColor="@color/dark_gray" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/couponAndStampDivide"
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:layout_marginTop="24dp"
+            android:background="@color/light_gray"
+            app:layout_constraintTop_toBottomOf="@id/couponAndStampLayout" />
+
+        <TextView
+            android:id="@+id/currentOrder"
+            style="@style/Regular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/current_order"
+            android:textColor="@color/dark_gray"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/couponAndStampDivide" />
+
+        <View
+            android:id="@+id/currentOrderDivide"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="7dp"
+            android:background="@color/light_gray"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/currentOrder" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/orderStateLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/currentOrderDivide">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_order_box">
+
+                <TextView
+                    android:id="@+id/readyDeliveryCntTxt"
+                    style="@style/Bold16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="17dp"
+                    android:text="0"
+                    android:textColor="@color/gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/Regular12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="12dp"
+                    android:text="@string/ready_delivery"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/readyDeliveryCntTxt" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="16dp"
+                android:layout_height="match_parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_order_box">
+
+                <TextView
+                    android:id="@+id/ingDeliveryCntTxt"
+                    style="@style/Bold16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="17dp"
+                    android:text="0"
+                    android:textColor="@color/gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/Regular12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="12dp"
+                    android:text="@string/ready_delivery"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ingDeliveryCntTxt" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="16dp"
+                android:layout_height="match_parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_order_box">
+
+                <TextView
+                    android:id="@+id/finishDeliveryCntTxt"
+                    style="@style/Bold16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="17dp"
+                    android:text="0"
+                    android:textColor="@color/gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/Regular12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="12dp"
+                    android:text="@string/ready_delivery"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/finishDeliveryCntTxt" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <LinearLayout
+            android:id="@+id/cancelAndChangeAndRecallLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_order_box"
+            android:paddingVertical="8.5dp"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/orderStateLayout">
+
+            <TextView
+                style="@style/Regular12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:gravity="center"
+                android:text="@string/cancel"
+                android:textColor="@color/black" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                style="@style/Bold12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/gray" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="1dp"
+                android:background="@color/light_gray" />
+
+            <TextView
+                style="@style/Regular12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:gravity="center"
+                android:text="@string/change"
+                android:textColor="@color/black" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                style="@style/Bold12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/gray" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="1dp"
+                android:background="@color/light_gray" />
+
+            <TextView
+                style="@style/Regular12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:gravity="center"
+                android:text="@string/recall"
+                android:textColor="@color/black" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                style="@style/Bold12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/gray" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/Regular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="57dp"
+            android:text="@string/stamp"
+            android:textColor="@color/dark_gray"
+            app:layout_constraintBottom_toBottomOf="@id/currentStampTxt"
+            app:layout_constraintStart_toStartOf="@id/startLine" />
+
+        <TextView
+            android:id="@+id/currentStampTxt"
+            style="@style/Bold24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="2dp"
+            android:text="0"
+            android:textColor="@color/very_dark_gray"
+            app:layout_constraintEnd_toStartOf="@id/targetStampTxt"
+            app:layout_constraintTop_toBottomOf="@id/cancelAndChangeAndRecallLayout" />
+
+        <TextView
+            android:id="@+id/targetStampTxt"
+            style="@style/Regular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/10"
+            android:textColor="@color/gray"
+            app:layout_constraintBottom_toBottomOf="@id/currentStampTxt"
+            app:layout_constraintEnd_toEndOf="@id/endLine" />
+
+        <View
+            android:id="@+id/stampDivide"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/light_gray"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/currentStampTxt" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/stampList"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="40dp"
+            android:nestedScrollingEnabled="false"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toTopOf="@id/logoutBtn"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toTopOf="@id/stampDivide" />
+
+
+        <TextView
+            android:id="@+id/logoutBtn"
+            style="@style/Regular12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:text="@string/logout"
+            android:textColor="@color/gray"
+            app:layout_constraintBottom_toBottomOf="@id/logoutAndDeleteAuthDivide"
+            app:layout_constraintEnd_toEndOf="@id/logoutAndDeleteAuthDivide" />
+
+        <View
+            android:id="@+id/logoutAndDeleteAuthDivide"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="29dp"
+            android:background="@color/gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toTopOf="@id/deleteAuthBtn" />
+
+        <TextView
+            android:id="@+id/deleteAuthBtn"
+            style="@style/Regular12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="@string/delete_auth"
+            android:textColor="@color/gray"
+            app:layout_constraintBottom_toBottomOf="@id/logoutAndDeleteAuthDivide"
+            app:layout_constraintStart_toStartOf="@id/logoutAndDeleteAuthDivide" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
