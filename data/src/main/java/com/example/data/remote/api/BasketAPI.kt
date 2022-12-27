@@ -13,7 +13,7 @@ interface BasketAPI {
     @GET("/basket")
     suspend fun myBasket(): List<MyBasketResponse>
 
-    @DELETE("basket/{id}")
+    @DELETE("/basket/{id}")
     suspend fun deleteBasket(
         @Path("id") id: String
     )
