@@ -71,6 +71,7 @@ class ShoppingListFragment :
         shoppingListAdapter = ShoppingListAdapter().apply {
             setItemOnClickListener(object : ShoppingListAdapter.OnItemClickListener {
                 override fun plus(item: MyBasketEntity) {
+                    shoppingListViewModel.changeBasket(item.id)
                     ShoppingListViewModel.selectBreadList.forEach {
                         if (it == item) {
                             it.count++
@@ -80,6 +81,7 @@ class ShoppingListFragment :
                 }
 
                 override fun minus(item: MyBasketEntity) {
+                    shoppingListViewModel.changeBasket(item.id, false)
                     ShoppingListViewModel.selectBreadList.forEach {
                         if (it == item) {
                             it.count--
@@ -89,9 +91,12 @@ class ShoppingListFragment :
                 }
 
                 override fun delete(item: MyBasketEntity) {
-                    ShoppingListViewModel.allBreadList = ShoppingListViewModel.allBreadList.filter { it != item }
-                    ShoppingListViewModel.selectBreadList = ShoppingListViewModel.selectBreadList.filter { it != item }
+                    ShoppingListViewModel.allBreadList =
+                        ShoppingListViewModel.allBreadList.filter { it != item }
+                    ShoppingListViewModel.selectBreadList =
+                        ShoppingListViewModel.selectBreadList.filter { it != item }
                     shoppingListAdapter.submitList(ShoppingListViewModel.allBreadList)
+                    shoppingListViewModel.deleteBasket(item.id)
                     if (ShoppingListViewModel.selectBreadList.isEmpty()) {
                         paymentLayout.setVisible(false)
                         payBtn.setVisible(false)
@@ -104,13 +109,15 @@ class ShoppingListFragment :
 
                 override fun check(item: MyBasketEntity, isCheck: Boolean) {
                     if (isCheck) {
-                        ShoppingListViewModel.selectBreadList = ShoppingListViewModel.selectBreadList.plus(item)
+                        ShoppingListViewModel.selectBreadList =
+                            ShoppingListViewModel.selectBreadList.plus(item)
                         if (ShoppingListViewModel.selectBreadList.size == ShoppingListViewModel.allBreadList.size) {
                             ShoppingListViewModel.allSelected = true
                             allSelectBtn.isActivated = true
                         }
                     } else {
-                        ShoppingListViewModel.selectBreadList = ShoppingListViewModel.selectBreadList.filter { it != item }
+                        ShoppingListViewModel.selectBreadList =
+                            ShoppingListViewModel.selectBreadList.filter { it != item }
                         ShoppingListViewModel.allSelected = false
                         allSelectBtn.isActivated = false
                     }
@@ -166,7 +173,13 @@ class ShoppingListFragment :
                 viewTotal()
             }
             R.id.selectDeleteBtn -> {
-                ShoppingListViewModel.allBreadList = ShoppingListViewModel.allBreadList.filter { !ShoppingListViewModel.selectBreadList.contains(it) }
+                ShoppingListViewModel.allBreadList = ShoppingListViewModel.allBreadList.filter {
+                    !ShoppingListViewModel.selectBreadList.contains(it)
+                }
+                ShoppingListViewModel.selectBreadList.forEach {
+                    shoppingListViewModel.deleteBasket(it.id)
+                }
+                ShoppingListViewModel.selectBreadList = listOf()
                 shoppingListAdapter.submitList(ShoppingListViewModel.allBreadList)
                 if (ShoppingListViewModel.allBreadList.isEmpty()) {
                     binding.paymentLayout.setVisible(false)
