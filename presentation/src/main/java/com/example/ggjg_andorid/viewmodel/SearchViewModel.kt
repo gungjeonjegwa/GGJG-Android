@@ -2,10 +2,10 @@ package com.example.ggjg_andorid.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.entity.search.RecentSearchEntity
-import com.example.domain.usecase.search.DeleteRecentSearchUseCase
-import com.example.domain.usecase.search.GetRecentSearchUseCase
-import com.example.domain.usecase.search.SearchUseCase
+import com.example.domain.entity.bread.RecentSearchEntity
+import com.example.domain.usecase.bread.DeleteRecentSearchUseCase
+import com.example.domain.usecase.bread.GetRecentSearchUseCase
+import com.example.domain.usecase.bread.SearchUseCase
 import com.example.ggjg_andorid.adapter.RecentSearchAdapter
 import com.example.ggjg_andorid.utils.MutableEventFlow
 import com.example.ggjg_andorid.utils.asEventFlow

@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.domain.entity.search.RecentSearchEntity
+import com.example.domain.entity.bread.RecentSearchEntity
 import com.example.ggjg_andorid.databinding.ItemRecentSearchBinding
 
 class RecentSearchAdapter :

@@ -6,7 +6,7 @@
 
         <variable
             name="recentSearch"
-            type="com.example.domain.entity.search.RecentSearchEntity" />
+            type="com.example.domain.entity.bread.RecentSearchEntity" />
     </data>
 
     <LinearLayout
