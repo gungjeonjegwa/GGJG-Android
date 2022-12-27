@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.adapter.BannerAdapter
+import com.example.ggjg_andorid.adapter.DetailBreadInfoImgAdapter
 import com.example.ggjg_andorid.databinding.ActivityMainBinding
 import com.example.ggjg_andorid.databinding.FragmentDetailBreadBinding
 import com.example.ggjg_andorid.ui.base.BaseActivity
@@ -31,6 +33,7 @@ class DetailBreadFragment :
     private val detailViewModel by activityViewModels<DetailViewModel>()
     private val mainViewModel by activityViewModels<MainViewModel>()
     private var currentDeliveryView = 0
+    private val infoImgAdapter = DetailBreadInfoImgAdapter()
     private var max = 0
 
     override fun onAttach(context: Context) {
@@ -82,6 +85,10 @@ class DetailBreadFragment :
                 if (event.detailBread.size != null) {
                     size.setVisible()
                     sizeTxt.setVisible()
+                }
+                if (event.detailBread.breadImageInfo.isNotEmpty()) {
+                    infoImgAdapter.submitList(event.detailBread.breadImageInfo)
+                    infoImgList.setVisible()
                 }
                 binding.likeBtn.isActivated = event.detailBread.isLike
                 binding.like.isActivated = event.detailBread.isLike
@@ -143,6 +150,10 @@ class DetailBreadFragment :
             itemUnOverListener = {
                 tabLayout.setBackgroundColor(requireActivity().getColor(R.color.transparent))
             }
+        }
+        infoImgList.apply {
+            this.adapter = infoImgAdapter
+            layoutManager = LinearLayoutManager(context)
         }
     }
 
