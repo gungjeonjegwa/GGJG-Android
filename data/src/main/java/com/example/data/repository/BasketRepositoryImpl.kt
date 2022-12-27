@@ -1,8 +1,10 @@
 package com.example.data.repository
 
 import com.example.data.remote.datasource.BasketDataSource
+import com.example.data.remote.request.basket.toRequest
 import com.example.data.remote.response.basket.toEntity
 import com.example.domain.entity.basket.MyBasketEntity
+import com.example.domain.param.basket.MakeBasketParam
 import com.example.domain.repository.BasketRepository
 import javax.inject.Inject
 
@@ -20,4 +22,7 @@ class BasketRepositoryImpl @Inject constructor(
 
     override suspend fun minusBasket(id: String) =
         basketDataSource.minusBasket(id)
+
+    override suspend fun makeBasket(makeBasketParam: MakeBasketParam) =
+        basketDataSource.makeBasket(makeBasketParam.toRequest())
 }

@@ -1,6 +1,7 @@
 package com.example.data.remote.datasource
 
 import com.example.data.remote.api.BasketAPI
+import com.example.data.remote.request.basket.MakeBasketRequest
 import com.example.data.remote.response.basket.MyBasketResponse
 import javax.inject.Inject
 
@@ -18,4 +19,7 @@ class BasketDataSourceImpl @Inject constructor(
 
     override suspend fun minusBasket(id: String) =
         basketAPI.minusBasket(id)
+
+    override suspend fun makeBasket(makeBasketRequest: MakeBasketRequest) =
+        basketAPI.makeBasket(makeBasketRequest)
 }
