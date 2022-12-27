@@ -11,4 +11,7 @@ class BasketRepositoryImpl @Inject constructor(
 ) : BasketRepository {
     override suspend fun myBasket(): List<MyBasketEntity> =
         basketDataSource.myBasket().map { it.toEntity() }
+
+    override suspend fun plusBasket(id: String) =
+        basketDataSource.plusBasket(id)
 }

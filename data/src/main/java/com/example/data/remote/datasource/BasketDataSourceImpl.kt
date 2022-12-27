@@ -9,4 +9,7 @@ class BasketDataSourceImpl @Inject constructor(
 ) : BasketDataSource {
     override suspend fun myBasket(): List<MyBasketResponse> =
         basketAPI.myBasket()
+
+    override suspend fun plusBasket(id: String) =
+        basketAPI.plusBasket(id)
 }
