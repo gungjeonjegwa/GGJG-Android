@@ -1,9 +1,6 @@
 package com.example.ggjg_andorid.di
 
-import com.example.data.remote.datasource.AuthDataSource
-import com.example.data.remote.datasource.AuthDataSourceImpl
-import com.example.data.remote.datasource.BreadDataSource
-import com.example.data.remote.datasource.BreadDataSourceImpl
+import com.example.data.remote.datasource.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -14,11 +11,16 @@ import dagger.hilt.components.SingletonComponent
 abstract class RemoteDataSourceModule {
     @Binds
     abstract fun provideBreadDataSource(
-        breadDataSourceImpl: BreadDataSourceImpl
+        breadDataSourceImpl: BreadDataSourceImpl,
     ): BreadDataSource
 
     @Binds
     abstract fun provideAuthDataSource(
-        authDataSourceImpl: AuthDataSourceImpl
+        authDataSourceImpl: AuthDataSourceImpl,
     ): AuthDataSource
+
+    @Binds
+    abstract fun provideBasketDataSource(
+        basketDataSourceImpl: BasketDataSourceImpl,
+    ): BasketDataSource
 }

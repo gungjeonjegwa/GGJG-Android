@@ -2,6 +2,7 @@ package com.example.ggjg_andorid.di
 
 import com.example.data.interceptor.AuthorizationInterceptor
 import com.example.data.remote.api.AuthAPI
+import com.example.data.remote.api.BasketAPI
 import com.example.data.remote.api.BreadAPI
 import com.example.ggjg_andorid.BuildConfig
 import dagger.Module
@@ -52,4 +53,8 @@ object NetworkModule {
     @Provides
     fun provideAuthAPI(retrofit: Retrofit): AuthAPI =
         retrofit.create(AuthAPI::class.java)
+
+    @Provides
+    fun provideBasketAPI(retrofit: Retrofit): BasketAPI =
+        retrofit.create(BasketAPI::class.java)
 }
