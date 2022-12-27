@@ -14,4 +14,7 @@ class BasketRepositoryImpl @Inject constructor(
 
     override suspend fun plusBasket(id: String) =
         basketDataSource.plusBasket(id)
+
+    override suspend fun minusBasket(id: String) =
+        basketDataSource.minusBasket(id)
 }

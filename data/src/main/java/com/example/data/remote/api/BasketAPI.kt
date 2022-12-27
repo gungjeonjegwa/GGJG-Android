@@ -8,8 +8,14 @@ import retrofit2.http.Path
 interface BasketAPI {
     @GET("/basket")
     suspend fun myBasket(): List<MyBasketResponse>
+
     @PATCH("/basket/plus/{id}")
     suspend fun plusBasket(
+        @Path("id") id: String
+    )
+
+    @PATCH("/basket/minus/{id}")
+    suspend fun minusBasket(
         @Path("id") id: String
     )
 }
