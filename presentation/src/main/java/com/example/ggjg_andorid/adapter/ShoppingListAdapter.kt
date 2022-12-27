@@ -45,11 +45,12 @@ class ShoppingListAdapter :
                 divideLine.setVisible(false)
             }
             if (item.unit != null) {
-                optionTxt.text = "-${item.unit} (${item.size}) ${
-                    if (item.extraMoney != null) "(+${
-                        DecimalFormat("#,###").format(item.extraMoney)
-                    }원)" else ""
-                }"
+                optionTxt.text =
+                    "-${if (item.age != null) "나이/${item.age}, " else ""}${item.unit}(${item.size})${
+                        if (item.extraMoney != 0 && item.extraMoney != null) "(+${
+                            DecimalFormat("#,###").format(item.extraMoney)
+                        }원)" else ""
+                    }"
             }
             if (!item.isSoldOut) {
                 plusBtn.setOnClickListener {

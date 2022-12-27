@@ -29,8 +29,8 @@ class DetailBreadPayAdapter :
         fun bind(item: MakeBasketParam) = binding.apply {
             var amount = item.count
             nameTxt.text = PayViewModel.breadData!!.name
-            optionTxt.text = "-${item.unit} (${item.size}) ${
-                if (item.extraMoney != 0) "(+${
+            optionTxt.text = "-${if (item.age != null) "나이/${item.age}, " else ""}${item.unit}(${item.size})${
+                if (item.extraMoney != 0 && item.extraMoney != null) "(+${
                     DecimalFormat("#,###").format(item.extraMoney)
                 }원)" else ""
             }"
