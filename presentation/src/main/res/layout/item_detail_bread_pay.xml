@@ -64,7 +64,7 @@
             app:layout_constraintEnd_toEndOf="@id/endLine"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <TextView
             android:id="@+id/minusBtn"
             style="@style/Regular14"
             android:layout_width="30dp"
@@ -89,7 +89,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/plusBtn" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <TextView
             android:id="@+id/plusBtn"
             style="@style/Regular14"
             android:layout_width="30dp"
