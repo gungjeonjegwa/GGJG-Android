@@ -8,6 +8,8 @@ data class MyBasketResponse(
     val id: String,
     @SerializedName("title")
     val title: String,
+    @SerializedName("previewUrl")
+    val imgUrl: String,
     @SerializedName("age")
     val age: Int?,
     @SerializedName("price")
@@ -17,7 +19,7 @@ data class MyBasketResponse(
     @SerializedName("extramoney")
     val extraMoney: Int?,
     @SerializedName("unit")
-    val unit: String,
+    val unit: String?,
     @SerializedName("isSoldOut")
     val isSoldOut: Boolean,
     @SerializedName("count")
@@ -29,6 +31,7 @@ data class MyBasketResponse(
 fun MyBasketResponse.toEntity() = MyBasketEntity(
     id = id,
     title = title,
+    imgUrl = imgUrl,
     age = age,
     price = price,
     size = size,
