@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.domain.param.basket.MakeBasketParam
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.ItemDetailBreadPayBinding
 import com.example.ggjg_andorid.databinding.ItemPayOptionBinding
@@ -13,7 +14,7 @@ import com.example.ggjg_andorid.viewmodel.PayViewModel
 import java.text.DecimalFormat
 
 class DetailBreadPayAdapter :
-    ListAdapter<PayViewModel.Bread, DetailBreadPayAdapter.DetailBreadPayViewHolder>(
+    ListAdapter<MakeBasketParam, DetailBreadPayAdapter.DetailBreadPayViewHolder>(
         diffUtil) {
 
     private lateinit var itemClickListener: OnItemClickListener
@@ -25,15 +26,18 @@ class DetailBreadPayAdapter :
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: PayViewModel.Bread) = binding.apply {
-            var amount = item.amount
-            nameTxt.text = item.name
+        fun bind(item: MakeBasketParam) = binding.apply {
+            var amount = item.count
+            nameTxt.text = PayViewModel.breadData!!.name
             optionTxt.text = "-${item.unit} (${item.size}) ${
                 if (item.extraMoney != 0) "(+${
                     DecimalFormat("#,###").format(item.extraMoney)
                 }원)" else ""
             }"
-            costTxt.text = "${(item.money + item.extraMoney) * amount}원"
+            costTxt.text = "${
+                (PayViewModel.breadData!!.price.replace(",", "")
+                    .toInt() + (item.extraMoney ?: 0)) * amount
+            }원"
             amountTxt.text = amount.toString()
             deleteBtn.setOnClickListener {
                 listener.delete(item)
@@ -52,8 +56,11 @@ class DetailBreadPayAdapter :
             }
         }
 
-        private fun changeView(amount: Int, item: PayViewModel.Bread) = binding.apply {
-            costTxt.text = "${(item.money + item.extraMoney) * amount}원"
+        private fun changeView(amount: Int, item: MakeBasketParam) = binding.apply {
+            costTxt.text = "${
+                (PayViewModel.breadData!!.price.replace(",", "")
+                    .toInt() + (item.extraMoney ?: 0)) * amount
+            }원"
             amountTxt.text = amount.toString()
         }
     }
@@ -74,9 +81,9 @@ class DetailBreadPayAdapter :
     }
 
     interface OnItemClickListener {
-        fun plus(item: PayViewModel.Bread)
-        fun minus(item: PayViewModel.Bread)
-        fun delete(item: PayViewModel.Bread)
+        fun plus(item: MakeBasketParam)
+        fun minus(item: MakeBasketParam)
+        fun delete(item: MakeBasketParam)
     }
 
     fun setItemOnClickListener(onItemClickListener: OnItemClickListener) {
@@ -84,17 +91,17 @@ class DetailBreadPayAdapter :
     }
 
     companion object {
-        val diffUtil = object : DiffUtil.ItemCallback<PayViewModel.Bread>() {
+        val diffUtil = object : DiffUtil.ItemCallback<MakeBasketParam>() {
             override fun areItemsTheSame(
-                oldItem: PayViewModel.Bread,
-                newItem: PayViewModel.Bread,
+                oldItem: MakeBasketParam,
+                newItem: MakeBasketParam,
             ): Boolean {
                 return oldItem == newItem
             }
 
             override fun areContentsTheSame(
-                oldItem: PayViewModel.Bread,
-                newItem: PayViewModel.Bread,
+                oldItem: MakeBasketParam,
+                newItem: MakeBasketParam,
             ): Boolean {
                 return oldItem == newItem
             }

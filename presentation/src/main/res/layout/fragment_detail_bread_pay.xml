@@ -30,11 +30,11 @@
 
         <ImageView
             android:id="@+id/closeBtn"
-            android:onClick="@{detailBreadPay::onClick}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/ic_bottom_btn"
+            android:onClick="@{detailBreadPay::onClick}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -123,9 +123,9 @@
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_pay_option_btn_selected"
             android:visibility="gone"
             app:layout_constrainedHeight="true"
-            android:background="@drawable/bg_pay_option_btn_selected"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/endLine"
             app:layout_constraintStart_toStartOf="@id/startLine"
@@ -188,20 +188,24 @@
             app:layout_constraintTop_toBottomOf="@id/paymentLayout">
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/addShoppingListBtn"
                 style="@style/Medium14"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/bg_shoppring_list_btn"
+                android:onClick="@{detailBreadPay::onClick}"
                 android:text="@string/shopping_list"
                 android:textColor="@color/black" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/directPay"
                 style="@style/Medium14"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/bg_pay_btn"
+                android:onClick="@{detailBreadPay::onClick}"
                 android:text="@string/direct_pay"
                 android:textColor="@color/white" />
 
