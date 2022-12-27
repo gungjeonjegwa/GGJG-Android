@@ -43,6 +43,17 @@
     <string name="no_select">선택하지 않음</string>
     <string name="select_first_option">상위옵션을 먼저 선택해주세요.</string>
     <string name="select_already_option">이미 선택된 옵션입니다.</string>
+    <string name="coupon">쿠폰</string>
+    <string name="stamp">스탬프</string>
+    <string name="current_order">주문처리 현황</string>
+    <string name="ready_delivery">배송준비중</string>
+    <string name="ing_delivery">배송중</string>
+    <string name="finish_delivery">배송완료</string>
+    <string name="cancel">취소</string>
+    <string name="change">교환</string>
+    <string name="recall">반품</string>
+    <string name="logout">로그아웃</string>
+    <string name="delete_auth">회원탈퇴</string>
     <string name="login">로그인</string>
     <string name="login_comment">맛있는 궁전제과 빵들을 구매해보세요!</string>
     <string name="login_wrong">아이디 또는 비밀번호가 일치하지 않습니다.</string>
