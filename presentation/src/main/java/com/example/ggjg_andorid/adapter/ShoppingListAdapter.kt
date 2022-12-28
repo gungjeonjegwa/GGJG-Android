@@ -41,6 +41,7 @@ class ShoppingListAdapter :
                 itemCheckBtn.isActivated = !itemCheckBtn.isActivated
                 listener.check(item, itemCheckBtn.isActivated)
             }
+            optionTxt.isSelected = true
             if (isLast) {
                 divideLine.setVisible(false)
             }
