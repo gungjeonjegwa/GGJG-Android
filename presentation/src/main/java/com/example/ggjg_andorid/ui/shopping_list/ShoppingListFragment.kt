@@ -14,10 +14,12 @@ import com.example.ggjg_andorid.databinding.FragmentShoppingListBinding
 import com.example.ggjg_andorid.databinding.ItemShoppingListBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.ui.login.LoginActivity
+import com.example.ggjg_andorid.ui.pay.PayFragment
 import com.example.ggjg_andorid.utils.changeActivatedWithEnabled
 import com.example.ggjg_andorid.utils.repeatOnStart
 import com.example.ggjg_andorid.utils.setVisible
 import com.example.ggjg_andorid.viewmodel.MainViewModel
+import com.example.ggjg_andorid.viewmodel.PayViewModel
 import com.example.ggjg_andorid.viewmodel.ProfileViewModel
 import com.example.ggjg_andorid.viewmodel.ShoppingListViewModel
 import java.text.DecimalFormat
@@ -158,7 +160,11 @@ class ShoppingListFragment :
                 requireActivity().findNavController(R.id.mainContainer).popBackStack()
             }
             R.id.payBtn -> {
-
+                if (ShoppingListViewModel.selectBreadList.isNotEmpty()) {
+                    PayViewModel.shoppingList = ShoppingListViewModel.selectBreadList
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .add(R.id.mainContainer, PayFragment()).commit()
+                }
             }
             R.id.allSelectBtn, R.id.allSelectTxt -> {
                 binding.allSelectBtn.isActivated = !binding.allSelectBtn.isActivated
@@ -189,7 +195,6 @@ class ShoppingListFragment :
                 } else {
                     viewTotal()
                 }
-
             }
         }
     }

@@ -9,14 +9,18 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.domain.entity.bread.DetailBreadEntity
 import com.example.domain.param.basket.MakeBasketParam
+import com.example.domain.param.basket.toMyBasketEntity
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.adapter.AgeOptionAdapter
 import com.example.ggjg_andorid.adapter.DetailBreadPayAdapter
 import com.example.ggjg_andorid.adapter.SizeOptionAdapter
 import com.example.ggjg_andorid.databinding.FragmentDetailBreadPayBinding
+import com.example.ggjg_andorid.ui.pay.PayFragment
 import com.example.ggjg_andorid.utils.repeatOnStart
 import com.example.ggjg_andorid.utils.setVisible
 import com.example.ggjg_andorid.viewmodel.PayDialogViewModel
+import com.example.ggjg_andorid.viewmodel.PayViewModel
+import com.example.ggjg_andorid.viewmodel.ShoppingListViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.text.DecimalFormat
 
@@ -187,7 +191,6 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
     }
 
     private fun totalCost() = binding.apply {
-        println("안녕 ${PayDialogViewModel.breadList}")
         var totalAmount = 0
         var totalCost = 0
         PayDialogViewModel.breadList.forEach {
@@ -222,6 +225,17 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
             }
             R.id.directPay -> {
                 if (PayDialogViewModel.breadList.isNotEmpty()) {
+                    dialog?.dismiss()
+                    PayViewModel.shoppingList = PayDialogViewModel.breadList.map {
+                        it.toMyBasketEntity(
+                            PayDialogViewModel.breadData!!.name,
+                            PayDialogViewModel.breadData!!.imgUrl,
+                            PayDialogViewModel.breadData!!.price.filter { it != ',' }.toInt()
+                        )
+                    }
+                    PayDialogViewModel.breadList = listOf()
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .add(R.id.mainContainer, PayFragment()).commit()
                 }
             }
             R.id.addShoppingListBtn -> {

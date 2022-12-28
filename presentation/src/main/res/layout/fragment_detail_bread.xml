@@ -499,7 +499,7 @@
                 android:background="@drawable/selector_form_btn"
                 android:onClick="@{detailBread::onClick}"
                 android:paddingVertical="17dp"
-                android:text="@string/pay"
+                android:text="@string/order"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent" />
         </LinearLayout>
