@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="myPagePrivacy"
+            type="com.example.ggjg_andorid.ui.my_page.MyPagePrivacyFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/privacyBarBottomLine"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="48dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/startLine"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/endLine"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <ImageView
+            android:id="@+id/backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_back"
+            android:onClick="@{myPagePrivacy::onClick}"
+            app:layout_constraintBottom_toBottomOf="@id/privacyBarBottomLine"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            style="@style/Regular16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/privacy"
+            android:textColor="@color/real_black"
+            app:layout_constraintBottom_toBottomOf="@id/privacyBarBottomLine"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/editBtn"
+            style="@style/Regular12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit"
+            android:textColor="@color/real_black"
+            app:layout_constraintBottom_toBottomOf="@id/backBtn"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintTop_toTopOf="@id/backBtn" />
+
+        <View
+            android:id="@+id/basicInfoLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="25dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="@id/phoneTxt"
+            app:layout_constraintTop_toTopOf="@id/privacyBarBottomLine" />
+
+        <TextView
+            style="@style/Medium14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name_no_star"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/nameTxt"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toTopOf="@id/nameTxt" />
+
+        <TextView
+            android:id="@+id/nameTxt"
+            style="@style/Regular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="16dp"
+            android:text="@string/name_no_star"
+            android:textColor="@color/dark_gray"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintTop_toTopOf="@id/basicInfoLayout" />
+
+        <TextView
+            style="@style/Medium14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/id_no_star"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/idTxt"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toTopOf="@id/idTxt" />
+
+        <TextView
+            android:id="@+id/idTxt"
+            style="@style/Regular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="16dp"
+            android:text="@string/name_no_star"
+            android:textColor="@color/dark_gray"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintTop_toBottomOf="@id/nameTxt" />
+
+        <TextView
+            style="@style/Medium14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/email_no_star"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/emailTxt"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toTopOf="@id/emailTxt" />
+
+        <TextView
+            android:id="@+id/emailTxt"
+            style="@style/Regular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="16dp"
+            android:text="@string/name_no_star"
+            android:textColor="@color/dark_gray"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintTop_toBottomOf="@id/idTxt" />
+
+        <TextView
+            style="@style/Medium14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/phone"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/phoneTxt"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toTopOf="@id/phoneTxt" />
+
+        <TextView
+            android:id="@+id/phoneTxt"
+            style="@style/Regular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="16dp"
+            android:text="@string/name_no_star"
+            android:textColor="@color/dark_gray"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintTop_toBottomOf="@id/emailTxt" />
+
+        <View
+            android:id="@+id/divideLine"
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:background="@color/light_gray"
+            app:layout_constraintTop_toBottomOf="@id/basicInfoLayout" />
+
+        <View
+            android:id="@+id/addressLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="-16dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="@id/detailAddressTxt"
+            app:layout_constraintTop_toBottomOf="@id/divideLine" />
+
+        <TextView
+            android:id="@+id/address"
+            style="@style/Medium14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/address"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toTopOf="@id/addressLayout" />
+
+        <TextView
+            android:id="@+id/changeAddressBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/change_address"
+            android:textColor="@color/gray"
+            app:layout_constraintBottom_toBottomOf="@id/address"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintTop_toTopOf="@id/address" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/gray"
+            app:layout_constraintEnd_toEndOf="@id/changeAddressBtn"
+            app:layout_constraintStart_toStartOf="@id/changeAddressBtn"
+            app:layout_constraintTop_toBottomOf="@id/changeAddressBtn" />
+
+        <TextView
+            android:id="@+id/addressTxt"
+            style="@style/Regular14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/dark_gray"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/address" />
+
+        <TextView
+            android:id="@+id/detailAddressTxt"
+            style="@style/Regular12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/gray"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/addressTxt" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/termsOfServicesBtn"
+            style="@style/Medium14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_delivery_detail_btn"
+            android:onClick="@{myPagePrivacy::onClick}"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="18dp"
+            android:text="@string/terms_of_services"
+            android:textColor="@color/gray"
+            app:layout_constraintBottom_toTopOf="@id/privacyHandleAgreeBtn"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintStart_toStartOf="@id/startLine" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/privacyHandleAgreeBtn"
+            style="@style/Medium14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_delivery_detail_btn"
+            android:onClick="@{myPagePrivacy::onClick}"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="18dp"
+            android:text="@string/privacy_handle_agree"
+            android:textColor="@color/gray"
+            app:layout_constraintBottom_toTopOf="@id/informationUseBtn"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintStart_toStartOf="@id/startLine" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/informationUseBtn"
+            style="@style/Medium14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_delivery_detail_btn"
+            android:onClick="@{myPagePrivacy::onClick}"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="18dp"
+            android:text="@string/information_use"
+            android:textColor="@color/gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintStart_toStartOf="@id/startLine" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

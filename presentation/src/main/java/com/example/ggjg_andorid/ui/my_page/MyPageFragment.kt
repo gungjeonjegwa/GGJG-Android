@@ -54,6 +54,10 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
             R.id.logoutBtn -> {
                 profileViewModel.logout()
             }
+            R.id.settingBtn -> {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.mainContainer, MyPagePrivacyFragment()).commit()
+            }
         }
     }
 
