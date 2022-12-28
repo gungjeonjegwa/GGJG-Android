@@ -26,6 +26,11 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
     private lateinit var breadPayAdapter: DetailBreadPayAdapter
     private val payViewModel by activityViewModels<PayViewModel>()
 
+    override fun onDetach() {
+        super.onDetach()
+        PayViewModel.size = null
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
