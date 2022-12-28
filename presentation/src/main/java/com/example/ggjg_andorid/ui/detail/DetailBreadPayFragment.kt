@@ -66,11 +66,6 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
     }
 
     private fun initView() = binding.apply {
-        if (PayDialogViewModel.breadList.isNotEmpty()) {
-            paymentLayout.setVisible()
-            breadPayAdapter.submitList(PayDialogViewModel.breadList)
-            totalCost()
-        }
         breadPayAdapter = DetailBreadPayAdapter().apply {
             setItemOnClickListener(object : DetailBreadPayAdapter.OnItemClickListener {
                 override fun plus(item: MakeBasketParam) {
@@ -105,6 +100,11 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
             itemAnimator = null
             adapter = breadPayAdapter
             layoutManager = LinearLayoutManager(context)
+        }
+        if (PayDialogViewModel.breadList.isNotEmpty()) {
+            paymentLayout.setVisible()
+            breadPayAdapter.submitList(PayDialogViewModel.breadList)
+            totalCost()
         }
         if (!PayDialogViewModel.breadData?.breadSize.isNullOrEmpty()) {
             sizeAdapter = SizeOptionAdapter().apply {
@@ -165,16 +165,18 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
                 layoutManager = LinearLayoutManager(context)
             }
         } else {
-            PayDialogViewModel.breadList = PayDialogViewModel.breadList.plus(
-                MakeBasketParam(
-                    PayDialogViewModel.breadData!!.id,
-                    1,
-                    null,
-                    null,
-                    null,
-                    null,
+            if (PayDialogViewModel.breadList.isEmpty()) {
+                PayDialogViewModel.breadList = PayDialogViewModel.breadList.plus(
+                    MakeBasketParam(
+                        PayDialogViewModel.breadData!!.id,
+                        1,
+                        null,
+                        null,
+                        null,
+                        null,
+                    )
                 )
-            )
+            }
             breadPayAdapter.submitList(PayDialogViewModel.breadList)
             ageOptionLayout.setVisible(false)
             sizeOptionLayout.setVisible(false)
