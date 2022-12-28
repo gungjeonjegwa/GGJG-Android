@@ -11,7 +11,7 @@ abstract class BaseActivity<B: ViewDataBinding>(
 ): AppCompatActivity() {
 
     protected lateinit var binding: B
-    private lateinit var onKeyBackPressedListener: OnKeyBackPressedListener
+    private var onKeyBackPressedListener: OnKeyBackPressedListener? = null
 
     interface OnKeyBackPressedListener {
         fun onBack()
@@ -27,8 +27,8 @@ abstract class BaseActivity<B: ViewDataBinding>(
     }
 
     override fun onBackPressed() {
-        if (::onKeyBackPressedListener.isInitialized) {
-            onKeyBackPressedListener.onBack()
+        if (onKeyBackPressedListener != null) {
+            (onKeyBackPressedListener as OnKeyBackPressedListener).onBack()
         } else {
             super.onBackPressed()
         }
@@ -38,5 +38,9 @@ abstract class BaseActivity<B: ViewDataBinding>(
 
     fun setOnKeyBackPressedListener(listener: OnKeyBackPressedListener) {
         onKeyBackPressedListener = listener
+    }
+
+    fun deleteOnKeyBackPressedListener() {
+        onKeyBackPressedListener = null
     }
 }

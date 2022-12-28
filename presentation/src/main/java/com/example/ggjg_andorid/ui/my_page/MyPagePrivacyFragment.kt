@@ -31,6 +31,7 @@ class MyPagePrivacyFragment :
 
     override fun onDetach() {
         mainViewModel.hiddenNav(false)
+        (activity as BaseActivity<ActivityMainBinding>).deleteOnKeyBackPressedListener()
         super.onDetach()
     }
 

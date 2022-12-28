@@ -46,13 +46,14 @@ class DetailBreadFragment :
     }
 
     override fun onDetach() {
-        super.onDetach()
+        (activity as BaseActivity<ActivityMainBinding>).deleteOnKeyBackPressedListener()
         mainViewModel.hiddenNav(false)
         PayViewModel.apply {
             breadData = null
             size = null
             breadList = listOf()
         }
+        super.onDetach()
     }
 
     override fun createView() {
