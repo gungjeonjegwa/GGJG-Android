@@ -114,10 +114,10 @@
 
                 <TextView
                     android:id="@+id/selectDeleteBtn"
-                    android:onClick="@{shoppingList::onClick}"
                     style="@style/Medium14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="@{shoppingList::onClick}"
                     android:text="@string/select_delete"
                     android:textColor="@color/gray"
                     app:layout_constraintBottom_toBottomOf="@id/allSelectBtn"
@@ -144,6 +144,8 @@
                     android:id="@+id/paymentList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:overScrollMode="never"
                     app:layout_constraintBottom_toBottomOf="@id/paymentListBottomLine"
                     app:layout_constraintTop_toTopOf="@id/paymentListTopLine" />
 
@@ -195,10 +197,10 @@
                 <TextView
                     android:id="@+id/deliveryCostTxt"
                     style="@style/Medium14"
-                    android:text="@string/delivery_cost_default"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
+                    android:text="@string/delivery_cost_default"
                     android:textColor="@color/gray"
                     app:layout_constraintBottom_toBottomOf="@id/deliveryCost"
                     app:layout_constraintEnd_toEndOf="@id/shoppingListEndLine"
