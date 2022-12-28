@@ -1,11 +1,14 @@
 package com.example.ggjg_andorid.ui.coupon
 
+import android.content.Context
 import android.view.View
 import android.widget.ScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.adapter.AddCouponAdapter
+import com.example.ggjg_andorid.databinding.ActivityMainBinding
 import com.example.ggjg_andorid.databinding.FragmentCouponAddBinding
+import com.example.ggjg_andorid.ui.base.BaseActivity
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.utils.changeActivatedWithEnabled
 import com.example.ggjg_andorid.utils.setVisible
@@ -14,12 +17,24 @@ import com.example.ggjg_andorid.viewmodel.CouponViewModel
 class AddCouponFragment : BaseFragment<FragmentCouponAddBinding>(R.layout.fragment_coupon_add) {
     private lateinit var addCouponAdapter: AddCouponAdapter
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (activity as BaseActivity<ActivityMainBinding>).setOnKeyBackPressedListener(object :
+            BaseActivity.OnKeyBackPressedListener {
+            override fun onBack() {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .remove(this@AddCouponFragment).commit()
+            }
+        })
+    }
+
     override fun onDetach() {
-        super.onDetach()
+        (activity as BaseActivity<ActivityMainBinding>).deleteOnKeyBackPressedListener()
         CouponViewModel.apply {
             couponList = listOf()
             currentPosition = 0
         }
+        super.onDetach()
     }
 
     override fun createView() {
