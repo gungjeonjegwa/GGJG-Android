@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.param.basket.MakeBasketParam
 import com.example.ggjg_andorid.databinding.ItemDetailBreadPayBinding
+import com.example.ggjg_andorid.utils.setVisible
 import com.example.ggjg_andorid.viewmodel.PayDialogViewModel
 import java.text.DecimalFormat
 
@@ -27,11 +28,15 @@ class DetailBreadPayAdapter :
         fun bind(item: MakeBasketParam) = binding.apply {
             var amount = item.count
             nameTxt.text = PayDialogViewModel.breadData!!.name
-            optionTxt.text = "-${if (item.age != null) "나이/${item.age}, " else ""}${item.unit}(${item.size})${
-                if (item.extraMoney != 0 && item.extraMoney != null) "(+${
-                    DecimalFormat("#,###").format(item.extraMoney)
-                }원)" else ""
-            }"
+            if (item.unit != null) {
+                optionTxt.text = "-${if (item.age != null) "나이/${item.age}, " else ""}${item.unit}(${item.size})${
+                    if (item.extraMoney != 0 && item.extraMoney != null) "(+${
+                        DecimalFormat("#,###").format(item.extraMoney)
+                    }원)" else ""
+                }"
+            } else {
+                deleteBtn.setVisible(false)
+            }
             costTxt.text = "${
                 (PayDialogViewModel.breadData!!.price.replace(",", "")
                     .toInt() + (item.extraMoney ?: 0)) * amount

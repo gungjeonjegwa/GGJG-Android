@@ -40,10 +40,10 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
         binding = FragmentDetailBreadPayBinding.inflate(layoutInflater)
         binding.detailBreadPay = this
         initView()
-        if (PayDialogViewModel.breadData != null) {
+        if (!PayDialogViewModel.breadData?.breadSize.isNullOrEmpty()) {
             sizeAdapter.submitList(PayDialogViewModel.breadData!!.breadSize)
+            ageAdapter.submitList(listOf(getString(R.string.no_select)).plus((1..100).map { it.toString() }))
         }
-        ageAdapter.submitList(listOf(getString(R.string.no_select)).plus((1..100).map { it.toString() }))
         repeatOnStart {
             payViewModel.eventFlow.collect { event -> handleEvent(event) }
         }
@@ -54,72 +54,22 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
         is PayDialogViewModel.Event.AlreadyShoppingList -> {
             dialog?.dismiss()
             PayDialogViewModel.breadList = listOf()
-            Toast.makeText(context, getString(R.string.already_shopping_list), Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, getString(R.string.already_shopping_list), Toast.LENGTH_SHORT)
+                .show()
         }
         is PayDialogViewModel.Event.SuccessMoveShoppingList -> {
             dialog?.dismiss()
             PayDialogViewModel.breadList = listOf()
-            Toast.makeText(context, getString(R.string.add_shopping_list), Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, getString(R.string.add_shopping_list), Toast.LENGTH_SHORT)
+                .show()
         }
     }
 
     private fun initView() = binding.apply {
-        sizeAdapter = SizeOptionAdapter().apply {
-            setItemOnClickListener(object : SizeOptionAdapter.OnItemClickListener {
-                override fun click(item: DetailBreadEntity.BreadSize) {
-                    if (PayDialogViewModel.breadList.isEmpty()) {
-                        sizeOptionBtn.text =
-                            "${item.unit} ${item.size} ${if (item.extraMoney != null) "(${item.extraMoney})" else ""}"
-                        sizeOptionBtn.setTextColor(requireContext().getColor(R.color.black))
-                        PayDialogViewModel.size = item
-                    } else {
-                        PayDialogViewModel.breadList.forEach {
-                            if (it.size != item.size) {
-                                sizeOptionBtn.text =
-                                    "${item.unit} ${item.size} ${if (item.extraMoney != null) "(${item.extraMoney})" else ""}"
-                                binding.sizeOptionBtn.setTextColor(requireContext().getColor(R.color.black))
-                                PayDialogViewModel.size = item
-                            } else {
-                                Toast.makeText(context,
-                                    getString(R.string.select_already_option),
-                                    Toast.LENGTH_SHORT).show()
-                                sizeOptionBtn.text = getString(R.string.select_option)
-                                sizeOptionBtn.setTextColor(requireContext().getColor(R.color.dark_gray))
-                            }
-                        }
-                    }
-                    sizeOptionClick(true)
-                }
-            })
-        }
-        sizeOptionList.apply {
-            adapter = sizeAdapter
-            layoutManager = LinearLayoutManager(context)
-        }
-        ageAdapter = AgeOptionAdapter().apply {
-            setItemOnClickListener(object : AgeOptionAdapter.OnItemClickListener {
-                override fun click(item: String) {
-                    ageOptionClick(true)
-                    PayDialogViewModel.breadList = PayDialogViewModel.breadList.plus(
-                        MakeBasketParam(
-                            PayDialogViewModel.breadData!!.id,
-                            1,
-                            if (item == getString(R.string.no_select)) null else item,
-                            PayDialogViewModel.size!!.size,
-                            PayDialogViewModel.size!!.extraMoney?.filter { it != ',' && it != '원' }
-                                ?.toInt() ?: 0,
-                            PayDialogViewModel.size!!.unit,
-                        )
-                    )
-                    breadPayAdapter.submitList(PayDialogViewModel.breadList)
-                    PayDialogViewModel.size = null
-                    totalCost()
-                }
-            })
-        }
-        ageOptionList.apply {
-            adapter = ageAdapter
-            layoutManager = LinearLayoutManager(context)
+        if (PayDialogViewModel.breadList.isNotEmpty()) {
+            paymentLayout.setVisible()
+            breadPayAdapter.submitList(PayDialogViewModel.breadList)
+            totalCost()
         }
         breadPayAdapter = DetailBreadPayAdapter().apply {
             setItemOnClickListener(object : DetailBreadPayAdapter.OnItemClickListener {
@@ -156,14 +106,86 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
             adapter = breadPayAdapter
             layoutManager = LinearLayoutManager(context)
         }
-        if (PayDialogViewModel.breadList.isNotEmpty()) {
-            paymentLayout.setVisible()
+        if (!PayDialogViewModel.breadData?.breadSize.isNullOrEmpty()) {
+            sizeAdapter = SizeOptionAdapter().apply {
+                setItemOnClickListener(object : SizeOptionAdapter.OnItemClickListener {
+                    override fun click(item: DetailBreadEntity.BreadSize) {
+                        if (PayDialogViewModel.breadList.isEmpty()) {
+                            sizeOptionBtn.text =
+                                "${item.unit} ${item.size} ${if (item.extraMoney != null) "(${item.extraMoney})" else ""}"
+                            sizeOptionBtn.setTextColor(requireContext().getColor(R.color.black))
+                            PayDialogViewModel.size = item
+                        } else {
+                            PayDialogViewModel.breadList.forEach {
+                                if (it.size != item.size) {
+                                    sizeOptionBtn.text =
+                                        "${item.unit} ${item.size} ${if (item.extraMoney != null) "(${item.extraMoney})" else ""}"
+                                    binding.sizeOptionBtn.setTextColor(requireContext().getColor(R.color.black))
+                                    PayDialogViewModel.size = item
+                                } else {
+                                    Toast.makeText(context,
+                                        getString(R.string.select_already_option),
+                                        Toast.LENGTH_SHORT).show()
+                                    sizeOptionBtn.text = getString(R.string.select_option)
+                                    sizeOptionBtn.setTextColor(requireContext().getColor(R.color.dark_gray))
+                                }
+                            }
+                        }
+                        sizeOptionClick(true)
+                    }
+                })
+            }
+            sizeOptionList.apply {
+                adapter = sizeAdapter
+                layoutManager = LinearLayoutManager(context)
+            }
+            ageAdapter = AgeOptionAdapter().apply {
+                setItemOnClickListener(object : AgeOptionAdapter.OnItemClickListener {
+                    override fun click(item: String) {
+                        ageOptionClick(true)
+                        PayDialogViewModel.breadList = PayDialogViewModel.breadList.plus(
+                            MakeBasketParam(
+                                PayDialogViewModel.breadData!!.id,
+                                1,
+                                if (item == getString(R.string.no_select)) null else item,
+                                PayDialogViewModel.size!!.size,
+                                PayDialogViewModel.size!!.extraMoney?.filter { it != ',' && it != '원' }
+                                    ?.toInt() ?: 0,
+                                PayDialogViewModel.size!!.unit,
+                            )
+                        )
+                        breadPayAdapter.submitList(PayDialogViewModel.breadList)
+                        PayDialogViewModel.size = null
+                        totalCost()
+                    }
+                })
+            }
+            ageOptionList.apply {
+                adapter = ageAdapter
+                layoutManager = LinearLayoutManager(context)
+            }
+        } else {
+            PayDialogViewModel.breadList = PayDialogViewModel.breadList.plus(
+                MakeBasketParam(
+                    PayDialogViewModel.breadData!!.id,
+                    1,
+                    null,
+                    null,
+                    null,
+                    null,
+                )
+            )
             breadPayAdapter.submitList(PayDialogViewModel.breadList)
+            ageOptionLayout.setVisible(false)
+            sizeOptionLayout.setVisible(false)
+            paymentLayout.setVisible()
+            paymentList.setVisible()
             totalCost()
         }
     }
 
     private fun totalCost() = binding.apply {
+        println("안녕 ${PayDialogViewModel.breadList}")
         var totalAmount = 0
         var totalCost = 0
         PayDialogViewModel.breadList.forEach {
