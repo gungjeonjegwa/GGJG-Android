@@ -1,6 +1,7 @@
 package com.example.ggjg_andorid.ui.my_page
 
 import android.content.Intent
+import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -18,6 +19,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
     private lateinit var stampAdapter: StampAdapter
     override fun createView() {
         if (MainViewModel.isLogin) {
+            binding.myPage = this
             initView()
             repeatOnStart {
                 profileViewModel.eventFlow.collect { event -> handleEvent(event) }
@@ -33,8 +35,9 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
     }
 
     private fun handleEvent(event: ProfileViewModel.Event) = when (event) {
-
-        else -> {}
+        ProfileViewModel.Event.Success -> {
+            requireActivity().findNavController(R.id.mainContainer).popBackStack()
+        }
     }
 
     private fun initView() = binding.apply {
@@ -46,12 +49,24 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
         stampAdapter.submitList((1..10).map { it.toString() })
     }
 
+    fun onClick(view: View) {
+        when (view.id) {
+            R.id.logoutBtn -> {
+                profileViewModel.logout()
+            }
+        }
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode != 1) {
             requireActivity().findNavController(R.id.mainContainer).popBackStack()
         } else {
+            binding.myPage = this
             initView()
+            repeatOnStart {
+                profileViewModel.eventFlow.collect { event -> handleEvent(event) }
+            }
         }
     }
 }
