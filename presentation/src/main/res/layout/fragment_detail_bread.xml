@@ -15,7 +15,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:clickable="true">
 
         <com.example.ggjg_andorid.utils.custom_view.CustomScrollView
             android:id="@+id/infoScrollView"

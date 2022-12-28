@@ -12,7 +12,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background">
+        android:background="@color/background"
+        android:clickable="true">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/couponBarBottomLine"
@@ -58,6 +59,7 @@
 
         <ImageView
             android:id="@+id/addCouponBtn"
+            android:onClick="@{coupon::onClick}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_plus"
