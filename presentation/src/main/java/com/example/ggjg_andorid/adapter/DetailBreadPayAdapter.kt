@@ -7,10 +7,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.param.basket.MakeBasketParam
-import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.ItemDetailBreadPayBinding
-import com.example.ggjg_andorid.databinding.ItemPayOptionBinding
-import com.example.ggjg_andorid.viewmodel.PayViewModel
+import com.example.ggjg_andorid.viewmodel.PayDialogViewModel
 import java.text.DecimalFormat
 
 class DetailBreadPayAdapter :
@@ -28,14 +26,14 @@ class DetailBreadPayAdapter :
 
         fun bind(item: MakeBasketParam) = binding.apply {
             var amount = item.count
-            nameTxt.text = PayViewModel.breadData!!.name
+            nameTxt.text = PayDialogViewModel.breadData!!.name
             optionTxt.text = "-${if (item.age != null) "나이/${item.age}, " else ""}${item.unit}(${item.size})${
                 if (item.extraMoney != 0 && item.extraMoney != null) "(+${
                     DecimalFormat("#,###").format(item.extraMoney)
                 }원)" else ""
             }"
             costTxt.text = "${
-                (PayViewModel.breadData!!.price.replace(",", "")
+                (PayDialogViewModel.breadData!!.price.replace(",", "")
                     .toInt() + (item.extraMoney ?: 0)) * amount
             }원"
             amountTxt.text = amount.toString()
@@ -58,7 +56,7 @@ class DetailBreadPayAdapter :
 
         private fun changeView(amount: Int, item: MakeBasketParam) = binding.apply {
             costTxt.text = "${
-                (PayViewModel.breadData!!.price.replace(",", "")
+                (PayDialogViewModel.breadData!!.price.replace(",", "")
                     .toInt() + (item.extraMoney ?: 0)) * amount
             }원"
             amountTxt.text = amount.toString()

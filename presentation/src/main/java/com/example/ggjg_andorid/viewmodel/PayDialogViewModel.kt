@@ -3,6 +3,7 @@ package com.example.ggjg_andorid.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.entity.bread.DetailBreadEntity
+import com.example.domain.exception.ConflictException
 import com.example.domain.param.basket.MakeBasketParam
 import com.example.domain.usecase.basket.MakeBasketUseCase
 import com.example.ggjg_andorid.utils.MutableEventFlow
@@ -12,8 +13,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PayViewModel @Inject constructor(
-    private val makeBasketUseCase: MakeBasketUseCase
+class PayDialogViewModel @Inject constructor(
+    private val makeBasketUseCase: MakeBasketUseCase,
 ) : ViewModel() {
     private val _eventFlow = MutableEventFlow<Event>()
     val eventFlow = _eventFlow.asEventFlow()
@@ -25,10 +26,18 @@ class PayViewModel @Inject constructor(
     }
 
     fun makeBaskets() = viewModelScope.launch {
-        breadList.forEach {
-            makeBasketUseCase.execute(it)
+        breadList.forEach { param ->
+            kotlin.runCatching {
+                makeBasketUseCase.execute(param)
+            }.onSuccess {
+                breadList = breadList.filter { it != param }
+                event(Event.SuccessMoveShoppingList)
+            }.onFailure {
+                when (it) {
+                    is ConflictException -> event(Event.AlreadyShoppingList)
+                }
+            }
         }
-        breadList = listOf()
     }
 
     private fun event(event: Event) = viewModelScope.launch {
@@ -36,6 +45,7 @@ class PayViewModel @Inject constructor(
     }
 
     sealed class Event {
-
+        object SuccessMoveShoppingList : Event()
+        object AlreadyShoppingList : Event()
     }
 }

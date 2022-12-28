@@ -14,8 +14,9 @@ import com.example.ggjg_andorid.adapter.AgeOptionAdapter
 import com.example.ggjg_andorid.adapter.DetailBreadPayAdapter
 import com.example.ggjg_andorid.adapter.SizeOptionAdapter
 import com.example.ggjg_andorid.databinding.FragmentDetailBreadPayBinding
+import com.example.ggjg_andorid.utils.repeatOnStart
 import com.example.ggjg_andorid.utils.setVisible
-import com.example.ggjg_andorid.viewmodel.PayViewModel
+import com.example.ggjg_andorid.viewmodel.PayDialogViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.text.DecimalFormat
 
@@ -24,11 +25,11 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
     private lateinit var sizeAdapter: SizeOptionAdapter
     private lateinit var ageAdapter: AgeOptionAdapter
     private lateinit var breadPayAdapter: DetailBreadPayAdapter
-    private val payViewModel by activityViewModels<PayViewModel>()
+    private val payViewModel by activityViewModels<PayDialogViewModel>()
 
     override fun onDetach() {
         super.onDetach()
-        PayViewModel.size = null
+        PayDialogViewModel.size = null
     }
 
     override fun onCreateView(
@@ -39,29 +40,45 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
         binding = FragmentDetailBreadPayBinding.inflate(layoutInflater)
         binding.detailBreadPay = this
         initView()
-        if (PayViewModel.breadData != null) {
-            sizeAdapter.submitList(PayViewModel.breadData!!.breadSize)
+        if (PayDialogViewModel.breadData != null) {
+            sizeAdapter.submitList(PayDialogViewModel.breadData!!.breadSize)
         }
         ageAdapter.submitList(listOf(getString(R.string.no_select)).plus((1..100).map { it.toString() }))
+        repeatOnStart {
+            payViewModel.eventFlow.collect { event -> handleEvent(event) }
+        }
         return binding.root
+    }
+
+    private fun handleEvent(event: PayDialogViewModel.Event) = when (event) {
+        is PayDialogViewModel.Event.AlreadyShoppingList -> {
+            dialog?.dismiss()
+            PayDialogViewModel.breadList = listOf()
+            Toast.makeText(context, "이미 장바구니에 있습니다.", Toast.LENGTH_SHORT).show()
+        }
+        is PayDialogViewModel.Event.SuccessMoveShoppingList -> {
+            dialog?.dismiss()
+            PayDialogViewModel.breadList = listOf()
+            Toast.makeText(context, "장바구니에 추가하였습니다.", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun initView() = binding.apply {
         sizeAdapter = SizeOptionAdapter().apply {
             setItemOnClickListener(object : SizeOptionAdapter.OnItemClickListener {
                 override fun click(item: DetailBreadEntity.BreadSize) {
-                    if (PayViewModel.breadList.isEmpty()) {
+                    if (PayDialogViewModel.breadList.isEmpty()) {
                         sizeOptionBtn.text =
                             "${item.unit} ${item.size} ${if (item.extraMoney != null) "(${item.extraMoney})" else ""}"
                         sizeOptionBtn.setTextColor(requireContext().getColor(R.color.black))
-                        PayViewModel.size = item
+                        PayDialogViewModel.size = item
                     } else {
-                        PayViewModel.breadList.forEach {
+                        PayDialogViewModel.breadList.forEach {
                             if (it.size != item.size) {
                                 sizeOptionBtn.text =
                                     "${item.unit} ${item.size} ${if (item.extraMoney != null) "(${item.extraMoney})" else ""}"
                                 binding.sizeOptionBtn.setTextColor(requireContext().getColor(R.color.black))
-                                PayViewModel.size = item
+                                PayDialogViewModel.size = item
                             } else {
                                 Toast.makeText(context,
                                     getString(R.string.select_already_option),
@@ -83,19 +100,19 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
             setItemOnClickListener(object : AgeOptionAdapter.OnItemClickListener {
                 override fun click(item: String) {
                     ageOptionClick(true)
-                    PayViewModel.breadList = PayViewModel.breadList.plus(
+                    PayDialogViewModel.breadList = PayDialogViewModel.breadList.plus(
                         MakeBasketParam(
-                            PayViewModel.breadData!!.id,
+                            PayDialogViewModel.breadData!!.id,
                             1,
                             if (item == getString(R.string.no_select)) null else item,
-                            PayViewModel.size!!.size,
-                            PayViewModel.size!!.extraMoney?.filter { it != ',' && it != '원' }
+                            PayDialogViewModel.size!!.size,
+                            PayDialogViewModel.size!!.extraMoney?.filter { it != ',' && it != '원' }
                                 ?.toInt() ?: 0,
-                            PayViewModel.size!!.unit,
+                            PayDialogViewModel.size!!.unit,
                         )
                     )
-                    breadPayAdapter.submitList(PayViewModel.breadList)
-                    PayViewModel.size = null
+                    breadPayAdapter.submitList(PayDialogViewModel.breadList)
+                    PayDialogViewModel.size = null
                     totalCost()
                 }
             })
@@ -107,28 +124,29 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
         breadPayAdapter = DetailBreadPayAdapter().apply {
             setItemOnClickListener(object : DetailBreadPayAdapter.OnItemClickListener {
                 override fun plus(item: MakeBasketParam) {
-                    PayViewModel.breadList.forEach {
+                    PayDialogViewModel.breadList.forEach {
                         if (it == item) {
                             it.count++
                         }
                     }
-                    breadPayAdapter.submitList(PayViewModel.breadList)
+                    breadPayAdapter.submitList(PayDialogViewModel.breadList)
                     totalCost()
                 }
 
                 override fun minus(item: MakeBasketParam) {
-                    PayViewModel.breadList.forEach {
+                    PayDialogViewModel.breadList.forEach {
                         if (it == item) {
                             it.count--
                         }
                     }
-                    breadPayAdapter.submitList(PayViewModel.breadList)
+                    breadPayAdapter.submitList(PayDialogViewModel.breadList)
                     totalCost()
                 }
 
                 override fun delete(item: MakeBasketParam) {
-                    PayViewModel.breadList = PayViewModel.breadList.filter { it != item }
-                    breadPayAdapter.submitList(PayViewModel.breadList)
+                    PayDialogViewModel.breadList =
+                        PayDialogViewModel.breadList.filter { it != item }
+                    breadPayAdapter.submitList(PayDialogViewModel.breadList)
                     totalCost()
                 }
             })
@@ -138,9 +156,9 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
             adapter = breadPayAdapter
             layoutManager = LinearLayoutManager(context)
         }
-        if (PayViewModel.breadList.isNotEmpty()) {
+        if (PayDialogViewModel.breadList.isNotEmpty()) {
             paymentLayout.setVisible()
-            breadPayAdapter.submitList(PayViewModel.breadList)
+            breadPayAdapter.submitList(PayDialogViewModel.breadList)
             totalCost()
         }
     }
@@ -148,9 +166,9 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
     private fun totalCost() = binding.apply {
         var totalAmount = 0
         var totalCost = 0
-        PayViewModel.breadList.forEach {
+        PayDialogViewModel.breadList.forEach {
             totalAmount += it.count
-            totalCost += (PayViewModel.breadData!!.price.replace(",", "")
+            totalCost += (PayDialogViewModel.breadData!!.price.replace(",", "")
                 .toInt() + (it.extraMoney ?: 0)) * it.count
         }
         if (totalAmount == 0) {
@@ -170,7 +188,7 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
                 sizeOptionClick(false)
             }
             R.id.ageOptionBtn -> {
-                if (PayViewModel.size == null) {
+                if (PayDialogViewModel.size == null) {
                     Toast.makeText(context,
                         getString(R.string.select_first_option),
                         Toast.LENGTH_SHORT).show()
@@ -179,12 +197,11 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
                 }
             }
             R.id.directPay -> {
-                if (PayViewModel.breadList.isNotEmpty()) {
+                if (PayDialogViewModel.breadList.isNotEmpty()) {
                 }
             }
             R.id.addShoppingListBtn -> {
                 payViewModel.makeBaskets()
-                dialog?.dismiss()
             }
         }
     }
@@ -195,7 +212,7 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
         payOptionBtnLayout.setVisible(isVisible)
         sizeOptionList.setVisible(!isVisible)
         sizeOptionLayout.isActivated = !isVisible
-        if (PayViewModel.breadList.isEmpty()) {
+        if (PayDialogViewModel.breadList.isEmpty()) {
             paymentLayout.setVisible(false)
         }
     }

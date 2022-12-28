@@ -24,7 +24,7 @@ import com.example.ggjg_andorid.utils.repeatOnStart
 import com.example.ggjg_andorid.utils.setVisible
 import com.example.ggjg_andorid.viewmodel.DetailViewModel
 import com.example.ggjg_andorid.viewmodel.MainViewModel
-import com.example.ggjg_andorid.viewmodel.PayViewModel
+import com.example.ggjg_andorid.viewmodel.PayDialogViewModel
 
 class DetailBreadFragment :
     BaseFragment<FragmentDetailBreadBinding>(R.layout.fragment_detail_bread) {
@@ -48,7 +48,7 @@ class DetailBreadFragment :
     override fun onDetach() {
         (activity as BaseActivity<ActivityMainBinding>).deleteOnKeyBackPressedListener()
         mainViewModel.hiddenNav(false)
-        PayViewModel.apply {
+        PayDialogViewModel.apply {
             breadData = null
             size = null
             breadList = listOf()
@@ -68,7 +68,7 @@ class DetailBreadFragment :
 
     private fun handleEvent(event: DetailViewModel.Event) = when (event) {
         is DetailViewModel.Event.DetailBread -> {
-            PayViewModel.breadData = event.detailBread
+            PayDialogViewModel.breadData = event.detailBread
             binding.apply {
                 breadData = event.detailBread
                 if (event.detailBread.isSoldOut) {
