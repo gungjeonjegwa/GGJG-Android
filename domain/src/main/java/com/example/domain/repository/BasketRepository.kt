@@ -8,5 +8,5 @@ interface BasketRepository {
     suspend fun deleteBasket(id: String)
     suspend fun plusBasket(id: String)
     suspend fun minusBasket(id: String)
-    suspend fun makeBasket(makeBasketParam: MakeBasketParam)
+    suspend fun makeBasket(makeBasketParam: List<MakeBasketParam>)
 }

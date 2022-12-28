@@ -7,6 +7,6 @@ import javax.inject.Inject
 class MakeBasketUseCase @Inject constructor(
     private val basketRepository: BasketRepository
 ) {
-    suspend fun execute(makeBasketParam: MakeBasketParam) =
+    suspend fun execute(makeBasketParam: List<MakeBasketParam>) =
         basketRepository.makeBasket(makeBasketParam)
 }

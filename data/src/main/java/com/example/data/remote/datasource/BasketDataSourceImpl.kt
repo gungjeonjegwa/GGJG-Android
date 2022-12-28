@@ -29,7 +29,7 @@ class BasketDataSourceImpl @Inject constructor(
             .httpRequest { basketAPI.minusBasket(id) }
             .sendRequest()
 
-    override suspend fun makeBasket(makeBasketRequest: MakeBasketRequest) =
+    override suspend fun makeBasket(makeBasketRequest: List<MakeBasketRequest>) =
         HttpHandler<Unit>()
             .httpRequest { basketAPI.makeBasket(makeBasketRequest) }
             .sendRequest()

@@ -26,16 +26,14 @@ class PayDialogViewModel @Inject constructor(
     }
 
     fun makeBaskets() = viewModelScope.launch {
-        breadList.forEach { param ->
-            kotlin.runCatching {
-                makeBasketUseCase.execute(param)
-            }.onSuccess {
-                breadList = breadList.filter { it != param }
-                event(Event.SuccessMoveShoppingList)
-            }.onFailure {
-                when (it) {
-                    is ConflictException -> event(Event.AlreadyShoppingList)
-                }
+        kotlin.runCatching {
+            makeBasketUseCase.execute(breadList)
+        }.onSuccess {
+            breadList = listOf()
+            event(Event.SuccessMoveShoppingList)
+        }.onFailure {
+            when (it) {
+                is ConflictException -> event(Event.AlreadyShoppingList)
             }
         }
     }

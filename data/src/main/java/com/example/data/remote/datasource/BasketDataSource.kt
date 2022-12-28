@@ -8,5 +8,5 @@ interface BasketDataSource {
     suspend fun deleteBasket(id: String)
     suspend fun plusBasket(id: String)
     suspend fun minusBasket(id: String)
-    suspend fun makeBasket(makeBasketRequest: MakeBasketRequest)
+    suspend fun makeBasket(makeBasketRequest: List<MakeBasketRequest>)
 }

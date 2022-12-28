@@ -23,6 +23,6 @@ class BasketRepositoryImpl @Inject constructor(
     override suspend fun minusBasket(id: String) =
         basketDataSource.minusBasket(id)
 
-    override suspend fun makeBasket(makeBasketParam: MakeBasketParam) =
-        basketDataSource.makeBasket(makeBasketParam.toRequest())
+    override suspend fun makeBasket(makeBasketParam: List<MakeBasketParam>) =
+        basketDataSource.makeBasket(makeBasketParam.map { it.toRequest() })
 }

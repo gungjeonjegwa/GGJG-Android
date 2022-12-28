@@ -30,6 +30,6 @@ interface BasketAPI {
 
     @POST("/basket")
     suspend fun makeBasket(
-        @Body makeBasketRequest: MakeBasketRequest
+        @Body makeBasketRequest: List<MakeBasketRequest>
     )
 }
