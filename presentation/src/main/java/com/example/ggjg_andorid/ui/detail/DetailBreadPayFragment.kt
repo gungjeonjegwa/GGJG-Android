@@ -54,12 +54,12 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
         is PayDialogViewModel.Event.AlreadyShoppingList -> {
             dialog?.dismiss()
             PayDialogViewModel.breadList = listOf()
-            Toast.makeText(context, "이미 장바구니에 있습니다.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, getString(R.string.already_shopping_list), Toast.LENGTH_SHORT).show()
         }
         is PayDialogViewModel.Event.SuccessMoveShoppingList -> {
             dialog?.dismiss()
             PayDialogViewModel.breadList = listOf()
-            Toast.makeText(context, "장바구니에 추가하였습니다.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, getString(R.string.add_shopping_list), Toast.LENGTH_SHORT).show()
         }
     }
 
