@@ -55,6 +55,9 @@
         <activity
             android:name=".ui.agree_notice.ChangeAndRecallActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.agree_notice.InformationUseNoticeActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

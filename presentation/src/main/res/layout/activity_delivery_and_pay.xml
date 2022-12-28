@@ -98,7 +98,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="18dp"
-                    android:text="@string/delivery_notify"
+                    android:text="@string/delivery_notice"
                     android:textColor="@color/dark_gray"
                     app:layout_constraintStart_toStartOf="@id/deliveryStartLine"
                     app:layout_constraintTop_toBottomOf="@id/deliveryOption" />
@@ -110,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
                     android:lineHeight="18sp"
-                    android:text="@string/delivery_notify_explain"
+                    android:text="@string/delivery_notice_explain"
                     android:textColor="@color/dark_gray"
                     app:layout_constraintEnd_toEndOf="@id/deliveryEndLine"
                     app:layout_constraintStart_toStartOf="@id/deliveryStartLine"
