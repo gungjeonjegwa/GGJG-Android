@@ -20,14 +20,13 @@ class StampAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Int) = binding.apply {
+            stampCntTxt.text = item.toString()
             if (item >= 5) {
                 if (item == 10) {
+                    stampCntTxt.text = null
                     stampImg.setBackgroundResource(R.drawable.ic_stamp_last)
-                } else {
-                    stampCntTxt.text = item.toString()
                 }
             } else {
-                stampCntTxt.text = context.getText(R.string.complicate)
                 stampCntTxt.setTextColor(context.getColor(R.color.white))
                 stampImg.setBackgroundResource(R.drawable.ic_stamp_complete)
             }
