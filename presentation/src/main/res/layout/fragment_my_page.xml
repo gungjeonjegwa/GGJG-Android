@@ -48,67 +48,67 @@
             app:layout_constraintEnd_toEndOf="@id/endLine"
             app:layout_constraintTop_toTopOf="@id/welcomeTxt" />
 
-        <LinearLayout
-            android:id="@+id/couponAndStampLayout"
+        <TextView
+            android:id="@+id/coupon"
+            style="@style/Bold14"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="48dp"
-            app:layout_constraintEnd_toEndOf="@id/endLine"
+            android:gravity="start"
+            android:onClick="@{myPage::onClick}"
+            android:text="@string/coupon"
+            android:textColor="@color/dark_gray"
+            app:layout_constraintEnd_toStartOf="@id/couponTxt"
             app:layout_constraintStart_toStartOf="@id/startLine"
-            app:layout_constraintTop_toBottomOf="@id/welcomeTxt">
+            app:layout_constraintTop_toBottomOf="@id/welcomeTxt" />
 
-            <TextView
-                style="@style/Bold14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:gravity="center"
-                android:text="@string/coupon"
-                android:textColor="@color/dark_gray" />
+        <TextView
+            android:id="@+id/couponTxt"
+            style="@style/Bold14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:onClick="@{myPage::onClick}"
+            android:text="0"
+            android:textColor="@color/dark_gray"
+            app:layout_constraintEnd_toStartOf="@id/divideLine"
+            app:layout_constraintTop_toTopOf="@id/coupon" />
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+        <View
+            android:id="@+id/divideLine"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="9.5dp"
+            android:layout_marginVertical="2.5dp"
+            android:background="@color/gray"
+            app:layout_constraintBottom_toBottomOf="@id/coupon"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/coupon" />
 
-            <TextView
-                style="@style/Bold14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:gravity="center"
-                android:text="0"
-                android:textColor="@color/dark_gray" />
+        <TextView
+            style="@style/Bold14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:text="@string/stamp"
+            android:textColor="@color/dark_gray"
+            app:layout_constraintStart_toEndOf="@id/divideLine"
+            app:layout_constraintTop_toTopOf="@id/coupon" />
 
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="9.5dp"
-                android:background="@color/gray" />
-
-            <TextView
-                style="@style/Bold14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:gravity="center"
-                android:text="@string/stamp"
-                android:textColor="@color/dark_gray" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <TextView
-                style="@style/Bold14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:gravity="center"
-                android:text="0 / 10"
-                android:textColor="@color/dark_gray" />
-        </LinearLayout>
+        <TextView
+            style="@style/Bold14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:text="0 / 10"
+            android:textColor="@color/dark_gray"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintTop_toTopOf="@id/coupon" />
 
         <View
             android:id="@+id/couponAndStampDivide"
@@ -116,7 +116,7 @@
             android:layout_height="16dp"
             android:layout_marginTop="24dp"
             android:background="@color/light_gray"
-            app:layout_constraintTop_toBottomOf="@id/couponAndStampLayout" />
+            app:layout_constraintTop_toBottomOf="@id/coupon" />
 
         <TextView
             android:id="@+id/currentOrder"

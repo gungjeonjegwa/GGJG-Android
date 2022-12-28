@@ -9,6 +9,7 @@ import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.adapter.StampAdapter
 import com.example.ggjg_andorid.databinding.FragmentMyPageBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
+import com.example.ggjg_andorid.ui.coupon.CouponFragment
 import com.example.ggjg_andorid.ui.login.LoginActivity
 import com.example.ggjg_andorid.utils.repeatOnStart
 import com.example.ggjg_andorid.viewmodel.MainViewModel
@@ -57,6 +58,10 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
             R.id.settingBtn -> {
                 requireActivity().supportFragmentManager.beginTransaction()
                     .replace(R.id.mainContainer, MyPagePrivacyFragment()).commit()
+            }
+            R.id.coupon, R.id.couponTxt -> {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.mainContainer, CouponFragment()).commit()
             }
         }
     }
