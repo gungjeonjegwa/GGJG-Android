@@ -19,6 +19,8 @@
     <string name="sell_shop">매장판매</string>
     <string name="sold_out">SOLD OUT</string>
     <string name="sold_out_korean">품절</string>
+    <string name="already_shopping_list">이미 장바구니에 있습니다.</string>
+    <string name="add_shopping_list">장바구니에 추가하였습니다.</string>
     <string name="empty_shopping_list">장바구니에 상품이 없습니다.</string>
     <string name="detail_info">상세정보</string>
     <string name="delivery_cost">배송비</string>
@@ -47,6 +49,11 @@
     <string name="select_first_option">상위옵션을 먼저 선택해주세요.</string>
     <string name="select_already_option">이미 선택된 옵션입니다.</string>
     <string name="coupon">쿠폰</string>
+    <string name="add_coupon">쿠폰등록</string>
+    <string name="enroll">등록</string>
+    <string name="coupon_code">쿠폰코드</string>
+    <string name="request_coupon_code">쿠폰코드를 입력해 주세요.</string>
+    <string name="add">+ 추가하기</string>
     <string name="have_coupon">보유 쿠폰</string>
     <string name="stamp">스탬프</string>
     <string name="current_order">주문처리 현황</string>
