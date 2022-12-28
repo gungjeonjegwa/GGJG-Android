@@ -41,6 +41,10 @@ class CouponFragment : BaseFragment<FragmentCouponBinding>(R.layout.fragment_cou
                 requireActivity().supportFragmentManager.beginTransaction()
                     .remove(this@CouponFragment).commit()
             }
+            R.id.addCouponBtn -> {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .add(R.id.mainContainer, AddCouponFragment()).commit()
+            }
         }
     }
 }
