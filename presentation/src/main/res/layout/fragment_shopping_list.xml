@@ -146,7 +146,6 @@
                     android:layout_height="wrap_content"
                     android:nestedScrollingEnabled="false"
                     android:overScrollMode="never"
-                    app:layout_constraintBottom_toBottomOf="@id/paymentListBottomLine"
                     app:layout_constraintTop_toTopOf="@id/paymentListTopLine" />
 
                 <View
