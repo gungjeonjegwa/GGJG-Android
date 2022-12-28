@@ -47,6 +47,7 @@
     <string name="select_first_option">상위옵션을 먼저 선택해주세요.</string>
     <string name="select_already_option">이미 선택된 옵션입니다.</string>
     <string name="coupon">쿠폰</string>
+    <string name="have_coupon">보유 쿠폰</string>
     <string name="stamp">스탬프</string>
     <string name="current_order">주문처리 현황</string>
     <string name="ready_delivery">배송준비중</string>
