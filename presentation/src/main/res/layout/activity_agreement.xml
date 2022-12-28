@@ -6,7 +6,7 @@
 
         <variable
             name="agreementDetail"
-            type="com.example.ggjg_andorid.ui.register.DetailAgreementActivity" />
+            type="com.example.ggjg_andorid.ui.agree_notice.AgreementActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -68,6 +68,7 @@
                 style="@style/Regular14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingBottom="40dp"
                 android:lineHeight="21sp"
                 android:textColor="@color/very_dark_gray" />
         </ScrollView>

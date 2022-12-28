@@ -39,7 +39,7 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ui.register.DetailAgreementActivity"
+            android:name=".ui.agree_notice.AgreementActivity"
             android:exported="false" />
         <activity
             android:name=".ui.findId.FindIdActivity"
@@ -50,10 +50,10 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ui.detail.DetailDeliveryAndPayActivity"
+            android:name=".ui.agree_notice.DeliveryAndPayActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.detail.DetailChangeAndRecallActivity"
+            android:name=".ui.agree_notice.ChangeAndRecallActivity"
             android:exported="false" />
     </application>
 

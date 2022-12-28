@@ -9,7 +9,9 @@ import android.widget.Button
 import androidx.fragment.app.activityViewModels
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.FragmentAgreementBinding
+import com.example.ggjg_andorid.ui.agree_notice.AgreementActivity
 import com.example.ggjg_andorid.utils.changeActivatedWithEnabled
+import com.example.ggjg_andorid.viewmodel.AgreementViewModel
 import com.example.ggjg_andorid.viewmodel.RegisterViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -66,10 +68,10 @@ class AgreementFragment : BottomSheetDialogFragment() {
     }
 
     private fun moveDetail(title: String, content: String) {
-        RegisterViewModel.apply {
+        AgreementViewModel.apply {
             this.title = title
             this.content = content
         }
-        requireActivity().startActivity(Intent(activity, DetailAgreementActivity::class.java))
+        requireActivity().startActivity(Intent(activity, AgreementActivity::class.java))
     }
 }

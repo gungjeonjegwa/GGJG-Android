@@ -29,8 +29,6 @@ class RegisterViewModel @Inject constructor(
     val registerSecondEventFlow = _registerSecondEventFlow.asEventFlow()
 
     companion object {
-        var title = ""
-        var content = ""
         var name = ""
         var phone: String? = null
         var email = ""
