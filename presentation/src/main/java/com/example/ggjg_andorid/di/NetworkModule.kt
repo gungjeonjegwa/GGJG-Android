@@ -4,6 +4,7 @@ import com.example.data.interceptor.AuthorizationInterceptor
 import com.example.data.remote.api.AuthAPI
 import com.example.data.remote.api.BasketAPI
 import com.example.data.remote.api.BreadAPI
+import com.example.data.remote.api.OrderAPI
 import com.example.ggjg_andorid.BuildConfig
 import dagger.Module
 import dagger.Provides
@@ -57,4 +58,8 @@ object NetworkModule {
     @Provides
     fun provideBasketAPI(retrofit: Retrofit): BasketAPI =
         retrofit.create(BasketAPI::class.java)
+
+    @Provides
+    fun provideOrderAPI(retrofit: Retrofit): OrderAPI =
+        retrofit.create(OrderAPI::class.java)
 }

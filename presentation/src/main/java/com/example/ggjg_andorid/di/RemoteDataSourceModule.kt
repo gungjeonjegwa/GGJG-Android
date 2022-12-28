@@ -23,4 +23,9 @@ abstract class RemoteDataSourceModule {
     abstract fun provideBasketDataSource(
         basketDataSourceImpl: BasketDataSourceImpl,
     ): BasketDataSource
+
+    @Binds
+    abstract fun provideOrderDataSource(
+        orderDataSourceImpl: OrderDataSourceImpl,
+    ): OrderDataSource
 }
