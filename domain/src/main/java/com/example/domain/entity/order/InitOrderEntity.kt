@@ -9,7 +9,7 @@ data class InitOrderEntity(
         val zipcode: String,
         val road: String,
         val landNumber: String,
-        val detailAddress: String,
+        val detailAddress: String?,
         val isBasic: Boolean,
     )
 }

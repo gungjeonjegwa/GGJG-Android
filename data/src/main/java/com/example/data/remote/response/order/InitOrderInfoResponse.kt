@@ -19,7 +19,7 @@ data class InitOrderInfoResponse(
         @SerializedName("landNumber")
         val landNumber: String,
         @SerializedName("detailAddress")
-        val detailAddress: String,
+        val detailAddress: String?,
         @SerializedName("isBasic")
         val isBasic: Boolean,
     )
