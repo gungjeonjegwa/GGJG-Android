@@ -2,6 +2,7 @@ package com.example.ggjg_andorid.ui.pay
 
 import android.content.Context
 import android.view.View
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.adapter.PayAdapter
@@ -9,6 +10,8 @@ import com.example.ggjg_andorid.databinding.ActivityMainBinding
 import com.example.ggjg_andorid.databinding.FragmentPayBinding
 import com.example.ggjg_andorid.ui.base.BaseActivity
 import com.example.ggjg_andorid.ui.base.BaseFragment
+import com.example.ggjg_andorid.utils.repeatOnStart
+import com.example.ggjg_andorid.utils.setVisible
 import com.example.ggjg_andorid.viewmodel.PayViewModel
 import com.example.ggjg_andorid.viewmodel.ShoppingListViewModel
 import java.text.DecimalFormat
@@ -16,6 +19,7 @@ import java.text.DecimalFormat
 class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
 
     private lateinit var payAdapter: PayAdapter
+    private val payViewModel by activityViewModels<PayViewModel>()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -36,6 +40,25 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
     override fun createView() {
         binding.pay = this
         initView()
+        payViewModel.init()
+        repeatOnStart {
+            payViewModel.eventFlow.collect { event -> eventHandler(event) }
+        }
+    }
+
+    private fun eventHandler(event: PayViewModel.Event) = when (event) {
+        is PayViewModel.Event.InitInfo -> {
+            binding.phoneTxt.text = "(${event.data.phone})"
+            binding.nameTxt.text = event.data.name
+            event.data.address.let {
+                if (it != null) {
+                    binding.setOrderAddressBtn.setVisible(false)
+                    binding.changeOrderAddressBtn.setVisible()
+                    binding.orderAddressTxt.text =
+                        "${it.landNumber} ${it.road} (${it.detailAddress}) (${it.zipcode})"
+                }
+            }
+        }
     }
 
     private fun initView() = binding.apply {
@@ -74,6 +97,17 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
         when (view.id) {
             R.id.backBtn -> {
                 requireActivity().supportFragmentManager.beginTransaction().remove(this).commit()
+            }
+            R.id.payPhoneBtn, R.id.payCardBtn, R.id.payTransferBtn, R.id.payKakaoBtn -> {
+                listOf(binding.payPhoneBtn, binding.payCardBtn, binding.payTransferBtn, binding.payKakaoBtn).forEach {
+                    it.isActivated = it == view
+                    payViewModel.setPayMethod(it.id)
+                    if (it.isActivated) {
+                        it.setTextColor(requireContext().getColor(R.color.light_gray))
+                    } else {
+                        it.setTextColor(requireContext().getColor(R.color.dark_gray))
+                    }
+                }
             }
         }
     }
