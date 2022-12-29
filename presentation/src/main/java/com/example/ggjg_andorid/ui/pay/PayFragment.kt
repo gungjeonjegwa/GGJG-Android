@@ -8,8 +8,10 @@ import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.adapter.PayAdapter
 import com.example.ggjg_andorid.databinding.ActivityMainBinding
 import com.example.ggjg_andorid.databinding.FragmentPayBinding
+import com.example.ggjg_andorid.ui.address.SearchAddressFragment
 import com.example.ggjg_andorid.ui.base.BaseActivity
 import com.example.ggjg_andorid.ui.base.BaseFragment
+import com.example.ggjg_andorid.ui.coupon.AddCouponFragment
 import com.example.ggjg_andorid.utils.*
 import com.example.ggjg_andorid.viewmodel.PayViewModel
 import kr.co.bootpay.android.Bootpay
@@ -123,6 +125,10 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
                     bootPayPayload(title, totalMoney.toDouble())) {
                     true
                 }
+            }
+            R.id.setOrderAddressBtn -> {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .add(R.id.mainContainer, SearchAddressFragment()).commit()
             }
         }
     }
