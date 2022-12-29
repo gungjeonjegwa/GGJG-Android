@@ -19,6 +19,8 @@ data class DetailBreadResponse(
     val isSoldOut: Boolean,
     @SerializedName("size")
     val size: String?,
+    @SerializedName("count")
+    val count: Int,
     @SerializedName("storage")
     val storage: String,
     @SerializedName("expirationDate")
@@ -80,6 +82,7 @@ fun DetailBreadResponse.toEntity() = DetailBreadEntity(
     deliveryPrice = "${DecimalFormat("#,###").format(deliveryPrice)}원",
     isSoldOut = isSoldOut,
     size = size,
+    count = count,
     storage = storage,
     expirationDate = expirationDate,
     imgUrl = imgUrl,

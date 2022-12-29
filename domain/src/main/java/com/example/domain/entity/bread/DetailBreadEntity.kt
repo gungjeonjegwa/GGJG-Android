@@ -8,6 +8,7 @@ data class DetailBreadEntity(
     val deliveryPrice: String,
     val isSoldOut: Boolean,
     val size: String?,
+    val count: Int,
     val storage: String,
     val expirationDate: String,
     val imgUrl: String,
