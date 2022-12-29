@@ -205,6 +205,9 @@ class ShoppingListFragment :
             requireActivity().findNavController(R.id.mainContainer).popBackStack()
         } else {
             shoppingListViewModel.myBasket()
+            repeatOnStart {
+                shoppingListViewModel.eventFlow.collect { event -> handleEvent(event) }
+            }
         }
     }
 }
