@@ -40,6 +40,11 @@
     <string name="expiration_date">유통기간</string>
     <string name="warning">주의사항</string>
     <string name="item_price">상품 가격</string>
+    <string name="pay_method">결제방법</string>
+    <string name="pay_phone">휴대폰 소액결제 [컨텐츠]</string>
+    <string name="pay_card">ISP / 앱카드결제</string>
+    <string name="pay_transfer">계좌이체</string>
+    <string name="pay_kakao">카카오페이</string>
     <string name="item_info">상품정보</string>
     <string name="allergy">알레르기정보</string>
     <string name="ingredient">성분</string>
