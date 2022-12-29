@@ -22,8 +22,10 @@
     <string name="order_person">주문자</string>
     <string name="order_address">배송지</string>
     <string name="set_order_address">배송등록</string>
+    <string name="setting_order_address">배송지 설정</string>
     <string name="change_order_address">배송지변경</string>
     <string name="detail_order_address">상세주소</string>
+    <string name="request_detail_order_address">상세주소를 입력해 주세요.</string>
     <string name="amount">수량</string>
     <string name="delivery_info">배송정보</string>
     <string name="delivery_default">기본배송</string>
@@ -34,6 +36,7 @@
     <string name="already_shopping_list">이미 장바구니에 있습니다.</string>
     <string name="add_shopping_list">장바구니에 추가하였습니다.</string>
     <string name="empty_shopping_list">장바구니에 상품이 없습니다.</string>
+    <string name="current_order_address">현재배송지</string>
     <string name="detail_info">상세정보</string>
     <string name="delivery_cost">배송비</string>
     <string name="delivery_cost_default">+3,000원</string>
@@ -58,6 +61,15 @@
     <string name="delivery_and_payment_info_no_arrow">배송및 상품 결제 정보</string>
     <string name="change_and_recall_info">교환및 반품 정보 ></string>
     <string name="change_and_recall_info_no_arrow">교환및 반품 정보</string>
+    <string name="order_cancel">주문취소</string>
+    <string name="order_cancel_reason">취소사유</string>
+    <string name="cancel_just">단순변심</string>
+    <string name="cancel_coupon">쿠폰미적용</string>
+    <string name="cancel_option">옵션변경</string>
+    <string name="cancel_delay">입고지연</string>
+    <string name="cancel_address">배송지변경</string>
+    <string name="etc">기타</string>
+    <string name="cancel_do_it">취소하기</string>
     <string name="size">사이즈</string>
     <string name="size_korean">크기</string>
     <string name="select_option">옵션을 선택해 주세요</string>
@@ -74,6 +86,7 @@
     <string name="add">+ 추가하기</string>
     <string name="have_coupon">보유 쿠폰</string>
     <string name="stamp">스탬프</string>
+    <string name="delete_all">전체삭제</string>
     <string name="current_order">주문처리 현황</string>
     <string name="ready_delivery">배송준비중</string>
     <string name="ing_delivery">배송중</string>
