@@ -10,16 +10,17 @@ import com.example.ggjg_andorid.databinding.ActivityMainBinding
 import com.example.ggjg_andorid.databinding.FragmentPayBinding
 import com.example.ggjg_andorid.ui.base.BaseActivity
 import com.example.ggjg_andorid.ui.base.BaseFragment
-import com.example.ggjg_andorid.utils.repeatOnStart
-import com.example.ggjg_andorid.utils.setVisible
+import com.example.ggjg_andorid.utils.*
 import com.example.ggjg_andorid.viewmodel.PayViewModel
-import com.example.ggjg_andorid.viewmodel.ShoppingListViewModel
+import kr.co.bootpay.android.Bootpay
 import java.text.DecimalFormat
 
 class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
 
     private lateinit var payAdapter: PayAdapter
     private val payViewModel by activityViewModels<PayViewModel>()
+    private var totalMoney = 0
+    private var totalAmount = 0
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -74,8 +75,6 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
             layoutManager = LinearLayoutManager(context)
         }
         payAdapter.submitList(PayViewModel.shoppingList)
-        var totalMoney = 0
-        var totalAmount = 0
         PayViewModel.shoppingList.forEach {
             if (!it.isSoldOut) {
                 totalAmount += it.count
@@ -99,14 +98,30 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
                 requireActivity().supportFragmentManager.beginTransaction().remove(this).commit()
             }
             R.id.payPhoneBtn, R.id.payCardBtn, R.id.payTransferBtn, R.id.payKakaoBtn -> {
-                listOf(binding.payPhoneBtn, binding.payCardBtn, binding.payTransferBtn, binding.payKakaoBtn).forEach {
+                binding.payBtn.changeActivatedWithEnabled(true)
+                listOf(binding.payPhoneBtn,
+                    binding.payCardBtn,
+                    binding.payTransferBtn,
+                    binding.payKakaoBtn).forEach {
                     it.isActivated = it == view
-                    payViewModel.setPayMethod(it.id)
                     if (it.isActivated) {
+                        payViewModel.setPayMethod(it.id)
                         it.setTextColor(requireContext().getColor(R.color.light_gray))
                     } else {
                         it.setTextColor(requireContext().getColor(R.color.dark_gray))
                     }
+                }
+            }
+            R.id.payBtn -> {
+                val title = if (PayViewModel.shoppingList.size == 1) {
+                    PayViewModel.shoppingList[0].title
+                } else {
+                    "${PayViewModel.shoppingList[0].title} 외 ${PayViewModel.shoppingList.size - 1}개"
+                }
+                bootPayCreate(requireActivity().supportFragmentManager,
+                    requireContext(),
+                    bootPayPayload(title, totalMoney.toDouble())) {
+                    true
                 }
             }
         }

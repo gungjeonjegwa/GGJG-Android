@@ -462,6 +462,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/selector_form_btn"
             android:onClick="@{pay::onClick}"
+            android:enabled="false"
             android:paddingVertical="17dp"
             android:text="@string/pay"
             android:textColor="@color/white"

@@ -36,7 +36,7 @@ class PayViewModel @Inject constructor(
         R.id.payPhoneBtn -> payMethod = "휴대폰"
         R.id.payCardBtn -> payMethod = "카드"
         R.id.payTransferBtn -> payMethod = "계좌이체"
-        R.id.payKakaoBtn -> payMethod = "카카오"
+        R.id.payKakaoBtn -> payMethod = "카카오페이"
         else -> payMethod = null
     }
 
