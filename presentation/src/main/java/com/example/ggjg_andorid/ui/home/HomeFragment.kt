@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.AbsListView.OnScrollListener
 import android.widget.ScrollView
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
@@ -115,8 +116,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         adapter.setItemOnClickListener(object : BreadListAdapter.OnItemClickListener {
             override fun detail(item: BreadEntity.Bread) {
                 DetailViewModel.id = item.id
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.mainContainer, DetailBreadFragment()).commit()
+                requireActivity().findNavController(R.id.mainContainer)
+                    .navigate(R.id.action_homeFragment_to_detailBreadFragment)
             }
 
             override fun like(item: BreadEntity.Bread) {

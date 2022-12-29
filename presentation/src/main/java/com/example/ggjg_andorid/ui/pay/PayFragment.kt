@@ -3,6 +3,7 @@ package com.example.ggjg_andorid.ui.pay
 import android.content.Context
 import android.view.View
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.adapter.PayAdapter
@@ -23,22 +24,6 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
     private val payViewModel by activityViewModels<PayViewModel>()
     private var totalMoney = 0
     private var totalAmount = 0
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        (activity as BaseActivity<ActivityMainBinding>).setOnKeyBackPressedListener(object :
-            BaseActivity.OnKeyBackPressedListener {
-            override fun onBack() {
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .remove(this@PayFragment).commit()
-            }
-        })
-    }
-
-    override fun onDetach() {
-        (activity as BaseActivity<ActivityMainBinding>).deleteOnKeyBackPressedListener()
-        super.onDetach()
-    }
 
     override fun createView() {
         binding.pay = this
@@ -97,7 +82,7 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
     fun onClick(view: View) {
         when (view.id) {
             R.id.backBtn -> {
-                requireActivity().supportFragmentManager.beginTransaction().remove(this).commit()
+                requireActivity().findNavController(R.id.mainContainer).popBackStack()
             }
             R.id.payPhoneBtn, R.id.payCardBtn, R.id.payTransferBtn, R.id.payKakaoBtn -> {
                 binding.payBtn.changeActivatedWithEnabled(true)
@@ -127,8 +112,8 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
                 }
             }
             R.id.setOrderAddressBtn -> {
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .add(R.id.mainContainer, SearchAddressFragment()).commit()
+                requireActivity().findNavController(R.id.mainContainer)
+                    .navigate(R.id.action_payFragment_to_searchAddressFragment)
             }
         }
     }

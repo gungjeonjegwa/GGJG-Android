@@ -3,6 +3,7 @@ package com.example.ggjg_andorid.ui.address
 import android.content.Context
 import android.view.View
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.adapter.AddressAdapter
@@ -79,7 +80,7 @@ class SearchAddressFragment :
     fun onClick(view: View) {
         when (view.id) {
             R.id.backBtn -> {
-                requireActivity().supportFragmentManager.beginTransaction().remove(this).commit()
+                requireActivity().findNavController(R.id.mainContainer).popBackStack()
             }
             R.id.searchBtn -> {
                 AddressViewModel.isClickSearch = true

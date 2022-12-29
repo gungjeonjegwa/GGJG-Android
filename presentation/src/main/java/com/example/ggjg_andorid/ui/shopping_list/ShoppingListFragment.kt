@@ -162,9 +162,9 @@ class ShoppingListFragment :
             }
             R.id.payBtn -> {
                 if (ShoppingListViewModel.selectBreadList.isNotEmpty()) {
-                    PayViewModel.shoppingList = ShoppingListViewModel.selectBreadList.filter { !it.isSoldOut }
-                    requireActivity().supportFragmentManager.beginTransaction()
-                        .add(R.id.mainContainer, PayFragment()).commit()
+                    PayViewModel.shoppingList =
+                        ShoppingListViewModel.selectBreadList.filter { !it.isSoldOut }
+                    requireActivity().findNavController(R.id.mainContainer).navigate(R.id.action_shoppingListFragment_to_payFragment)
                 }
             }
             R.id.allSelectBtn, R.id.allSelectTxt -> {

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.example.ggjg_andorid.R
@@ -33,20 +34,7 @@ class DetailBreadFragment :
     private var currentDeliveryView = 0
     private val infoImgAdapter = DetailBreadInfoImgAdapter()
     private var max = 0
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        (activity as BaseActivity<ActivityMainBinding>).setOnKeyBackPressedListener(object :
-            BaseActivity.OnKeyBackPressedListener {
-            override fun onBack() {
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .remove(this@DetailBreadFragment).commit()
-            }
-        })
-    }
-
     override fun onDetach() {
-        (activity as BaseActivity<ActivityMainBinding>).deleteOnKeyBackPressedListener()
         mainViewModel.hiddenNav(false)
         PayDialogViewModel.apply {
             breadData = null
@@ -159,7 +147,7 @@ class DetailBreadFragment :
     fun onClick(view: View) {
         when (view.id) {
             R.id.backBtn -> {
-                requireActivity().supportFragmentManager.beginTransaction().remove(this).commit()
+                requireActivity().findNavController(R.id.mainContainer).popBackStack()
             }
             R.id.deliveryAndPaymentInfoBtn -> {
                 requireActivity().startActivity(

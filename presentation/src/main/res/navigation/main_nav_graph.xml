@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="com.example.ggjg_andorid.ui.home.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_detailBreadFragment"
+            app:destination="@id/detailBreadFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.example.ggjg_andorid.ui.search.SearchFragment"
@@ -19,7 +23,11 @@
         android:id="@+id/shoppingListFragment"
         android:name="com.example.ggjg_andorid.ui.shopping_list.ShoppingListFragment"
         android:label="ShoppingListFragment"
-        tools:layout="@layout/fragment_shopping_list" />
+        tools:layout="@layout/fragment_shopping_list">
+        <action
+            android:id="@+id/action_shoppingListFragment_to_payFragment"
+            app:destination="@id/payFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.example.ggjg_andorid.ui.favorite.FavoriteFragment"
@@ -29,5 +37,75 @@
         android:id="@+id/myPageFragment"
         android:name="com.example.ggjg_andorid.ui.my_page.MyPageFragment"
         android:label="MyPageFragment"
-        tools:layout="@layout/fragment_my_page" />
+        tools:layout="@layout/fragment_my_page">
+        <action
+            android:id="@+id/action_myPageFragment_to_couponFragment"
+            app:destination="@id/couponFragment" />
+        <action
+            android:id="@+id/action_myPageFragment_to_myPagePrivacyFragment"
+            app:destination="@id/myPagePrivacyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/payFragment"
+        android:name="com.example.ggjg_andorid.ui.pay.PayFragment"
+        android:label="PayFragment"
+        tools:layout="@layout/fragment_pay">
+        <action
+            android:id="@+id/action_payFragment_to_changeAddressFragment"
+            app:destination="@id/changeAddressFragment" />
+        <action
+            android:id="@+id/action_payFragment_to_searchAddressFragment"
+            app:destination="@id/searchAddressFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailBreadFragment"
+        android:name="com.example.ggjg_andorid.ui.detail.DetailBreadFragment"
+        android:label="DetailBreadFragment"
+        tools:layout="@layout/fragment_detail_bread">
+        <action
+            android:id="@+id/action_detailBreadFragment_to_payFragment"
+            app:destination="@id/payFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchAddressFragment"
+        android:name="com.example.ggjg_andorid.ui.address.SearchAddressFragment"
+        android:label="SearchAddressFragment"
+        tools:layout="@layout/fragment_address_search">
+        <action
+            android:id="@+id/action_searchAddressFragment_to_detailAddressFragment"
+            app:destination="@id/detailAddressFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/changeAddressFragment"
+        android:name="com.example.ggjg_andorid.ui.address.ChangeAddressFragment"
+        android:label="ChangeAddressFragment"
+        tools:layout="@layout/fragment_address_change">
+        <action
+            android:id="@+id/action_changeAddressFragment_to_searchAddressFragment"
+            app:destination="@id/searchAddressFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailAddressFragment"
+        android:name="com.example.ggjg_andorid.ui.address.DetailAddressFragment"
+        android:label="DetailAddressFragment"
+        tools:layout="@layout/fragment_address_detail" />
+    <fragment
+        android:id="@+id/myPagePrivacyFragment"
+        android:name="com.example.ggjg_andorid.ui.my_page.MyPagePrivacyFragment"
+        android:label="MyPagePrivacyFragment"
+        tools:layout="@layout/fragment_my_page_privacy" />
+    <fragment
+        android:id="@+id/couponFragment"
+        android:name="com.example.ggjg_andorid.ui.coupon.CouponFragment"
+        android:label="CouponFragment"
+        tools:layout="@layout/fragment_coupon">
+        <action
+            android:id="@+id/action_couponFragment_to_addCouponFragment"
+            app:destination="@id/addCouponFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addCouponFragment"
+        android:name="com.example.ggjg_andorid.ui.coupon.AddCouponFragment"
+        android:label="AddCouponFragment"
+        tools:layout="@layout/fragment_coupon_add" />
 </navigation>

@@ -56,12 +56,12 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
                 profileViewModel.logout()
             }
             R.id.settingBtn -> {
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.mainContainer, MyPagePrivacyFragment()).commit()
+                requireActivity().findNavController(R.id.mainContainer)
+                    .navigate(R.id.action_myPageFragment_to_myPagePrivacyFragment)
             }
             R.id.coupon, R.id.couponTxt -> {
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.mainContainer, CouponFragment()).commit()
+                requireActivity().findNavController(R.id.mainContainer)
+                    .navigate(R.id.action_myPageFragment_to_couponFragment)
             }
         }
     }

@@ -3,6 +3,7 @@ package com.example.ggjg_andorid.ui.coupon
 import android.content.Context
 import android.view.View
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.ActivityMainBinding
 import com.example.ggjg_andorid.databinding.FragmentCouponBinding
@@ -38,12 +39,11 @@ class CouponFragment : BaseFragment<FragmentCouponBinding>(R.layout.fragment_cou
     fun onClick(view: View) {
         when (view.id) {
             R.id.backBtn -> {
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .remove(this@CouponFragment).commit()
+                requireActivity().findNavController(R.id.mainContainer).popBackStack()
             }
             R.id.addCouponBtn -> {
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .add(R.id.mainContainer, AddCouponFragment()).commit()
+                requireActivity().findNavController(R.id.mainContainer)
+                    .navigate(R.id.action_couponFragment_to_addCouponFragment)
             }
         }
     }

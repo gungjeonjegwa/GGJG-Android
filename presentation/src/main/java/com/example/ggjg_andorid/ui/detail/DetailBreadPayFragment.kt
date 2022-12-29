@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.domain.entity.bread.DetailBreadEntity
 import com.example.domain.param.basket.MakeBasketParam
@@ -234,8 +235,7 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
                         )
                     }
                     PayDialogViewModel.breadList = listOf()
-                    requireActivity().supportFragmentManager.beginTransaction()
-                        .add(R.id.mainContainer, PayFragment()).commit()
+                    requireActivity().findNavController(R.id.mainContainer).navigate(R.id.action_detailBreadFragment_to_payFragment)
                 }
             }
             R.id.addShoppingListBtn -> {
