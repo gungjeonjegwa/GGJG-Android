@@ -29,6 +29,9 @@ class AddressAdapter :
             if (item.buildingName != null) {
                 buildingNameTxt.text = item.buildingName
             }
+            addressLayout.setOnClickListener {
+                listener.click(item)
+            }
         }
     }
 
@@ -59,14 +62,14 @@ class AddressAdapter :
         val diffUtil = object : DiffUtil.ItemCallback<AddressViewModel.Address>() {
             override fun areItemsTheSame(
                 oldItem: AddressViewModel.Address,
-                newItem: AddressViewModel.Address
+                newItem: AddressViewModel.Address,
             ): Boolean {
                 return oldItem == newItem
             }
 
             override fun areContentsTheSame(
                 oldItem: AddressViewModel.Address,
-                newItem: AddressViewModel.Address
+                newItem: AddressViewModel.Address,
             ): Boolean {
                 return oldItem == newItem
             }

@@ -48,7 +48,9 @@ class SearchAddressFragment :
         addressAdapter = AddressAdapter().apply {
             setItemOnClickListener(object : AddressAdapter.OnItemClickListener {
                 override fun click(item: AddressViewModel.Address) {
-
+                    AddressViewModel.currentAddress = item
+                    requireActivity().findNavController(R.id.mainContainer)
+                        .navigate(R.id.action_searchAddressFragment_to_detailAddressFragment)
                 }
             })
         }
