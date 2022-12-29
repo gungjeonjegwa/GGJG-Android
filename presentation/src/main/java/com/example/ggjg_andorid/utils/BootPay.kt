@@ -12,12 +12,17 @@ fun bootPayPayload(title: String, price: Double): Payload {
     return Payload().setApplicationId(BuildConfig.PAY_ID)
         .setOrderName(title)
         .setPg("이니시스")
-        .setOrderId("1234")
+        .setOrderId(PayViewModel.orderNumber)
         .setPrice(price)
         .setMethod(PayViewModel.payMethod)
 }
 
-fun bootPayCreate(supportFragmentManager: FragmentManager, applicationContext: Context, payload: Payload, onConfirm: (data: String) -> Boolean) {
+fun bootPayCreate(
+    supportFragmentManager: FragmentManager,
+    applicationContext: Context,
+    payload: Payload,
+    onConfirmFunc: (data: String?) -> Boolean,
+) {
     Bootpay.init(supportFragmentManager, applicationContext)
         .setPayload(payload)
         .setEventListener(object : BootpayEventListener {
@@ -35,7 +40,7 @@ fun bootPayCreate(supportFragmentManager: FragmentManager, applicationContext: C
             }
 
             override fun onConfirm(data: String?): Boolean {
-                onConfirm(data)
+                onConfirmFunc(data)
                 return true
             }
 

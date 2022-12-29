@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.entity.basket.MyBasketEntity
 import com.example.domain.entity.order.InitOrderEntity
+import com.example.domain.usecase.order.CreateOrderUseCase
 import com.example.domain.usecase.order.InitOrderInfoUseCase
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.utils.MutableEventFlow
@@ -15,10 +16,12 @@ import javax.inject.Inject
 @HiltViewModel
 class PayViewModel @Inject constructor(
     private val initOrderInfoUseCase: InitOrderInfoUseCase,
+    private val createOrderUseCase: CreateOrderUseCase,
 ) : ViewModel() {
     companion object {
         var shoppingList = listOf<MyBasketEntity>()
         var payMethod: String? = null
+        var orderNumber: String? = null
     }
 
     private val _eventFlow = MutableEventFlow<Event>()
@@ -29,6 +32,11 @@ class PayViewModel @Inject constructor(
             initOrderInfoUseCase.execute()
         }.onSuccess {
             event(Event.InitInfo(it))
+            kotlin.runCatching {
+                createOrderUseCase.execute()
+            }.onSuccess {
+                orderNumber = createOrderUseCase.execute().orderId
+            }
         }
     }
 
