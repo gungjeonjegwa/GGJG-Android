@@ -12,8 +12,6 @@ data class InitOrderInfoResponse(
     val phone: String,
 ) {
     data class Address(
-        @SerializedName("id")
-        val id: String,
         @SerializedName("zipcode")
         val zipcode: String,
         @SerializedName("roadName")
@@ -34,7 +32,6 @@ fun InitOrderInfoResponse.toEntity() = InitOrderEntity(
 )
 
 fun InitOrderInfoResponse.Address.toEntity() = InitOrderEntity.Address(
-    id = id,
     zipcode = zipcode,
     road = road,
     landNumber = landNumber,

@@ -6,7 +6,6 @@ data class InitOrderEntity(
     val phone: String,
 ) {
     data class Address(
-        val id: String,
         val zipcode: String,
         val road: String,
         val landNumber: String,
