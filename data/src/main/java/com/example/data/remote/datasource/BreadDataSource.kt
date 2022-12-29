@@ -7,4 +7,5 @@ interface BreadDataSource {
     suspend fun allBread(page: String, size: String): BreadResponse
     suspend fun categoryBread(page: String, size: String, category: String): BreadResponse
     suspend fun detailBread(id: String): DetailBreadResponse
+    suspend fun likeBread(id: String)
 }

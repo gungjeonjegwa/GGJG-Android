@@ -7,7 +7,7 @@ import com.example.data.utils.HttpHandler
 import javax.inject.Inject
 
 class BreadDataSourceImpl @Inject constructor(
-    private val breadAPI: BreadAPI
+    private val breadAPI: BreadAPI,
 ) : BreadDataSource {
     override suspend fun allBread(page: String, size: String): BreadResponse =
         HttpHandler<BreadResponse>()
@@ -17,7 +17,7 @@ class BreadDataSourceImpl @Inject constructor(
     override suspend fun categoryBread(
         page: String,
         size: String,
-        category: String
+        category: String,
     ): BreadResponse =
         HttpHandler<BreadResponse>()
             .httpRequest { breadAPI.categoryBread(page, size, category) }
@@ -26,5 +26,10 @@ class BreadDataSourceImpl @Inject constructor(
     override suspend fun detailBread(id: String): DetailBreadResponse =
         HttpHandler<DetailBreadResponse>()
             .httpRequest { breadAPI.detailBread(id) }
+            .sendRequest()
+
+    override suspend fun likeBread(id: String) =
+        HttpHandler<Unit>()
+            .httpRequest { breadAPI.likeBread(id) }
             .sendRequest()
 }

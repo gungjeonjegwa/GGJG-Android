@@ -13,8 +13,8 @@ import javax.inject.Inject
 
 class BreadRepositoryImpl @Inject constructor(
     private val breadDataSource: BreadDataSource,
-    private val localBreadDataSource: LocalBreadDataSource
-): BreadRepository {
+    private val localBreadDataSource: LocalBreadDataSource,
+) : BreadRepository {
     override suspend fun allBread(page: String, size: String): BreadEntity =
         breadDataSource.allBread(page, size).toEntity()
 
@@ -23,6 +23,9 @@ class BreadRepositoryImpl @Inject constructor(
 
     override suspend fun detailBread(id: String): DetailBreadEntity =
         breadDataSource.detailBread(id).toEntity()
+
+    override suspend fun likeBread(id: String) =
+        breadDataSource.likeBread(id)
 
     override suspend fun searchBread(recentSearchEntity: RecentSearchEntity) =
         localBreadDataSource.searchBread(recentSearchEntity.toDbEntity())
