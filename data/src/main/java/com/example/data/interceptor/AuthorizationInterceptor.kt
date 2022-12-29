@@ -2,6 +2,7 @@ package com.example.data.interceptor
 
 import com.example.data.BuildConfig
 import com.example.data.local.storage.AuthStorage
+import com.example.data.utils.removeDot
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import okhttp3.*
@@ -60,8 +61,4 @@ class AuthorizationInterceptor @Inject constructor(
         }
         return chain.proceed(request)
     }
-}
-
-private fun String.removeDot(): String {
-    return this.replace("^\"|\"$".toRegex(), "")
 }
