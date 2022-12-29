@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="orderRecall"
+            type="com.example.ggjg_andorid.ui.order.OrderRecallFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/orderBarBottomLine"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="48dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/startLine"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/endLine"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <ImageView
+            android:id="@+id/backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_back"
+            android:onClick="@{orderRecall::onClick}"
+            app:layout_constraintBottom_toBottomOf="@id/orderBarBottomLine"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            style="@style/Regular16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/order_recall"
+            android:textColor="@color/real_black"
+            app:layout_constraintBottom_toBottomOf="@id/orderBarBottomLine"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/breadImg"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="44dp"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toTopOf="@id/orderBarBottomLine" />
+
+        <TextView
+            android:id="@+id/nameTxt"
+            style="@style/Medium14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/very_dark_gray"
+            app:layout_constraintStart_toEndOf="@id/breadImg"
+            app:layout_constraintTop_toTopOf="@id/breadImg" />
+
+        <TextView
+            android:id="@+id/costTxt"
+            style="@style/Bold18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/real_black"
+            app:layout_constraintStart_toStartOf="@id/nameTxt"
+            app:layout_constraintTop_toBottomOf="@id/nameTxt" />
+
+        <View
+            android:id="@+id/divideLine"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/light_gray"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/breadImg" />
+
+        <TextView
+            android:id="@+id/orderRecallReason"
+            style="@style/Bold12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/order_recall_reason"
+            android:textColor="@color/real_black"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/divideLine" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/sizeBtn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/selector_radio_btn"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/orderRecallReason" />
+
+        <TextView
+            style="@style/Regular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/order_recall_size"
+            android:textColor="@color/very_dark_gray"
+            app:layout_constraintBottom_toBottomOf="@id/sizeBtn"
+            app:layout_constraintStart_toEndOf="@id/sizeBtn"
+            app:layout_constraintTop_toTopOf="@id/sizeBtn" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/mixBtn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/selector_radio_btn"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/sizeBtn" />
+
+        <TextView
+            style="@style/Regular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/order_recall_mix"
+            android:textColor="@color/very_dark_gray"
+            app:layout_constraintBottom_toBottomOf="@id/mixBtn"
+            app:layout_constraintStart_toEndOf="@id/mixBtn"
+            app:layout_constraintTop_toTopOf="@id/mixBtn" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/destroyBtn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/selector_radio_btn"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/mixBtn" />
+
+        <TextView
+            style="@style/Regular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/order_recall_destroy"
+            android:textColor="@color/very_dark_gray"
+            app:layout_constraintBottom_toBottomOf="@id/destroyBtn"
+            app:layout_constraintStart_toEndOf="@id/destroyBtn"
+            app:layout_constraintTop_toTopOf="@id/destroyBtn" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/expiredBtn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/selector_radio_btn"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/destroyBtn" />
+
+        <TextView
+            style="@style/Regular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/order_recall_expired"
+            android:textColor="@color/very_dark_gray"
+            app:layout_constraintBottom_toBottomOf="@id/expiredBtn"
+            app:layout_constraintStart_toEndOf="@id/expiredBtn"
+            app:layout_constraintTop_toTopOf="@id/expiredBtn" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/agingBtn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/selector_radio_btn"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/expiredBtn" />
+
+        <TextView
+            style="@style/Regular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/order_recall_aging"
+            android:textColor="@color/very_dark_gray"
+            app:layout_constraintBottom_toBottomOf="@id/agingBtn"
+            app:layout_constraintStart_toEndOf="@id/agingBtn"
+            app:layout_constraintTop_toTopOf="@id/agingBtn" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/etcBtn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/selector_radio_btn"
+            app:layout_constraintStart_toStartOf="@id/startLine"
+            app:layout_constraintTop_toBottomOf="@id/agingBtn" />
+
+        <TextView
+            style="@style/Regular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/etc"
+            android:textColor="@color/very_dark_gray"
+            app:layout_constraintBottom_toBottomOf="@id/etcBtn"
+            app:layout_constraintStart_toEndOf="@id/etcBtn"
+            app:layout_constraintTop_toTopOf="@id/etcBtn" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/Bold14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/selector_form_btn"
+            android:text="@string/order_recall"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintStart_toStartOf="@id/startLine" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
