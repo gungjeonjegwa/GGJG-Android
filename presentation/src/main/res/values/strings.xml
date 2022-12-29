@@ -15,6 +15,8 @@
     <string name="pay">결제하기</string>
     <string name="change_address">주소변경</string>
     <string name="search_bread">찾고싶은 빵을 검색해 보세요</string>
+    <string name="search_address">찾고싶은 주소를 검색해 보세요.</string>
+    <string name="no_search">검색결과가 없습니다.</string>
     <string name="recent_search">최근검색어</string>
     <string name="order">주문하기</string>
     <string name="order_person">주문자</string>
