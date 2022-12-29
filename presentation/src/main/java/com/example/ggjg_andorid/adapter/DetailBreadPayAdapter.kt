@@ -46,9 +46,11 @@ class DetailBreadPayAdapter :
                 listener.delete(item)
             }
             plusBtn.setOnClickListener {
-                amount++
-                changeView(amount, item)
-                listener.plus(item)
+                if (amount < PayDialogViewModel.breadData!!.count) {
+                    amount++
+                    changeView(amount, item)
+                    listener.plus(item)
+                }
             }
             minusBtn.setOnClickListener {
                 if (amount != 1) {
