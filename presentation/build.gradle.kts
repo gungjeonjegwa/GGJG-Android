@@ -19,6 +19,7 @@ android {
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "BASE_URL", getApiKey("BASE_URL"))
+        buildConfigField("String", "PAY_ID", getApiKey("PAY_ID"))
     }
 
     buildTypes {
@@ -94,6 +95,8 @@ dependencies {
     implementation(Dependency.BottomNav.NAV_UI)
 
     implementation(Dependency.Coil.COIL)
+
+    implementation(Dependency.BootPay.BOOT_PAY)
 }
 
 fun getApiKey(propertyKey: String): String {

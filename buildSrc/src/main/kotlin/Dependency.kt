@@ -72,4 +72,8 @@ object Dependency {
     object Coil {
         const val COIL = "io.coil-kt:coil:${Version.COIL}"
     }
+
+    object BootPay {
+        const val BOOT_PAY = "io.github.bootpay:android:${Version.BootPay}"
+    }
 }

@@ -35,4 +35,6 @@ object Version {
     const val NAV = "2.4.1"
 
     const val COIL = "0.10.0"
+
+    const val BootPay = "4.0.8"
 }
