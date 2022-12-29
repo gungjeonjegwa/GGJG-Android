@@ -30,6 +30,9 @@
     <string name="delivery_info">배송정보</string>
     <string name="delivery_default">기본배송</string>
     <string name="select">선택</string>
+    <string name="qa">문의</string>
+    <string name="qa_do_it">문의하기</string>
+    <string name="content">내용</string>
     <string name="sell_shop">매장판매</string>
     <string name="sold_out">SOLD OUT</string>
     <string name="sold_out_korean">품절</string>
