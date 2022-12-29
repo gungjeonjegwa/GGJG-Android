@@ -121,6 +121,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             }
 
             override fun like(item: BreadEntity.Bread) {
+                homeViewModel.like(item.id)
             }
         })
         scrollView.run {

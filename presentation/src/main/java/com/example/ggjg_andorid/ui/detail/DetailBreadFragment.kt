@@ -164,6 +164,7 @@ class DetailBreadFragment :
             }
             R.id.likeBtn -> {
                 if (MainViewModel.isLogin) {
+                    detailViewModel.like()
                     binding.likeBtn.isActivated = !binding.likeBtn.isActivated
                     binding.like.heartChange(binding.likeBtn.isActivated, requireContext())
                 }

@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.domain.entity.bread.BreadEntity
 import com.example.domain.usecase.bread.AllBreadUseCase
 import com.example.domain.usecase.bread.CategoryBreadUseCase
+import com.example.domain.usecase.bread.LikeBreadUseCase
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.utils.MutableEventFlow
 import com.example.ggjg_andorid.utils.asEventFlow
@@ -16,7 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val allBreadUseCase: AllBreadUseCase,
-    private val categoryBreadUseCase: CategoryBreadUseCase
+    private val categoryBreadUseCase: CategoryBreadUseCase,
+    private val likeBreadUseCase: LikeBreadUseCase
 ) : ViewModel() {
 
     private val _eventFlow = MutableEventFlow<Event>()
@@ -66,6 +68,10 @@ class HomeViewModel @Inject constructor(
 
             }
         }
+    }
+
+    fun like(id: String) = viewModelScope.launch {
+        likeBreadUseCase.execute(id)
     }
 
     fun getBanner() = viewModelScope.launch {

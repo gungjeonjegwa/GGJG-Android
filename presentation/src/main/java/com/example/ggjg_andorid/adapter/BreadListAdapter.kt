@@ -26,7 +26,7 @@ class BreadListAdapter :
     class BreadListViewHolder(
         val context: Context,
         val binding: ItemBreadBinding,
-        val listener: OnItemClickListener
+        val listener: OnItemClickListener,
     ) :
         RecyclerView.ViewHolder(binding.root) {
         var currentDeliveryView = 0
@@ -48,6 +48,7 @@ class BreadListAdapter :
             if (item.isSoldOut) {
                 soldOutLayout.visibility = View.VISIBLE
             }
+            likeBtn.isActivated = item.isLike
             likeBtn.setOnClickListener {
                 if (MainViewModel.isLogin) {
                     it.heartChange(!it.isActivated, context)
@@ -109,14 +110,14 @@ class BreadListAdapter :
         val diffUtil = object : DiffUtil.ItemCallback<BreadEntity.Bread>() {
             override fun areItemsTheSame(
                 oldItem: BreadEntity.Bread,
-                newItem: BreadEntity.Bread
+                newItem: BreadEntity.Bread,
             ): Boolean {
                 return oldItem == newItem
             }
 
             override fun areContentsTheSame(
                 oldItem: BreadEntity.Bread,
-                newItem: BreadEntity.Bread
+                newItem: BreadEntity.Bread,
             ): Boolean {
                 return oldItem == newItem
             }
