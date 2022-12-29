@@ -1,10 +1,7 @@
 package com.example.ggjg_andorid.ui.shopping_list
 
-import android.content.Context
 import android.content.Intent
 import android.view.View
-import androidx.core.view.forEach
-import androidx.core.view.get
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,16 +9,13 @@ import com.example.domain.entity.basket.MyBasketEntity
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.adapter.ShoppingListAdapter
 import com.example.ggjg_andorid.databinding.FragmentShoppingListBinding
-import com.example.ggjg_andorid.databinding.ItemShoppingListBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.ui.login.LoginActivity
-import com.example.ggjg_andorid.ui.pay.PayFragment
 import com.example.ggjg_andorid.utils.changeActivatedWithEnabled
 import com.example.ggjg_andorid.utils.repeatOnStart
 import com.example.ggjg_andorid.utils.setVisible
 import com.example.ggjg_andorid.viewmodel.MainViewModel
 import com.example.ggjg_andorid.viewmodel.PayViewModel
-import com.example.ggjg_andorid.viewmodel.ProfileViewModel
 import com.example.ggjg_andorid.viewmodel.ShoppingListViewModel
 import java.text.DecimalFormat
 

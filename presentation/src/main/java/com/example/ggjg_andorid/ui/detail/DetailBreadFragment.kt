@@ -1,6 +1,5 @@
 package com.example.ggjg_andorid.ui.detail
 
-import android.content.Context
 import android.content.Intent
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +11,9 @@ import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.adapter.BannerAdapter
 import com.example.ggjg_andorid.adapter.DetailBreadInfoImgAdapter
-import com.example.ggjg_andorid.databinding.ActivityMainBinding
 import com.example.ggjg_andorid.databinding.FragmentDetailBreadBinding
 import com.example.ggjg_andorid.ui.agree_notice.ChangeAndRecallActivity
 import com.example.ggjg_andorid.ui.agree_notice.DeliveryAndPayActivity
-import com.example.ggjg_andorid.ui.base.BaseActivity
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.ui.login.LoginActivity
 import com.example.ggjg_andorid.utils.changeActivatedWithEnabled

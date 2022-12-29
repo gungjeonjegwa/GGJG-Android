@@ -1,17 +1,13 @@
 package com.example.ggjg_andorid.ui.coupon
 
-import android.content.Context
 import android.view.View
 import android.widget.ScrollView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.adapter.AddCouponAdapter
-import com.example.ggjg_andorid.databinding.ActivityMainBinding
 import com.example.ggjg_andorid.databinding.FragmentCouponAddBinding
-import com.example.ggjg_andorid.ui.base.BaseActivity
 import com.example.ggjg_andorid.ui.base.BaseFragment
-import com.example.ggjg_andorid.utils.changeActivatedWithEnabled
 import com.example.ggjg_andorid.utils.setVisible
 import com.example.ggjg_andorid.viewmodel.CouponViewModel
 

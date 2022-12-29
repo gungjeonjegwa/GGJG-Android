@@ -235,7 +235,8 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
                         )
                     }
                     PayDialogViewModel.breadList = listOf()
-                    requireActivity().findNavController(R.id.mainContainer).navigate(R.id.action_detailBreadFragment_to_payFragment)
+                    requireActivity().findNavController(R.id.mainContainer)
+                        .navigate(R.id.action_detailBreadFragment_to_payFragment)
                 }
             }
             R.id.addShoppingListBtn -> {

@@ -1,15 +1,12 @@
 package com.example.ggjg_andorid.ui.address
 
-import android.content.Context
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.adapter.AddressAdapter
-import com.example.ggjg_andorid.databinding.ActivityMainBinding
 import com.example.ggjg_andorid.databinding.FragmentAddressSearchBinding
-import com.example.ggjg_andorid.ui.base.BaseActivity
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.utils.repeatOnStart
 import com.example.ggjg_andorid.utils.setVisible
@@ -22,22 +19,6 @@ class SearchAddressFragment :
     BaseFragment<FragmentAddressSearchBinding>(R.layout.fragment_address_search) {
     private val addressViewModel by activityViewModels<AddressViewModel>()
     private lateinit var addressAdapter: AddressAdapter
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        (activity as BaseActivity<ActivityMainBinding>).setOnKeyBackPressedListener(object :
-            BaseActivity.OnKeyBackPressedListener {
-            override fun onBack() {
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .remove(this@SearchAddressFragment).commit()
-            }
-        })
-    }
-
-    override fun onDetach() {
-        (activity as BaseActivity<ActivityMainBinding>).deleteOnKeyBackPressedListener()
-        super.onDetach()
-    }
 
     override fun createView() {
         binding.addressSearch = this
