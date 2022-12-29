@@ -1,5 +1,6 @@
 package com.example.ggjg_andorid.ui.shopping_list
 
+import android.content.Context
 import android.content.Intent
 import android.view.View
 import androidx.core.view.forEach
@@ -160,9 +161,8 @@ class ShoppingListFragment :
                 requireActivity().findNavController(R.id.mainContainer).popBackStack()
             }
             R.id.payBtn -> {
-                ShoppingListViewModel.selectBreadList = ShoppingListViewModel.selectBreadList.filter { !it.isSoldOut }
                 if (ShoppingListViewModel.selectBreadList.isNotEmpty()) {
-                    PayViewModel.shoppingList = ShoppingListViewModel.selectBreadList
+                    PayViewModel.shoppingList = ShoppingListViewModel.selectBreadList.filter { !it.isSoldOut }
                     requireActivity().supportFragmentManager.beginTransaction()
                         .add(R.id.mainContainer, PayFragment()).commit()
                 }
