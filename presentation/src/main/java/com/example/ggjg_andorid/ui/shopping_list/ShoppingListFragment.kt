@@ -160,6 +160,7 @@ class ShoppingListFragment :
                 requireActivity().findNavController(R.id.mainContainer).popBackStack()
             }
             R.id.payBtn -> {
+                ShoppingListViewModel.selectBreadList = ShoppingListViewModel.selectBreadList.filter { !it.isSoldOut }
                 if (ShoppingListViewModel.selectBreadList.isNotEmpty()) {
                     PayViewModel.shoppingList = ShoppingListViewModel.selectBreadList
                     requireActivity().supportFragmentManager.beginTransaction()
