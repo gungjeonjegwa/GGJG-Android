@@ -76,4 +76,10 @@ object Dependency {
     object BootPay {
         const val BOOT_PAY = "io.github.bootpay:android:${Version.BootPay}"
     }
+
+    object RxJava {
+        const val RX_JAVA = "io.reactivex.rxjava3:rxjava:3.0.3"
+        const val RX_ANDROID = "io.reactivex.rxjava3:rxandroid:3.0.0"
+        const val RX_BINDING = "com.jakewharton.rxbinding3:rxbinding:3.0.0-alpha2"
+    }
 }

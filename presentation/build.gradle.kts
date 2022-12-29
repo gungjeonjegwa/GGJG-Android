@@ -97,6 +97,10 @@ dependencies {
     implementation(Dependency.Coil.COIL)
 
     implementation(Dependency.BootPay.BOOT_PAY)
+
+    implementation(Dependency.RxJava.RX_JAVA)
+    implementation(Dependency.RxJava.RX_ANDROID)
+    implementation(Dependency.RxJava.RX_BINDING)
 }
 
 fun getApiKey(propertyKey: String): String {

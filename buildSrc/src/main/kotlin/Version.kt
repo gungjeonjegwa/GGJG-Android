@@ -37,4 +37,8 @@ object Version {
     const val COIL = "0.10.0"
 
     const val BootPay = "4.0.8"
+
+    const val RX_JAVA = "3.0.3"
+    const val RX_ANDROID = "3.0.0"
+    const val RX_BINDING = "3.0.0-alpha2"
 }
