@@ -45,7 +45,7 @@ class DetailAddressFragment :
                         AddressViewModel.currentAddress!!.road,
                         AddressViewModel.currentAddress!!.landNumber,
                         binding.writeDetailOrderAddress.text.toString(),
-                        PayViewModel.defaultAddress == null
+                        true
                     )
                     requireActivity().findNavController(R.id.mainContainer)
                         .popBackStack(R.id.myPagePrivacyFragment, false)
