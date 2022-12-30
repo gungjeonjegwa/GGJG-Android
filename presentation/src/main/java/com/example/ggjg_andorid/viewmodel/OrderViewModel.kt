@@ -24,6 +24,7 @@ class OrderViewModel @Inject constructor(
 
     companion object {
         var id = ""
+        var imgList = listOf<String>()
     }
 
     fun myOrderList() = viewModelScope.launch {

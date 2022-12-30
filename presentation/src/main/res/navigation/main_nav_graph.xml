@@ -166,10 +166,19 @@
         android:id="@+id/orderReviewFragment"
         android:name="com.example.ggjg_andorid.ui.order.OrderReviewFragment"
         android:label="OrderReviewFragment"
-        tools:layout="@layout/fragment_order_review" />
+        tools:layout="@layout/fragment_order_review">
+        <action
+            android:id="@+id/action_orderReviewFragment_to_imageSelectorFragment"
+            app:destination="@id/imageSelectorFragment" />
+    </fragment>
     <fragment
         android:id="@+id/QAFragment"
         android:name="com.example.ggjg_andorid.ui.qa.QAFragment"
         android:label="QAFragment"
         tools:layout="@layout/fragment_qa" />
+    <fragment
+        android:id="@+id/imageSelectorFragment"
+        android:name="com.example.ggjg_andorid.ui.image.ImageSelectorFragment"
+        android:label="ImageSelectorFragment"
+        tools:layout="@layout/fragment_image_selector" />
 </navigation>

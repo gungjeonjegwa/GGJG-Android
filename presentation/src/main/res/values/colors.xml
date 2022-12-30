@@ -22,4 +22,5 @@
     <color name="dark_red">#9D292C</color>
     <color name="transparent">#00000000</color>
     <color name="stamp">#F0E4D9</color>
+    <color name="image_blur">#80FFFFFF</color>
 </resources>
