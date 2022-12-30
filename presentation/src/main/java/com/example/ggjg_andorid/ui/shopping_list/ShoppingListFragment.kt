@@ -26,8 +26,8 @@ class ShoppingListFragment :
     private lateinit var shoppingListAdapter: ShoppingListAdapter
 
     override fun onDetach() {
-        super.onDetach()
         ShoppingListViewModel.allSelected = true
+        super.onDetach()
     }
 
     override fun createView() {
@@ -63,8 +63,8 @@ class ShoppingListFragment :
     private fun initView() = binding.apply {
         mainViewModel.hiddenNav(true)
         viewTotal()
-        allSelectBtn.isActivated = true
-        payBtn.changeActivatedWithEnabled(true)
+        allSelectBtn.isActivated = ShoppingListViewModel.allSelected
+        payBtn.changeActivatedWithEnabled(ShoppingListViewModel.allSelected)
         shoppingListAdapter = ShoppingListAdapter().apply {
             setItemOnClickListener(object : ShoppingListAdapter.OnItemClickListener {
                 override fun plus(item: MyBasketEntity) {
@@ -112,11 +112,15 @@ class ShoppingListFragment :
                             ShoppingListViewModel.allSelected = true
                             allSelectBtn.isActivated = true
                         }
+                        payBtn.changeActivatedWithEnabled(true)
                     } else {
                         ShoppingListViewModel.selectBreadList =
                             ShoppingListViewModel.selectBreadList.filter { it != item }
                         ShoppingListViewModel.allSelected = false
                         allSelectBtn.isActivated = false
+                        if (ShoppingListViewModel.selectBreadList.isEmpty()) {
+                            payBtn.changeActivatedWithEnabled(false)
+                        }
                     }
                     viewTotal()
                 }
@@ -158,7 +162,9 @@ class ShoppingListFragment :
                 if (ShoppingListViewModel.selectBreadList.isNotEmpty()) {
                     PayViewModel.shoppingList =
                         ShoppingListViewModel.selectBreadList.filter { !it.isSoldOut }
-                    requireActivity().findNavController(R.id.mainContainer).navigate(R.id.action_shoppingListFragment_to_payFragment)
+                    ShoppingListViewModel.selectBreadList = listOf()
+                    requireActivity().findNavController(R.id.mainContainer)
+                        .navigate(R.id.action_shoppingListFragment_to_payFragment)
                 }
             }
             R.id.allSelectBtn, R.id.allSelectTxt -> {
@@ -166,9 +172,11 @@ class ShoppingListFragment :
                 if (binding.allSelectBtn.isActivated) {
                     ShoppingListViewModel.selectBreadList = ShoppingListViewModel.allBreadList
                     ShoppingListViewModel.allSelected = true
+                    binding.payBtn.changeActivatedWithEnabled(true)
                 } else {
                     ShoppingListViewModel.selectBreadList = listOf()
                     ShoppingListViewModel.allSelected = false
+                    binding.payBtn.changeActivatedWithEnabled(false)
                 }
                 shoppingListAdapter.notifyDataSetChanged()
                 viewTotal()
