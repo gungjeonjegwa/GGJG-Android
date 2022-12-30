@@ -3,6 +3,7 @@ package com.example.data.remote.datasource
 import com.example.data.remote.api.OrderAPI
 import com.example.data.remote.response.order.CreateOrderResponse
 import com.example.data.remote.response.order.InitOrderInfoResponse
+import com.example.data.remote.response.order.MyOrderListResponse
 import com.example.data.utils.HttpHandler
 import javax.inject.Inject
 
@@ -17,5 +18,10 @@ class OrderDataSourceImpl @Inject constructor(
     override suspend fun createOrder(): CreateOrderResponse =
         HttpHandler<CreateOrderResponse>()
             .httpRequest { orderAPI.createOrder() }
+            .sendRequest()
+
+    override suspend fun myOrderList(): List<MyOrderListResponse> =
+        HttpHandler<List<MyOrderListResponse>>()
+            .httpRequest { orderAPI.myOrderList() }
             .sendRequest()
 }
