@@ -3,7 +3,7 @@ package com.example.data.remote.model
 import com.google.gson.annotations.SerializedName
 
 data class AddressModel(
-    @SerializedName("zipcode")
+    @SerializedName("zipCode")
     val zipcode: String,
     @SerializedName("roadName")
     val road: String,
