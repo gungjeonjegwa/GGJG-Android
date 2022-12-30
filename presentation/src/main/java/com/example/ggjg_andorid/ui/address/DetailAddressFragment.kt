@@ -8,6 +8,7 @@ import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.FragmentAddressDetailBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.viewmodel.AddressViewModel
+import com.example.ggjg_andorid.viewmodel.MyPageViewModel
 import com.example.ggjg_andorid.viewmodel.PayViewModel
 
 class DetailAddressFragment :
@@ -28,17 +29,24 @@ class DetailAddressFragment :
                 requireActivity().findNavController(R.id.mainContainer).popBackStack()
             }
             R.id.okayBtn -> {
-                PayViewModel.address = AddressModel(
-                    AddressViewModel.currentAddress!!.zipcode,
-                    AddressViewModel.currentAddress!!.road,
-                    AddressViewModel.currentAddress!!.landNumber,
-                    binding.writeDetailOrderAddress.text.toString(),
-                    PayViewModel.defaultAddress == null
-                )
                 if (AddressViewModel.isPayment) {
+                    PayViewModel.address = AddressModel(
+                        AddressViewModel.currentAddress!!.zipcode,
+                        AddressViewModel.currentAddress!!.road,
+                        AddressViewModel.currentAddress!!.landNumber,
+                        binding.writeDetailOrderAddress.text.toString(),
+                        PayViewModel.defaultAddress == null
+                    )
                     requireActivity().findNavController(R.id.mainContainer)
                         .popBackStack(R.id.payFragment, false)
                 } else {
+                    MyPageViewModel.address = AddressModel(
+                        AddressViewModel.currentAddress!!.zipcode,
+                        AddressViewModel.currentAddress!!.road,
+                        AddressViewModel.currentAddress!!.landNumber,
+                        binding.writeDetailOrderAddress.text.toString(),
+                        PayViewModel.defaultAddress == null
+                    )
                     requireActivity().findNavController(R.id.mainContainer)
                         .popBackStack(R.id.myPagePrivacyFragment, false)
                 }
