@@ -1,6 +1,7 @@
 package com.example.ggjg_andorid.utils
 
 import android.util.Patterns
+import java.io.File
 import java.util.regex.Pattern
 
 fun String.isPhoneNumber(): Boolean =
@@ -12,7 +13,7 @@ fun String.isEmail(): Boolean =
 fun String.isPassword(): Boolean =
     !Pattern.matches("^(?=.*\\d)(?=.*[~`!@#$%\\^&*()-])(?=.*[a-zA-Z]).{8,30}$", this)
 
-fun String.toDeliveryType(): String = when(this) {
+fun String.toDeliveryType(): String = when (this) {
     "WAITORDER" -> "배송준비중"
     "DELIVERYING" -> "배송중"
     "COMPLETEDELIVERY" -> "배송완료"
@@ -21,4 +22,24 @@ fun String.toDeliveryType(): String = when(this) {
     "WAITRETURN" -> "환불대기중"
     "RETURN" -> "환불완료"
     else -> "배송준비중"
+}
+
+fun String.getDirectoryPaths(): List<String> {
+    var directoryList = listOf<String>()
+    File(this).listFiles().forEach {
+        if (it.isDirectory) {
+            directoryList = directoryList.plus(it.absolutePath)
+        }
+    }
+    return directoryList
+}
+
+fun String.getFilePaths(): List<String> {
+    var directoryList = listOf<String>()
+    File(this).listFiles().forEach {
+        if (it.isFile) {
+            directoryList = directoryList.plus(it.absolutePath)
+        }
+    }
+    return directoryList
 }
