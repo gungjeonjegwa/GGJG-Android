@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.entity.basket.MyBasketEntity
 import com.example.domain.entity.order.InitOrderEntity
+import com.example.domain.model.AddressModel
 import com.example.domain.usecase.order.CreateOrderUseCase
 import com.example.domain.usecase.order.InitOrderInfoUseCase
 import com.example.ggjg_andorid.R
@@ -22,6 +23,8 @@ class PayViewModel @Inject constructor(
         var shoppingList = listOf<MyBasketEntity>()
         var payMethod: String? = null
         var orderNumber: String? = null
+        var address: AddressModel? = null
+        var defaultAddress: AddressModel? = null
     }
 
     private val _eventFlow = MutableEventFlow<Event>()
@@ -31,11 +34,17 @@ class PayViewModel @Inject constructor(
         kotlin.runCatching {
             initOrderInfoUseCase.execute()
         }.onSuccess {
+            defaultAddress = it.address
             event(Event.InitInfo(it))
-            kotlin.runCatching {
-                createOrderUseCase.execute()
-            }.onSuccess {
-                orderNumber = createOrderUseCase.execute().orderId
+            if (address != null) {
+                event(Event.ChangeAddress(address!!))
+            }
+            if (orderNumber == null) {
+                kotlin.runCatching {
+                    createOrderUseCase.execute()
+                }.onSuccess {
+                    orderNumber = createOrderUseCase.execute().orderId
+                }
             }
         }
     }
@@ -54,5 +63,6 @@ class PayViewModel @Inject constructor(
 
     sealed class Event {
         data class InitInfo(val data: InitOrderEntity) : Event()
+        data class ChangeAddress(val data: AddressModel) : Event()
     }
 }

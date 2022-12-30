@@ -1,14 +1,18 @@
 package com.example.ggjg_andorid.ui.pay
 
+import android.content.Context
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.domain.entity.order.InitOrderEntity
+import com.example.domain.model.AddressModel
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.adapter.PayAdapter
 import com.example.ggjg_andorid.databinding.FragmentPayBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.utils.*
+import com.example.ggjg_andorid.viewmodel.AddressViewModel
 import com.example.ggjg_andorid.viewmodel.PayViewModel
 import java.text.DecimalFormat
 
@@ -19,9 +23,15 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
     private var totalMoney = 0
     private var totalAmount = 0
 
+    override fun onAttach(context: Context) {
+        PayViewModel.address = null
+        super.onAttach(context)
+    }
+
     override fun createView() {
         binding.pay = this
         initView()
+        AddressViewModel.isPayment = true
         payViewModel.init()
         repeatOnStart {
             payViewModel.eventFlow.collect { event -> eventHandler(event) }
@@ -34,12 +44,22 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
             binding.nameTxt.text = event.data.name
             event.data.address.let {
                 if (it != null) {
-                    binding.setOrderAddressBtn.setVisible(false)
-                    binding.changeOrderAddressBtn.setVisible()
-                    binding.orderAddressTxt.text =
-                        "${it.landNumber} ${it.road} (${it.detailAddress}) (${it.zipcode})"
+                    viewText(it)
                 }
             }
+        }
+        is PayViewModel.Event.ChangeAddress -> {
+            viewText(event.data)
+        }
+    }
+
+    private fun viewText(address: AddressModel) = binding.apply {
+        setOrderAddressBtn.setVisible(false)
+        changeOrderAddressBtn.setVisible()
+        orderAddressTxt.text =
+            "${address.landNumber} ${address.road} (${address.zipcode})"
+        if (!address.detailAddress.isNullOrBlank()) {
+            deliveryOrderAddressTxt.text = "상세주소 : ${address.detailAddress}"
         }
     }
 
@@ -108,6 +128,15 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
             R.id.setOrderAddressBtn -> {
                 requireActivity().findNavController(R.id.mainContainer)
                     .navigate(R.id.action_payFragment_to_searchAddressFragment)
+            }
+            R.id.changeOrderAddressBtn -> {
+                if (PayViewModel.defaultAddress == null) {
+                    requireActivity().findNavController(R.id.mainContainer)
+                        .navigate(R.id.action_payFragment_to_searchAddressFragment)
+                } else {
+                    requireActivity().findNavController(R.id.mainContainer)
+                        .navigate(R.id.action_payFragment_to_changeAddressFragment)
+                }
             }
         }
     }

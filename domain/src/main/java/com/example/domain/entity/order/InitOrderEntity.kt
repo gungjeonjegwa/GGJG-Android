@@ -1,15 +1,9 @@
 package com.example.domain.entity.order
 
+import com.example.domain.model.AddressModel
+
 data class InitOrderEntity(
-    val address: Address?,
+    val address: AddressModel?,
     val name: String,
     val phone: String,
-) {
-    data class Address(
-        val zipcode: String,
-        val road: String,
-        val landNumber: String,
-        val detailAddress: String?,
-        val isBasic: Boolean,
-    )
-}
+)

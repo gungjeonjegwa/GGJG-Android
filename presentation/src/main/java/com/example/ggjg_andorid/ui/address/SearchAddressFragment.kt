@@ -4,6 +4,7 @@ import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.domain.model.AddressModel
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.adapter.AddressAdapter
 import com.example.ggjg_andorid.databinding.FragmentAddressSearchBinding
@@ -47,7 +48,7 @@ class SearchAddressFragment :
             .subscribe { addressViewModel.search(it.toString()) }
         addressAdapter = AddressAdapter().apply {
             setItemOnClickListener(object : AddressAdapter.OnItemClickListener {
-                override fun click(item: AddressViewModel.Address) {
+                override fun click(item: AddressModel) {
                     AddressViewModel.currentAddress = item
                     requireActivity().findNavController(R.id.mainContainer)
                         .navigate(R.id.action_searchAddressFragment_to_detailAddressFragment)

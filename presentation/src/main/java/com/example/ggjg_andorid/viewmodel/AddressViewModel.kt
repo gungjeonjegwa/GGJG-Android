@@ -3,6 +3,7 @@ package com.example.ggjg_andorid.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.utils.removeDot
+import com.example.domain.model.AddressModel
 import com.example.ggjg_andorid.utils.MutableEventFlow
 import com.example.ggjg_andorid.utils.asEventFlow
 import com.google.gson.JsonArray
@@ -22,8 +23,10 @@ class AddressViewModel @Inject constructor(
     val searchEventFlow = _searchEventFlow.asEventFlow()
 
     companion object {
-        var currentAddress: Address? = null
+        var currentAddress: AddressModel? = null
         var isClickSearch = false
+        var isPayment = true
+        var buildingList = listOf<String>()
     }
 
     fun search(query: String) = viewModelScope.launch {
@@ -43,11 +46,11 @@ class AddressViewModel @Inject constructor(
                     response.body?.string()
                 ) as JsonObject)["results"] as JsonObject)["juso"]
                 if (result.toString() != "null") {
-                    var resultList = listOf<Address>()
+                    var resultList = listOf<AddressModel>()
                     (result as JsonArray).forEach {
                         it as JsonObject
                         resultList = resultList.plus(
-                            Address(
+                            AddressModel(
                                 "${it["zipNo"]?.toString()?.removeDot()}",
                                 "${it["rn"]?.toString()?.removeDot()} ${
                                     it["buldMnnm"]?.toString()?.removeDot()
@@ -55,7 +58,8 @@ class AddressViewModel @Inject constructor(
                                 "${it["siNm"]?.toString()?.removeDot()} ${
                                     it["sggNm"]?.toString()?.removeDot()
                                 }",
-                                it["bdNm"]?.toString()?.removeDot()
+                                it["bdNm"]?.toString()?.removeDot(),
+                                false
                             )
                         )
                     }
@@ -70,17 +74,10 @@ class AddressViewModel @Inject constructor(
     }
 
     sealed class SearchEvent {
-        data class AddressList(val data: List<Address>) : SearchEvent()
+        data class AddressList(val data: List<AddressModel>) : SearchEvent()
     }
 
     sealed class ChangeEvent {
 
     }
-
-    data class Address(
-        val zipCode: String,
-        val roadName: String,
-        val landNumber: String,
-        val buildingName: String?,
-    )
 }

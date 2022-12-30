@@ -6,13 +6,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.domain.model.AddressModel
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.ItemAddressBinding
 import com.example.ggjg_andorid.databinding.ItemPayOptionBinding
 import com.example.ggjg_andorid.viewmodel.AddressViewModel
 
 class AddressAdapter :
-    ListAdapter<AddressViewModel.Address, AddressAdapter.AddressViewHolder>(
+    ListAdapter<AddressModel, AddressAdapter.AddressViewHolder>(
         diffUtil) {
 
     private lateinit var itemClickListener: OnItemClickListener
@@ -24,10 +25,10 @@ class AddressAdapter :
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: AddressViewModel.Address) = binding.apply {
-            roadTxt.text = "${item.landNumber} ${item.roadName}"
-            if (item.buildingName != null) {
-                buildingNameTxt.text = item.buildingName
+        fun bind(item: AddressModel) = binding.apply {
+            roadTxt.text = "${item.landNumber} ${item.road}"
+            if (item.detailAddress != null) {
+                buildingNameTxt.text = item.detailAddress
             }
             addressLayout.setOnClickListener {
                 listener.click(item)
@@ -51,7 +52,7 @@ class AddressAdapter :
     }
 
     interface OnItemClickListener {
-        fun click(item: AddressViewModel.Address)
+        fun click(item: AddressModel)
     }
 
     fun setItemOnClickListener(onItemClickListener: OnItemClickListener) {
@@ -59,18 +60,12 @@ class AddressAdapter :
     }
 
     companion object {
-        val diffUtil = object : DiffUtil.ItemCallback<AddressViewModel.Address>() {
-            override fun areItemsTheSame(
-                oldItem: AddressViewModel.Address,
-                newItem: AddressViewModel.Address,
-            ): Boolean {
+        val diffUtil = object : DiffUtil.ItemCallback<AddressModel>() {
+            override fun areItemsTheSame(oldItem: AddressModel, newItem: AddressModel): Boolean {
                 return oldItem == newItem
             }
 
-            override fun areContentsTheSame(
-                oldItem: AddressViewModel.Address,
-                newItem: AddressViewModel.Address,
-            ): Boolean {
+            override fun areContentsTheSame(oldItem: AddressModel, newItem: AddressModel): Boolean {
                 return oldItem == newItem
             }
         }
