@@ -84,6 +84,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     }
 
     private fun initView() = binding.apply {
+        val deviceWidth = requireContext().resources.displayMetrics.widthPixels
+        println("안녕 ${deviceWidth}")
         val bannerLayoutParams = bannerContainer.layoutParams
         bannerLayoutParams.height =
             (requireContext().resources.displayMetrics.heightPixels * 0.3).toInt()

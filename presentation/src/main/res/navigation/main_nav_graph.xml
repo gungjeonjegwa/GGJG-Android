@@ -70,7 +70,7 @@
             app:destination="@id/payFragment" />
         <action
             android:id="@+id/action_detailBreadFragment_to_QAFragment2"
-            app:destination="@id/QAFragment2" />
+            app:destination="@id/QAFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchAddressFragment"
