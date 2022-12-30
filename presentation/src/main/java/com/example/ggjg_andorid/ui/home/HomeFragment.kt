@@ -4,8 +4,12 @@ import android.os.Handler
 import android.os.Looper
 import android.os.Message
 import android.view.View
+import android.view.ViewGroup
 import android.widget.AbsListView.OnScrollListener
+import android.widget.LinearLayout
 import android.widget.ScrollView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -80,6 +84,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     }
 
     private fun initView() = binding.apply {
+        val bannerLayoutParams = bannerContainer.layoutParams
+        bannerLayoutParams.height =
+            (requireContext().resources.displayMetrics.heightPixels * 0.3).toInt()
+        bannerContainer.layoutParams = bannerLayoutParams
         allBtn.isSelected = true
         categoryList = listOf(allBtn, breadBtn, cakeBtn, cookieBtn, presentBtn)
         layoutManager = GridLayoutManager(requireContext(), 2)
