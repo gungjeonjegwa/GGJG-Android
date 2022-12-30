@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/deliveryTypeTxt"
+            style="@style/Medium14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/very_dark_gray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/moveDetailBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/ic_right_arrow"
+            app:layout_constraintBottom_toBottomOf="@id/deliveryTypeTxt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/deliveryTypeTxt" />
+
+        <View
+            android:id="@+id/deliveryTypeDivide"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/light_gray"
+            app:layout_constraintTop_toBottomOf="@id/deliveryTypeTxt" />
+
+        <ImageView
+            android:id="@+id/breadImg"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@id/deliveryTypeTxt"
+            app:layout_constraintTop_toBottomOf="@id/deliveryTypeDivide" />
+
+        <TextView
+            android:id="@+id/breadNameTxt"
+            style="@style/Medium14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/very_dark_gray"
+            app:layout_constraintStart_toEndOf="@id/breadImg"
+            app:layout_constraintTop_toTopOf="@id/breadImg" />
+
+        <TextView
+            android:id="@+id/costTxt"
+            style="@style/Bold18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/real_black"
+            app:layout_constraintStart_toStartOf="@id/breadNameTxt"
+            app:layout_constraintTop_toBottomOf="@id/breadNameTxt" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/recallAndReviewLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/breadImg">
+
+            <TextView
+                android:id="@+id/recallBtn"
+                style="@style/Regular14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:background="@drawable/bg_pay_method_btn_unselected"
+                android:gravity="center"
+                android:paddingVertical="8dp"
+                android:text="@string/order_recall"
+                android:textColor="@color/dark_gray" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1" />
+
+            <TextView
+                android:id="@+id/reviewBtn"
+                style="@style/Regular14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:background="@drawable/bg_pay_method_btn_unselected"
+                android:gravity="center"
+                android:paddingVertical="8dp"
+                android:text="@string/write_review"
+                android:textColor="@color/dark_gray" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <TextView
+            android:id="@+id/cancelBtn"
+            style="@style/Regular14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_pay_method_btn_unselected"
+            android:gravity="center"
+            android:paddingVertical="8dp"
+            android:text="@string/cancel_do_it"
+            android:textColor="@color/dark_gray"
+            app:layout_constraintTop_toBottomOf="@id/breadImg" />
+
+        <View
+            android:id="@+id/divide"
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/light_gray"
+            app:layout_constraintTop_toBottomOf="@id/cancelBtn" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

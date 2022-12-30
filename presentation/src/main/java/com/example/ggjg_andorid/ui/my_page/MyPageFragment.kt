@@ -20,11 +20,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
     private lateinit var stampAdapter: StampAdapter
     override fun createView() {
         if (MainViewModel.isLogin) {
-            binding.myPage = this
             initView()
-            repeatOnStart {
-                profileViewModel.eventFlow.collect { event -> handleEvent(event) }
-            }
         } else {
             this.startActivityForResult(
                 Intent(
@@ -42,6 +38,10 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
     }
 
     private fun initView() = binding.apply {
+        binding.myPage = this@MyPageFragment
+        repeatOnStart {
+            profileViewModel.eventFlow.collect { event -> handleEvent(event) }
+        }
         stampAdapter = StampAdapter()
         stampList.apply {
             adapter = stampAdapter
@@ -63,6 +63,10 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
                 requireActivity().findNavController(R.id.mainContainer)
                     .navigate(R.id.action_myPageFragment_to_couponFragment)
             }
+            R.id.readyDeliveryLayout, R.id.ingDeliveryLayout, R.id.finishDeliveryLayout, R.id.cancelAndChangeAndRecallLayout -> {
+                requireActivity().findNavController(R.id.mainContainer)
+                    .navigate(R.id.action_myPageFragment_to_orderFragment)
+            }
         }
     }
 
@@ -71,11 +75,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
         if (resultCode != 1) {
             requireActivity().findNavController(R.id.mainContainer).popBackStack()
         } else {
-            binding.myPage = this
             initView()
-            repeatOnStart {
-                profileViewModel.eventFlow.collect { event -> handleEvent(event) }
-            }
         }
     }
 }

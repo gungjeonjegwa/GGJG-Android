@@ -150,10 +150,12 @@
             app:layout_constraintTop_toBottomOf="@id/currentOrderDivide">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/readyDeliveryLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/bg_order_box">
+                android:background="@drawable/bg_order_box"
+                android:onClick="@{myPage::onClick}">
 
                 <TextView
                     android:id="@+id/readyDeliveryCntTxt"
@@ -186,10 +188,12 @@
                 android:layout_height="match_parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ingDeliveryLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/bg_order_box">
+                android:background="@drawable/bg_order_box"
+                android:onClick="@{myPage::onClick}">
 
                 <TextView
                     android:id="@+id/ingDeliveryCntTxt"
@@ -209,7 +213,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="12dp"
-                    android:text="@string/ready_delivery"
+                    android:text="@string/ing_delivery"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -222,10 +226,12 @@
                 android:layout_height="match_parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/finishDeliveryLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/bg_order_box">
+                android:background="@drawable/bg_order_box"
+                android:onClick="@{myPage::onClick}">
 
                 <TextView
                     android:id="@+id/finishDeliveryCntTxt"
@@ -245,7 +251,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="12dp"
-                    android:text="@string/ready_delivery"
+                    android:text="@string/finish_delivery"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -261,6 +267,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:background="@drawable/bg_order_box"
+            android:onClick="@{myPage::onClick}"
             android:paddingVertical="8.5dp"
             app:layout_constraintEnd_toEndOf="@id/endLine"
             app:layout_constraintStart_toStartOf="@id/startLine"
