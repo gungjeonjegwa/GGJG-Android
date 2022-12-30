@@ -53,6 +53,10 @@ class MyPagePrivacyFragment :
             R.id.backBtn -> {
                 requireActivity().findNavController(R.id.mainContainer).popBackStack()
             }
+            R.id.editBtn -> {
+                requireActivity().findNavController(R.id.mainContainer)
+                    .navigate(R.id.action_myPagePrivacyFragment_to_myPageEditFragment)
+            }
             R.id.termsOfServicesBtn -> {
                 AgreementViewModel.apply {
                     title = getString(R.string.terms_of_services_no_arrow)

@@ -47,6 +47,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/title"
             style="@style/Regular16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -62,11 +63,12 @@
             style="@style/Regular12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="@{myPagePrivacy::onClick}"
             android:text="@string/edit"
             android:textColor="@color/real_black"
-            app:layout_constraintBottom_toBottomOf="@id/backBtn"
+            app:layout_constraintBottom_toBottomOf="@id/title"
             app:layout_constraintEnd_toEndOf="@id/endLine"
-            app:layout_constraintTop_toTopOf="@id/backBtn" />
+            app:layout_constraintTop_toTopOf="@id/title" />
 
         <View
             android:id="@+id/basicInfoLayout"
@@ -192,10 +194,10 @@
             android:id="@+id/changeAddressBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/change_order_address"
-            android:visibility="gone"
             android:onClick="@{myPagePrivacy::onClick}"
+            android:text="@string/change_order_address"
             android:textColor="@color/gray"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/address"
             app:layout_constraintEnd_toEndOf="@id/endLine"
             app:layout_constraintTop_toTopOf="@id/address" />
@@ -231,12 +233,12 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/setOrderAddressBtn"
-            android:onClick="@{myPagePrivacy::onClick}"
             style="@style/Bold14"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/bg_form_btn_activate"
+            android:onClick="@{myPagePrivacy::onClick}"
             android:paddingVertical="17dp"
             android:text="@string/set_order_address"
             android:textColor="@color/white"
