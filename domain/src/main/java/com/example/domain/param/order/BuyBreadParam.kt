@@ -10,9 +10,9 @@ data class BuyBreadParam(
 ) {
     data class BuyItem(
         val breadId: String,
-        val count: String,
-        val price: String,
-        val unit: String,
-        val age: String,
+        val count: Int,
+        val price: Int,
+        val unit: String?,
+        val age: Int?,
     )
 }

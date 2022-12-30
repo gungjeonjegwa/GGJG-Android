@@ -19,13 +19,13 @@ data class BuyBreadRequest(
         @SerializedName("breadId")
         val breadId: String,
         @SerializedName("count")
-        val count: String,
+        val count: Int,
         @SerializedName("price")
-        val price: String,
+        val price: Int,
         @SerializedName("unit")
-        val unit: String,
+        val unit: String?,
         @SerializedName("age")
-        val age: String,
+        val age: Int?,
     )
 }
 
