@@ -22,6 +22,9 @@ class OrderRepositoryImpl @Inject constructor(
     override suspend fun myOrderList(): List<MyOrderListEntity> =
         orderDataSource.myOrderList().map { it.toEntity() }
 
+    override suspend fun detailOrder(id: String) =
+        orderDataSource.detailOrder(id).toEntity()
+
     override suspend fun buyBread(buyBreadParam: BuyBreadParam) =
         orderDataSource.buyBread(buyBreadParam.toRequest())
 }
