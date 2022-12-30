@@ -1,5 +1,6 @@
 package com.example.data.remote.datasource
 
+import com.example.data.remote.model.AddressModel
 import com.example.data.remote.request.auth.LoginRequest
 import com.example.data.remote.request.auth.SignUpRequest
 import com.example.data.remote.response.auth.CheckResponse
@@ -11,4 +12,5 @@ interface AuthDataSource {
     suspend fun logout()
     suspend fun idCheck(id: String): CheckResponse
     suspend fun emailCheck(email: String): CheckResponse
+    suspend fun changeAddress(address: AddressModel)
 }

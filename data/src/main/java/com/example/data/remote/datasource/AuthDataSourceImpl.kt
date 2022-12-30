@@ -1,6 +1,7 @@
 package com.example.data.remote.datasource
 
 import com.example.data.remote.api.AuthAPI
+import com.example.data.remote.model.AddressModel
 import com.example.data.remote.request.auth.LoginRequest
 import com.example.data.remote.request.auth.SignUpRequest
 import com.example.data.remote.response.auth.CheckResponse
@@ -34,5 +35,10 @@ class AuthDataSourceImpl @Inject constructor(
     override suspend fun emailCheck(email: String): CheckResponse =
         HttpHandler<CheckResponse>()
             .httpRequest { authAPI.emailCheck(email) }
+            .sendRequest()
+
+    override suspend fun changeAddress(address: AddressModel) =
+        HttpHandler<Unit>()
+            .httpRequest { authAPI.changeAddress(address) }
             .sendRequest()
 }

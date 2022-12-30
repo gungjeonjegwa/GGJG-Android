@@ -2,10 +2,12 @@ package com.example.data.repository
 
 import com.example.data.local.datasorce.LocalAuthDataSource
 import com.example.data.remote.datasource.AuthDataSource
+import com.example.data.remote.model.toRequest
 import com.example.data.remote.request.auth.toRequest
 import com.example.data.remote.response.auth.toEntity
 import com.example.domain.entity.auth.CheckEntity
 import com.example.domain.entity.auth.LoginEntity
+import com.example.domain.model.AddressModel
 import com.example.domain.param.auth.LoginParam
 import com.example.domain.param.auth.SignUpParam
 import com.example.domain.repository.AuthRepository
@@ -29,6 +31,9 @@ class AuthRepositoryImpl @Inject constructor(
 
     override suspend fun emailCheck(email: String): CheckEntity =
         authDataSource.emailCheck(email).toEntity()
+
+    override suspend fun changeAddress(address: AddressModel) =
+        authDataSource.changeAddress(address.toRequest())
 
     override suspend fun saveToken(access: String?, refresh: String?, expiredAt: String?) =
         localAuthDataSource.saveToken(access, refresh, expiredAt)

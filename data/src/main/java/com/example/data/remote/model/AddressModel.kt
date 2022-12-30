@@ -22,3 +22,11 @@ fun AddressModel.toEntity() = com.example.domain.model.AddressModel(
     detailAddress = detailAddress,
     isBasic = isBasic
 )
+
+fun com.example.domain.model.AddressModel.toRequest() = AddressModel(
+    zipcode = zipcode,
+    road = road,
+    landNumber = landNumber,
+    detailAddress = detailAddress,
+    isBasic = isBasic
+)

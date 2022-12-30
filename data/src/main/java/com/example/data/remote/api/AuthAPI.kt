@@ -1,5 +1,6 @@
 package com.example.data.remote.api
 
+import com.example.data.remote.model.AddressModel
 import com.example.data.remote.request.auth.LoginRequest
 import com.example.data.remote.request.auth.SignUpRequest
 import com.example.data.remote.response.auth.CheckResponse
@@ -32,4 +33,9 @@ interface AuthAPI {
     suspend fun emailCheck(
         @Query("email") email: String
     ): CheckResponse
+
+    @POST("/users/address/basic")
+    suspend fun changeAddress(
+        @Body address: AddressModel
+    )
 }
