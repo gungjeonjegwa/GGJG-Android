@@ -11,3 +11,14 @@ fun String.isEmail(): Boolean =
 
 fun String.isPassword(): Boolean =
     !Pattern.matches("^(?=.*\\d)(?=.*[~`!@#$%\\^&*()-])(?=.*[a-zA-Z]).{8,30}$", this)
+
+fun String.toDeliveryType(): String = when(this) {
+    "WAITORDER" -> "배송준비중"
+    "DELIVERYING" -> "배송중"
+    "COMPLETEDELIVERY" -> "배송완료"
+    "WAITCANCEL" -> "취소대기중"
+    "CANCEL" -> "취소완료"
+    "WAITRETURN" -> "환불대기중"
+    "RETURN" -> "환불완료"
+    else -> "배송준비중"
+}
