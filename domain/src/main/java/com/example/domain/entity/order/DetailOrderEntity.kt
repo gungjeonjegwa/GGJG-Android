@@ -10,10 +10,12 @@ data class DetailOrderEntity(
     val items: List<BuyItem>
 ) {
     data class BuyItem(
-        val breadId: String,
-        val count: Int,
-        val price: Int,
-        val unit: String?,
+        val title: String,
         val age: Int?,
+        val size: String?,
+        val unit: String?,
+        val extraMoney: Int?,
+        val price: Int,
+        val count: Int,
     )
 }

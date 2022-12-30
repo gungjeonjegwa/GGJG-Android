@@ -18,24 +18,30 @@ data class DetailOrderResponse(
     val items: List<BuyItem>,
 ) {
     data class BuyItem(
-        @SerializedName("breadId")
-        val breadId: String,
-        @SerializedName("count")
-        val count: Int,
-        @SerializedName("price")
-        val price: Int,
-        @SerializedName("unit")
-        val unit: String?,
+        @SerializedName("title")
+        val title: String,
         @SerializedName("age")
         val age: Int?,
+        @SerializedName("size")
+        val size: String?,
+        @SerializedName("unit")
+        val unit: String?,
+        @SerializedName("extraMoney")
+        val extraMoney: Int?,
+        @SerializedName("price")
+        val price: Int,
+        @SerializedName("count")
+        val count: Int,
     )
 
     fun BuyItem.toEntity() = DetailOrderEntity.BuyItem(
-        breadId = breadId,
-        count = count,
-        price = price,
+        title = title,
+        age = age,
+        size = size,
         unit = unit,
-        age = age
+        extraMoney = extraMoney,
+        price = price,
+        count = count
     )
 }
 
