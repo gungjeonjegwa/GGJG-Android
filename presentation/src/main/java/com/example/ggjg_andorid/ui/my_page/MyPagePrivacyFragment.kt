@@ -16,6 +16,7 @@ import com.example.ggjg_andorid.viewmodel.*
 class MyPagePrivacyFragment :
     BaseFragment<FragmentMyPagePrivacyBinding>(R.layout.fragment_my_page_privacy) {
     private val mainViewModel by activityViewModels<MainViewModel>()
+    private val myPageViewModel by activityViewModels<MyPageViewModel>()
 
     override fun onAttach(context: Context) {
         MyPageViewModel.address = null
@@ -36,6 +37,7 @@ class MyPagePrivacyFragment :
 
     private fun initView() = binding.apply {
         if (MyPageViewModel.address != null) {
+            myPageViewModel.changeAddress()
             changeAddressBtn.setVisible()
             setOrderAddressBtn.setVisible(false)
             addressTxt.text =
