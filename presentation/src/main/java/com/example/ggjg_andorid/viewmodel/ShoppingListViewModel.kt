@@ -36,7 +36,9 @@ class ShoppingListViewModel @Inject constructor(
             myBasketUseCase.execute()
         }.onSuccess {
             allBreadList = it
-            selectBreadList = it
+            if (allSelected) {
+                selectBreadList = it
+            }
             event(Event.MyBasket(it))
         }.onFailure {
         }

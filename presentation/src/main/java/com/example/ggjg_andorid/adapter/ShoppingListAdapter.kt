@@ -11,6 +11,7 @@ import com.example.domain.entity.basket.MyBasketEntity
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.ItemShoppingListBinding
 import com.example.ggjg_andorid.utils.setVisible
+import com.example.ggjg_andorid.viewmodel.PayDialogViewModel
 import com.example.ggjg_andorid.viewmodel.ShoppingListViewModel
 import java.text.DecimalFormat
 
@@ -55,7 +56,12 @@ class ShoppingListAdapter :
             }
             if (!item.isSoldOut) {
                 plusBtn.setOnClickListener {
-                    if (amount < item.remainCount) {
+                    var allAmount = 0
+                    ShoppingListViewModel.selectBreadList.forEach {
+                        if (it.breadId == item.breadId)
+                            allAmount += it.count
+                    }
+                    if (allAmount < item.remainCount) {
                         amount++
                         changeView(amount, item)
                         listener.plus(item)
