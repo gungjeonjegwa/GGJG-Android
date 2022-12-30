@@ -34,7 +34,12 @@ class ShoppingListAdapter :
             breadImg.load(item.imgUrl)
             costTxt.text = "${(item.price + (item.extraMoney ?: 0)) * amount}원"
             amountTxt.text = amount.toString()
-            itemCheckBtn.isActivated = ShoppingListViewModel.allSelected
+            itemCheckBtn.isActivated = false
+            ShoppingListViewModel.selectBreadList.forEach {
+                if (it.id == item.id) {
+                    itemCheckBtn.isActivated = true
+                }
+            }
             deleteBtn.setOnClickListener {
                 listener.delete(item)
             }
