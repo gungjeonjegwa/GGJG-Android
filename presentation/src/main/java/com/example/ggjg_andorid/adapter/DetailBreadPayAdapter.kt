@@ -10,6 +10,7 @@ import com.example.domain.param.basket.MakeBasketParam
 import com.example.ggjg_andorid.databinding.ItemDetailBreadPayBinding
 import com.example.ggjg_andorid.utils.setVisible
 import com.example.ggjg_andorid.viewmodel.PayDialogViewModel
+import com.example.ggjg_andorid.viewmodel.ShoppingListViewModel
 import java.text.DecimalFormat
 
 class DetailBreadPayAdapter :
@@ -46,7 +47,12 @@ class DetailBreadPayAdapter :
                 listener.delete(item)
             }
             plusBtn.setOnClickListener {
-                if (amount < PayDialogViewModel.breadData!!.count) {
+                var allAmount = 0
+                PayDialogViewModel.breadList.forEach {
+                    allAmount += it.count
+
+                }
+                if (allAmount < PayDialogViewModel.breadData!!.count) {
                     amount++
                     changeView(amount, item)
                     listener.plus(item)
