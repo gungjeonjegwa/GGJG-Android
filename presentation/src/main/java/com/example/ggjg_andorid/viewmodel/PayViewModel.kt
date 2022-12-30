@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.domain.entity.basket.MyBasketEntity
 import com.example.domain.entity.order.InitOrderEntity
 import com.example.domain.model.AddressModel
+import com.example.domain.param.order.BuyBreadParam
+import com.example.domain.usecase.order.BuyBreadUseCase
 import com.example.domain.usecase.order.CreateOrderUseCase
 import com.example.domain.usecase.order.InitOrderInfoUseCase
 import com.example.ggjg_andorid.R
@@ -18,6 +20,7 @@ import javax.inject.Inject
 class PayViewModel @Inject constructor(
     private val initOrderInfoUseCase: InitOrderInfoUseCase,
     private val createOrderUseCase: CreateOrderUseCase,
+    private val buyBreadUseCase: BuyBreadUseCase,
 ) : ViewModel() {
     companion object {
         var shoppingList = listOf<MyBasketEntity>()
@@ -35,10 +38,10 @@ class PayViewModel @Inject constructor(
             initOrderInfoUseCase.execute()
         }.onSuccess {
             defaultAddress = it.address
-            event(Event.InitInfo(it))
-            if (address != null) {
-                event(Event.ChangeAddress(address!!))
+            if (it.address != null && address == null) {
+                address = it.address
             }
+            event(Event.InitInfo(it))
             if (orderNumber == null) {
                 kotlin.runCatching {
                     createOrderUseCase.execute()
@@ -46,6 +49,8 @@ class PayViewModel @Inject constructor(
                     orderNumber = createOrderUseCase.execute().orderId
                 }
             }
+        }.onFailure {
+
         }
     }
 
@@ -55,6 +60,28 @@ class PayViewModel @Inject constructor(
         R.id.payTransferBtn -> payMethod = "계좌이체"
         R.id.payKakaoBtn -> payMethod = "카카오페이"
         else -> payMethod = null
+    }
+
+    fun buyBread() = viewModelScope.launch {
+        kotlin.runCatching {
+            buyBreadUseCase.execute(BuyBreadParam(
+                true,
+                address!!,
+                orderNumber!!,
+                shoppingList.map {
+                    BuyBreadParam.BuyItem(
+                        it.breadId,
+                        it.count,
+                        (it.price + (it.extraMoney ?: 0)) * it.count,
+                        it.unit,
+                        it.age)
+                }
+            ))
+        }.onSuccess {
+            println("안녕 결제 성공")
+        }.onFailure {
+            println("안녕 $it")
+        }
     }
 
     private fun event(event: Event) = viewModelScope.launch {

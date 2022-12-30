@@ -43,8 +43,12 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
             binding.phoneTxt.text = "(${event.data.phone})"
             binding.nameTxt.text = event.data.name
             event.data.address.let {
-                if (it != null) {
+                if (it != null && PayViewModel.address == null) {
                     viewText(it)
+                } else if (PayViewModel.address != null) {
+                    viewText(PayViewModel.address!!)
+                } else {
+
                 }
             }
         }
@@ -61,6 +65,7 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
         if (!address.detailAddress.isNullOrBlank()) {
             deliveryOrderAddressTxt.text = "상세주소 : ${address.detailAddress}"
         }
+        payBtn.changeActivatedWithEnabled(PayViewModel.payMethod != null)
     }
 
     private fun initView() = binding.apply {
@@ -99,7 +104,7 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
                 requireActivity().findNavController(R.id.mainContainer).popBackStack()
             }
             R.id.payPhoneBtn, R.id.payCardBtn, R.id.payTransferBtn, R.id.payKakaoBtn -> {
-                binding.payBtn.changeActivatedWithEnabled(true)
+                binding.payBtn.changeActivatedWithEnabled(!binding.orderAddressTxt.text.isNullOrBlank())
                 listOf(binding.payPhoneBtn,
                     binding.payCardBtn,
                     binding.payTransferBtn,
@@ -122,6 +127,7 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
                 bootPayCreate(requireActivity().supportFragmentManager,
                     requireContext(),
                     bootPayPayload(title, totalMoney.toDouble())) {
+                    payViewModel.buyBread()
                     true
                 }
             }
