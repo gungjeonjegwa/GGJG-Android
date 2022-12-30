@@ -64,13 +64,13 @@ class ShoppingListFragment :
         mainViewModel.hiddenNav(true)
         viewTotal()
         allSelectBtn.isActivated = ShoppingListViewModel.allSelected
-        payBtn.changeActivatedWithEnabled(ShoppingListViewModel.allSelected)
+        payBtn.changeActivatedWithEnabled(ShoppingListViewModel.selectBreadList.isNotEmpty())
         shoppingListAdapter = ShoppingListAdapter().apply {
             setItemOnClickListener(object : ShoppingListAdapter.OnItemClickListener {
                 override fun plus(item: MyBasketEntity) {
                     shoppingListViewModel.changeBasket(item.id)
                     ShoppingListViewModel.selectBreadList.forEach {
-                        if (it == item) {
+                        if (it.id == item.id) {
                             it.count++
                         }
                     }
@@ -80,7 +80,7 @@ class ShoppingListFragment :
                 override fun minus(item: MyBasketEntity) {
                     shoppingListViewModel.changeBasket(item.id, false)
                     ShoppingListViewModel.selectBreadList.forEach {
-                        if (it == item) {
+                        if (it.id == item.id) {
                             it.count--
                         }
                     }
@@ -162,7 +162,6 @@ class ShoppingListFragment :
                 if (ShoppingListViewModel.selectBreadList.isNotEmpty()) {
                     PayViewModel.shoppingList =
                         ShoppingListViewModel.selectBreadList.filter { !it.isSoldOut }
-                    ShoppingListViewModel.selectBreadList = listOf()
                     requireActivity().findNavController(R.id.mainContainer)
                         .navigate(R.id.action_shoppingListFragment_to_payFragment)
                 }
