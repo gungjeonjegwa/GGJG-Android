@@ -20,7 +20,7 @@ interface OrderAPI {
     @GET("/order/user")
     suspend fun myOrderList(): List<MyOrderListResponse>
 
-    @GET("/order/{orderId}")
+    @GET("/order/user/{orderId}")
     suspend fun detailOrder(
         @Path("orderId") id: String,
     ): DetailOrderResponse
