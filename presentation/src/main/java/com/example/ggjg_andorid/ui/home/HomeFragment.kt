@@ -85,14 +85,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     private fun initView() = binding.apply {
         val deviceWidth = requireContext().resources.displayMetrics.widthPixels
-        println("안녕 ${deviceWidth}")
         val bannerLayoutParams = bannerContainer.layoutParams
         bannerLayoutParams.height =
             (requireContext().resources.displayMetrics.heightPixels * 0.3).toInt()
         bannerContainer.layoutParams = bannerLayoutParams
         allBtn.isSelected = true
         categoryList = listOf(allBtn, breadBtn, cakeBtn, cookieBtn, presentBtn)
-        layoutManager = GridLayoutManager(requireContext(), 2)
+        layoutManager = if (deviceWidth <= 1080) GridLayoutManager(requireContext(), 2) else GridLayoutManager(requireContext(), 3)
         listener =
             object : EndlessRecyclerViewScrollListener(layoutManager) {
                 override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {

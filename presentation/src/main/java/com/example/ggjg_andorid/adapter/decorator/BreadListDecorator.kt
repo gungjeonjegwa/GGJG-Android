@@ -14,10 +14,22 @@ class BreadListDecorator(val context: Context): RecyclerView.ItemDecoration() {
         state: RecyclerView.State
     ) {
         super.getItemOffsets(outRect, view, parent, state)
-        if (parent.getChildAdapterPosition(view) % 2 == 0) {
-            outRect.right = dpToPx(4.5f)
+        val deviceWidth = context.resources.displayMetrics.widthPixels
+        if (deviceWidth <= 1080) {
+            if (parent.getChildAdapterPosition(view) % 2 == 0) {
+                outRect.right = dpToPx(4.5f)
+            } else {
+                outRect.left = dpToPx(4.5f)
+            }
         } else {
-            outRect.left = dpToPx(4.5f)
+            if (parent.getChildAdapterPosition(view) % 3 == 0) {
+                outRect.right = dpToPx(4.5f)
+            } else if (parent.getChildAdapterPosition(view) % 3 == 1) {
+                outRect.right = dpToPx(4.5f)
+                outRect.left = dpToPx(4.5f)
+            } else {
+                outRect.left = dpToPx(4.5f)
+            }
         }
         outRect.bottom = dpToPx(48f)
     }
@@ -26,7 +38,7 @@ class BreadListDecorator(val context: Context): RecyclerView.ItemDecoration() {
         return TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP,
             dp,
-            context.getResources().getDisplayMetrics()
+            context.resources.displayMetrics
         ).toInt()
     }
 }
