@@ -48,8 +48,9 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(R.layout.fragment_order
         orderAdapter = OrderAdapter().apply {
             setItemOnClickListener(object : OrderAdapter.OnItemClickListener {
                 override fun detail(item: MyOrderListEntity) {
+                    OrderViewModel.id = item.orderId
                     requireActivity().findNavController(R.id.mainContainer)
-                        .navigate(R.id.action_orderFragment_to_detailOrderFragment)
+                        .navigate(R.id.action_orderFragment_to_orderDetailFragment)
                 }
 
                 override fun cancel(item: MyOrderListEntity) {

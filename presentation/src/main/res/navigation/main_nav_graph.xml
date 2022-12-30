@@ -135,8 +135,8 @@
         android:label="OrderFragment"
         tools:layout="@layout/fragment_order">
         <action
-            android:id="@+id/action_orderFragment_to_detailOrderFragment"
-            app:destination="@id/detailOrderFragment" />
+            android:id="@+id/action_orderFragment_to_orderDetailFragment"
+            app:destination="@id/orderDetailFragment" />
         <action
             android:id="@+id/action_orderFragment_to_orderCancelFragment"
             app:destination="@id/orderCancelFragment" />
@@ -148,9 +148,9 @@
             app:destination="@id/orderRecallFragment" />
     </fragment>
     <fragment
-        android:id="@+id/detailOrderFragment"
-        android:name="com.example.ggjg_andorid.ui.order.DetailOrderFragment"
-        android:label="DetailOrderFragment"
+        android:id="@+id/orderDetailFragment"
+        android:name="com.example.ggjg_andorid.ui.order.OrderDetailFragment"
+        android:label="OrderDetailFragment"
         tools:layout="@layout/fragment_order_detail" />
     <fragment
         android:id="@+id/orderCancelFragment"
