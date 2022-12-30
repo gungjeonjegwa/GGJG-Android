@@ -24,6 +24,8 @@ data class DetailOrderResponse(
         val age: Int?,
         @SerializedName("size")
         val size: String?,
+        @SerializedName("previewUrl")
+        val breadImg: String,
         @SerializedName("unit")
         val unit: String?,
         @SerializedName("extraMoney")
@@ -38,6 +40,7 @@ data class DetailOrderResponse(
         title = title,
         age = age,
         size = size,
+        breadImg = breadImg,
         unit = unit,
         extraMoney = extraMoney,
         price = price,

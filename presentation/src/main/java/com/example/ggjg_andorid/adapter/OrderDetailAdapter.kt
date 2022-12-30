@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.api.load
 import com.example.domain.entity.order.DetailOrderEntity
 import com.example.ggjg_andorid.databinding.ItemOrderDetailBinding
 import com.example.ggjg_andorid.utils.setVisible
@@ -23,10 +24,11 @@ class OrderDetailAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: DetailOrderEntity.BuyItem, position: Int) = binding.apply {
-            binding.buyItem = item
+            buyItem = item
             if (position + 1 == PayViewModel.shoppingList.size) {
                 divideLine.setVisible(false)
             }
+            breadImg.load(item.breadImg)
             costTxt.text =
                 "${DecimalFormat("#,###").format((item.price + (item.extraMoney ?: 0)) * item.count)}원"
             countTxt.text = "${item.count}개"
