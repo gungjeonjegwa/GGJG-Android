@@ -4,6 +4,7 @@ data class MyBasketEntity(
     val id: String,
     val title: String,
     val imgUrl: String,
+    val breadId: String,
     val age: Int?,
     val price: Int,
     val size: String?,

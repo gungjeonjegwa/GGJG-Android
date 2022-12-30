@@ -11,10 +11,11 @@ data class MakeBasketParam(
     val unit: String?
 )
 
-fun MakeBasketParam.toMyBasketEntity(title: String, img: String, price: Int) = MyBasketEntity(
+fun MakeBasketParam.toMyBasketEntity(title: String, img: String, price: Int, breadId: String) = MyBasketEntity(
     id = id,
     title = title,
     imgUrl = img,
+    breadId = breadId,
     age = age?.toInt(),
     price = price,
     size = size,

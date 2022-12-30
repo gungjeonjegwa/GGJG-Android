@@ -16,12 +16,10 @@ import com.example.ggjg_andorid.adapter.AgeOptionAdapter
 import com.example.ggjg_andorid.adapter.DetailBreadPayAdapter
 import com.example.ggjg_andorid.adapter.SizeOptionAdapter
 import com.example.ggjg_andorid.databinding.FragmentDetailBreadPayBinding
-import com.example.ggjg_andorid.ui.pay.PayFragment
 import com.example.ggjg_andorid.utils.repeatOnStart
 import com.example.ggjg_andorid.utils.setVisible
 import com.example.ggjg_andorid.viewmodel.PayDialogViewModel
 import com.example.ggjg_andorid.viewmodel.PayViewModel
-import com.example.ggjg_andorid.viewmodel.ShoppingListViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.text.DecimalFormat
 
@@ -231,7 +229,8 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
                         it.toMyBasketEntity(
                             PayDialogViewModel.breadData!!.name,
                             PayDialogViewModel.breadData!!.imgUrl,
-                            PayDialogViewModel.breadData!!.price.filter { it != ',' }.toInt()
+                            PayDialogViewModel.breadData!!.price.filter { it != ',' }.toInt(),
+                            PayDialogViewModel.breadData!!.id
                         )
                     }
                     PayDialogViewModel.breadList = listOf()
