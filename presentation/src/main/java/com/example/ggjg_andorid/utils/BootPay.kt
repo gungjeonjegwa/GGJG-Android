@@ -13,7 +13,7 @@ fun bootPayPayload(title: String, price: Double): Payload {
         .setOrderName(title)
         .setPg("이니시스")
         .setOrderId(PayViewModel.orderNumber)
-        .setPrice(price)
+        .setPrice(price + 3000)
         .setMethod(PayViewModel.payMethod)
 }
 
@@ -40,6 +40,7 @@ fun bootPayCreate(
             }
 
             override fun onConfirm(data: String?): Boolean {
+                Bootpay.removePaymentWindow()
                 onConfirmFunc(data)
                 return true
             }
