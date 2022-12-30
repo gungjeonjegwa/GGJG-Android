@@ -4,6 +4,7 @@ import com.example.data.remote.request.order.BuyBreadRequest
 import com.example.data.remote.response.order.CreateOrderResponse
 import com.example.data.remote.response.order.InitOrderInfoResponse
 import com.example.data.remote.response.order.MyOrderListResponse
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 
@@ -19,6 +20,6 @@ interface OrderAPI {
 
     @POST("/order/buy")
     suspend fun buyBread(
-        buyBreadRequest: BuyBreadRequest
+        @Body buyBreadRequest: BuyBreadRequest
     )
 }
