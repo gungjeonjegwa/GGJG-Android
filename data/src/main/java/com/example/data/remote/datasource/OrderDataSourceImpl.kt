@@ -1,6 +1,7 @@
 package com.example.data.remote.datasource
 
 import com.example.data.remote.api.OrderAPI
+import com.example.data.remote.request.order.BuyBreadRequest
 import com.example.data.remote.response.order.CreateOrderResponse
 import com.example.data.remote.response.order.InitOrderInfoResponse
 import com.example.data.remote.response.order.MyOrderListResponse
@@ -23,5 +24,10 @@ class OrderDataSourceImpl @Inject constructor(
     override suspend fun myOrderList(): List<MyOrderListResponse> =
         HttpHandler<List<MyOrderListResponse>>()
             .httpRequest { orderAPI.myOrderList() }
+            .sendRequest()
+
+    override suspend fun buyBread(buyBreadRequest: BuyBreadRequest) =
+        HttpHandler<Unit>()
+            .httpRequest { orderAPI.buyBread(buyBreadRequest) }
             .sendRequest()
 }
