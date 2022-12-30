@@ -86,7 +86,7 @@
                 android:background="@drawable/bg_pay_method_btn_unselected"
                 android:gravity="center"
                 android:paddingVertical="8dp"
-                android:text="@string/order_recall"
+                android:text="@string/recall_do_it"
                 android:textColor="@color/dark_gray" />
 
             <View

@@ -206,7 +206,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="40dp"
                     android:lineHeight="18sp"
-                    android:text="@string/pay_info_explain"
+                    android:text="@string/pay_notice_explain"
                     android:textColor="@color/dark_gray"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@id/deliveryEndLine"
