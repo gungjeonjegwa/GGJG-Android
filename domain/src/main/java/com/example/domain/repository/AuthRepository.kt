@@ -14,6 +14,7 @@ interface AuthRepository {
     suspend fun emailCheck(email: String): CheckEntity
     suspend fun changeAddress(address: AddressModel)
     suspend fun recentAddress(): List<AddressModel>
+    suspend fun newAddress(address: AddressModel)
     suspend fun saveToken(access: String?, refresh: String?, expiredAt: String?)
     suspend fun isLogin(): Boolean
 }

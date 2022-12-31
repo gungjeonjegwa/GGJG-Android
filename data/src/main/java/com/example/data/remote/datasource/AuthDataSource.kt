@@ -14,4 +14,5 @@ interface AuthDataSource {
     suspend fun emailCheck(email: String): CheckResponse
     suspend fun changeAddress(address: AddressModel)
     suspend fun recentAddress(): List<AddressModel>
+    suspend fun newAddress(address: AddressModel)
 }

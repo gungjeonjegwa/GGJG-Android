@@ -46,4 +46,9 @@ class AuthDataSourceImpl @Inject constructor(
         HttpHandler<List<AddressModel>>()
             .httpRequest { authAPI.recentAddress() }
             .sendRequest()
+
+    override suspend fun newAddress(address: AddressModel) =
+        HttpHandler<Unit>()
+            .httpRequest { authAPI.newAddress(address) }
+            .sendRequest()
 }
