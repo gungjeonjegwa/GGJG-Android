@@ -13,4 +13,5 @@ interface AuthDataSource {
     suspend fun idCheck(id: String): CheckResponse
     suspend fun emailCheck(email: String): CheckResponse
     suspend fun changeAddress(address: AddressModel)
+    suspend fun resentAddress(): List<AddressModel>
 }

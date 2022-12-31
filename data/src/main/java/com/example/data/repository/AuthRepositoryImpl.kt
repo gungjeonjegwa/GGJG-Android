@@ -2,6 +2,7 @@ package com.example.data.repository
 
 import com.example.data.local.datasorce.LocalAuthDataSource
 import com.example.data.remote.datasource.AuthDataSource
+import com.example.data.remote.model.toEntity
 import com.example.data.remote.model.toRequest
 import com.example.data.remote.request.auth.toRequest
 import com.example.data.remote.response.auth.toEntity
@@ -15,7 +16,7 @@ import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
     private val authDataSource: AuthDataSource,
-    private val localAuthDataSource: LocalAuthDataSource
+    private val localAuthDataSource: LocalAuthDataSource,
 ) : AuthRepository {
     override suspend fun signUp(signUpParam: SignUpParam) =
         authDataSource.signUp(signUpParam.toRequest())
@@ -34,6 +35,9 @@ class AuthRepositoryImpl @Inject constructor(
 
     override suspend fun changeAddress(address: AddressModel) =
         authDataSource.changeAddress(address.toRequest())
+
+    override suspend fun resentAddress(): List<AddressModel> =
+        authDataSource.resentAddress().map { it.toEntity() }
 
     override suspend fun saveToken(access: String?, refresh: String?, expiredAt: String?) =
         localAuthDataSource.saveToken(access, refresh, expiredAt)

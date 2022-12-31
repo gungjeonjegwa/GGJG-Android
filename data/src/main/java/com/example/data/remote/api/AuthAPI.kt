@@ -38,4 +38,7 @@ interface AuthAPI {
     suspend fun changeAddress(
         @Body address: AddressModel
     )
+
+    @GET("/users/address")
+    suspend fun resentAddress(): List<AddressModel>
 }
