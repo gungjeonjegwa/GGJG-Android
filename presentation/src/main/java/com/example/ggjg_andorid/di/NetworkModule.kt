@@ -1,10 +1,7 @@
 package com.example.ggjg_andorid.di
 
 import com.example.data.interceptor.AuthorizationInterceptor
-import com.example.data.remote.api.AuthAPI
-import com.example.data.remote.api.BasketAPI
-import com.example.data.remote.api.BreadAPI
-import com.example.data.remote.api.OrderAPI
+import com.example.data.remote.api.*
 import com.example.ggjg_andorid.BuildConfig
 import dagger.Module
 import dagger.Provides
@@ -20,7 +17,7 @@ import java.util.concurrent.TimeUnit
 object NetworkModule {
     @Provides
     fun provideOkhttpClient(
-        authorizationInterceptor: AuthorizationInterceptor
+        authorizationInterceptor: AuthorizationInterceptor,
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .connectTimeout(30, TimeUnit.SECONDS)
@@ -62,4 +59,8 @@ object NetworkModule {
     @Provides
     fun provideOrderAPI(retrofit: Retrofit): OrderAPI =
         retrofit.create(OrderAPI::class.java)
+
+    @Provides
+    fun provideCouponAPI(retrofit: Retrofit): CouponAPI =
+        retrofit.create(CouponAPI::class.java)
 }
