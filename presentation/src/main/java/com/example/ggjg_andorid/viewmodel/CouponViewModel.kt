@@ -27,10 +27,14 @@ class CouponViewModel @Inject constructor(
             event(AddEvent.NoneCoupon)
         } else {
             couponList.forEach {
-                kotlin.runCatching {
-                    enrollCouponUseCase.execute(it)
-                }.onFailure {
+                if (it == "") {
                     errorCnt++
+                } else {
+                    kotlin.runCatching {
+                        enrollCouponUseCase.execute(it)
+                    }.onFailure {
+                        errorCnt++
+                    }
                 }
             }
             if (errorCnt != 0) {
