@@ -110,6 +110,7 @@
             android:layout_height="24dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/selector_radio_btn"
+            android:onClick="@{orderCancel::onClick}"
             app:layout_constraintStart_toStartOf="@id/startLine"
             app:layout_constraintTop_toBottomOf="@id/orderCancelReason" />
 
@@ -130,6 +131,7 @@
             android:layout_height="24dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/selector_radio_btn"
+            android:onClick="@{orderCancel::onClick}"
             app:layout_constraintStart_toStartOf="@id/startLine"
             app:layout_constraintTop_toBottomOf="@id/justBtn" />
 
@@ -150,6 +152,7 @@
             android:layout_height="24dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/selector_radio_btn"
+            android:onClick="@{orderCancel::onClick}"
             app:layout_constraintStart_toStartOf="@id/startLine"
             app:layout_constraintTop_toBottomOf="@id/couponBtn" />
 
@@ -170,6 +173,7 @@
             android:layout_height="24dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/selector_radio_btn"
+            android:onClick="@{orderCancel::onClick}"
             app:layout_constraintStart_toStartOf="@id/startLine"
             app:layout_constraintTop_toBottomOf="@id/optionBtn" />
 
@@ -190,6 +194,7 @@
             android:layout_height="24dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/selector_radio_btn"
+            android:onClick="@{orderCancel::onClick}"
             app:layout_constraintStart_toStartOf="@id/startLine"
             app:layout_constraintTop_toBottomOf="@id/delayBtn" />
 
@@ -210,6 +215,7 @@
             android:layout_height="24dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/selector_radio_btn"
+            android:onClick="@{orderCancel::onClick}"
             app:layout_constraintStart_toStartOf="@id/startLine"
             app:layout_constraintTop_toBottomOf="@id/addressBtn" />
 
@@ -226,6 +232,7 @@
 
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/cancelBtn"
             style="@style/Bold14"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
