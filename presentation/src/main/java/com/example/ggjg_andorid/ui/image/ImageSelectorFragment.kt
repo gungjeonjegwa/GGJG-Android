@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.room.Index.Order
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.adapter.ImageAdapter
+import com.example.ggjg_andorid.adapter.decorator.ImageListDecorator
 import com.example.ggjg_andorid.databinding.FragmentImageSelectorBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.utils.FilePaths
@@ -33,6 +34,7 @@ class ImageSelectorFragment :
         binding.imageList.apply {
             adapter = imgAdapter
             layoutManager = GridLayoutManager(context, 3)
+            addItemDecoration(ImageListDecorator(context))
         }
         imgAdapter.submitList(getImageDirectory())
     }
