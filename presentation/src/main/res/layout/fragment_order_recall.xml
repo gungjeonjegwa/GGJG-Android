@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="orderRecall"
             type="com.example.ggjg_andorid.ui.order.OrderRecallFragment" />
@@ -109,6 +110,7 @@
             android:layout_height="24dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/selector_radio_btn"
+            android:onClick="@{orderRecall::onClick}"
             app:layout_constraintStart_toStartOf="@id/startLine"
             app:layout_constraintTop_toBottomOf="@id/orderRecallReason" />
 
@@ -129,6 +131,7 @@
             android:layout_height="24dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/selector_radio_btn"
+            android:onClick="@{orderRecall::onClick}"
             app:layout_constraintStart_toStartOf="@id/startLine"
             app:layout_constraintTop_toBottomOf="@id/sizeBtn" />
 
@@ -149,6 +152,7 @@
             android:layout_height="24dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/selector_radio_btn"
+            android:onClick="@{orderRecall::onClick}"
             app:layout_constraintStart_toStartOf="@id/startLine"
             app:layout_constraintTop_toBottomOf="@id/mixBtn" />
 
@@ -169,6 +173,7 @@
             android:layout_height="24dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/selector_radio_btn"
+            android:onClick="@{orderRecall::onClick}"
             app:layout_constraintStart_toStartOf="@id/startLine"
             app:layout_constraintTop_toBottomOf="@id/destroyBtn" />
 
@@ -189,6 +194,7 @@
             android:layout_height="24dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/selector_radio_btn"
+            android:onClick="@{orderRecall::onClick}"
             app:layout_constraintStart_toStartOf="@id/startLine"
             app:layout_constraintTop_toBottomOf="@id/expiredBtn" />
 
@@ -209,6 +215,7 @@
             android:layout_height="24dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/selector_radio_btn"
+            android:onClick="@{orderRecall::onClick}"
             app:layout_constraintStart_toStartOf="@id/startLine"
             app:layout_constraintTop_toBottomOf="@id/agingBtn" />
 
@@ -224,6 +231,7 @@
             app:layout_constraintTop_toTopOf="@id/etcBtn" />
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/recallBtn"
             style="@style/Bold14"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

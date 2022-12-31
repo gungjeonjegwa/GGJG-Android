@@ -5,6 +5,7 @@ import androidx.navigation.findNavController
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.FragmentOrderRecallBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
+import com.example.ggjg_andorid.utils.changeActivatedWithEnabled
 
 class OrderRecallFragment :
     BaseFragment<FragmentOrderRecallBinding>(R.layout.fragment_order_recall) {
@@ -13,9 +14,21 @@ class OrderRecallFragment :
     }
 
     fun onClick(view: View) {
-        when (view.id) {
-            R.id.backBtn -> {
-                requireActivity().findNavController(R.id.mainContainer).popBackStack()
+        binding.apply {
+            when (view) {
+                backBtn -> requireActivity().findNavController(R.id.mainContainer).popBackStack()
+                sizeBtn, mixBtn, destroyBtn, expiredBtn, agingBtn, etcBtn -> {
+                    listOf(sizeBtn,
+                        mixBtn,
+                        destroyBtn,
+                        expiredBtn,
+                        agingBtn,
+                        etcBtn,
+                        etcBtn).forEach {
+                        it.isSelected = it == view
+                    }
+                    recallBtn.changeActivatedWithEnabled(true)
+                }
             }
         }
     }
