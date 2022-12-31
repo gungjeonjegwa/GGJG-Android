@@ -11,24 +11,31 @@ class OrderRecallFragment :
     BaseFragment<FragmentOrderRecallBinding>(R.layout.fragment_order_recall) {
     override fun createView() {
         binding.orderRecall = this
+        initView()
+    }
+
+    private fun initView() = binding.apply {
+        val optionList = listOf(sizeBtn, mixBtn, destroyBtn, expiredBtn, agingBtn, etcBtn)
+        listOf(sizeLayout,
+            mixLayout,
+            destroyLayout,
+            expiredLayout,
+            agingLayout,
+            etcLayout,
+            etcLayout).forEachIndexed { i, v ->
+            v.setOnClickListener {
+                optionList.forEachIndexed { o_i, o_v ->
+                    o_v.isSelected = i == o_i
+                }
+                recallBtn.changeActivatedWithEnabled(true)
+            }
+        }
     }
 
     fun onClick(view: View) {
         binding.apply {
             when (view) {
                 backBtn -> requireActivity().findNavController(R.id.mainContainer).popBackStack()
-                sizeBtn, mixBtn, destroyBtn, expiredBtn, agingBtn, etcBtn -> {
-                    listOf(sizeBtn,
-                        mixBtn,
-                        destroyBtn,
-                        expiredBtn,
-                        agingBtn,
-                        etcBtn,
-                        etcBtn).forEach {
-                        it.isSelected = it == view
-                    }
-                    recallBtn.changeActivatedWithEnabled(true)
-                }
             }
         }
     }

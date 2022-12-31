@@ -104,6 +104,15 @@
             app:layout_constraintStart_toStartOf="@id/startLine"
             app:layout_constraintTop_toBottomOf="@id/divideLine" />
 
+        <View
+            android:id="@+id/sizeLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/sizeBtn"
+            app:layout_constraintEnd_toEndOf="@id/sizeTxt"
+            app:layout_constraintStart_toStartOf="@id/sizeBtn"
+            app:layout_constraintTop_toTopOf="@id/sizeBtn" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/sizeBtn"
             android:layout_width="24dp"
@@ -115,6 +124,7 @@
             app:layout_constraintTop_toBottomOf="@id/orderRecallReason" />
 
         <TextView
+            android:id="@+id/sizeTxt"
             style="@style/Regular14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -124,6 +134,15 @@
             app:layout_constraintBottom_toBottomOf="@id/sizeBtn"
             app:layout_constraintStart_toEndOf="@id/sizeBtn"
             app:layout_constraintTop_toTopOf="@id/sizeBtn" />
+
+        <View
+            android:id="@+id/mixLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/mixBtn"
+            app:layout_constraintEnd_toEndOf="@id/mixTxt"
+            app:layout_constraintStart_toStartOf="@id/mixBtn"
+            app:layout_constraintTop_toTopOf="@id/mixBtn" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/mixBtn"
@@ -136,6 +155,7 @@
             app:layout_constraintTop_toBottomOf="@id/sizeBtn" />
 
         <TextView
+            android:id="@+id/mixTxt"
             style="@style/Regular14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -145,6 +165,15 @@
             app:layout_constraintBottom_toBottomOf="@id/mixBtn"
             app:layout_constraintStart_toEndOf="@id/mixBtn"
             app:layout_constraintTop_toTopOf="@id/mixBtn" />
+
+        <View
+            android:id="@+id/destroyLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/destroyBtn"
+            app:layout_constraintEnd_toEndOf="@id/destroyTxt"
+            app:layout_constraintStart_toStartOf="@id/destroyBtn"
+            app:layout_constraintTop_toTopOf="@id/destroyBtn" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/destroyBtn"
@@ -157,6 +186,7 @@
             app:layout_constraintTop_toBottomOf="@id/mixBtn" />
 
         <TextView
+            android:id="@+id/destroyTxt"
             style="@style/Regular14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -166,6 +196,15 @@
             app:layout_constraintBottom_toBottomOf="@id/destroyBtn"
             app:layout_constraintStart_toEndOf="@id/destroyBtn"
             app:layout_constraintTop_toTopOf="@id/destroyBtn" />
+
+        <View
+            android:id="@+id/expiredLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/expiredBtn"
+            app:layout_constraintEnd_toEndOf="@id/expiredTxt"
+            app:layout_constraintStart_toStartOf="@id/expiredBtn"
+            app:layout_constraintTop_toTopOf="@id/expiredBtn" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/expiredBtn"
@@ -178,6 +217,7 @@
             app:layout_constraintTop_toBottomOf="@id/destroyBtn" />
 
         <TextView
+            android:id="@+id/expiredTxt"
             style="@style/Regular14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -187,6 +227,15 @@
             app:layout_constraintBottom_toBottomOf="@id/expiredBtn"
             app:layout_constraintStart_toEndOf="@id/expiredBtn"
             app:layout_constraintTop_toTopOf="@id/expiredBtn" />
+
+        <View
+            android:id="@+id/agingLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/agingBtn"
+            app:layout_constraintEnd_toEndOf="@id/agingTxt"
+            app:layout_constraintStart_toStartOf="@id/agingBtn"
+            app:layout_constraintTop_toTopOf="@id/agingBtn" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/agingBtn"
@@ -199,6 +248,7 @@
             app:layout_constraintTop_toBottomOf="@id/expiredBtn" />
 
         <TextView
+            android:id="@+id/agingTxt"
             style="@style/Regular14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -208,6 +258,15 @@
             app:layout_constraintBottom_toBottomOf="@id/agingBtn"
             app:layout_constraintStart_toEndOf="@id/agingBtn"
             app:layout_constraintTop_toTopOf="@id/agingBtn" />
+
+        <View
+            android:id="@+id/etcLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/etcBtn"
+            app:layout_constraintEnd_toEndOf="@id/etcTxt"
+            app:layout_constraintStart_toStartOf="@id/etcBtn"
+            app:layout_constraintTop_toTopOf="@id/etcBtn" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/etcBtn"
@@ -220,6 +279,7 @@
             app:layout_constraintTop_toBottomOf="@id/agingBtn" />
 
         <TextView
+            android:id="@+id/etcTxt"
             style="@style/Regular14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
