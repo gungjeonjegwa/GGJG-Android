@@ -4,9 +4,9 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewTreeObserver
-import android.widget.ScrollView
+import androidx.core.widget.NestedScrollView
 
-class CustomScrollView : ScrollView, ViewTreeObserver.OnGlobalLayoutListener {
+class CustomScrollView : NestedScrollView, ViewTreeObserver.OnGlobalLayoutListener {
     constructor(context: Context) : this(context, null, 0)
     constructor(context: Context, attr: AttributeSet?) : this(context, attr, 0)
     constructor(context: Context, attr: AttributeSet?, defStyleAttr: Int) : super(
