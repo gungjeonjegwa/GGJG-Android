@@ -1,7 +1,7 @@
 package com.example.ggjg_andorid.adapter
 
 import android.content.Context
-import android.media.MediaMetadataRetriever
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
+import coil.transform.RoundedCornersTransformation
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.ItemImageBinding
 import com.example.ggjg_andorid.databinding.ItemPayOptionBinding
@@ -29,9 +30,14 @@ class ImageAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: String) = binding.apply {
-            image.load("file://$item")
+            Handler().postDelayed({
+                imageLayout.layoutParams = imageLayout.layoutParams.apply {
+                    height = imageLayout.width
+                }
+                image.load("file://$item")
+            }, 1)
             selectedLayout.setVisible(OrderViewModel.imgList.contains(item))
-            image.setOnClickListener {
+            imageLayout.setOnClickListener {
                 if (OrderViewModel.imgList.size < 2 || OrderViewModel.imgList.contains(item)) {
                     if (!OrderViewModel.imgList.contains(item)) {
                         selectedLayout.setVisible()
