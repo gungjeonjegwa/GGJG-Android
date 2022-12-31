@@ -7,4 +7,6 @@ import javax.inject.Inject
 class CouponRepositoryImpl @Inject constructor(
     private val couponDataSource: CouponDataSource,
 ) : CouponRepository {
+    override suspend fun enrollCoupon(code: String) =
+        couponDataSource.enrollCoupon(code)
 }
