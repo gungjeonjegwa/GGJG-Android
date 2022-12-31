@@ -2,6 +2,7 @@ package com.example.ggjg_andorid.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -34,7 +35,7 @@ class OrderAdapter :
             breadNameTxt.text = item.title
             costTxt.text = "${item.price}원"
             if (isLast) {
-                divide.setVisible(false)
+                divide.visibility = View.INVISIBLE
             }
             moveDetailBtn.setOnClickListener {
                 listener.detail(item)
