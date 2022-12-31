@@ -56,12 +56,6 @@
             app:layout_constraintStart_toStartOf="@id/startLine"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/shadow_black"
-            app:layout_constraintTop_toTopOf="@id/shoppingListBarBottomLine" />
-
         <ScrollView
             android:id="@+id/paymentLayout"
             android:layout_width="match_parent"
