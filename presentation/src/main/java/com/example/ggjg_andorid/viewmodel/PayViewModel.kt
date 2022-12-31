@@ -84,7 +84,6 @@ class PayViewModel @Inject constructor(
                 }
             ))
         }.onSuccess {
-            println("안녕 결제 성공")
         }.onFailure {
             println("안녕 $it")
         }
