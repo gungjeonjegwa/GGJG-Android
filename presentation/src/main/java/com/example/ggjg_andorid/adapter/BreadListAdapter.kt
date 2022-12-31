@@ -33,9 +33,9 @@ class BreadListAdapter :
 
         fun bind(item: BreadEntity.Bread) = binding.apply {
             bread = item
-            val height = (context.resources.displayMetrics.heightPixels * 0.22).toInt()
-            breadImg.layoutParams =
-                ViewGroup.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, height)
+            val breadImgParams = breadImg.layoutParams
+            breadImgParams.height = (context.resources.displayMetrics.heightPixels * 0.22).toInt()
+            breadImg.layoutParams = breadImgParams
             breadImg.load(item.imgUrl) {
                 transformations(RoundedCornersTransformation(0f))
             }
