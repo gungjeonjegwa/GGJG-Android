@@ -30,7 +30,7 @@ class OrderDetailAdapter :
             }
             breadImg.load(item.breadImg)
             costTxt.text =
-                "${DecimalFormat("#,###").format((item.price + (item.extraMoney ?: 0)) * item.count)}원"
+                "${DecimalFormat("#,###").format(item.price)}원"
             countTxt.text = "${item.count}개"
             if (item.unit != null) {
                 optionTxt.text =
