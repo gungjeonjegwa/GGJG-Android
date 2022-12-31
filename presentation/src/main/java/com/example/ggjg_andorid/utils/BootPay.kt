@@ -2,8 +2,11 @@ package com.example.ggjg_andorid.utils
 
 import android.content.Context
 import androidx.fragment.app.FragmentManager
+import com.example.data.utils.removeDot
 import com.example.ggjg_andorid.BuildConfig
 import com.example.ggjg_andorid.viewmodel.PayViewModel
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import kr.co.bootpay.android.Bootpay
 import kr.co.bootpay.android.events.BootpayEventListener
 import kr.co.bootpay.android.models.Payload
@@ -21,7 +24,7 @@ fun bootPayCreate(
     supportFragmentManager: FragmentManager,
     applicationContext: Context,
     payload: Payload,
-    onConfirmFunc: (data: String?) -> Boolean,
+    onPayedEvent: () -> Unit,
 ) {
     Bootpay.init(supportFragmentManager, applicationContext)
         .setPayload(payload)
@@ -34,19 +37,25 @@ fun bootPayCreate(
 
             override fun onClose(data: String?) {
                 Bootpay.removePaymentWindow()
+                val jsonParser = JsonParser()
+                val result = ((jsonParser.parse(data) as JsonObject)["event"]).toString().removeDot()
+                if (result == "done") {
+                    onPayedEvent()
+                }
             }
 
             override fun onIssued(data: String?) {
             }
 
             override fun onConfirm(data: String?): Boolean {
-                Bootpay.removePaymentWindow()
-                onConfirmFunc(data)
                 return true
             }
 
             override fun onDone(data: String?) {
-
             }
         }).requestPayment()
 }
+
+data class BootPay(
+    val event: String
+)
