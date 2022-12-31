@@ -4,16 +4,9 @@ import android.os.Handler
 import android.os.Looper
 import android.os.Message
 import android.view.View
-import android.view.ViewGroup
-import android.widget.AbsListView.OnScrollListener
-import android.widget.LinearLayout
-import android.widget.ScrollView
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.example.domain.entity.bread.BreadEntity
@@ -24,7 +17,7 @@ import com.example.ggjg_andorid.adapter.decorator.BreadListDecorator
 import com.example.ggjg_andorid.adapter.listener.EndlessRecyclerViewScrollListener
 import com.example.ggjg_andorid.databinding.FragmentHomeBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
-import com.example.ggjg_andorid.ui.detail.DetailBreadFragment
+import com.example.ggjg_andorid.utils.Extension.customTopScroll
 import com.example.ggjg_andorid.utils.repeatOnStart
 import com.example.ggjg_andorid.utils.setVisible
 import com.example.ggjg_andorid.viewmodel.DetailViewModel
@@ -40,7 +33,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private lateinit var adapter: BreadListAdapter
     private val autoTime: Long = 3000
     private var maxSize = 0
-    private var isMoveTop = false
     private val handler = HomeBannerHandler()
 
     override fun onResume() {
@@ -91,19 +83,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         bannerContainer.layoutParams = bannerLayoutParams
         allBtn.isSelected = true
         categoryList = listOf(allBtn, breadBtn, cakeBtn, cookieBtn, presentBtn)
-        layoutManager = if (deviceWidth <= 1080) GridLayoutManager(requireContext(), 2) else GridLayoutManager(requireContext(), 3)
+        layoutManager =
+            if (deviceWidth <= 1080) GridLayoutManager(requireContext(), 2) else GridLayoutManager(
+                requireContext(),
+                3)
         listener =
             object : EndlessRecyclerViewScrollListener(layoutManager) {
-                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                    super.onScrollStateChanged(recyclerView, newState)
-                    if (!recyclerView.canScrollVertically(-1) && isMoveTop) {
-                        binding.scrollView.smoothScrollTo(0, 0)
-                        isMoveTop = false
-                    } else if (isMoveTop) {
-                        binding.breadList.smoothScrollToPosition(0)
-                    }
-                }
-
                 override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
                     if (!HomeViewModel.isLast) {
                         binding.moreProgress.setVisible()
@@ -135,14 +120,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         })
         scrollView.run {
             header = binding.menuBar
-            stickListener = {
-                scrollView.isNestedScrollingEnabled = false
-                breadList.isNestedScrollingEnabled = true
-            }
-            freeListener = {
-                scrollView.isNestedScrollingEnabled = true
-                breadList.isNestedScrollingEnabled = false
-            }
         }
         categoryList.forEach {
             it.setOnClickListener { tag ->
@@ -167,11 +144,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             layoutManager = this@HomeFragment.layoutManager
             addItemDecoration(BreadListDecorator(context))
             addOnScrollListener(listener)
-            setOnTouchListener { _, _ ->
-                binding.breadList.stopScroll()
-                isMoveTop = false
-                false
-            }
         }
         bannerContainer.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(
@@ -224,8 +196,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     fun onClick(view: View) {
         when (view.id) {
             R.id.topScrollBtn -> {
-                binding.breadList.smoothScrollToPosition(0)
-                isMoveTop = true
+                binding.scrollView.customTopScroll(binding.breadList)
             }
         }
     }
