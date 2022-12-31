@@ -48,6 +48,10 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
         is PayViewModel.Event.NoAddressInitInfo -> {
             binding.setOrderAddressBtn.setVisible()
         }
+        is PayViewModel.Event.SuccessPay -> {
+            Toast.makeText(context, "결제가 완료되었습니다.", Toast.LENGTH_SHORT).show()
+            requireActivity().findNavController(R.id.mainContainer).popBackStack()
+        }
     }
 
     private fun viewText(address: AddressModel) = binding.apply {
@@ -121,8 +125,6 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
                     requireContext(),
                     bootPayPayload(title, totalMoney.toDouble())) {
                     payViewModel.buyBread()
-                    Toast.makeText(context, "결제가 완료되었습니다.", Toast.LENGTH_SHORT).show()
-                    requireActivity().findNavController(R.id.mainContainer).popBackStack()
                 }
             }
             R.id.setOrderAddressBtn -> {

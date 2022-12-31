@@ -84,6 +84,7 @@ class PayViewModel @Inject constructor(
                 }
             ))
         }.onSuccess {
+            event(Event.SuccessPay)
         }.onFailure {
             println("안녕 $it")
         }
@@ -96,5 +97,6 @@ class PayViewModel @Inject constructor(
     sealed class Event {
         data class InitInfo(val data: InitOrderEntity) : Event()
         data class NoAddressInitInfo(val data: InitOrderEntity) : Event()
+        object SuccessPay : Event()
     }
 }
