@@ -113,7 +113,7 @@
             android:layout_marginTop="8dp"
             android:background="@drawable/selector_input_layout"
             android:gravity="top"
-            android:hint="@string/request_item_quality"
+            android:hint="@string/request_item_question"
             android:paddingHorizontal="12dp"
             android:paddingVertical="8dp"
             android:textColor="@color/real_black"
