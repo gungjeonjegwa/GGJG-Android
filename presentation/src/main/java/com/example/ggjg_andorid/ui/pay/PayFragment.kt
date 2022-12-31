@@ -2,6 +2,7 @@ package com.example.ggjg_andorid.ui.pay
 
 import android.content.Context
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -120,7 +121,8 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
                     requireContext(),
                     bootPayPayload(title, totalMoney.toDouble())) {
                     payViewModel.buyBread()
-                    true
+                    Toast.makeText(context, "결제가 완료되었습니다.", Toast.LENGTH_SHORT).show()
+                    requireActivity().findNavController(R.id.mainContainer).popBackStack()
                 }
             }
             R.id.setOrderAddressBtn -> {
