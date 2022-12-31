@@ -416,13 +416,156 @@
                     android:background="@color/light_gray"
                     app:layout_constraintTop_toBottomOf="@id/ingredientTxt" />
 
+                <LinearLayout
+                    android:id="@+id/reviewAndQaTabLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    app:layout_constraintEnd_toEndOf="@id/endLine"
+                    app:layout_constraintStart_toStartOf="@id/startLine"
+                    app:layout_constraintTop_toBottomOf="@id/itemInfoDivide">
+
+                    <TextView
+                        android:id="@+id/reviewBtn"
+                        style="@style/Medium14"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/selector_detail_tab"
+                        android:gravity="center"
+                        android:onClick="@{detailBread::onClick}"
+                        android:paddingVertical="11dp"
+                        android:text="@string/item_review"
+                        android:textColor="@drawable/selector_detail_tab_color" />
+
+                    <TextView
+                        android:id="@+id/qaBtn"
+                        style="@style/Medium14"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/selector_detail_tab"
+                        android:gravity="center"
+                        android:onClick="@{detailBread::onClick}"
+                        android:paddingVertical="11dp"
+                        android:text="@string/item_question"
+                        android:textColor="@drawable/selector_detail_tab_color" />
+                </LinearLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/reviewAndQaLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="@id/endLine"
+                    app:layout_constraintStart_toStartOf="@id/startLine"
+                    app:layout_constraintTop_toBottomOf="@id/reviewAndQaTabLayout">
+
+                    <TextView
+                        android:id="@+id/moveQaBtn"
+                        style="@style/Regular14"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:background="@drawable/bg_input_layout_unactivate"
+                        android:gravity="center"
+                        android:onClick="@{detailBread::onClick}"
+                        android:paddingVertical="8dp"
+                        android:text="@string/qa_do_it"
+                        android:textColor="@color/very_dark_gray"
+                        android:visibility="gone"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/noneReview"
+                        style="@style/Regular14"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:gravity="center_horizontal"
+                        android:paddingBottom="16dp"
+                        android:text="@string/none_review"
+                        android:textColor="@color/very_dark_gray"
+                        android:visibility="gone"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/noneQa"
+                        style="@style/Regular14"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:gravity="center_horizontal"
+                        android:paddingBottom="16dp"
+                        android:text="@string/none_qa"
+                        android:textColor="@color/very_dark_gray"
+                        android:visibility="gone"
+                        app:layout_constraintTop_toBottomOf="@id/moveQaBtn" />
+
+                    <LinearLayout
+                        android:id="@+id/reviewListLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="42dp"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/reviewList"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:nestedScrollingEnabled="false" />
+
+                        <TextView
+                            android:id="@+id/allReviewBtn"
+                            style="@style/Regular14"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:gravity="center_horizontal"
+                            android:text="@string/all_item_review"
+                            android:textColor="@color/dark_gray" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/qaListLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/moveQaBtn">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/qaList"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:nestedScrollingEnabled="false" />
+
+                        <TextView
+                            android:id="@+id/allQaBtn"
+                            style="@style/Regular14"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:gravity="center_horizontal"
+                            android:text="@string/all_item_question"
+                            android:textColor="@color/dark_gray" />
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <View
                     android:id="@+id/commentDivide"
                     android:layout_width="match_parent"
                     android:layout_height="16dp"
                     android:layout_marginTop="32dp"
                     android:background="@color/light_gray"
-                    app:layout_constraintTop_toBottomOf="@id/itemInfoDivide" />
+                    app:layout_constraintTop_toBottomOf="@id/reviewAndQaLayout" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/deliveryAndPaymentInfoBtn"

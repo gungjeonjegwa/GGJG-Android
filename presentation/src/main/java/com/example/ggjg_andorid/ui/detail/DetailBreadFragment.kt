@@ -1,6 +1,7 @@
 package com.example.ggjg_andorid.ui.detail
 
 import android.content.Intent
+import android.graphics.Paint
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -45,6 +46,7 @@ class DetailBreadFragment :
         binding.detailBread = this
         mainViewModel.hiddenNav(true)
         detailViewModel.detailBread()
+        detailViewModel.listReview()
         initView()
         repeatOnStart {
             detailViewModel.eventFlow.collect { event -> handleEvent(event) }
@@ -95,6 +97,30 @@ class DetailBreadFragment :
                 imgIndicator.text = "${imgContainer.currentItem + 1} / $max"
             }
         }
+        is DetailViewModel.Event.NoneQa -> {
+            binding.noneReview.setVisible(false)
+            binding.reviewListLayout.setVisible(false)
+            binding.qaListLayout.setVisible(false)
+            binding.noneQa.setVisible()
+        }
+        is DetailViewModel.Event.NoneReview -> {
+            binding.reviewListLayout.setVisible(false)
+            binding.qaListLayout.setVisible(false)
+            binding.noneQa.setVisible(false)
+            binding.noneReview.setVisible()
+        }
+        is DetailViewModel.Event.Qa -> {
+            binding.reviewListLayout.setVisible(false)
+            binding.noneQa.setVisible(false)
+            binding.noneReview.setVisible(false)
+            binding.qaListLayout.setVisible()
+        }
+        is DetailViewModel.Event.Review -> {
+            binding.qaListLayout.setVisible(false)
+            binding.noneQa.setVisible(false)
+            binding.noneReview.setVisible(false)
+            binding.reviewListLayout.setVisible()
+        }
     }
 
     private fun viewDeliveryType(view: Int) {
@@ -107,6 +133,9 @@ class DetailBreadFragment :
 
     private fun initView() = binding.apply {
         payBtn.changeActivatedWithEnabled(true)
+        reviewBtn.isActivated = true
+        allQaBtn.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+        allReviewBtn.paintFlags = Paint.UNDERLINE_TEXT_FLAG
         val height = (requireContext().resources.displayMetrics.heightPixels * 0.45).toInt()
         imgContainer.run {
             layoutParams = ViewGroup.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, height)
@@ -183,6 +212,26 @@ class DetailBreadFragment :
                         ), 0
                     )
                 }
+            }
+            R.id.reviewBtn -> {
+                if (!binding.reviewBtn.isActivated) {
+                    binding.reviewBtn.isActivated = true
+                    binding.qaBtn.isActivated = false
+                    binding.moveQaBtn.setVisible(false)
+                    detailViewModel.listReview()
+                }
+            }
+            R.id.qaBtn -> {
+                if (!binding.qaBtn.isActivated) {
+                    binding.qaBtn.isActivated = true
+                    binding.reviewBtn.isActivated = false
+                    binding.moveQaBtn.setVisible()
+                    detailViewModel.listQa()
+                }
+            }
+            R.id.moveQaBtn -> {
+                requireActivity().findNavController(R.id.mainContainer)
+                    .navigate(R.id.action_detailBreadFragment_to_QAFragment)
             }
         }
     }

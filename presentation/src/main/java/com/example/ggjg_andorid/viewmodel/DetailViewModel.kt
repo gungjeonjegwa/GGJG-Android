@@ -37,11 +37,23 @@ class DetailViewModel @Inject constructor(
         likeBreadUseCase.execute(id)
     }
 
+    fun listReview() = viewModelScope.launch {
+        event(Event.NoneReview)
+    }
+
+    fun listQa() = viewModelScope.launch {
+        event(Event.NoneQa)
+    }
+
     private fun event(event: Event) = viewModelScope.launch {
         _eventFlow.emit(event)
     }
 
     sealed class Event {
         data class DetailBread(val detailBread: DetailBreadEntity) : Event()
+        object NoneQa : Event()
+        object NoneReview : Event()
+        data class Review(val data: String) : Event()
+        data class Qa(val data: String) : Event()
     }
 }
