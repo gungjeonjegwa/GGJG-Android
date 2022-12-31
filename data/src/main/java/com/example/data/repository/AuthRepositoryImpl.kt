@@ -36,8 +36,8 @@ class AuthRepositoryImpl @Inject constructor(
     override suspend fun changeAddress(address: AddressModel) =
         authDataSource.changeAddress(address.toRequest())
 
-    override suspend fun resentAddress(): List<AddressModel> =
-        authDataSource.resentAddress().map { it.toEntity() }
+    override suspend fun recentAddress(): List<AddressModel> =
+        authDataSource.recentAddress().map { it.toEntity() }
 
     override suspend fun saveToken(access: String?, refresh: String?, expiredAt: String?) =
         localAuthDataSource.saveToken(access, refresh, expiredAt)

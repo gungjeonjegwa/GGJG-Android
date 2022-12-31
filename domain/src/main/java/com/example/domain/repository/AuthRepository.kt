@@ -13,7 +13,7 @@ interface AuthRepository {
     suspend fun idCheck(id: String): CheckEntity
     suspend fun emailCheck(email: String): CheckEntity
     suspend fun changeAddress(address: AddressModel)
-    suspend fun resentAddress(): List<AddressModel>
+    suspend fun recentAddress(): List<AddressModel>
     suspend fun saveToken(access: String?, refresh: String?, expiredAt: String?)
     suspend fun isLogin(): Boolean
 }

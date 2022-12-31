@@ -40,5 +40,5 @@ interface AuthAPI {
     )
 
     @GET("/users/address")
-    suspend fun resentAddress(): List<AddressModel>
+    suspend fun recentAddress(): List<AddressModel>
 }
