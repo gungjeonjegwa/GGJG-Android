@@ -55,7 +55,3 @@ fun bootPayCreate(
             }
         }).requestPayment()
 }
-
-data class BootPay(
-    val event: String
-)
