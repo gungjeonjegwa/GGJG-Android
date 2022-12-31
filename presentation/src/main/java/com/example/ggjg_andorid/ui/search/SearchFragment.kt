@@ -2,6 +2,7 @@ package com.example.ggjg_andorid.ui.search
 
 import android.os.Handler
 import android.view.View
+import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
@@ -9,8 +10,6 @@ import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.FragmentSearchBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.utils.*
-import com.example.ggjg_andorid.viewmodel.MainViewModel
-import com.example.ggjg_andorid.viewmodel.RegisterViewModel
 import com.example.ggjg_andorid.viewmodel.SearchViewModel
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_search) {
@@ -56,6 +55,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
     }
 
     private fun initView() = binding.apply {
+        requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
         viewFragment(SearchRecentFragment())
         keyboardShow(requireActivity(), searchBread)
         searchBread.run {
