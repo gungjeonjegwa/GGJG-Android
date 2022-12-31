@@ -4,20 +4,12 @@ import android.os.Environment.*
 
 object FilePaths {
     val ROOT_DIR = getExternalStorageDirectory().path
-    val PICTURES = "$ROOT_DIR/Pictures"
-    val CAMERA = "$ROOT_DIR/DCIM"
-    val DOWNLOAD = "$ROOT_DIR/Download"
+    val CAMERA = "$ROOT_DIR/DCIM/Camera"
 }
 
 fun getImageDirectory(): List<String> {
     var imgList = listOf<String>()
-    FilePaths.PICTURES.getDirectoryPaths().forEach {
-        imgList = imgList.plus(it.getFilePaths())
-    }
-    FilePaths.CAMERA.getDirectoryPaths().forEach {
-        imgList = imgList.plus(it.getFilePaths())
-    }
-    imgList = imgList.plus(FilePaths.DOWNLOAD.getFilePaths())
+    imgList = imgList.plus(FilePaths.CAMERA.getFilePaths())
     imgList = imgList.filter { !it.contains(".mp4") }
-    return imgList
+    return imgList.reversed()
 }
