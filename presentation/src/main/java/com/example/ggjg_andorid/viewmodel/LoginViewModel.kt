@@ -32,6 +32,7 @@ class LoginViewModel @Inject constructor(
             MainViewModel.isLogin = true
             event(Event.Success)
         }.onFailure {
+            event(Event.Failure)
         }
     }
 
@@ -41,5 +42,6 @@ class LoginViewModel @Inject constructor(
 
     sealed class Event {
         object Success : Event()
+        object Failure : Event()
     }
 }

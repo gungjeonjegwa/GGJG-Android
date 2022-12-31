@@ -84,7 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/ic_id" />
+                android:background="@drawable/selector_id" />
 
             <EditText
                 android:id="@+id/editId"
@@ -128,7 +128,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/ic_pw" />
+                android:background="@drawable/selector_pw" />
 
             <EditText
                 android:id="@+id/editPw"

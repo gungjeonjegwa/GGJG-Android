@@ -32,12 +32,21 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             setResult(1)
             finish()
         }
+        is LoginViewModel.Event.Failure -> {
+            binding.editPw.setText(null)
+            binding.errorTxt.onError(
+                getString(R.string.login_wrong),
+                binding.editId,
+                this,
+            )
+        }
     }
 
     private fun initView() = binding.apply {
         editId.run {
             setOnTextChanged { p0, _, _, _ ->
                 deleteIdBtn.setVisible(!p0.isNullOrBlank())
+                errorTxt.text = null
                 loginBtn.changeActivatedWithEnabled(!p0.isNullOrBlank() && !binding.editPw.text.isNullOrBlank())
             }
             setOnFocusChangeListener { _, b ->
@@ -47,6 +56,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         editPw.run {
             setOnTextChanged { p0, _, _, _ ->
                 visibleBtn.setVisible(!p0.isNullOrBlank())
+                errorTxt.text = null
                 loginBtn.changeActivatedWithEnabled(!p0.isNullOrBlank() && !binding.editId.text.isNullOrBlank())
             }
             setOnFocusChangeListener { _, b ->
