@@ -38,10 +38,16 @@ class PayViewModel @Inject constructor(
             initOrderInfoUseCase.execute()
         }.onSuccess {
             defaultAddress = it.address
-            if (it.address != null && address == null) {
-                address = it.address
+            if (it.address == null && address == null) {
+                event(Event.NoAddressInitInfo(it))
+            } else {
+                if (address != null) {
+                    it.address = address
+                } else {
+                    address = it.address
+                }
+                event(Event.InitInfo(it))
             }
-            event(Event.InitInfo(it))
             if (orderNumber == null) {
                 kotlin.runCatching {
                     createOrderUseCase.execute()
@@ -90,6 +96,6 @@ class PayViewModel @Inject constructor(
 
     sealed class Event {
         data class InitInfo(val data: InitOrderEntity) : Event()
-        data class ChangeAddress(val data: AddressModel) : Event()
+        data class NoAddressInitInfo(val data: InitOrderEntity) : Event()
     }
 }

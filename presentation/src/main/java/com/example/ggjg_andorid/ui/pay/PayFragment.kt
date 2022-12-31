@@ -42,18 +42,10 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
         is PayViewModel.Event.InitInfo -> {
             binding.phoneTxt.text = "(${event.data.phone})"
             binding.nameTxt.text = event.data.name
-            event.data.address.let {
-                if (it != null && PayViewModel.address == null) {
-                    viewText(it)
-                } else if (PayViewModel.address != null) {
-                    viewText(PayViewModel.address!!)
-                } else {
-
-                }
-            }
+            viewText(event.data.address!!)
         }
-        is PayViewModel.Event.ChangeAddress -> {
-            viewText(event.data)
+        is PayViewModel.Event.NoAddressInitInfo -> {
+            binding.setOrderAddressBtn.setVisible()
         }
     }
 
