@@ -24,6 +24,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/startLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.05" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/endLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.95" />
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/bannerLayout"
                     android:layout_width="match_parent"
@@ -64,17 +78,16 @@
 
                 <LinearLayout
                     android:id="@+id/menuBar"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="16dp"
                     android:background="@color/background"
                     android:orientation="horizontal"
                     android:outlineProvider="none"
                     android:paddingVertical="12dp"
                     android:paddingTop="16dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/endLine"
+                    app:layout_constraintStart_toStartOf="@id/startLine"
                     app:layout_constraintTop_toBottomOf="@id/bannerLayout">
 
                     <TextView
@@ -161,13 +174,14 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/breadList"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="4dp"
                     android:nestedScrollingEnabled="false"
                     android:onClick="@{home::onClick}"
                     app:layout_constraintBottom_toTopOf="@id/moreProgress"
+                    app:layout_constraintEnd_toEndOf="@id/endLine"
+                    app:layout_constraintStart_toStartOf="@id/startLine"
                     app:layout_constraintTop_toBottomOf="@id/menuBar" />
 
                 <ProgressBar
@@ -180,19 +194,25 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.example.ggjg_andorid.utils.custom_view.CustomScrollView>
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/topScrollBtnEndLine"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
         <ImageView
             android:id="@+id/topScrollBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/bg_scroll_top_btn"
+            android:elevation="2dp"
             android:onClick="@{home::onClick}"
             android:paddingHorizontal="15.6dp"
             android:paddingVertical="12dp"
-            android:elevation="2dp"
             android:src="@drawable/ic_up"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="@id/topScrollBtnEndLine" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
