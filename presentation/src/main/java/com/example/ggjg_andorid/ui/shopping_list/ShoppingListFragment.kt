@@ -1,5 +1,6 @@
 package com.example.ggjg_andorid.ui.shopping_list
 
+import android.content.Context
 import android.content.Intent
 import android.view.View
 import androidx.fragment.app.activityViewModels
@@ -30,10 +31,16 @@ class ShoppingListFragment :
         super.onDetach()
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (MainViewModel.isLogin) {
+            shoppingListViewModel.myBasket()
+        }
+    }
+
     override fun createView() {
         binding.shoppingList = this
         if (MainViewModel.isLogin) {
-            shoppingListViewModel.myBasket()
             repeatOnStart {
                 shoppingListViewModel.eventFlow.collect { event -> handleEvent(event) }
             }
@@ -50,6 +57,7 @@ class ShoppingListFragment :
     private fun handleEvent(event: ShoppingListViewModel.Event) = when (event) {
         is ShoppingListViewModel.Event.MyBasket -> {
             if (event.data.isEmpty()) {
+                mainViewModel.hiddenNav(false)
                 binding.emptyShoppingListTxt.setVisible(true)
             } else {
                 initView()
