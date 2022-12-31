@@ -104,17 +104,26 @@
             app:layout_constraintStart_toStartOf="@id/startLine"
             app:layout_constraintTop_toBottomOf="@id/divideLine" />
 
+        <View
+            android:id="@+id/justLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/justBtn"
+            app:layout_constraintEnd_toEndOf="@id/justTxt"
+            app:layout_constraintStart_toStartOf="@id/justBtn"
+            app:layout_constraintTop_toTopOf="@id/justBtn" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/justBtn"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/selector_radio_btn"
-            android:onClick="@{orderCancel::onClick}"
             app:layout_constraintStart_toStartOf="@id/startLine"
             app:layout_constraintTop_toBottomOf="@id/orderCancelReason" />
 
         <TextView
+            android:id="@+id/justTxt"
             style="@style/Regular14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -125,17 +134,26 @@
             app:layout_constraintStart_toEndOf="@id/justBtn"
             app:layout_constraintTop_toTopOf="@id/justBtn" />
 
+        <View
+            android:id="@+id/couponLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/couponBtn"
+            app:layout_constraintEnd_toEndOf="@id/couponTxt"
+            app:layout_constraintStart_toStartOf="@id/couponBtn"
+            app:layout_constraintTop_toTopOf="@id/couponBtn" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/couponBtn"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/selector_radio_btn"
-            android:onClick="@{orderCancel::onClick}"
             app:layout_constraintStart_toStartOf="@id/startLine"
             app:layout_constraintTop_toBottomOf="@id/justBtn" />
 
         <TextView
+            android:id="@+id/couponTxt"
             style="@style/Regular14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -146,17 +164,26 @@
             app:layout_constraintStart_toEndOf="@id/couponBtn"
             app:layout_constraintTop_toTopOf="@id/couponBtn" />
 
+        <View
+            android:id="@+id/optionLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/optionBtn"
+            app:layout_constraintEnd_toEndOf="@id/optionTxt"
+            app:layout_constraintStart_toStartOf="@id/optionBtn"
+            app:layout_constraintTop_toTopOf="@id/optionBtn" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/optionBtn"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/selector_radio_btn"
-            android:onClick="@{orderCancel::onClick}"
             app:layout_constraintStart_toStartOf="@id/startLine"
             app:layout_constraintTop_toBottomOf="@id/couponBtn" />
 
         <TextView
+            android:id="@+id/optionTxt"
             style="@style/Regular14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -167,17 +194,26 @@
             app:layout_constraintStart_toEndOf="@id/optionBtn"
             app:layout_constraintTop_toTopOf="@id/optionBtn" />
 
+        <View
+            android:id="@+id/delayLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/delayBtn"
+            app:layout_constraintEnd_toEndOf="@id/delayTxt"
+            app:layout_constraintStart_toStartOf="@id/delayBtn"
+            app:layout_constraintTop_toTopOf="@id/delayBtn" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/delayBtn"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/selector_radio_btn"
-            android:onClick="@{orderCancel::onClick}"
             app:layout_constraintStart_toStartOf="@id/startLine"
             app:layout_constraintTop_toBottomOf="@id/optionBtn" />
 
         <TextView
+            android:id="@+id/delayTxt"
             style="@style/Regular14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -188,17 +224,26 @@
             app:layout_constraintStart_toEndOf="@id/delayBtn"
             app:layout_constraintTop_toTopOf="@id/delayBtn" />
 
+        <View
+            android:id="@+id/addressLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/addressBtn"
+            app:layout_constraintEnd_toEndOf="@id/addressTxt"
+            app:layout_constraintStart_toStartOf="@id/addressBtn"
+            app:layout_constraintTop_toTopOf="@id/addressBtn" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/addressBtn"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/selector_radio_btn"
-            android:onClick="@{orderCancel::onClick}"
             app:layout_constraintStart_toStartOf="@id/startLine"
             app:layout_constraintTop_toBottomOf="@id/delayBtn" />
 
         <TextView
+            android:id="@+id/addressTxt"
             style="@style/Regular14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -209,17 +254,26 @@
             app:layout_constraintStart_toEndOf="@id/addressBtn"
             app:layout_constraintTop_toTopOf="@id/addressBtn" />
 
+        <View
+            android:id="@+id/etcLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/etcBtn"
+            app:layout_constraintEnd_toEndOf="@id/etcTxt"
+            app:layout_constraintStart_toStartOf="@id/etcBtn"
+            app:layout_constraintTop_toTopOf="@id/etcBtn" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/etcBtn"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/selector_radio_btn"
-            android:onClick="@{orderCancel::onClick}"
             app:layout_constraintStart_toStartOf="@id/startLine"
             app:layout_constraintTop_toBottomOf="@id/addressBtn" />
 
         <TextView
+            android:id="@+id/etcTxt"
             style="@style/Regular14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

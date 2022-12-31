@@ -15,7 +15,20 @@ class OrderCancelFragment :
     }
 
     private fun initView() = binding.apply {
-
+        val optionList = listOf(justBtn, couponBtn, optionBtn, delayBtn, addressBtn, etcBtn)
+        listOf(justLayout,
+            couponLayout,
+            optionLayout,
+            delayLayout,
+            addressLayout,
+            etcLayout).forEachIndexed { i, v ->
+            v.setOnClickListener {
+                optionList.forEachIndexed { o_i, o_v ->
+                    o_v.isSelected = i == o_i
+                }
+                cancelBtn.changeActivatedWithEnabled(true)
+            }
+        }
     }
 
     fun onClick(view: View) {
@@ -23,12 +36,6 @@ class OrderCancelFragment :
             when (view) {
                 backBtn -> {
                     requireActivity().findNavController(R.id.mainContainer).popBackStack()
-                }
-                justBtn, couponBtn, optionBtn, delayBtn, addressBtn, etcBtn -> {
-                    listOf(justBtn, couponBtn, optionBtn, delayBtn, addressBtn, etcBtn).forEach {
-                        it.isSelected = it == view
-                    }
-                    cancelBtn.changeActivatedWithEnabled(true)
                 }
             }
         }
