@@ -24,7 +24,6 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment
     private lateinit var breadAdapter: LikeBreadListAdapter
     override fun createView() {
         if (MainViewModel.isLogin) {
-            favoriteViewModel.getLikeBread()
             initView()
         } else {
             this.startActivityForResult(
@@ -48,6 +47,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment
     }
 
     private fun initView() = binding.apply {
+        favoriteViewModel.getLikeBread()
         favorite = this@FavoriteFragment
         repeatOnStart {
             favoriteViewModel.eventFlow.collect { event -> handleEvent(event) }
