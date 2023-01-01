@@ -13,9 +13,9 @@ data class ProfilePrivateResponse(
     @SerializedName("email")
     val email: String,
     @SerializedName("phone")
-    val phone: String,
+    val phone: String?,
     @SerializedName("address")
-    val address: AddressModel,
+    val address: AddressModel?,
 )
 
 fun ProfilePrivateResponse.toEntity() = ProfilePrivateEntity(
@@ -23,5 +23,5 @@ fun ProfilePrivateResponse.toEntity() = ProfilePrivateEntity(
     id = id,
     email = email,
     phone = phone,
-    address = address.toEntity()
+    address = address?.toEntity()
 )

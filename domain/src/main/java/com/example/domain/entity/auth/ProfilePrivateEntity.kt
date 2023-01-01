@@ -6,6 +6,6 @@ data class ProfilePrivateEntity(
     val name: String,
     val id: String,
     val email: String,
-    val phone: String,
-    val address: AddressModel,
+    val phone: String?,
+    val address: AddressModel?,
 )
