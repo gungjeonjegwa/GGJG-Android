@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:paddingBottom="12dp">
+
+        <TextView
+            android:id="@+id/discountAmount"
+            style="@style/Bold24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/discountUnit"
+            style="@style/Bold16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/discountAmount"
+            app:layout_constraintStart_toEndOf="@id/discountAmount" />
+
+        <TextView
+            android:id="@+id/couponNameTxt"
+            style="@style/Medium12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/very_dark_gray"
+            app:layout_constraintStart_toStartOf="@id/discountAmount"
+            app:layout_constraintTop_toBottomOf="@id/discountAmount" />
+
+        <TextView
+            android:id="@+id/expiredTxt"
+            style="@style/Regular12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/gray"
+            app:layout_constraintStart_toStartOf="@id/discountAmount"
+            app:layout_constraintTop_toBottomOf="@id/couponNameTxt" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
