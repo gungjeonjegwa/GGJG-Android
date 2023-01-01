@@ -19,4 +19,5 @@ interface AuthDataSource {
     suspend fun newAddress(address: AddressModel)
     suspend fun profile(): ProfileResponse
     suspend fun profilePrivate(): ProfilePrivateResponse
+    suspend fun giftStamp()
 }

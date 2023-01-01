@@ -54,4 +54,7 @@ interface AuthAPI {
 
     @GET("/users/profile/private")
     suspend fun profilePrivate(): ProfilePrivateResponse
+
+    @GET("/users/profile/giftstamp")
+    suspend fun giftStamp()
 }

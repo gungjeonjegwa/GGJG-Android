@@ -19,6 +19,7 @@ interface AuthRepository {
     suspend fun newAddress(address: AddressModel)
     suspend fun profile(): ProfileEntity
     suspend fun profilePrivate(): ProfilePrivateEntity
+    suspend fun giftStamp()
     suspend fun saveToken(access: String?, refresh: String?, expiredAt: String?)
     suspend fun isLogin(): Boolean
 }

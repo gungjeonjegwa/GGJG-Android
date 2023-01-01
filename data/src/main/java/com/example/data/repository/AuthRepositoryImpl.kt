@@ -50,6 +50,9 @@ class AuthRepositoryImpl @Inject constructor(
     override suspend fun profilePrivate(): ProfilePrivateEntity =
         authDataSource.profilePrivate().toEntity()
 
+    override suspend fun giftStamp() =
+        authDataSource.giftStamp()
+
     override suspend fun saveToken(access: String?, refresh: String?, expiredAt: String?) =
         localAuthDataSource.saveToken(access, refresh, expiredAt)
 

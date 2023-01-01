@@ -63,4 +63,9 @@ class AuthDataSourceImpl @Inject constructor(
         HttpHandler<ProfilePrivateResponse>()
             .httpRequest { authAPI.profilePrivate() }
             .sendRequest()
+
+    override suspend fun giftStamp() =
+        HttpHandler<Unit>()
+            .httpRequest { authAPI.giftStamp() }
+            .sendRequest()
 }
