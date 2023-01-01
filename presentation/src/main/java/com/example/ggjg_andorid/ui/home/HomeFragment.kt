@@ -43,6 +43,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     override fun onPause() {
         super.onPause()
         autoScrollStop()
+        binding.scrollView.scrollTo(0, 0)
     }
 
     override fun createView() {
@@ -76,7 +77,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     }
 
     private fun initView() = binding.apply {
-        scrollView.customTopScroll(breadList)
         val deviceWidth = requireContext().resources.displayMetrics.widthPixels
         val bannerLayoutParams = bannerContainer.layoutParams
         bannerLayoutParams.height =
