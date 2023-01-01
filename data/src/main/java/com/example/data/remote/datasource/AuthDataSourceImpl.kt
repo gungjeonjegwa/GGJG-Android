@@ -6,6 +6,7 @@ import com.example.data.remote.request.auth.LoginRequest
 import com.example.data.remote.request.auth.SignUpRequest
 import com.example.data.remote.response.auth.CheckResponse
 import com.example.data.remote.response.auth.LoginResponse
+import com.example.data.remote.response.auth.ProfilePrivateResponse
 import com.example.data.remote.response.auth.ProfileResponse
 import com.example.data.utils.HttpHandler
 import javax.inject.Inject
@@ -56,5 +57,10 @@ class AuthDataSourceImpl @Inject constructor(
     override suspend fun profile(): ProfileResponse =
         HttpHandler<ProfileResponse>()
             .httpRequest { authAPI.profile() }
+            .sendRequest()
+
+    override suspend fun profilePrivate(): ProfilePrivateResponse =
+        HttpHandler<ProfilePrivateResponse>()
+            .httpRequest { authAPI.profilePrivate() }
             .sendRequest()
 }

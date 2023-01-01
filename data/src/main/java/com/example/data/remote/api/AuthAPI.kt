@@ -5,6 +5,7 @@ import com.example.data.remote.request.auth.LoginRequest
 import com.example.data.remote.request.auth.SignUpRequest
 import com.example.data.remote.response.auth.CheckResponse
 import com.example.data.remote.response.auth.LoginResponse
+import com.example.data.remote.response.auth.ProfilePrivateResponse
 import com.example.data.remote.response.auth.ProfileResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -50,4 +51,7 @@ interface AuthAPI {
 
     @GET("/users/profile/my")
     suspend fun profile(): ProfileResponse
+
+    @GET("/users/profile/private")
+    suspend fun profilePrivate(): ProfilePrivateResponse
 }
