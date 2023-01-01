@@ -14,9 +14,12 @@ class StampAdapter :
     ListAdapter<String, StampAdapter.StampViewHolder>(
         diffUtil) {
 
+    private lateinit var itemClickListener: OnItemClickListener
+
     class StampViewHolder(
         val context: Context,
         val binding: ItemStampBinding,
+        val listener: OnItemClickListener,
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -26,10 +29,15 @@ class StampAdapter :
                 if (item == 10) {
                     stampCntTxt.text = null
                     stampImg.setBackgroundResource(R.drawable.ic_stamp_last)
+                } else {
+                    stampImg.setBackgroundResource(R.drawable.ic_stamp)
                 }
             } else {
                 if (item == 10) {
                     stampImg.setBackgroundResource(R.drawable.ic_stamp_last_complete)
+                    stampImg.setOnClickListener {
+                        listener.click()
+                    }
                 } else {
                     stampCntTxt.setTextColor(context.getColor(R.color.white))
                     stampImg.setBackgroundResource(R.drawable.ic_stamp_complete)
@@ -45,11 +53,20 @@ class StampAdapter :
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
+            ),
+            itemClickListener
         )
 
     override fun onBindViewHolder(holder: StampViewHolder, position: Int) {
         holder.bind(position + 1)
+    }
+
+    interface OnItemClickListener {
+        fun click()
+    }
+
+    fun setItemOnClickListener(onItemClickListener: OnItemClickListener) {
+        this.itemClickListener = onItemClickListener
     }
 
     companion object {

@@ -1,7 +1,9 @@
 package com.example.ggjg_andorid.ui.my_page
 
+import android.animation.Animator
 import android.content.Intent
 import android.view.View
+import android.view.animation.Animation.AnimationListener
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -11,6 +13,7 @@ import com.example.ggjg_andorid.databinding.FragmentMyPageBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.ui.login.LoginActivity
 import com.example.ggjg_andorid.utils.repeatOnStart
+import com.example.ggjg_andorid.utils.setVisible
 import com.example.ggjg_andorid.viewmodel.MainViewModel
 import com.example.ggjg_andorid.viewmodel.MyPageViewModel
 
@@ -19,7 +22,6 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
     private lateinit var stampAdapter: StampAdapter
     override fun createView() {
         if (MainViewModel.isLogin) {
-            profileViewModel.profile()
             initView()
         } else {
             this.startActivityForResult(
@@ -52,11 +54,28 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
     }
 
     private fun initView() = binding.apply {
+        profileViewModel.profile()
         binding.myPage = this@MyPageFragment
         repeatOnStart {
             profileViewModel.eventFlow.collect { event -> handleEvent(event) }
         }
-        stampAdapter = StampAdapter()
+        stampAdapter = StampAdapter().apply {
+            setItemOnClickListener(object : StampAdapter.OnItemClickListener {
+                override fun click() {
+                    presentLottie.apply {
+                        setVisible()
+                        addAnimatorListener(object : Animator.AnimatorListener {
+                            override fun onAnimationStart(p0: Animator?) = Unit
+                            override fun onAnimationRepeat(p0: Animator?) = Unit
+                            override fun onAnimationCancel(p0: Animator?) = Unit
+                            override fun onAnimationEnd(p0: Animator?) {
+                            }
+                        })
+                        playAnimation()
+                    }
+                }
+            })
+        }
         stampList.apply {
             adapter = stampAdapter
             layoutManager = GridLayoutManager(context, 5)
