@@ -2,6 +2,7 @@ package com.example.data.remote.api
 
 import com.example.data.remote.response.bread.BreadResponse
 import com.example.data.remote.response.bread.DetailBreadResponse
+import com.example.data.remote.response.bread.LikeBreadResponse
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
@@ -30,4 +31,7 @@ interface BreadAPI {
     suspend fun likeBread(
         @Path("breadId") id: String,
     )
+
+    @GET("/bread/likeitem")
+    suspend fun allLikeBread(): List<LikeBreadResponse>
 }
