@@ -19,7 +19,8 @@ class MyPageViewModel @Inject constructor(
     private val profileUseCase: ProfileUseCase,
     private val logoutUseCase: LogoutUseCase,
     private val saveTokenUseCase: SaveTokenUseCase,
-    private val profilePrivateUseCase: ProfilePrivateUseCase
+    private val profilePrivateUseCase: ProfilePrivateUseCase,
+    private val giftStampUseCase: GiftStampUseCase,
 ) : ViewModel() {
     companion object {
         var address: AddressModel? = null
@@ -72,6 +73,11 @@ class MyPageViewModel @Inject constructor(
         } else {
             event(EditEvent.Success)
         }
+    }
+
+    fun giftStamp() = viewModelScope.launch {
+        giftStampUseCase.execute()
+        stamp = 0
     }
 
     fun event(event: Event) = viewModelScope.launch {
