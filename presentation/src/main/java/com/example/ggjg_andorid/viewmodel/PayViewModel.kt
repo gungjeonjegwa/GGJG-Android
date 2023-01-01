@@ -6,6 +6,7 @@ import com.example.domain.entity.basket.MyBasketEntity
 import com.example.domain.entity.order.InitOrderEntity
 import com.example.domain.model.AddressModel
 import com.example.domain.param.order.BuyBreadParam
+import com.example.domain.usecase.auth.NewAddressUseCase
 import com.example.domain.usecase.order.BuyBreadUseCase
 import com.example.domain.usecase.order.CreateOrderUseCase
 import com.example.domain.usecase.order.InitOrderInfoUseCase
@@ -21,6 +22,7 @@ class PayViewModel @Inject constructor(
     private val initOrderInfoUseCase: InitOrderInfoUseCase,
     private val createOrderUseCase: CreateOrderUseCase,
     private val buyBreadUseCase: BuyBreadUseCase,
+    private val newAddressUseCase: NewAddressUseCase,
 ) : ViewModel() {
     companion object {
         var shoppingList = listOf<MyBasketEntity>()
@@ -84,9 +86,21 @@ class PayViewModel @Inject constructor(
                 }
             ))
         }.onSuccess {
+            if (!address!!.isBasic) {
+                newAddress()
+            } else {
+                event(Event.SuccessPay)
+            }
+        }.onFailure {
+        }
+    }
+
+    private fun newAddress() = viewModelScope.launch {
+        kotlin.runCatching {
+            newAddressUseCase.execute(address!!)
+        }.onSuccess {
             event(Event.SuccessPay)
         }.onFailure {
-            println("안녕 $it")
         }
     }
 
