@@ -12,7 +12,7 @@ data class BuyBreadParam(
         val breadId: String,
         val count: Int,
         val price: Int,
-        val discountPrice: Int,
+        val discountPrice: Int?,
         val unit: String?,
         val age: Int?,
         val couponId: String?,
