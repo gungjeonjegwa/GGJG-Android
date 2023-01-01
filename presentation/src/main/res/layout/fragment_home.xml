@@ -14,206 +14,210 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.example.ggjg_andorid.utils.custom_view.CustomScrollView
-            android:id="@+id/scrollView"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/background"
-            android:onClick="@{home::onClick}">
+            android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <com.example.ggjg_andorid.utils.custom_view.CustomScrollView
+                android:id="@+id/scrollView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/startLine"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.05" />
-
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/endLine"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.95" />
+                android:layout_height="match_parent"
+                android:background="@color/background"
+                android:onClick="@{home::onClick}">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/bannerLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:layout_height="match_parent">
 
-                    <ImageView
-                        android:id="@+id/logo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="12dp"
-                        android:background="@drawable/bg_logo"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.viewpager.widget.ViewPager
-                        android:id="@+id/bannerContainer"
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/startLine"
                         android:layout_width="match_parent"
-                        android:layout_height="240dp"
-                        android:layout_marginTop="17dp"
-                        app:layout_constraintTop_toBottomOf="@id/logo" />
+                        android:layout_height="0.5dp"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.05" />
 
-                    <TextView
-                        android:id="@+id/bannerIndicator"
-                        style="@style/Regular12"
-                        android:layout_width="wrap_content"
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/endLine"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.95" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/bannerLayout"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/dark_shadow_black"
-                        android:gravity="center"
-                        android:paddingHorizontal="12dp"
-                        android:paddingVertical="4dp"
-                        android:textColor="@color/white"
-                        app:layout_constraintBottom_toBottomOf="@id/bannerContainer"
-                        app:layout_constraintEnd_toEndOf="@id/bannerContainer" />
+                        app:layout_constraintTop_toTopOf="parent">
 
+                        <ImageView
+                            android:id="@+id/logo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="12dp"
+                            android:background="@drawable/bg_logo"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.viewpager.widget.ViewPager
+                            android:id="@+id/bannerContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="240dp"
+                            android:layout_marginTop="17dp"
+                            app:layout_constraintTop_toBottomOf="@id/logo" />
+
+                        <TextView
+                            android:id="@+id/bannerIndicator"
+                            style="@style/Regular12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/dark_shadow_black"
+                            android:gravity="center"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="4dp"
+                            android:textColor="@color/white"
+                            app:layout_constraintBottom_toBottomOf="@id/bannerContainer"
+                            app:layout_constraintEnd_toEndOf="@id/bannerContainer" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <LinearLayout
+                        android:id="@+id/menuBar"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="@color/background"
+                        android:orientation="horizontal"
+                        android:outlineProvider="none"
+                        android:paddingVertical="12dp"
+                        android:paddingTop="16dp"
+                        app:layout_constraintEnd_toEndOf="@id/endLine"
+                        app:layout_constraintStart_toStartOf="@id/startLine"
+                        app:layout_constraintTop_toBottomOf="@id/bannerLayout">
+
+                        <TextView
+                            android:id="@+id/allBtn"
+                            style="@style/Medium14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/selector_menu"
+                            android:gravity="center"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:text="@string/all"
+                            android:textColor="@drawable/selector_menu_txt" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/breadBtn"
+                            style="@style/Medium14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/selector_menu"
+                            android:gravity="center"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:text="@string/bread"
+                            android:textColor="@drawable/selector_menu_txt" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/cakeBtn"
+                            style="@style/Medium14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/selector_menu"
+                            android:gravity="center"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:text="@string/cake"
+                            android:textColor="@drawable/selector_menu_txt" />
+
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/cookieBtn"
+                            style="@style/Medium14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/selector_menu"
+                            android:gravity="center"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:text="@string/cookie"
+                            android:textColor="@drawable/selector_menu_txt" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/presentBtn"
+                            style="@style/Medium14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/selector_menu"
+                            android:gravity="center"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:text="@string/present"
+                            android:textColor="@drawable/selector_menu_txt" />
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/breadList"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:nestedScrollingEnabled="false"
+                        android:onClick="@{home::onClick}"
+                        app:layout_constraintBottom_toTopOf="@id/moreProgress"
+                        app:layout_constraintEnd_toEndOf="@id/endLine"
+                        app:layout_constraintStart_toStartOf="@id/startLine"
+                        app:layout_constraintTop_toBottomOf="@id/menuBar" />
+
+                    <ProgressBar
+                        android:id="@+id/moreProgress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        app:layout_constraintTop_toBottomOf="@id/breadList" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.example.ggjg_andorid.utils.custom_view.CustomScrollView>
 
-                <LinearLayout
-                    android:id="@+id/menuBar"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="@color/background"
-                    android:orientation="horizontal"
-                    android:outlineProvider="none"
-                    android:paddingVertical="12dp"
-                    android:paddingTop="16dp"
-                    app:layout_constraintEnd_toEndOf="@id/endLine"
-                    app:layout_constraintStart_toStartOf="@id/startLine"
-                    app:layout_constraintTop_toBottomOf="@id/bannerLayout">
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/topScrollBtnEndLine"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.95" />
 
-                    <TextView
-                        android:id="@+id/allBtn"
-                        style="@style/Medium14"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/selector_menu"
-                        android:gravity="center"
-                        android:paddingHorizontal="12dp"
-                        android:paddingVertical="7dp"
-                        android:text="@string/all"
-                        android:textColor="@drawable/selector_menu_txt" />
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:id="@+id/breadBtn"
-                        style="@style/Medium14"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/selector_menu"
-                        android:gravity="center"
-                        android:paddingHorizontal="12dp"
-                        android:paddingVertical="7dp"
-                        android:text="@string/bread"
-                        android:textColor="@drawable/selector_menu_txt" />
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:id="@+id/cakeBtn"
-                        style="@style/Medium14"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/selector_menu"
-                        android:gravity="center"
-                        android:paddingHorizontal="12dp"
-                        android:paddingVertical="7dp"
-                        android:text="@string/cake"
-                        android:textColor="@drawable/selector_menu_txt" />
-
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:id="@+id/cookieBtn"
-                        style="@style/Medium14"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/selector_menu"
-                        android:gravity="center"
-                        android:paddingHorizontal="12dp"
-                        android:paddingVertical="7dp"
-                        android:text="@string/cookie"
-                        android:textColor="@drawable/selector_menu_txt" />
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:id="@+id/presentBtn"
-                        style="@style/Medium14"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/selector_menu"
-                        android:gravity="center"
-                        android:paddingHorizontal="12dp"
-                        android:paddingVertical="7dp"
-                        android:text="@string/present"
-                        android:textColor="@drawable/selector_menu_txt" />
-                </LinearLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/breadList"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:nestedScrollingEnabled="false"
-                    android:onClick="@{home::onClick}"
-                    app:layout_constraintBottom_toTopOf="@id/moreProgress"
-                    app:layout_constraintEnd_toEndOf="@id/endLine"
-                    app:layout_constraintStart_toStartOf="@id/startLine"
-                    app:layout_constraintTop_toBottomOf="@id/menuBar" />
-
-                <ProgressBar
-                    android:id="@+id/moreProgress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/transparent"
-                    app:layout_constraintTop_toBottomOf="@id/breadList" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.example.ggjg_andorid.utils.custom_view.CustomScrollView>
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/topScrollBtnEndLine"
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.95" />
-
-        <ImageView
-            android:id="@+id/topScrollBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/bg_scroll_top_btn"
-            android:elevation="2dp"
-            android:onClick="@{home::onClick}"
-            android:paddingHorizontal="15.6dp"
-            android:paddingVertical="12dp"
-            android:src="@drawable/ic_up"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/topScrollBtnEndLine" />
+            <ImageView
+                android:id="@+id/topScrollBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/bg_scroll_top_btn"
+                android:elevation="2dp"
+                android:onClick="@{home::onClick}"
+                android:paddingHorizontal="15.6dp"
+                android:paddingVertical="12dp"
+                android:src="@drawable/ic_up"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/topScrollBtnEndLine" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>
