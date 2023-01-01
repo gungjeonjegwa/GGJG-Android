@@ -28,6 +28,7 @@ object Dependency {
         const val LIFECYCLE = "androidx.lifecycle:lifecycle-runtime-ktx:${Version.LIFECYCLE_KTX}"
 
         const val PAGING = "androidx.paging:paging-runtime-ktx:${Version.PAGING}"
+        const val REFRESH = "androidx.swiperefreshlayout:swiperefreshlayout:${Version.REFRESH}"
     }
 
     object Hilt {

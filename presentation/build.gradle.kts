@@ -67,6 +67,7 @@ dependencies {
     implementation(Dependency.AndroidX.LIFECYCLE_VIEWMODEL_KTX)
     implementation(Dependency.AndroidX.LIFECYCLE)
     implementation(Dependency.AndroidX.PAGING)
+    implementation(Dependency.AndroidX.REFRESH)
 
     implementation(Dependency.Kotlin.COROUTINES_CORE)
     implementation(Dependency.Kotlin.COROUTINES_ANDROID)
