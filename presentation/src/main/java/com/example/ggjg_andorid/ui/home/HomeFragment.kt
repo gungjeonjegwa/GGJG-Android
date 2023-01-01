@@ -8,6 +8,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager.widget.ViewPager
 import com.example.domain.entity.bread.BreadEntity
 import com.example.ggjg_andorid.R
@@ -24,7 +25,7 @@ import com.example.ggjg_andorid.viewmodel.DetailViewModel
 import com.example.ggjg_andorid.viewmodel.HomeViewModel
 import com.example.ggjg_andorid.viewmodel.MainViewModel
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), SwipeRefreshLayout.OnRefreshListener {
     private val homeViewModel by activityViewModels<HomeViewModel>()
     private val mainViewModel by activityViewModels<MainViewModel>()
     private lateinit var categoryList: List<View>
@@ -68,6 +69,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             changePage()
         }
         is HomeViewModel.Event.Bread -> {
+            binding.swipeLayout.isRefreshing = false
             adapter.submitList(event.breadList)
         }
         is HomeViewModel.Event.AddBread -> {
@@ -81,6 +83,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         val bannerLayoutParams = bannerContainer.layoutParams
         bannerLayoutParams.height =
             (requireContext().resources.displayMetrics.heightPixels * 0.3).toInt()
+        swipeLayout.setOnRefreshListener(this@HomeFragment)
         bannerContainer.layoutParams = bannerLayoutParams
         allBtn.isSelected = true
         categoryList = listOf(allBtn, breadBtn, cakeBtn, cookieBtn, presentBtn)
@@ -198,6 +201,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         when (view.id) {
             R.id.topScrollBtn -> {
                 binding.scrollView.customTopScroll(binding.breadList)
+            }
+        }
+    }
+
+    override fun onRefresh() {
+        HomeViewModel.apply {
+            page = 0
+            isLast = false
+        }
+        listener.resetState()
+        categoryList.forEach {
+            if (it.isSelected) {
+                if (it == binding.allBtn) {
+                    homeViewModel.allBread()
+                } else {
+                    homeViewModel.categoryBread(it)
+                }
             }
         }
     }
