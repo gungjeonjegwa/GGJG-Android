@@ -9,17 +9,17 @@ import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.adapter.StampAdapter
 import com.example.ggjg_andorid.databinding.FragmentMyPageBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
-import com.example.ggjg_andorid.ui.coupon.CouponFragment
 import com.example.ggjg_andorid.ui.login.LoginActivity
 import com.example.ggjg_andorid.utils.repeatOnStart
 import com.example.ggjg_andorid.viewmodel.MainViewModel
-import com.example.ggjg_andorid.viewmodel.ProfileViewModel
+import com.example.ggjg_andorid.viewmodel.MyPageViewModel
 
 class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
-    private val profileViewModel by activityViewModels<ProfileViewModel>()
+    private val profileViewModel by activityViewModels<MyPageViewModel>()
     private lateinit var stampAdapter: StampAdapter
     override fun createView() {
         if (MainViewModel.isLogin) {
+            profileViewModel.profile()
             initView()
         } else {
             this.startActivityForResult(
@@ -31,9 +31,23 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
         }
     }
 
-    private fun handleEvent(event: ProfileViewModel.Event) = when (event) {
-        ProfileViewModel.Event.Success -> {
+    private fun handleEvent(event: MyPageViewModel.Event) = when (event) {
+        is MyPageViewModel.Event.Success -> {
             requireActivity().findNavController(R.id.mainContainer).popBackStack()
+        }
+        is MyPageViewModel.Event.Profile -> {
+            MyPageViewModel.stamp = event.data.stamp
+            stampAdapter.notifyDataSetChanged()
+            binding.apply {
+                couponTxt.text = event.data.coupon.toString()
+                stampSummaryTxt.text = "${event.data.stamp} / 10"
+                readyDeliveryCntTxt.text = event.data.deliveryWait.toString()
+                ingDeliveryCntTxt.text = event.data.deliveryIng.toString()
+                finishDeliveryCntTxt.text = event.data.deliveryComplete.toString()
+                cancelCntTxt.text = event.data.cancel.toString()
+                recallCntTxt.text = event.data.`return`.toString()
+                currentStampTxt.text = event.data.stamp.toString()
+            }
         }
     }
 

@@ -77,7 +77,6 @@
                 android:layout_marginEnd="8dp"
                 android:gravity="center"
                 android:onClick="@{myPage::onClick}"
-                android:text="0"
                 android:textColor="@color/dark_gray"
                 app:layout_constraintEnd_toStartOf="@id/divideLine"
                 app:layout_constraintTop_toTopOf="@id/coupon" />
@@ -106,12 +105,12 @@
                 app:layout_constraintTop_toTopOf="@id/coupon" />
 
             <TextView
+                android:id="@+id/stampSummaryTxt"
                 style="@style/Bold14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:gravity="center"
-                android:text="0 / 10"
                 android:textColor="@color/dark_gray"
                 app:layout_constraintEnd_toEndOf="@id/endLine"
                 app:layout_constraintTop_toTopOf="@id/coupon" />
@@ -169,7 +168,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="17dp"
-                        android:text="0"
                         android:textColor="@color/gray"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -207,7 +205,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="17dp"
-                        android:text="0"
                         android:textColor="@color/gray"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -245,7 +242,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="17dp"
-                        android:text="0"
                         android:textColor="@color/gray"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -294,12 +290,12 @@
                     android:layout_weight="1" />
 
                 <TextView
+                    android:id="@+id/cancelCntTxt"
                     style="@style/Bold12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:gravity="center"
-                    android:text="0"
                     android:textColor="@color/gray" />
 
                 <View
@@ -323,12 +319,12 @@
                     android:layout_weight="1" />
 
                 <TextView
+                    android:id="@+id/recallCntTxt"
                     style="@style/Bold12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:gravity="center"
-                    android:text="0"
                     android:textColor="@color/gray" />
 
                 <View
@@ -378,7 +374,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="48dp"
                 android:layout_marginEnd="2dp"
-                android:text="0"
                 android:textColor="@color/very_dark_gray"
                 app:layout_constraintEnd_toStartOf="@id/targetStampTxt"
                 app:layout_constraintTop_toBottomOf="@id/cancelAndChangeAndRecallLayout" />

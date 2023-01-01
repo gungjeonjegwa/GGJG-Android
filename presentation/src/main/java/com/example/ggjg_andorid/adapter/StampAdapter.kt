@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.ItemStampBinding
+import com.example.ggjg_andorid.viewmodel.MyPageViewModel
 
 class StampAdapter :
     ListAdapter<String, StampAdapter.StampViewHolder>(
@@ -21,14 +22,18 @@ class StampAdapter :
 
         fun bind(item: Int) = binding.apply {
             stampCntTxt.text = item.toString()
-            if (item >= 5) {
+            if (item > MyPageViewModel.stamp) {
                 if (item == 10) {
                     stampCntTxt.text = null
                     stampImg.setBackgroundResource(R.drawable.ic_stamp_last)
                 }
             } else {
-                stampCntTxt.setTextColor(context.getColor(R.color.white))
-                stampImg.setBackgroundResource(R.drawable.ic_stamp_complete)
+                if (item == 10) {
+                    stampImg.setBackgroundResource(R.drawable.ic_stamp_last_complete)
+                } else {
+                    stampCntTxt.setTextColor(context.getColor(R.color.white))
+                    stampImg.setBackgroundResource(R.drawable.ic_stamp_complete)
+                }
             }
         }
     }
