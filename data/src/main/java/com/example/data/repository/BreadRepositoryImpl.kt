@@ -5,10 +5,7 @@ import com.example.data.local.entity.toDbEntity
 import com.example.data.local.entity.toEntity
 import com.example.data.remote.datasource.BreadDataSource
 import com.example.data.remote.response.bread.toEntity
-import com.example.domain.entity.bread.BreadEntity
-import com.example.domain.entity.bread.DetailBreadEntity
-import com.example.domain.entity.bread.LikeBreadEntity
-import com.example.domain.entity.bread.RecentSearchEntity
+import com.example.domain.entity.bread.*
 import com.example.domain.repository.BreadRepository
 import javax.inject.Inject
 
@@ -30,6 +27,9 @@ class BreadRepositoryImpl @Inject constructor(
 
     override suspend fun allLikeBread(): List<LikeBreadEntity> =
         breadDataSource.allLikeBread().map { it.toEntity() }
+
+    override suspend fun banner(): List<BannerEntity> =
+        breadDataSource.banner().map { it.toEntity() }
 
     override suspend fun searchBread(recentSearchEntity: RecentSearchEntity) =
         localBreadDataSource.searchBread(recentSearchEntity.toDbEntity())

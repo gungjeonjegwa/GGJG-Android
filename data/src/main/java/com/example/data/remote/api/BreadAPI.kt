@@ -1,5 +1,6 @@
 package com.example.data.remote.api
 
+import com.example.data.remote.response.bread.BannerResponse
 import com.example.data.remote.response.bread.BreadResponse
 import com.example.data.remote.response.bread.DetailBreadResponse
 import com.example.data.remote.response.bread.LikeBreadResponse
@@ -34,4 +35,7 @@ interface BreadAPI {
 
     @GET("/bread/likeitem")
     suspend fun allLikeBread(): List<LikeBreadResponse>
+
+    @GET("/bread/banner")
+    suspend fun banner(): List<BannerResponse>
 }

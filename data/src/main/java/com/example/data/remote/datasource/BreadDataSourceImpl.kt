@@ -1,6 +1,7 @@
 package com.example.data.remote.datasource
 
 import com.example.data.remote.api.BreadAPI
+import com.example.data.remote.response.bread.BannerResponse
 import com.example.data.remote.response.bread.BreadResponse
 import com.example.data.remote.response.bread.DetailBreadResponse
 import com.example.data.remote.response.bread.LikeBreadResponse
@@ -37,5 +38,10 @@ class BreadDataSourceImpl @Inject constructor(
     override suspend fun allLikeBread(): List<LikeBreadResponse> =
         HttpHandler<List<LikeBreadResponse>>()
             .httpRequest { breadAPI.allLikeBread() }
+            .sendRequest()
+
+    override suspend fun banner(): List<BannerResponse> =
+        HttpHandler<List<BannerResponse>>()
+            .httpRequest { breadAPI.banner() }
             .sendRequest()
 }
