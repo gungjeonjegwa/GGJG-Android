@@ -8,6 +8,7 @@ import com.example.data.remote.request.auth.toRequest
 import com.example.data.remote.response.auth.toEntity
 import com.example.domain.entity.auth.CheckEntity
 import com.example.domain.entity.auth.LoginEntity
+import com.example.domain.entity.auth.ProfileEntity
 import com.example.domain.model.AddressModel
 import com.example.domain.param.auth.LoginParam
 import com.example.domain.param.auth.SignUpParam
@@ -41,6 +42,9 @@ class AuthRepositoryImpl @Inject constructor(
 
     override suspend fun newAddress(address: AddressModel) =
         authDataSource.newAddress(address.toRequest())
+
+    override suspend fun profile(): ProfileEntity =
+        authDataSource.profile().toEntity()
 
     override suspend fun saveToken(access: String?, refresh: String?, expiredAt: String?) =
         localAuthDataSource.saveToken(access, refresh, expiredAt)

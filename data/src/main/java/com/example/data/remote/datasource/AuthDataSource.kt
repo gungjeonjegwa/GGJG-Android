@@ -5,6 +5,7 @@ import com.example.data.remote.request.auth.LoginRequest
 import com.example.data.remote.request.auth.SignUpRequest
 import com.example.data.remote.response.auth.CheckResponse
 import com.example.data.remote.response.auth.LoginResponse
+import com.example.data.remote.response.auth.ProfileResponse
 
 interface AuthDataSource {
     suspend fun signUp(signUpRequest: SignUpRequest)
@@ -15,4 +16,5 @@ interface AuthDataSource {
     suspend fun changeAddress(address: AddressModel)
     suspend fun recentAddress(): List<AddressModel>
     suspend fun newAddress(address: AddressModel)
+    suspend fun profile(): ProfileResponse
 }

@@ -6,6 +6,7 @@ import com.example.data.remote.request.auth.LoginRequest
 import com.example.data.remote.request.auth.SignUpRequest
 import com.example.data.remote.response.auth.CheckResponse
 import com.example.data.remote.response.auth.LoginResponse
+import com.example.data.remote.response.auth.ProfileResponse
 import com.example.data.utils.HttpHandler
 import javax.inject.Inject
 
@@ -50,5 +51,10 @@ class AuthDataSourceImpl @Inject constructor(
     override suspend fun newAddress(address: AddressModel) =
         HttpHandler<Unit>()
             .httpRequest { authAPI.newAddress(address) }
+            .sendRequest()
+
+    override suspend fun profile(): ProfileResponse =
+        HttpHandler<ProfileResponse>()
+            .httpRequest { authAPI.profile() }
             .sendRequest()
 }
