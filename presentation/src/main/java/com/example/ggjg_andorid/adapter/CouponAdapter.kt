@@ -32,6 +32,9 @@ class CouponAdapter :
             } else {
                 discountUnit.text = "%"
             }
+            couponLayout.setOnClickListener {
+                listener.click(item)
+            }
         }
     }
 
@@ -51,7 +54,7 @@ class CouponAdapter :
     }
 
     interface OnItemClickListener {
-        fun click(item: String)
+        fun click(item: CouponEntity)
     }
 
     fun setItemOnClickListener(onItemClickListener: OnItemClickListener) {

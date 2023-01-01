@@ -4,6 +4,7 @@ import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.domain.entity.coupon.CouponEntity
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.adapter.CouponAdapter
 import com.example.ggjg_andorid.databinding.FragmentCouponBinding
@@ -45,7 +46,7 @@ class CouponFragment : BaseFragment<FragmentCouponBinding>(R.layout.fragment_cou
     private fun initView() = binding.apply {
         couponAdapter = CouponAdapter().apply {
             setItemOnClickListener(object : CouponAdapter.OnItemClickListener {
-                override fun click(item: String) {
+                override fun click(item: CouponEntity) {
 
                 }
             })
