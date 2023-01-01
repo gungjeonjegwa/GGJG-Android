@@ -40,6 +40,15 @@ class OrderAdapter :
             if (isLast) {
                 divide.visibility = View.INVISIBLE
             }
+            when(item.deliveryStatus) {
+                "WAITORDER" -> cancelBtn.setVisible()
+                "DELIVERYING" -> cancelBtn.setVisible()
+                "COMPLETEDELIVERY" -> recallAndReviewLayout.setVisible()
+                "WAITCANCEL" -> cancelWaitingBtn.setVisible()
+                "CANCEL" -> cancelFinishBtn.setVisible()
+                "WAITRETURN" -> recallWaitingBtn.setVisible()
+                "RETURN" -> recallFinishBtn.setVisible()
+            }
             moveDetailBtn.setOnClickListener {
                 listener.detail(item)
             }
