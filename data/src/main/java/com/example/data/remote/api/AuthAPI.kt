@@ -43,5 +43,7 @@ interface AuthAPI {
     suspend fun recentAddress(): List<AddressModel>
 
     @POST("/users/address/lately")
-    suspend fun newAddress(address: AddressModel)
+    suspend fun newAddress(
+        @Body address: AddressModel,
+    )
 }
