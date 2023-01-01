@@ -10,6 +10,7 @@ import com.example.ggjg_andorid.databinding.FragmentMyPagePrivacyBinding
 import com.example.ggjg_andorid.ui.agree_notice.AgreementActivity
 import com.example.ggjg_andorid.ui.agree_notice.InformationUseNoticeActivity
 import com.example.ggjg_andorid.ui.base.BaseFragment
+import com.example.ggjg_andorid.utils.repeatOnStart
 import com.example.ggjg_andorid.utils.setVisible
 import com.example.ggjg_andorid.viewmodel.*
 
@@ -33,9 +34,37 @@ class MyPagePrivacyFragment :
         AddressViewModel.isPayment = false
         mainViewModel.hiddenNav(true)
         initView()
+        repeatOnStart {
+            myPageViewModel.privacyEventFlow.collect {event -> handleEvent(event)}
+        }
+    }
+
+    private fun handleEvent(event: MyPageViewModel.PrivacyEvent) = when(event) {
+        is MyPageViewModel.PrivacyEvent.ProfileData -> {
+            binding.apply {
+                nameTxt.text = event.data.name
+                idTxt.text = event.data.id
+                emailTxt.text = event.data.email
+                phoneTxt.text = if (event.data.phone == null) "없음" else event.data.phone
+                if (event.data.address != null) {
+                    PayViewModel.defaultAddress = event.data.address
+                    changeAddressBtn.setVisible()
+                    addressTxt.text =
+                        "${event.data.address!!.landNumber} ${event.data.address!!.road} (${event.data.address!!.zipcode})"
+                    if (!event.data.address!!.detailAddress.isNullOrBlank()) {
+                        detailAddressTxt.text = "상세주소 : ${event.data.address!!.detailAddress}"
+                    }
+                } else {
+                    setOrderAddressBtn.setVisible()
+                }
+            }
+        }
     }
 
     private fun initView() = binding.apply {
+        if (MyPageViewModel.address == null) {
+            myPageViewModel.profilePrivate()
+        }
         if (MyPageViewModel.address != null) {
             myPageViewModel.changeAddress()
             changeAddressBtn.setVisible()

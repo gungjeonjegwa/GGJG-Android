@@ -242,6 +242,7 @@
             android:paddingVertical="17dp"
             android:text="@string/set_order_address"
             android:textColor="@color/white"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@id/endLine"
             app:layout_constraintStart_toStartOf="@id/startLine"
             app:layout_constraintTop_toBottomOf="@id/address" />

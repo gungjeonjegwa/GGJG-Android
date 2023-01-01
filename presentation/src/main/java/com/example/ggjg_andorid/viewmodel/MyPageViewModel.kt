@@ -3,6 +3,7 @@ package com.example.ggjg_andorid.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.entity.auth.ProfileEntity
+import com.example.domain.entity.auth.ProfilePrivateEntity
 import com.example.domain.model.AddressModel
 import com.example.domain.usecase.auth.*
 import com.example.ggjg_andorid.utils.MutableEventFlow
@@ -18,6 +19,7 @@ class MyPageViewModel @Inject constructor(
     private val profileUseCase: ProfileUseCase,
     private val logoutUseCase: LogoutUseCase,
     private val saveTokenUseCase: SaveTokenUseCase,
+    private val profilePrivateUseCase: ProfilePrivateUseCase
 ) : ViewModel() {
     companion object {
         var address: AddressModel? = null
@@ -28,9 +30,12 @@ class MyPageViewModel @Inject constructor(
     val eventFlow = _eventFlow.asEventFlow()
     private val _editEventFlow = MutableEventFlow<EditEvent>()
     val editEventFlow = _editEventFlow.asEventFlow()
+    private val _privacyEventFlow = MutableEventFlow<PrivacyEvent>()
+    val privacyEventFlow = _privacyEventFlow.asEventFlow()
 
     fun changeAddress() = viewModelScope.launch {
         changeAddressUseCase.execute(address!!)
+        PayViewModel.defaultAddress = address
     }
 
     fun logout() = viewModelScope.launch {
@@ -52,6 +57,14 @@ class MyPageViewModel @Inject constructor(
         }
     }
 
+    fun profilePrivate() = viewModelScope.launch {
+        kotlin.runCatching {
+            profilePrivateUseCase.execute()
+        }.onSuccess {
+            event(PrivacyEvent.ProfileData(it))
+        }
+    }
+
     fun saveInfo(email: String) = viewModelScope.launch {
         val state = emailCheckUseCase.execute(email)
         if (state.isDuplicated) {
@@ -69,6 +82,9 @@ class MyPageViewModel @Inject constructor(
         _editEventFlow.emit(event)
     }
 
+    fun event(event: PrivacyEvent) = viewModelScope.launch {
+        _privacyEventFlow.emit(event)
+    }
 
     sealed class Event {
         object Success : Event()
@@ -78,5 +94,9 @@ class MyPageViewModel @Inject constructor(
     sealed class EditEvent {
         object AlreadyEmail : EditEvent()
         object Success : EditEvent()
+    }
+
+    sealed class PrivacyEvent {
+        data class ProfileData(val data: ProfilePrivateEntity) : PrivacyEvent()
     }
 }
