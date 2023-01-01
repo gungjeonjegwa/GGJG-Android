@@ -16,6 +16,7 @@ import com.example.ggjg_andorid.utils.setVisible
 import com.example.ggjg_andorid.utils.toDate
 import com.example.ggjg_andorid.utils.toDeliveryType
 import com.example.ggjg_andorid.utils.toOrderDate
+import java.text.DecimalFormat
 import kotlin.math.cos
 
 class OrderAdapter :
@@ -36,7 +37,7 @@ class OrderAdapter :
             deliveryTypeTxt.text =
                 "${item.deliveryStatus.toDeliveryType()} • ${item.createdDate.toOrderDate()}"
             breadNameTxt.text = item.title
-            costTxt.text = "${item.price}원"
+            costTxt.text = "${DecimalFormat("#,###").format(item.price)}원"
             if (isLast) {
                 divide.visibility = View.INVISIBLE
             }
