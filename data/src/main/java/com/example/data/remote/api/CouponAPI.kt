@@ -11,8 +11,11 @@ interface CouponAPI {
         @Path("couponId") code: String,
     )
 
+    @GET("/coupon/my")
+    suspend fun allCoupon(): List<CouponResponse>
+
     @GET("/coupon/my/{breadId}")
     suspend fun availableCoupon(
-        @Path("breadId") id: String
+        @Path("breadId") id: String,
     ): List<CouponResponse>
 }

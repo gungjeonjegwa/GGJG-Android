@@ -12,6 +12,9 @@ class CouponRepositoryImpl @Inject constructor(
     override suspend fun enrollCoupon(code: String) =
         couponDataSource.enrollCoupon(code)
 
+    override suspend fun allCoupon(): List<CouponEntity> =
+        couponDataSource.allCoupon().map { it.toEntity() }
+
     override suspend fun availableCoupon(id: String): List<CouponEntity> =
         couponDataSource.availableCoupon(id).map { it.toEntity() }
 }

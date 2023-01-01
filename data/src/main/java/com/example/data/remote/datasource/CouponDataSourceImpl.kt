@@ -13,6 +13,11 @@ class CouponDataSourceImpl @Inject constructor(
             .httpRequest { couponAPI.enrollCoupon(code) }
             .sendRequest()
 
+    override suspend fun allCoupon(): List<CouponResponse> =
+        HttpHandler<List<CouponResponse>>()
+            .httpRequest { couponAPI.allCoupon() }
+            .sendRequest()
+
     override suspend fun availableCoupon(id: String): List<CouponResponse> =
         HttpHandler<List<CouponResponse>>()
             .httpRequest { couponAPI.availableCoupon(id) }
