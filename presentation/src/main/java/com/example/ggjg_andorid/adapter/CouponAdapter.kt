@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.entity.coupon.CouponEntity
 import com.example.ggjg_andorid.databinding.ItemCouponBinding
+import com.example.ggjg_andorid.utils.toDate
 
 class CouponAdapter :
     ListAdapter<CouponEntity, CouponAdapter.CouponViewHolder>(
@@ -25,7 +26,7 @@ class CouponAdapter :
         fun bind(item: CouponEntity) = binding.apply {
             discountAmount.text = item.price.toString()
             couponNameTxt.text = item.name
-            expiredTxt.text = "${item.createdAt} ~ ${item.finishedAt} 까지"
+            expiredTxt.text = "${item.createdAt.toDate()} ~ ${item.finishedAt.toDate()} 까지"
             if (item.type == "NORMAL") {
                 discountUnit.text = "원"
             } else {
