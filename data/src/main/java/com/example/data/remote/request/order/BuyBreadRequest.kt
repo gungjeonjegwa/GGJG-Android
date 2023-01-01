@@ -13,7 +13,7 @@ data class BuyBreadRequest(
     @SerializedName("orderId")
     val orderId: String,
     @SerializedName("list")
-    val items: List<BuyItem>
+    val items: List<BuyItem>,
 ) {
     data class BuyItem(
         @SerializedName("breadId")
@@ -22,10 +22,14 @@ data class BuyBreadRequest(
         val count: Int,
         @SerializedName("price")
         val price: Int,
+        @SerializedName("discountPrice")
+        val discountPrice: Int?,
         @SerializedName("unit")
         val unit: String?,
         @SerializedName("age")
         val age: Int?,
+        @SerializedName("couponId")
+        val couponId: String?,
     )
 }
 
@@ -39,7 +43,9 @@ fun BuyBreadParam.toRequest() = BuyBreadRequest(
 fun BuyBreadParam.BuyItem.toRequest() = BuyBreadRequest.BuyItem(
     breadId = breadId,
     count = count,
+    discountPrice = discountPrice,
     price = price,
     unit = unit,
-    age = age
+    age = age,
+    couponId = couponId
 )
