@@ -123,7 +123,7 @@
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:layout_marginBottom="24dp"
-            android:background="@drawable/bg_pay_option_btn_selected"
+            android:background="@drawable/bg_black_border_btn"
             android:visibility="gone"
             app:layout_constrainedHeight="true"
             app:layout_constraintBottom_toBottomOf="parent"

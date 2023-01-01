@@ -83,7 +83,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:background="@drawable/bg_pay_method_btn_unselected"
+                android:background="@drawable/bg_dark_gray_border_btn"
                 android:gravity="center"
                 android:paddingVertical="8dp"
                 android:text="@string/recall_do_it"
@@ -100,7 +100,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:background="@drawable/bg_pay_method_btn_unselected"
+                android:background="@drawable/bg_dark_gray_border_btn"
                 android:gravity="center"
                 android:paddingVertical="8dp"
                 android:text="@string/write_review"
@@ -114,20 +114,42 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="16dp"
-            android:background="@drawable/bg_pay_method_btn_unselected"
+            android:background="@drawable/bg_dark_gray_border_btn"
             android:gravity="center"
             android:paddingVertical="8dp"
             android:text="@string/cancel_do_it"
             android:textColor="@color/dark_gray"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/space"
             app:layout_constraintTop_toBottomOf="@id/breadImg" />
+
+        <TextView
+            android:id="@+id/cancelWaitingBtn"
+            style="@style/Regular14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_dark_gray_border_btn"
+            android:gravity="center"
+            android:paddingVertical="8dp"
+            android:text="@string/order_cancel_waiting"
+            android:textColor="@color/gray"
+            app:layout_constraintBottom_toTopOf="@id/space"
+            app:layout_constraintTop_toBottomOf="@id/breadImg" />
+
+        <View
+            android:id="@+id/space"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            app:layout_constraintBottom_toTopOf="@id/divide" />
 
         <View
             android:id="@+id/divide"
             android:layout_width="match_parent"
             android:layout_height="16dp"
-            android:layout_marginTop="20dp"
             android:background="@color/light_gray"
-            app:layout_constraintTop_toBottomOf="@id/cancelBtn" />
+            app:layout_constraintTop_toBottomOf="@id/space" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

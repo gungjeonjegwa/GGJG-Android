@@ -10,7 +10,7 @@
         android:id="@+id/sizeOptionLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_pay_option_btn_selected"
+        android:background="@drawable/bg_black_border_btn"
         android:paddingVertical="11dp">
 
         <TextView
