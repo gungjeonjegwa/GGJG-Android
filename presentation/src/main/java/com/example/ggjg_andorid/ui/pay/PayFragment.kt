@@ -26,6 +26,12 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
 
     override fun onAttach(context: Context) {
         PayViewModel.address = null
+        PayViewModel.shoppingList.forEach {
+            if (!it.isSoldOut) {
+                totalAmount += it.count
+                totalMoney += (it.price + (it.extraMoney ?: 0)) * it.count
+            }
+        }
         super.onAttach(context)
     }
 
@@ -73,17 +79,17 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
                 }
             })
         }
+        when (PayViewModel.payMethod) {
+            "휴대폰" -> payPhoneBtn.isActivated = true
+            "카드" -> payCardBtn.isActivated = true
+            "계좌이체" -> payTransferBtn.isActivated = true
+            "카카오페이" -> payKakaoBtn.isActivated = true
+        }
         paymentList.apply {
             adapter = payAdapter
             layoutManager = LinearLayoutManager(context)
         }
         payAdapter.submitList(PayViewModel.shoppingList)
-        PayViewModel.shoppingList.forEach {
-            if (!it.isSoldOut) {
-                totalAmount += it.count
-                totalMoney += (it.price + (it.extraMoney ?: 0)) * it.count
-            }
-        }
         if (totalAmount == 0) {
             deliveryCostTxt.text = "0원"
         } else {
@@ -109,9 +115,6 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
                     it.isActivated = it == view
                     if (it.isActivated) {
                         payViewModel.setPayMethod(it.id)
-                        it.setTextColor(requireContext().getColor(R.color.light_gray))
-                    } else {
-                        it.setTextColor(requireContext().getColor(R.color.dark_gray))
                     }
                 }
             }
