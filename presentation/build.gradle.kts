@@ -102,6 +102,8 @@ dependencies {
     implementation(Dependency.RxJava.RX_JAVA)
     implementation(Dependency.RxJava.RX_ANDROID)
     implementation(Dependency.RxJava.RX_BINDING)
+
+    implementation(Dependency.Lottie.LOTTIE)
 }
 
 fun getApiKey(propertyKey: String): String {

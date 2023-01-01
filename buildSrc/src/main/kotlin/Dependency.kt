@@ -79,8 +79,12 @@ object Dependency {
     }
 
     object RxJava {
-        const val RX_JAVA = "io.reactivex.rxjava3:rxjava:3.0.3"
-        const val RX_ANDROID = "io.reactivex.rxjava3:rxandroid:3.0.0"
-        const val RX_BINDING = "com.jakewharton.rxbinding3:rxbinding:3.0.0-alpha2"
+        const val RX_JAVA = "io.reactivex.rxjava3:rxjava:${Version.RX_JAVA}"
+        const val RX_ANDROID = "io.reactivex.rxjava3:rxandroid:${Version.RX_ANDROID}"
+        const val RX_BINDING = "com.jakewharton.rxbinding3:rxbinding:${Version.RX_BINDING}"
+    }
+
+    object Lottie {
+        const val LOTTIE = "com.airbnb.android:lottie:${Version.LOTTIE}"
     }
 }
