@@ -200,10 +200,12 @@ class DetailBreadFragment :
             }
             R.id.payBtn -> {
                 if (MainViewModel.isLogin) {
-                    DetailBreadPayFragment().show(
-                        requireActivity().supportFragmentManager,
-                        "DetailBreadPayFragment"
-                    )
+                    if (PayDialogViewModel.breadData != null) {
+                        DetailBreadPayFragment().show(
+                            requireActivity().supportFragmentManager,
+                            "DetailBreadPayFragment"
+                        )
+                    }
                 } else {
                     this.startActivityForResult(
                         Intent(
