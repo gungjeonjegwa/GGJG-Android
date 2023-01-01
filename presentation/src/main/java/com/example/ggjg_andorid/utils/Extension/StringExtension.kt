@@ -2,6 +2,8 @@ package com.example.ggjg_andorid.utils
 
 import android.util.Patterns
 import java.io.File
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.regex.Pattern
 
 fun String.isPhoneNumber(): Boolean =
@@ -22,6 +24,11 @@ fun String.toDeliveryType(): String = when (this) {
     "WAITRETURN" -> "환불대기중"
     "RETURN" -> "환불완료"
     else -> "배송준비중"
+}
+
+fun String.toDate(): String {
+    val date = LocalDate.parse(this.slice(0..9), DateTimeFormatter.ISO_DATE)
+    return date.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일"))
 }
 
 fun String.getDirectoryPaths(): List<String> {
