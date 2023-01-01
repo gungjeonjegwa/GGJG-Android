@@ -46,12 +46,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     }
 
     override fun createView() {
-        binding.home = this
-        mainViewModel.hiddenNav(false)
         HomeViewModel.apply {
             page = 0
             isLast = false
         }
+        binding.home = this
+        mainViewModel.hiddenNav(false)
         homeViewModel.getBanner()
         homeViewModel.allBread()
         initView()
@@ -76,6 +76,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     }
 
     private fun initView() = binding.apply {
+        scrollView.customTopScroll(breadList)
         val deviceWidth = requireContext().resources.displayMetrics.widthPixels
         val bannerLayoutParams = bannerContainer.layoutParams
         bannerLayoutParams.height =
