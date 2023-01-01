@@ -13,7 +13,9 @@ import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.ItemOrderBinding
 import com.example.ggjg_andorid.databinding.ItemPayOptionBinding
 import com.example.ggjg_andorid.utils.setVisible
+import com.example.ggjg_andorid.utils.toDate
 import com.example.ggjg_andorid.utils.toDeliveryType
+import com.example.ggjg_andorid.utils.toOrderDate
 import kotlin.math.cos
 
 class OrderAdapter :
@@ -31,7 +33,8 @@ class OrderAdapter :
 
         fun bind(item: MyOrderListEntity, isLast: Boolean) = binding.apply {
             breadImg.load(item.breadImg)
-            deliveryTypeTxt.text = "${item.deliveryStatus.toDeliveryType()} • ${item.createdDate}"
+            deliveryTypeTxt.text =
+                "${item.deliveryStatus.toDeliveryType()} • ${item.createdDate.toOrderDate()}"
             breadNameTxt.text = item.title
             costTxt.text = "${item.price}원"
             if (isLast) {
