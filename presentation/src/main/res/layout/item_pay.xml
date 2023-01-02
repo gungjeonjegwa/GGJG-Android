@@ -118,9 +118,30 @@
             android:id="@+id/couponTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/gray"
+            style="@style/Regular12"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/selectCouponBtn"
-            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintEnd_toStartOf="@id/cancelCouponBtn"
             app:layout_constraintTop_toTopOf="@id/selectCouponBtn" />
+
+        <TextView
+            android:id="@+id/cancelCouponBtn"
+            style="@style/Regular12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="13dp"
+            android:background="@color/light_gray"
+            android:paddingHorizontal="12.5dp"
+            android:paddingVertical="6.5dp"
+            android:text="@string/cancel"
+            android:visibility="gone"
+            android:textColor="@color/very_dark_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
+            app:layout_constraintTop_toBottomOf="@id/deliveryInfoTxt" />
 
         <TextView
             android:id="@+id/selectCouponBtn"

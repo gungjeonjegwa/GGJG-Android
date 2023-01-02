@@ -13,9 +13,11 @@ import com.example.domain.entity.basket.MyBasketEntity
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.ItemPayBinding
 import com.example.ggjg_andorid.databinding.ItemPayOptionBinding
+import com.example.ggjg_andorid.utils.Extension.toTotalMoney
 import com.example.ggjg_andorid.utils.setVisible
 import com.example.ggjg_andorid.viewmodel.PayViewModel
 import java.text.DecimalFormat
+import kotlin.math.roundToInt
 
 class PayAdapter :
     ListAdapter<MyBasketEntity, PayAdapter.PayViewHolder>(
@@ -36,7 +38,6 @@ class PayAdapter :
                 divideLine.setVisible(false)
             }
             breadImg.load(item.imgUrl)
-            costTxt.text = "${DecimalFormat("#,###").format((item.price + (item.extraMoney ?: 0)) * item.count)}원"
             countTxt.text = "${item.count}개"
             if (item.unit != null) {
                 optionTxt.text =
@@ -45,6 +46,44 @@ class PayAdapter :
                             DecimalFormat("#,###").format(item.extraMoney)
                         }원)" else ""
                     }"
+            }
+            val selectCoupon = PayViewModel.selectCouponList.find { it.id == position }
+            if (selectCoupon != null) {
+                cancelCouponBtn.setVisible()
+                couponTxt.setVisible()
+                selectCouponBtn.setVisible(false)
+                val discount =
+                    if (selectCoupon.type == "NORMAL") selectCoupon.price else (item.price.toTotalMoney(
+                        item.extraMoney,
+                        item.count) * (selectCoupon.price.toFloat() / 100)).roundToInt()
+                couponTxt.text = "-${discount}원"
+                costTxt.text =
+                    "${
+                        DecimalFormat("#,###").format(item.price.toTotalMoney(item.extraMoney,
+                            item.count) - discount)
+                    }원"
+            } else {
+                costTxt.text =
+                    "${
+                        DecimalFormat("#,###").format(item.price.toTotalMoney(item.extraMoney,
+                            item.count))
+                    }원"
+            }
+            selectCouponBtn.setOnClickListener {
+                listener.click(item, position)
+            }
+            cancelCouponBtn.setOnClickListener {
+                cancelCouponBtn.setVisible(false)
+                couponTxt.setVisible(false)
+                selectCouponBtn.setVisible()
+                costTxt.text =
+                    "${
+                        DecimalFormat("#,###").format(item.price.toTotalMoney(item.extraMoney,
+                            item.count))
+                    }원"
+                PayViewModel.selectCouponList =
+                    PayViewModel.selectCouponList.filter { it.id != position }
+                listener.cancel()
             }
         }
     }
@@ -65,7 +104,8 @@ class PayAdapter :
     }
 
     interface OnItemClickListener {
-        fun click(item: String)
+        fun click(item: MyBasketEntity, position: Int)
+        fun cancel()
     }
 
     fun setItemOnClickListener(onItemClickListener: OnItemClickListener) {
@@ -76,14 +116,14 @@ class PayAdapter :
         val diffUtil = object : DiffUtil.ItemCallback<MyBasketEntity>() {
             override fun areItemsTheSame(
                 oldItem: MyBasketEntity,
-                newItem: MyBasketEntity
+                newItem: MyBasketEntity,
             ): Boolean {
                 return oldItem == newItem
             }
 
             override fun areContentsTheSame(
                 oldItem: MyBasketEntity,
-                newItem: MyBasketEntity
+                newItem: MyBasketEntity,
             ): Boolean {
                 return oldItem == newItem
             }

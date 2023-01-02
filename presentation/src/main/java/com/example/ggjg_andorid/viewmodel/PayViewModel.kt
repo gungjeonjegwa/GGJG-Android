@@ -3,10 +3,12 @@ package com.example.ggjg_andorid.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.entity.basket.MyBasketEntity
+import com.example.domain.entity.coupon.CouponEntity
 import com.example.domain.entity.order.InitOrderEntity
 import com.example.domain.model.AddressModel
 import com.example.domain.param.order.BuyBreadParam
 import com.example.domain.usecase.auth.NewAddressUseCase
+import com.example.domain.usecase.coupon.AvailableCouponUseCase
 import com.example.domain.usecase.order.BuyBreadUseCase
 import com.example.domain.usecase.order.CreateOrderUseCase
 import com.example.domain.usecase.order.InitOrderInfoUseCase
@@ -23,6 +25,7 @@ class PayViewModel @Inject constructor(
     private val createOrderUseCase: CreateOrderUseCase,
     private val buyBreadUseCase: BuyBreadUseCase,
     private val newAddressUseCase: NewAddressUseCase,
+    private val availableCouponUseCase: AvailableCouponUseCase,
 ) : ViewModel() {
     companion object {
         var shoppingList = listOf<MyBasketEntity>()
@@ -30,10 +33,15 @@ class PayViewModel @Inject constructor(
         var orderNumber: String? = null
         var address: AddressModel? = null
         var defaultAddress: AddressModel? = null
+        var selectCouponList: List<BuyCoupon> = listOf()
+        var currentItemId: String? = null
+        var currentItemPosition: Int = 0
     }
 
     private val _eventFlow = MutableEventFlow<Event>()
     val eventFlow = _eventFlow.asEventFlow()
+    private val _couponEventFlow = MutableEventFlow<CouponEvent>()
+    val couponEventFlow = _couponEventFlow.asEventFlow()
 
     fun init() = viewModelScope.launch {
         kotlin.runCatching {
@@ -70,35 +78,69 @@ class PayViewModel @Inject constructor(
         else -> payMethod = null
     }
 
+    fun availableCoupon() = viewModelScope.launch {
+        kotlin.runCatching {
+            availableCouponUseCase.execute(currentItemId!!)
+        }.onSuccess {
+            val data =
+                it.filter { selectCouponList.find { coupon -> coupon.couponId == it.id } == null }
+            event(CouponEvent.Coupon(data))
+        }
+    }
+
     fun buyBread() = viewModelScope.launch {
+        if (!address!!.isBasic) {
+            kotlin.runCatching {
+                newAddressUseCase.execute(address!!)
+            }.onSuccess {
+                realBuy()
+            }.onFailure {
+            }
+        } else {
+            realBuy()
+        }
+    }
+
+    fun cancelBuy() = viewModelScope.launch {
+        kotlin.runCatching {
+            buyBreadUseCase.execute(BuyBreadParam(
+                false,
+                address!!,
+                orderNumber!!,
+                shoppingList.mapIndexed { i, data ->
+                    BuyBreadParam.BuyItem(
+                        data.breadId,
+                        data.count,
+                        (data.price + (data.extraMoney ?: 0)) * data.count,
+                        selectCouponList.find { it.id == i }?.discountPrice,
+                        data.unit,
+                        data.age,
+                        selectCouponList.find { it.id == i }?.couponId)
+                }
+            ))
+        }.onFailure {
+        }
+    }
+
+    private fun realBuy() = viewModelScope.launch {
         kotlin.runCatching {
             buyBreadUseCase.execute(BuyBreadParam(
                 true,
                 address!!,
                 orderNumber!!,
-                shoppingList.map {
+                shoppingList.mapIndexed { i, data ->
                     BuyBreadParam.BuyItem(
-                        it.breadId,
-                        it.count,
-                        (it.price + (it.extraMoney ?: 0)) * it.count,
-                        it.unit,
-                        it.age)
+                        data.breadId,
+                        data.count,
+                        (data.price + (data.extraMoney ?: 0)) * data.count,
+                        selectCouponList.find { it.id == i }?.discountPrice,
+                        data.unit,
+                        data.age,
+                        selectCouponList.find { it.id == i }?.couponId)
                 }
             ))
         }.onSuccess {
-            if (!address!!.isBasic) {
-                newAddress()
-            } else {
-                event(Event.SuccessPay)
-            }
-        }.onFailure {
-        }
-    }
-
-    private fun newAddress() = viewModelScope.launch {
-        kotlin.runCatching {
-            newAddressUseCase.execute(address!!)
-        }.onSuccess {
+            orderNumber = null
             event(Event.SuccessPay)
         }.onFailure {
         }
@@ -108,9 +150,25 @@ class PayViewModel @Inject constructor(
         _eventFlow.emit(event)
     }
 
+    private fun event(event: CouponEvent) = viewModelScope.launch {
+        _couponEventFlow.emit(event)
+    }
+
     sealed class Event {
         data class InitInfo(val data: InitOrderEntity) : Event()
         data class NoAddressInitInfo(val data: InitOrderEntity) : Event()
         object SuccessPay : Event()
     }
+
+    sealed class CouponEvent {
+        data class Coupon(val data: List<CouponEntity>) : CouponEvent()
+    }
+
+    data class BuyCoupon(
+        val id: Int,
+        var couponId: String,
+        var price: Int,
+        var discountPrice: Int?,
+        var type: String,
+    )
 }

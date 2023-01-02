@@ -5,7 +5,9 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.domain.entity.basket.MyBasketEntity
 import com.example.domain.entity.order.InitOrderEntity
 import com.example.domain.model.AddressModel
 import com.example.ggjg_andorid.R
@@ -13,9 +15,11 @@ import com.example.ggjg_andorid.adapter.PayAdapter
 import com.example.ggjg_andorid.databinding.FragmentPayBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.utils.*
+import com.example.ggjg_andorid.utils.Extension.toTotalMoney
 import com.example.ggjg_andorid.viewmodel.AddressViewModel
 import com.example.ggjg_andorid.viewmodel.PayViewModel
 import java.text.DecimalFormat
+import kotlin.math.roundToInt
 
 class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
 
@@ -26,13 +30,21 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
 
     override fun onAttach(context: Context) {
         PayViewModel.address = null
-        PayViewModel.shoppingList.forEach {
-            if (!it.isSoldOut) {
-                totalAmount += it.count
-                totalMoney += (it.price + (it.extraMoney ?: 0)) * it.count
-            }
-        }
+        PayViewModel.selectCouponList = listOf()
+        PayViewModel.payMethod = null
         super.onAttach(context)
+    }
+
+    override fun onDetach() {
+        if (PayViewModel.orderNumber != null) {
+            payViewModel.cancelBuy()
+        }
+        super.onDetach()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewTotal()
     }
 
     override fun createView() {
@@ -74,8 +86,15 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
     private fun initView() = binding.apply {
         payAdapter = PayAdapter().apply {
             setItemOnClickListener(object : PayAdapter.OnItemClickListener {
-                override fun click(item: String) {
+                override fun click(item: MyBasketEntity, position: Int) {
+                    PayViewModel.currentItemId = item.breadId
+                    PayViewModel.currentItemPosition = position
+                    requireActivity().findNavController(R.id.mainContainer)
+                        .navigate(R.id.action_payFragment_to_selectCouponFragment)
+                }
 
+                override fun cancel() {
+                    viewTotal()
                 }
             })
         }
@@ -90,15 +109,38 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
             layoutManager = LinearLayoutManager(context)
         }
         payAdapter.submitList(PayViewModel.shoppingList)
-        if (totalAmount == 0) {
-            deliveryCostTxt.text = "0원"
-        } else {
-            deliveryCostTxt.text = getString(R.string.delivery_cost_default)
+    }
+
+    private fun viewTotal() = binding.apply {
+        totalMoney = 0
+        totalAmount = 0
+        PayViewModel.shoppingList.forEachIndexed { i, it ->
+            val coupon = PayViewModel.selectCouponList.find { it.id == i }
+            var discount = 0
+            if (coupon != null) {
+                discount =
+                    if (coupon.type == "NORMAL") coupon.price else (it.price.toTotalMoney(
+                        it.extraMoney,
+                        it.count) * (coupon.price.toFloat() / 100)).roundToInt()
+                PayViewModel.selectCouponList.map { selectCoupon ->
+                    if (selectCoupon.id == coupon.id) {
+                        selectCoupon.discountPrice =
+                            it.price.toTotalMoney(it.extraMoney, it.count) - discount
+                    }
+                }
+            }
+
+            if (!it.isSoldOut) {
+                totalAmount += it.count
+                totalMoney += it.price.toTotalMoney(it.extraMoney,
+                    it.count) - discount
+            }
         }
+        deliveryCostTxt.text = getString(R.string.delivery_cost_default)
         itemPriceTxt.text = "${totalMoney}원"
         totalTxt.text = "총합 ${totalAmount}개"
         totalCostTxt.text =
-            DecimalFormat("#,###").format(totalMoney + (if (totalAmount == 0) 0 else 3000))
+            DecimalFormat("#,###").format(totalMoney + 3000)
     }
 
     fun onClick(view: View) {
