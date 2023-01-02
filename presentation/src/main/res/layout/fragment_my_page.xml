@@ -314,7 +314,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:gravity="center"
-                        android:text="@string/change"
+                        android:text="@string/refund"
                         android:textColor="@color/black" />
 
                     <View
