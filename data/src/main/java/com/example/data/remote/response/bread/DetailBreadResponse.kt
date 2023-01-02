@@ -28,9 +28,9 @@ data class DetailBreadResponse(
     @SerializedName("previewUrl")
     val imgUrl: String,
     @SerializedName("precaution")
-    val precaution: String,
+    val precaution: String?,
     @SerializedName("deliveryNotice")
-    val deliveryNotice: String,
+    val deliveryNotice: String?,
     @SerializedName("allergy")
     val allergy: String,
     @SerializedName("ingredient")
@@ -86,8 +86,8 @@ fun DetailBreadResponse.toEntity() = DetailBreadEntity(
     storage = storage,
     expirationDate = expirationDate,
     imgUrl = imgUrl,
-    precaution = precaution.replace(".", ".\n"),
-    deliveryNotice = deliveryNotice.replace(".", ".\n"),
+    precaution = precaution?.replace(".", ".\n"),
+    deliveryNotice = deliveryNotice?.replace(".", ".\n"),
     allergy = allergy,
     ingredient = ingredient,
     isLike = isLike,
