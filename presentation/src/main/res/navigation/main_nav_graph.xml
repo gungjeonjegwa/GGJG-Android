@@ -32,7 +32,7 @@
         android:id="@+id/favoriteFragment"
         android:name="com.example.ggjg_andorid.ui.favorite.FavoriteFragment"
         android:label="FavoriteFragment"
-        tools:layout="@layout/fragment_favorite" >
+        tools:layout="@layout/fragment_favorite">
         <action
             android:id="@+id/action_favoriteFragment_to_detailBreadFragment"
             app:destination="@id/detailBreadFragment" />
@@ -51,6 +51,9 @@
         <action
             android:id="@+id/action_myPageFragment_to_orderFragment"
             app:destination="@id/orderFragment" />
+        <action
+            android:id="@+id/action_myPageFragment_to_presentFragment"
+            app:destination="@id/presentFragment" />
     </fragment>
     <fragment
         android:id="@+id/payFragment"
@@ -193,4 +196,9 @@
         android:name="com.example.ggjg_andorid.ui.pay.SelectCouponFragment"
         android:label="SelectCouponFragment"
         tools:layout="@layout/fragment_select_coupon" />
+    <fragment
+        android:id="@+id/presentFragment"
+        android:name="com.example.ggjg_andorid.ui.my_page.PresentFragment"
+        android:label="PresentFragment"
+        tools:layout="@layout/fragment_present" />
 </navigation>
