@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Handler
 import android.view.View
 import android.view.animation.Animation.AnimationListener
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -42,6 +43,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
             MyPageViewModel.stamp = event.data.stamp
             stampAdapter.notifyDataSetChanged()
             binding.apply {
+                welcomeTxt.text = "${event.data.name}님 안녕하세요!"
                 couponTxt.text = event.data.coupon.toString()
                 stampSummaryTxt.text = "${event.data.stamp} / 10"
                 readyDeliveryCntTxt.text = event.data.deliveryWait.toString()
@@ -73,6 +75,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
                                         .navigate(R.id.action_myPageFragment_to_presentFragment)
                                 }, 1700)
                             }
+
                             override fun onAnimationRepeat(p0: Animator?) = Unit
                             override fun onAnimationCancel(p0: Animator?) = Unit
                             override fun onAnimationEnd(p0: Animator?) = Unit
@@ -105,6 +108,9 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
             R.id.readyDeliveryLayout, R.id.ingDeliveryLayout, R.id.finishDeliveryLayout, R.id.cancelAndChangeAndRecallLayout -> {
                 requireActivity().findNavController(R.id.mainContainer)
                     .navigate(R.id.action_myPageFragment_to_orderFragment)
+            }
+            R.id.deleteAuthBtn -> {
+                Toast.makeText(context, "지금은 지원되지 않는 기능입니다.", Toast.LENGTH_SHORT).show()
             }
         }
     }
