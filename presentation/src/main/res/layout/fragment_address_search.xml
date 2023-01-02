@@ -55,6 +55,7 @@
             android:layout_marginHorizontal="12dp"
             android:background="@color/transparent"
             android:hint="@string/search_address"
+            android:imeOptions="actionSearch"
             android:singleLine="true"
             android:textColor="@color/black"
             android:textColorHint="@color/dark_gray"
