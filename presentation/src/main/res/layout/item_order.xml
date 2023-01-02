@@ -75,6 +75,7 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="16dp"
             android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/space"
             app:layout_constraintTop_toBottomOf="@id/breadImg">
 
             <TextView
@@ -165,9 +166,9 @@
             android:background="@drawable/bg_gray_border_btn"
             android:gravity="center"
             android:paddingVertical="8dp"
-            android:visibility="gone"
             android:text="@string/order_refund_waiting"
             android:textColor="@color/gray"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/space"
             app:layout_constraintTop_toBottomOf="@id/breadImg" />
 
@@ -180,10 +181,10 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/bg_gray_border_btn"
             android:gravity="center"
-            android:visibility="gone"
             android:paddingVertical="8dp"
             android:text="@string/order_refund_finish"
             android:textColor="@color/gray"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/space"
             app:layout_constraintTop_toBottomOf="@id/breadImg" />
 
