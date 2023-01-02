@@ -30,8 +30,13 @@ class OrderDetailAdapter :
             }
             breadImg.load(item.breadImg)
             costTxt.text =
-                "${DecimalFormat("#,###").format(item.price)}원"
+                "${DecimalFormat("#,###").format(if (item.discountPrice != null) item.discountPrice else item.price)}원"
             countTxt.text = "${item.count}개"
+            if (item.discountPrice != null) {
+                coupon.setVisible()
+                couponTxt.setVisible()
+                couponTxt.text = "-${item.price - item.discountPrice!!}원"
+            }
             if (item.unit != null) {
                 optionTxt.text =
                     "-${if (item.age != null) "나이/${item.age}, " else ""}${item.unit}(${item.size})${

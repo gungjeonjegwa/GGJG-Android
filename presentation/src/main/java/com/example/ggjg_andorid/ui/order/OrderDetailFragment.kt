@@ -35,7 +35,7 @@ class OrderDetailFragment :
                 var totalMoney = 0
                 event.data.items.forEach {
                     totalAmount += it.count
-                    totalMoney += it.price
+                    totalMoney += if (it.discountPrice != null) it.discountPrice!! else it.price
                 }
                 itemPriceTxt.text = "${totalMoney}원"
                 totalTxt.text = "총합 ${totalAmount}개"

@@ -14,6 +14,7 @@ data class DetailOrderEntity(
         val age: Int?,
         val size: String?,
         val breadImg: String,
+        val discountPrice: Int?,
         val unit: String?,
         val extraMoney: Int?,
         val price: Int,
