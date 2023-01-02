@@ -5,6 +5,7 @@ import android.graphics.Paint
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -59,6 +60,12 @@ class DetailBreadFragment :
             PayDialogViewModel.breadData = event.detailBread
             binding.apply {
                 breadData = event.detailBread
+                warningTxt.text =
+                    if (event.detailBread.deliveryNotice == null) "주의사항이 없습니다" else event.detailBread.deliveryNotice
+                if (event.detailBread.precaution != null) {
+                    itemInfoTxt.setVisible()
+                    itemInfoTxt.text = event.detailBread.precaution
+                }
                 if (event.detailBread.isSoldOut) {
                     payBtn.changeActivatedWithEnabled(false)
                     payBtn.text = getString(R.string.sold_out_korean)
@@ -233,8 +240,9 @@ class DetailBreadFragment :
                 }
             }
             R.id.moveQaBtn -> {
-                requireActivity().findNavController(R.id.mainContainer)
-                    .navigate(R.id.action_detailBreadFragment_to_QAFragment)
+                Toast.makeText(context, "지금은 지원되지 않는 기능입니다.", Toast.LENGTH_SHORT).show()
+//                requireActivity().findNavController(R.id.mainContainer)
+//                    .navigate(R.id.action_detailBreadFragment_to_QAFragment)
             }
         }
     }

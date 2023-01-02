@@ -300,7 +300,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="@{breadData.deliveryNotice}"
                     android:textColor="@color/very_dark_gray"
                     app:layout_constraintStart_toStartOf="@id/startLine"
                     app:layout_constraintTop_toBottomOf="@id/warning" />
@@ -327,11 +326,11 @@
                 <TextView
                     android:id="@+id/itemInfoTxt"
                     style="@style/Medium14"
+                    android:visibility="gone"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:gravity="center_horizontal"
-                    android:text="@{breadData.precaution}"
                     android:textColor="@color/dark_red"
                     app:layout_constraintEnd_toEndOf="@id/endLine"
                     app:layout_constraintStart_toStartOf="@id/startLine"
