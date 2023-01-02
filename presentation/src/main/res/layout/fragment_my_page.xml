@@ -12,6 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -450,6 +451,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
+                    android:onClick="@{myPage::onClick}"
                     android:text="@string/delete_auth"
                     android:textColor="@color/gray"
                     app:layout_constraintBottom_toBottomOf="@id/logoutAndDeleteAuthDivide"
@@ -458,13 +460,14 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
+
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/presentLottie"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:lottie_rawRes="@raw/present"
+            android:visibility="gone"
+            app:lottie_autoPlay="false"
             app:lottie_loop="false"
-            app:lottie_autoPlay="false"/>
+            app:lottie_rawRes="@raw/present" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
