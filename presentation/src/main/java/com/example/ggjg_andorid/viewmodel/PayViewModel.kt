@@ -7,6 +7,7 @@ import com.example.domain.entity.coupon.CouponEntity
 import com.example.domain.entity.order.InitOrderEntity
 import com.example.domain.model.AddressModel
 import com.example.domain.param.order.BuyBreadParam
+import com.example.domain.usecase.auth.ChangeAddressUseCase
 import com.example.domain.usecase.auth.NewAddressUseCase
 import com.example.domain.usecase.coupon.AvailableCouponUseCase
 import com.example.domain.usecase.order.BuyBreadUseCase
@@ -26,6 +27,7 @@ class PayViewModel @Inject constructor(
     private val buyBreadUseCase: BuyBreadUseCase,
     private val newAddressUseCase: NewAddressUseCase,
     private val availableCouponUseCase: AvailableCouponUseCase,
+    private val changeAddressUseCase: ChangeAddressUseCase,
 ) : ViewModel() {
     companion object {
         var shoppingList = listOf<MyBasketEntity>()
@@ -95,6 +97,12 @@ class PayViewModel @Inject constructor(
             }.onSuccess {
                 realBuy()
             }.onFailure {
+            }
+        } else if (defaultAddress == null) {
+            kotlin.runCatching {
+                changeAddressUseCase.execute(address!!)
+            }.onSuccess {
+                realBuy()
             }
         } else {
             realBuy()
