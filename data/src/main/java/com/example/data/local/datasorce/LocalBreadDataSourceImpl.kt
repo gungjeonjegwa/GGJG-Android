@@ -5,8 +5,8 @@ import com.example.data.local.entity.RecentSearchEntity
 import javax.inject.Inject
 
 class LocalBreadDataSourceImpl @Inject constructor(
-    private val recentSearchDao: RecentSearchDao
-): LocalBreadDataSource {
+    private val recentSearchDao: RecentSearchDao,
+) : LocalBreadDataSource {
     override suspend fun searchBread(recentSearchEntity: RecentSearchEntity) =
         recentSearchDao.searchBread(recentSearchEntity)
 
@@ -14,5 +14,5 @@ class LocalBreadDataSourceImpl @Inject constructor(
         recentSearchDao.deleteSearch(search)
 
     override suspend fun getRecentSearch(): List<RecentSearchEntity?> =
-        recentSearchDao.getRecentSearch()
+        recentSearchDao.getRecentSearch().reversed()
 }
