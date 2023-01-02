@@ -23,7 +23,6 @@ class MyPageViewModel @Inject constructor(
     private val giftStampUseCase: GiftStampUseCase,
 ) : ViewModel() {
     companion object {
-        var address: AddressModel? = null
         var stamp = 0
     }
 
@@ -35,8 +34,15 @@ class MyPageViewModel @Inject constructor(
     val privacyEventFlow = _privacyEventFlow.asEventFlow()
 
     fun changeAddress() = viewModelScope.launch {
-        changeAddressUseCase.execute(address!!)
-        PayViewModel.defaultAddress = address
+        changeAddressUseCase.execute(AddressModel(
+            PayViewModel.address!!.zipcode,
+            PayViewModel.address!!.road,
+            PayViewModel.address!!.landNumber,
+            PayViewModel.address!!.detailAddress,
+            true
+        ))
+        PayViewModel.defaultAddress = PayViewModel.address
+        profilePrivate()
     }
 
     fun logout() = viewModelScope.launch {

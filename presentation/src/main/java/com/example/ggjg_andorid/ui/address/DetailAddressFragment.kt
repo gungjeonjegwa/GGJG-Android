@@ -40,7 +40,7 @@ class DetailAddressFragment :
                     requireActivity().findNavController(R.id.mainContainer)
                         .popBackStack(R.id.payFragment, false)
                 } else {
-                    MyPageViewModel.address = AddressModel(
+                    PayViewModel.address = AddressModel(
                         AddressViewModel.currentAddress!!.zipcode,
                         AddressViewModel.currentAddress!!.road,
                         AddressViewModel.currentAddress!!.landNumber,
