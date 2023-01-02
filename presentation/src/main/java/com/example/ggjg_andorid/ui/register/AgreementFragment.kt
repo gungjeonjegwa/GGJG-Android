@@ -50,7 +50,7 @@ class AgreementFragment : BottomSheetDialogFragment() {
             }
             R.id.agree1Btn, R.id.agree2Btn, R.id.agree3Btn -> {
                 view.isActivated = !view.isActivated
-                if (binding.agree1Btn.isActivated && binding.agree2Btn.isActivated && binding.agree3Btn.isActivated) {
+                if (binding.agree1Btn.isActivated && binding.agree2Btn.isActivated) {
                     changeCompleteBtn(true)
                 } else {
                     changeCompleteBtn(false)
@@ -63,7 +63,7 @@ class AgreementFragment : BottomSheetDialogFragment() {
     }
 
     private fun changeCompleteBtn(change: Boolean) = binding.apply {
-        allAgreeBtn.isActivated = change
+        allAgreeBtn.isActivated = change && binding.agree3Btn.isActivated
         completeBtn.changeActivatedWithEnabled(change)
     }
 
