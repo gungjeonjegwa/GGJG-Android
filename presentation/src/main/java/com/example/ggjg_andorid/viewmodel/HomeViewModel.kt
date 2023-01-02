@@ -3,8 +3,10 @@ package com.example.ggjg_andorid.viewmodel
 import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.domain.entity.bread.BannerEntity
 import com.example.domain.entity.bread.BreadEntity
 import com.example.domain.usecase.bread.AllBreadUseCase
+import com.example.domain.usecase.bread.BannerUseCase
 import com.example.domain.usecase.bread.CategoryBreadUseCase
 import com.example.domain.usecase.bread.LikeBreadUseCase
 import com.example.ggjg_andorid.R
@@ -18,7 +20,8 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val allBreadUseCase: AllBreadUseCase,
     private val categoryBreadUseCase: CategoryBreadUseCase,
-    private val likeBreadUseCase: LikeBreadUseCase
+    private val likeBreadUseCase: LikeBreadUseCase,
+    private val bannerUseCase: BannerUseCase
 ) : ViewModel() {
 
     private val _eventFlow = MutableEventFlow<Event>()
@@ -76,11 +79,7 @@ class HomeViewModel @Inject constructor(
 
     fun getBanner() = viewModelScope.launch {
         kotlin.runCatching {
-            listOf(
-                "http://gungjeon.co.kr/_dj/img/main_section_1_img1.jpg",
-                "http://gungjeon.co.kr/_dj/img/main_section_1_img2.jpg",
-                "http://gungjeon.co.kr/_dj/img/main_section_1_img3.jpg"
-            )
+            bannerUseCase.execute()
         }.onSuccess {
             event(Event.Banner(it))
         }
@@ -91,7 +90,7 @@ class HomeViewModel @Inject constructor(
     }
 
     sealed class Event {
-        data class Banner(val bannerList: List<String>) : Event()
+        data class Banner(val bannerList: List<BannerEntity>) : Event()
         data class Bread(val breadList: List<BreadEntity.Bread>) : Event()
         data class AddBread(val breadList: List<BreadEntity.Bread>) : Event()
     }

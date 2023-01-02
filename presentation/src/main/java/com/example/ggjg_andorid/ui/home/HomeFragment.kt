@@ -65,7 +65,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
     private fun handleEvent(event: HomeViewModel.Event) = when (event) {
         is HomeViewModel.Event.Banner -> {
             maxSize = event.bannerList.size
-            binding.bannerContainer.adapter = BannerAdapter(event.bannerList)
+            binding.bannerContainer.adapter = BannerAdapter(event.bannerList, requireContext())
             changePage()
         }
         is HomeViewModel.Event.Bread -> {

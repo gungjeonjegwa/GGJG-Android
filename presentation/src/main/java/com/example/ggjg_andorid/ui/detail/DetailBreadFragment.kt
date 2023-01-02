@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.adapter.BannerAdapter
+import com.example.ggjg_andorid.adapter.DetailBannerAdapter
 import com.example.ggjg_andorid.adapter.DetailBreadInfoImgAdapter
 import com.example.ggjg_andorid.databinding.FragmentDetailBreadBinding
 import com.example.ggjg_andorid.ui.agree_notice.ChangeAndRecallActivity
@@ -92,7 +93,7 @@ class DetailBreadFragment :
                     }
                 }
                 binding.imgContainer.adapter =
-                    BannerAdapter(listOf(event.detailBread.imgUrl).plus(event.detailBread.breadImage))
+                    DetailBannerAdapter(listOf(event.detailBread.imgUrl).plus(event.detailBread.breadImage))
                 max = listOf(event.detailBread.imgUrl).plus(event.detailBread.breadImage).size
                 imgIndicator.text = "${imgContainer.currentItem + 1} / $max"
             }

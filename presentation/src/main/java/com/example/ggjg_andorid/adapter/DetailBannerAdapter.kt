@@ -1,8 +1,5 @@
 package com.example.ggjg_andorid.adapter
 
-import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +9,7 @@ import coil.transform.RoundedCornersTransformation
 import com.example.domain.entity.bread.BannerEntity
 import com.example.ggjg_andorid.databinding.ItemBannerBinding
 
-class BannerAdapter(private val itemList: List<BannerEntity>, private val context: Context) : PagerAdapter() {
+class DetailBannerAdapter(private val itemList: List<String>) : PagerAdapter() {
     private lateinit var binding: ItemBannerBinding
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
@@ -30,14 +27,9 @@ class BannerAdapter(private val itemList: List<BannerEntity>, private val contex
         container.removeView(`object` as View)
     }
 
-    private fun initView(item: BannerEntity) {
-        binding.bannerImg.load(item.imgUrl) {
+    private fun initView(item: String) {
+        binding.bannerImg.load(item) {
             transformations(RoundedCornersTransformation(0f))
-        }
-        binding.bannerImg.setOnClickListener {
-            if (item.webUrl != null) {
-                context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(item.webUrl)))
-            }
         }
     }
 
