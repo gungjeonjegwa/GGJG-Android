@@ -31,8 +31,8 @@ class BreadRepositoryImpl @Inject constructor(
     override suspend fun banner(): List<BannerEntity> =
         breadDataSource.banner().map { it.toEntity() }
 
-    override suspend fun searchBread(recentSearchEntity: RecentSearchEntity) =
-        localBreadDataSource.searchBread(recentSearchEntity.toDbEntity())
+    override suspend fun searchBread(title: String): List<SearchEntity> =
+        breadDataSource.searchBread(title).map { it.toEntity() }
 
     override suspend fun deleteSearch(search: String) =
         localBreadDataSource.deleteSearch(search)

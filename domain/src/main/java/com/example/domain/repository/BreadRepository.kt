@@ -10,7 +10,7 @@ interface BreadRepository {
     suspend fun likeBread(id: String)
     suspend fun allLikeBread(): List<LikeBreadEntity>
     suspend fun banner(): List<BannerEntity>
-    suspend fun searchBread(recentSearchEntity: RecentSearchEntity)
+    suspend fun searchBread(title: String): List<SearchEntity>
     suspend fun deleteSearch(search: String)
     suspend fun getRecentSearch(): List<RecentSearchEntity?>
 }

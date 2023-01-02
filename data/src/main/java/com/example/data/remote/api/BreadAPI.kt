@@ -1,9 +1,6 @@
 package com.example.data.remote.api
 
-import com.example.data.remote.response.bread.BannerResponse
-import com.example.data.remote.response.bread.BreadResponse
-import com.example.data.remote.response.bread.DetailBreadResponse
-import com.example.data.remote.response.bread.LikeBreadResponse
+import com.example.data.remote.response.bread.*
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
@@ -38,4 +35,9 @@ interface BreadAPI {
 
     @GET("/bread/banner")
     suspend fun banner(): List<BannerResponse>
+
+    @GET("/bread/search")
+    suspend fun searchBread(
+        @Query("title") title: String,
+    ): List<SearchResponse>
 }

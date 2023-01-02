@@ -1,10 +1,7 @@
 package com.example.data.remote.datasource
 
 import com.example.data.remote.api.BreadAPI
-import com.example.data.remote.response.bread.BannerResponse
-import com.example.data.remote.response.bread.BreadResponse
-import com.example.data.remote.response.bread.DetailBreadResponse
-import com.example.data.remote.response.bread.LikeBreadResponse
+import com.example.data.remote.response.bread.*
 import com.example.data.utils.HttpHandler
 import javax.inject.Inject
 
@@ -44,4 +41,7 @@ class BreadDataSourceImpl @Inject constructor(
         HttpHandler<List<BannerResponse>>()
             .httpRequest { breadAPI.banner() }
             .sendRequest()
+
+    override suspend fun searchBread(title: String): List<SearchResponse> =
+        searchBread(title)
 }
