@@ -3,6 +3,8 @@ package com.example.ggjg_andorid.ui.search
 import android.os.Handler
 import android.view.View
 import android.view.WindowManager
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
@@ -37,23 +39,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         }
     }
 
-    fun onClick(view: View) {
-        when (view.id) {
-            R.id.backBtn -> {
-                keyboardHide(requireActivity(), listOf(binding.searchBread))
-                requireActivity().findNavController(R.id.mainContainer).popBackStack()
-            }
-            R.id.searchLayout -> {
-                keyboardHide(requireActivity(), listOf(binding.searchBread))
-            }
-            R.id.searchBtn -> {
-                keyboardHide(requireActivity(), listOf(binding.searchBread))
-                searchViewModel.search()
-                viewFragment(SearchResultFragment())
-            }
-        }
-    }
-
     private fun initView() = binding.apply {
         requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
         viewFragment(SearchRecentFragment())
@@ -72,6 +57,33 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
             }, 1)
             setOnFocusChangeListener { _, b ->
                 searchDivide.setVisible(b)
+            }
+            setOnEditorActionListener { _, i, _ ->
+                when (i) {
+                    IME_ACTION_SEARCH -> {
+                        keyboardHide(requireActivity(), listOf(binding.searchBread))
+                        searchViewModel.search()
+                        viewFragment(SearchResultFragment())
+                    }
+                }
+                true
+            }
+        }
+    }
+
+    fun onClick(view: View) {
+        when (view.id) {
+            R.id.backBtn -> {
+                keyboardHide(requireActivity(), listOf(binding.searchBread))
+                requireActivity().findNavController(R.id.mainContainer).popBackStack()
+            }
+            R.id.searchLayout -> {
+                keyboardHide(requireActivity(), listOf(binding.searchBread))
+            }
+            R.id.searchBtn -> {
+                keyboardHide(requireActivity(), listOf(binding.searchBread))
+                searchViewModel.search()
+                viewFragment(SearchResultFragment())
             }
         }
     }
