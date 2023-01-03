@@ -24,14 +24,15 @@ class SearchRecentFragment :
 
     private fun initAdapter() = binding.recentSearchList.apply {
         this@SearchRecentFragment.adapter = SearchViewModel.adapter
-        this@SearchRecentFragment.adapter.setItemOnClickListener(object : RecentSearchAdapter.OnItemClickListener {
+        this@SearchRecentFragment.adapter.setItemOnClickListener(object :
+            RecentSearchAdapter.OnItemClickListener {
             override fun delete(item: RecentSearchEntity) {
                 searchViewModel.deleteRecentSearch(item.search)
             }
 
             override fun search(item: RecentSearchEntity) {
                 SearchViewModel.search = item.search
-                searchViewModel.search()
+                searchViewModel.searchResult()
             }
         })
         adapter = this@SearchRecentFragment.adapter

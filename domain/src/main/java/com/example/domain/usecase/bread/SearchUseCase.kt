@@ -5,8 +5,8 @@ import com.example.domain.repository.BreadRepository
 import javax.inject.Inject
 
 class SearchUseCase @Inject constructor(
-    private val breadRepository: BreadRepository
+    private val breadRepository: BreadRepository,
 ) {
-    suspend fun execute(searchEntity: RecentSearchEntity) =
-        breadRepository.searchBread(searchEntity)
+    suspend fun execute(title: String) =
+        breadRepository.searchBread(title)
 }

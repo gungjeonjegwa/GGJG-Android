@@ -3,6 +3,7 @@ package com.example.ggjg_andorid.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.entity.bread.RecentSearchEntity
+import com.example.domain.entity.bread.SearchEntity
 import com.example.domain.usecase.bread.DeleteRecentSearchUseCase
 import com.example.domain.usecase.bread.GetRecentSearchUseCase
 import com.example.domain.usecase.bread.SearchUseCase
@@ -17,10 +18,12 @@ import javax.inject.Inject
 class SearchViewModel @Inject constructor(
     private val getRecentSearchUseCase: GetRecentSearchUseCase,
     private val searchUseCase: SearchUseCase,
-    private val deleteRecentSearchUseCase: DeleteRecentSearchUseCase
+    private val deleteRecentSearchUseCase: DeleteRecentSearchUseCase,
 ) : ViewModel() {
     private val _eventFlow = MutableEventFlow<Event>()
     val eventFlow = _eventFlow.asEventFlow()
+    private val _searchingEventFlow = MutableEventFlow<SearchingEvent>()
+    val searchingEventFlow = _searchingEventFlow.asEventFlow()
 
     companion object {
         val adapter = RecentSearchAdapter()
@@ -36,14 +39,22 @@ class SearchViewModel @Inject constructor(
     }
 
     fun search() = viewModelScope.launch {
-        if (search != null) {
+        if (!search.isNullOrBlank()) {
             kotlin.runCatching {
-                searchUseCase.execute(RecentSearchEntity(search!!))
+                searchUseCase.execute(search!!)
             }.onSuccess {
+                event(SearchingEvent.Search(it))
+            }
+        }
+    }
+
+    fun searchResult() = viewModelScope.launch {
+        if (!search.isNullOrBlank()) {
+            kotlin.runCatching {
 
             }
-            event(Event.Search)
         }
+        event(Event.SearchResult)
     }
 
     fun deleteRecentSearch(search: String) = viewModelScope.launch {
@@ -58,9 +69,17 @@ class SearchViewModel @Inject constructor(
         _eventFlow.emit(event)
     }
 
+    private fun event(event: SearchingEvent) = viewModelScope.launch {
+        _searchingEventFlow.emit(event)
+    }
+
     sealed class Event {
         data class RecentSearch(val recentSearch: List<RecentSearchEntity?>) : Event()
-        object Search : Event()
+        object SearchResult : Event()
         object SuccessDelete : Event()
+    }
+
+    sealed class SearchingEvent {
+        data class Search(val data: List<SearchEntity>) : SearchingEvent()
     }
 }
