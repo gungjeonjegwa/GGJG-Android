@@ -66,10 +66,13 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment
                 }
             })
         }
+        val deviceWidth = requireContext().resources.displayMetrics.widthPixels
         favoriteList.apply {
             itemAnimator = null
             adapter = breadAdapter
-            layoutManager = GridLayoutManager(context, 2)
+            layoutManager = if (deviceWidth <= 1080) GridLayoutManager(requireContext(), 2) else GridLayoutManager(
+                requireContext(),
+                3)
             addItemDecoration(BreadListDecorator(context))
         }
     }
