@@ -54,10 +54,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
                 text = null
                 setOnTextChanged { p0, _, _, _ ->
                     SearchViewModel.search = p0.toString()
-                    if (p0.isNullOrBlank()) {
-                        viewFragment(SearchRecentFragment())
-                    } else if (p0.toString().length == 1) {
+                    if (!p0.isNullOrBlank()) {
                         viewFragment(SearchingFragment())
+                    } else {
+                        viewFragment(SearchRecentFragment())
                     }
                 }
             }, 1)

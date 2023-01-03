@@ -4,9 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.entity.bread.RecentSearchEntity
 import com.example.domain.entity.bread.SearchEntity
-import com.example.domain.usecase.bread.DeleteRecentSearchUseCase
-import com.example.domain.usecase.bread.GetRecentSearchUseCase
-import com.example.domain.usecase.bread.SearchUseCase
+import com.example.domain.entity.bread.SearchResultEntity
+import com.example.domain.usecase.bread.*
 import com.example.ggjg_andorid.adapter.RecentSearchAdapter
 import com.example.ggjg_andorid.utils.MutableEventFlow
 import com.example.ggjg_andorid.utils.asEventFlow
@@ -19,11 +18,15 @@ class SearchViewModel @Inject constructor(
     private val getRecentSearchUseCase: GetRecentSearchUseCase,
     private val searchUseCase: SearchUseCase,
     private val deleteRecentSearchUseCase: DeleteRecentSearchUseCase,
+    private val resultBreadUseCase: ResultBreadUseCase,
+    private val likeBreadUseCase: LikeBreadUseCase,
 ) : ViewModel() {
     private val _eventFlow = MutableEventFlow<Event>()
     val eventFlow = _eventFlow.asEventFlow()
     private val _searchingEventFlow = MutableEventFlow<SearchingEvent>()
     val searchingEventFlow = _searchingEventFlow.asEventFlow()
+    private val _searchResultEventFlow = MutableEventFlow<SearchResultEvent>()
+    val searchResultEventFlow = _searchResultEventFlow.asEventFlow()
 
     companion object {
         val adapter = RecentSearchAdapter()
@@ -48,13 +51,25 @@ class SearchViewModel @Inject constructor(
         }
     }
 
+    fun like(id: String) = viewModelScope.launch {
+        kotlin.runCatching {
+            likeBreadUseCase.execute(id)
+        }
+    }
+
     fun searchResult() = viewModelScope.launch {
+        event(Event.SearchResult)
+        realSearch()
+    }
+
+    private fun realSearch() = viewModelScope.launch {
         if (!search.isNullOrBlank()) {
             kotlin.runCatching {
-
+                resultBreadUseCase.execute(search!!)
+            }.onSuccess {
+                event(SearchResultEvent.SearchResult(it))
             }
         }
-        event(Event.SearchResult)
     }
 
     fun deleteRecentSearch(search: String) = viewModelScope.launch {
@@ -73,6 +88,10 @@ class SearchViewModel @Inject constructor(
         _searchingEventFlow.emit(event)
     }
 
+    private fun event(event: SearchResultEvent) = viewModelScope.launch {
+        _searchResultEventFlow.emit(event)
+    }
+
     sealed class Event {
         data class RecentSearch(val recentSearch: List<RecentSearchEntity?>) : Event()
         object SearchResult : Event()
@@ -81,5 +100,9 @@ class SearchViewModel @Inject constructor(
 
     sealed class SearchingEvent {
         data class Search(val data: List<SearchEntity>) : SearchingEvent()
+    }
+
+    sealed class SearchResultEvent {
+        data class SearchResult(val data: List<SearchResultEntity>) : SearchResultEvent()
     }
 }
