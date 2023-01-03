@@ -43,5 +43,12 @@ class BreadDataSourceImpl @Inject constructor(
             .sendRequest()
 
     override suspend fun searchBread(title: String): List<SearchResponse> =
-        searchBread(title)
+        HttpHandler<List<SearchResponse>>()
+            .httpRequest { breadAPI.searchBread(title) }
+            .sendRequest()
+
+    override suspend fun resultBread(title: String): List<SearchResultResponse> =
+        HttpHandler<List<SearchResultResponse>>()
+            .httpRequest { breadAPI.resultBread(title) }
+            .sendRequest()
 }

@@ -10,4 +10,5 @@ interface BreadDataSource {
     suspend fun allLikeBread(): List<LikeBreadResponse>
     suspend fun banner(): List<BannerResponse>
     suspend fun searchBread(title: String): List<SearchResponse>
+    suspend fun resultBread(title: String): List<SearchResultResponse>
 }

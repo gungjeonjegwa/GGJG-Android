@@ -11,6 +11,7 @@ interface BreadRepository {
     suspend fun allLikeBread(): List<LikeBreadEntity>
     suspend fun banner(): List<BannerEntity>
     suspend fun searchBread(title: String): List<SearchEntity>
+    suspend fun resultBread(title: String): List<SearchResultEntity>
     suspend fun deleteSearch(search: String)
     suspend fun getRecentSearch(): List<RecentSearchEntity?>
 }

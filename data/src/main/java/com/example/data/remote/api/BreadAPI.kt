@@ -40,4 +40,9 @@ interface BreadAPI {
     suspend fun searchBread(
         @Query("title") title: String,
     ): List<SearchResponse>
+
+    @GET("/bread/relationsearch")
+    suspend fun resultBread(
+        @Query("title") title: String,
+    ): List<SearchResultResponse>
 }
