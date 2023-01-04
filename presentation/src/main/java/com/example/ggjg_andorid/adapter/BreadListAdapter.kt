@@ -4,22 +4,20 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import coil.transform.RoundedCornersTransformation
-import com.example.domain.entity.bread.BreadEntity
+import com.example.domain.model.BreadModel
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.ItemBreadBinding
 import com.example.ggjg_andorid.utils.heartChange
-import com.example.ggjg_andorid.viewmodel.HomeViewModel
 import com.example.ggjg_andorid.viewmodel.MainViewModel
 import java.text.DecimalFormat
 
 class BreadListAdapter :
-    ListAdapter<BreadEntity.Bread, BreadListAdapter.BreadListViewHolder>(diffUtil) {
+    ListAdapter<BreadModel, BreadListAdapter.BreadListViewHolder>(diffUtil) {
 
     private lateinit var itemClickListener: OnItemClickListener
 
@@ -31,7 +29,7 @@ class BreadListAdapter :
         RecyclerView.ViewHolder(binding.root) {
         var currentDeliveryView = 0
 
-        fun bind(item: BreadEntity.Bread) = binding.apply {
+        fun bind(item: BreadModel) = binding.apply {
             bread = item
             val breadImgParams = breadImg.layoutParams
             breadImgParams.height = (context.resources.displayMetrics.heightPixels * 0.22).toInt()
@@ -98,8 +96,8 @@ class BreadListAdapter :
     }
 
     interface OnItemClickListener {
-        fun detail(item: BreadEntity.Bread)
-        fun like(item: BreadEntity.Bread)
+        fun detail(item: BreadModel)
+        fun like(item: BreadModel)
     }
 
     fun setItemOnClickListener(onItemClickListener: OnItemClickListener) {
@@ -107,18 +105,12 @@ class BreadListAdapter :
     }
 
     companion object {
-        val diffUtil = object : DiffUtil.ItemCallback<BreadEntity.Bread>() {
-            override fun areItemsTheSame(
-                oldItem: BreadEntity.Bread,
-                newItem: BreadEntity.Bread,
-            ): Boolean {
+        val diffUtil = object : DiffUtil.ItemCallback<BreadModel>() {
+            override fun areItemsTheSame(oldItem: BreadModel, newItem: BreadModel): Boolean {
                 return oldItem == newItem
             }
 
-            override fun areContentsTheSame(
-                oldItem: BreadEntity.Bread,
-                newItem: BreadEntity.Bread,
-            ): Boolean {
+            override fun areContentsTheSame(oldItem: BreadModel, newItem: BreadModel): Boolean {
                 return oldItem == newItem
             }
         }

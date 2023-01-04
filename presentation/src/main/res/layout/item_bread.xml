@@ -6,7 +6,7 @@
 
         <variable
             name="bread"
-            type="com.example.domain.entity.bread.BreadEntity.Bread" />
+            type="com.example.domain.model.BreadModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,8 +25,8 @@
             android:id="@+id/soldOutLayout"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:visibility="gone"
             android:background="@color/invisible_white"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/breadImg"
             app:layout_constraintEnd_toEndOf="@id/breadImg"
             app:layout_constraintStart_toStartOf="@id/breadImg"

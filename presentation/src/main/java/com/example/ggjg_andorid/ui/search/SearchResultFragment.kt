@@ -3,8 +3,9 @@ package com.example.ggjg_andorid.ui.search
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.domain.model.BreadModel
 import com.example.ggjg_andorid.R
-import com.example.ggjg_andorid.adapter.SearchResultAdapter
+import com.example.ggjg_andorid.adapter.BreadListAdapter
 import com.example.ggjg_andorid.adapter.decorator.BreadListDecorator
 import com.example.ggjg_andorid.databinding.FragmentSearchResultBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
@@ -17,7 +18,7 @@ class SearchResultFragment :
     BaseFragment<FragmentSearchResultBinding>(R.layout.fragment_search_result) {
     private val mainViewModel by activityViewModels<MainViewModel>()
     private val searchViewModel by activityViewModels<SearchViewModel>()
-    private lateinit var searchResultAdapter: SearchResultAdapter
+    private lateinit var searchResultAdapter: BreadListAdapter
     override fun createView() {
         mainViewModel.hiddenNav(false)
         initView()
@@ -33,15 +34,15 @@ class SearchResultFragment :
     }
 
     private fun initView() = binding.apply {
-        searchResultAdapter = SearchResultAdapter().apply {
-            setItemOnClickListener(object : SearchResultAdapter.OnItemClickListener {
-                override fun detail(item: SearchResultEntity) {
+        searchResultAdapter = BreadListAdapter().apply {
+            setItemOnClickListener(object : BreadListAdapter.OnItemClickListener {
+                override fun detail(item: BreadModel) {
                     DetailViewModel.id = item.id
                     requireActivity().findNavController(R.id.mainContainer)
                         .navigate(R.id.action_searchFragment_to_detailBreadFragment)
                 }
 
-                override fun like(item: SearchResultEntity) {
+                override fun like(item: BreadModel) {
                     searchViewModel.like(item.id)
                 }
             })

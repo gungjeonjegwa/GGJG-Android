@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager.widget.ViewPager
 import com.example.domain.entity.bread.BreadEntity
+import com.example.domain.model.BreadModel
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.adapter.BannerAdapter
 import com.example.ggjg_andorid.adapter.BreadListAdapter
@@ -25,7 +26,8 @@ import com.example.ggjg_andorid.viewmodel.DetailViewModel
 import com.example.ggjg_andorid.viewmodel.HomeViewModel
 import com.example.ggjg_andorid.viewmodel.MainViewModel
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), SwipeRefreshLayout.OnRefreshListener {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
+    SwipeRefreshLayout.OnRefreshListener {
     private val homeViewModel by activityViewModels<HomeViewModel>()
     private val mainViewModel by activityViewModels<MainViewModel>()
     private lateinit var categoryList: List<View>
@@ -112,13 +114,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
             }
         adapter = BreadListAdapter()
         adapter.setItemOnClickListener(object : BreadListAdapter.OnItemClickListener {
-            override fun detail(item: BreadEntity.Bread) {
+            override fun detail(item: BreadModel) {
                 DetailViewModel.id = item.id
                 requireActivity().findNavController(R.id.mainContainer)
                     .navigate(R.id.action_homeFragment_to_detailBreadFragment)
             }
 
-            override fun like(item: BreadEntity.Bread) {
+            override fun like(item: BreadModel) {
                 homeViewModel.like(item.id)
             }
         })

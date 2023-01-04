@@ -5,8 +5,9 @@ import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.domain.model.BreadModel
 import com.example.ggjg_andorid.R
-import com.example.ggjg_andorid.adapter.LikeBreadListAdapter
+import com.example.ggjg_andorid.adapter.BreadListAdapter
 import com.example.ggjg_andorid.adapter.decorator.BreadListDecorator
 import com.example.ggjg_andorid.databinding.FragmentFavoriteBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
@@ -20,7 +21,7 @@ import com.example.ggjg_andorid.viewmodel.MainViewModel
 
 class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment_favorite) {
     private val favoriteViewModel by activityViewModels<FavoriteViewModel>()
-    private lateinit var breadAdapter: LikeBreadListAdapter
+    private lateinit var breadAdapter: BreadListAdapter
     override fun createView() {
         if (MainViewModel.isLogin) {
             initView()
@@ -51,15 +52,15 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment
         repeatOnStart {
             favoriteViewModel.eventFlow.collect { event -> handleEvent(event) }
         }
-        breadAdapter = LikeBreadListAdapter().apply {
-            setItemOnClickListener(object : LikeBreadListAdapter.OnItemClickListener {
-                override fun detail(item: LikeBreadEntity) {
+        breadAdapter = BreadListAdapter().apply {
+            setItemOnClickListener(object : BreadListAdapter.OnItemClickListener {
+                override fun detail(item: BreadModel) {
                     DetailViewModel.id = item.id
                     requireActivity().findNavController(R.id.mainContainer)
                         .navigate(R.id.action_favoriteFragment_to_detailBreadFragment)
                 }
 
-                override fun like(item: LikeBreadEntity) {
+                override fun like(item: BreadModel) {
                     favoriteViewModel.delete(item.id)
                     breadAdapter.submitList(breadAdapter.currentList.filter { it.id != item.id })
                 }
@@ -69,7 +70,8 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment
         favoriteList.apply {
             itemAnimator = null
             adapter = breadAdapter
-            layoutManager = if (deviceWidth <= 1080) GridLayoutManager(requireContext(), 2) else GridLayoutManager(
+            layoutManager = if (deviceWidth <= 1080) GridLayoutManager(requireContext(),
+                2) else GridLayoutManager(
                 requireContext(),
                 3)
             addItemDecoration(BreadListDecorator(context))

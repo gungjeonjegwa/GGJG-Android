@@ -2,6 +2,7 @@ package com.example.ggjg_andorid.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.domain.model.BreadModel
 import com.example.domain.usecase.bread.AllLikeBreadUseCase
 import com.example.domain.usecase.bread.LikeBreadUseCase
 import com.example.ggjg_andorid.utils.MutableEventFlow
@@ -42,7 +43,7 @@ class FavoriteViewModel @Inject constructor(
     }
 
     sealed class Event {
-        data class BreadList(val data: List<LikeBreadEntity>) : Event()
+        data class BreadList(val data: List<BreadModel>) : Event()
         object Empty : Event()
     }
 }
