@@ -1,6 +1,7 @@
 package com.example.data.remote.datasource
 
 import com.example.data.remote.api.BreadAPI
+import com.example.data.remote.model.BreadModel
 import com.example.data.remote.response.bread.*
 import com.example.data.utils.HttpHandler
 import javax.inject.Inject
@@ -32,8 +33,8 @@ class BreadDataSourceImpl @Inject constructor(
             .httpRequest { breadAPI.likeBread(id) }
             .sendRequest()
 
-    override suspend fun allLikeBread(): List<LikeBreadResponse> =
-        HttpHandler<List<LikeBreadResponse>>()
+    override suspend fun allLikeBread(): List<BreadModel> =
+        HttpHandler<List<BreadModel>>()
             .httpRequest { breadAPI.allLikeBread() }
             .sendRequest()
 
@@ -47,8 +48,8 @@ class BreadDataSourceImpl @Inject constructor(
             .httpRequest { breadAPI.searchBread(title) }
             .sendRequest()
 
-    override suspend fun resultBread(title: String): List<SearchResultResponse> =
-        HttpHandler<List<SearchResultResponse>>()
+    override suspend fun resultBread(title: String): List<BreadModel> =
+        HttpHandler<List<BreadModel>>()
             .httpRequest { breadAPI.resultBread(title) }
             .sendRequest()
 }

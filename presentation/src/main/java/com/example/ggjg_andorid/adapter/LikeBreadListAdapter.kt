@@ -9,11 +9,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import coil.transform.RoundedCornersTransformation
-import com.example.domain.entity.bread.LikeBreadEntity
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.ItemLikeBreadBinding
 import com.example.ggjg_andorid.utils.heartChange
-import com.example.ggjg_andorid.viewmodel.HomeViewModel
 import com.example.ggjg_andorid.viewmodel.MainViewModel
 import java.text.DecimalFormat
 

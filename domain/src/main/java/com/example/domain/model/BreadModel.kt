@@ -1,6 +1,8 @@
-package com.example.domain.entity.bread
+package com.example.domain.model
 
-data class SearchResultEntity(
+import com.example.domain.entity.bread.BreadEntity
+
+data class BreadModel(
     val id: String,
     val name: String,
     val price: Int?,

@@ -3,7 +3,6 @@ package com.example.ggjg_andorid.ui.search
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.domain.entity.bread.SearchResultEntity
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.adapter.SearchResultAdapter
 import com.example.ggjg_andorid.adapter.decorator.BreadListDecorator

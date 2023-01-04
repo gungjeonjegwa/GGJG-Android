@@ -5,7 +5,6 @@ import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.domain.entity.bread.LikeBreadEntity
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.adapter.LikeBreadListAdapter
 import com.example.ggjg_andorid.adapter.decorator.BreadListDecorator

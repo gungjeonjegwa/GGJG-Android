@@ -2,8 +2,6 @@ package com.example.ggjg_andorid.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.entity.bread.LikeBreadEntity
-import com.example.domain.usecase.auth.IsLoginUseCase
 import com.example.domain.usecase.bread.AllLikeBreadUseCase
 import com.example.domain.usecase.bread.LikeBreadUseCase
 import com.example.ggjg_andorid.utils.MutableEventFlow

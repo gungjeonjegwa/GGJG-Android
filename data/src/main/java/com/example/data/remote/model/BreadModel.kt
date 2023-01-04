@@ -1,9 +1,8 @@
-package com.example.data.remote.response.bread
+package com.example.data.remote.model
 
-import com.example.domain.entity.bread.LikeBreadEntity
 import com.google.gson.annotations.SerializedName
 
-data class LikeBreadResponse(
+data class BreadModel(
     @SerializedName("id")
     val id: String,
     @SerializedName("title")
@@ -28,13 +27,13 @@ data class LikeBreadResponse(
         val type: String,
     )
 
-    fun SellType.toEntity() = LikeBreadEntity.SellType(
+    fun SellType.toEntity() = com.example.domain.model.BreadModel.SellType(
         id = id,
         type = type
     )
 }
 
-fun LikeBreadResponse.toEntity() = LikeBreadEntity(
+fun BreadModel.toEntity() = com.example.domain.model.BreadModel(
     id = id,
     name = name,
     price = price,
@@ -44,3 +43,4 @@ fun LikeBreadResponse.toEntity() = LikeBreadEntity(
     sellDeliveryType = sellDeliveryType.map { it.toEntity() },
     isLike = isLike
 )
+

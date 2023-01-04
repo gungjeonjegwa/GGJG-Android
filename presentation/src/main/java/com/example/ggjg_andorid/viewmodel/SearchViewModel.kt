@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.entity.bread.RecentSearchEntity
 import com.example.domain.entity.bread.SearchEntity
-import com.example.domain.entity.bread.SearchResultEntity
 import com.example.domain.usecase.bread.*
 import com.example.ggjg_andorid.adapter.RecentSearchAdapter
 import com.example.ggjg_andorid.utils.MutableEventFlow

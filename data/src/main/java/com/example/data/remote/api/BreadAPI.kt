@@ -1,5 +1,6 @@
 package com.example.data.remote.api
 
+import com.example.data.remote.model.BreadModel
 import com.example.data.remote.response.bread.*
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -31,7 +32,7 @@ interface BreadAPI {
     )
 
     @GET("/bread/likeitem")
-    suspend fun allLikeBread(): List<LikeBreadResponse>
+    suspend fun allLikeBread(): List<BreadModel>
 
     @GET("/bread/banner")
     suspend fun banner(): List<BannerResponse>
@@ -44,5 +45,5 @@ interface BreadAPI {
     @GET("/bread/relationsearch")
     suspend fun resultBread(
         @Query("title") title: String,
-    ): List<SearchResultResponse>
+    ): List<BreadModel>
 }

@@ -1,22 +1,8 @@
 package com.example.domain.entity.bread
 
+import com.example.domain.model.BreadModel
+
 data class BreadEntity(
-    val breadList: List<Bread>,
+    val breadList: List<BreadModel>,
     val isLast: Boolean,
-) {
-    data class Bread(
-        val id: String,
-        val name: String,
-        val price: Int?,
-        val category: String,
-        val isSoldOut: Boolean,
-        val imgUrl: String,
-        val sellDeliveryType: List<SellType>,
-        val isLike: Boolean,
-    ) {
-        data class SellType(
-            val id: String,
-            val type: String,
-        )
-    }
-}
+)
