@@ -7,6 +7,7 @@ import javax.inject.Inject
 class BuyBreadUseCase @Inject constructor(
     private val orderRepository: OrderRepository,
 ) {
-    suspend fun execute(buyBreadParam: BuyBreadParam) =
+    suspend operator fun invoke(buyBreadParam: BuyBreadParam) = kotlin.runCatching {
         orderRepository.buyBread(buyBreadParam)
+    }
 }

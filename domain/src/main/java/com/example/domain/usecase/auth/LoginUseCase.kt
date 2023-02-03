@@ -5,8 +5,9 @@ import com.example.domain.repository.AuthRepository
 import javax.inject.Inject
 
 class LoginUseCase @Inject constructor(
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
 ) {
-    suspend fun execute(loginParam: LoginParam) =
+    suspend operator fun invoke(loginParam: LoginParam) = kotlin.runCatching {
         authRepository.login(loginParam)
+    }
 }

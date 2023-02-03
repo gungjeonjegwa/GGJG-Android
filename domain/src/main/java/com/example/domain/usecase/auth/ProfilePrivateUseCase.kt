@@ -4,8 +4,9 @@ import com.example.domain.repository.AuthRepository
 import javax.inject.Inject
 
 class ProfilePrivateUseCase @Inject constructor(
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
 ) {
-    suspend fun execute() =
+    suspend operator fun invoke() = kotlin.runCatching {
         authRepository.profilePrivate()
+    }
 }

@@ -7,6 +7,7 @@ import javax.inject.Inject
 class NewAddressUseCase @Inject constructor(
     private val authRepository: AuthRepository,
 ) {
-    suspend fun execute(address: AddressModel) =
+    suspend operator fun invoke(address: AddressModel) = kotlin.runCatching {
         authRepository.newAddress(address)
+    }
 }

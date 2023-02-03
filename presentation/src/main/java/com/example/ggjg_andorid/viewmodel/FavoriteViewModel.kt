@@ -21,9 +21,7 @@ class FavoriteViewModel @Inject constructor(
     val eventFlow = _eventFlow.asEventFlow()
 
     fun getLikeBread() = viewModelScope.launch {
-        kotlin.runCatching {
-            allLikeBreadUseCase.execute()
-        }.onSuccess {
+        allLikeBreadUseCase().onSuccess {
             if (it.isNotEmpty()) {
                 event(Event.BreadList(it))
             } else {
@@ -33,9 +31,7 @@ class FavoriteViewModel @Inject constructor(
     }
 
     fun delete(id: String) = viewModelScope.launch {
-        kotlin.runCatching {
-            likeBreadUseCase.execute(id)
-        }
+        likeBreadUseCase(id)
     }
 
     private fun event(event: Event) = viewModelScope.launch {

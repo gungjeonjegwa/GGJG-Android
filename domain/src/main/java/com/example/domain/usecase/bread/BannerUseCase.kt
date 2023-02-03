@@ -6,6 +6,7 @@ import javax.inject.Inject
 class BannerUseCase @Inject constructor(
     private val breadRepository: BreadRepository,
 ) {
-    suspend fun execute() =
+    suspend operator fun invoke() = kotlin.runCatching {
         breadRepository.banner()
+    }
 }

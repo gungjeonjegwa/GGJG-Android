@@ -19,7 +19,7 @@ class ShoppingListViewModel @Inject constructor(
     private val myBasketUseCase: MyBasketUseCase,
     private val plusBasketUseCase: PlusBasketUseCase,
     private val minusBasketUseCase: MinusBasketUseCase,
-    private val deleteBasketUseCase: DeleteBasketUseCase
+    private val deleteBasketUseCase: DeleteBasketUseCase,
 ) : ViewModel() {
 
     private val _eventFlow = MutableEventFlow<Event>()
@@ -32,9 +32,7 @@ class ShoppingListViewModel @Inject constructor(
     }
 
     fun myBasket() = viewModelScope.launch {
-        kotlin.runCatching {
-            myBasketUseCase.execute()
-        }.onSuccess {
+        myBasketUseCase().onSuccess {
             allBreadList = it
             if (allSelected) {
                 selectBreadList = it
@@ -46,14 +44,14 @@ class ShoppingListViewModel @Inject constructor(
 
     fun changeBasket(id: String, isPlus: Boolean = true) = viewModelScope.launch {
         if (isPlus) {
-            plusBasketUseCase.execute(id)
+            plusBasketUseCase(id)
         } else {
-            minusBasketUseCase.execute(id)
+            minusBasketUseCase(id)
         }
     }
 
     fun deleteBasket(id: String) = viewModelScope.launch {
-        deleteBasketUseCase.execute(id)
+        deleteBasketUseCase(id)
     }
 
     private fun event(event: Event) = viewModelScope.launch {

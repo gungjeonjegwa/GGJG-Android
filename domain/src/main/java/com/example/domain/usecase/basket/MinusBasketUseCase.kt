@@ -4,8 +4,9 @@ import com.example.domain.repository.BasketRepository
 import javax.inject.Inject
 
 class MinusBasketUseCase @Inject constructor(
-    private val basketRepository: BasketRepository
+    private val basketRepository: BasketRepository,
 ) {
-    suspend fun execute(id: String) =
+    suspend operator fun invoke(id: String) = kotlin.runCatching {
         basketRepository.minusBasket(id)
+    }
 }

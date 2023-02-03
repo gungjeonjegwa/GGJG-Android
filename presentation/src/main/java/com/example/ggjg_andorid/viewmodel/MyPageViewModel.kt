@@ -34,7 +34,7 @@ class MyPageViewModel @Inject constructor(
     val privacyEventFlow = _privacyEventFlow.asEventFlow()
 
     fun changeAddress() = viewModelScope.launch {
-        changeAddressUseCase.execute(AddressModel(
+        changeAddressUseCase(AddressModel(
             PayViewModel.address!!.zipcode,
             PayViewModel.address!!.road,
             PayViewModel.address!!.landNumber,
@@ -46,10 +46,8 @@ class MyPageViewModel @Inject constructor(
     }
 
     fun logout() = viewModelScope.launch {
-        kotlin.runCatching {
-            logoutUseCase.execute()
-        }.onSuccess {
-            saveTokenUseCase.execute(null, null, null)
+        logoutUseCase().onSuccess {
+            saveTokenUseCase(null, null, null)
             MainViewModel.isLogin = false
             event(Event.Success)
         }.onFailure {
@@ -57,32 +55,29 @@ class MyPageViewModel @Inject constructor(
     }
 
     fun profile() = viewModelScope.launch {
-        kotlin.runCatching {
-            profileUseCase.execute()
-        }.onSuccess {
+        profileUseCase().onSuccess {
             event(Event.Profile(it))
         }
     }
 
     fun profilePrivate() = viewModelScope.launch {
-        kotlin.runCatching {
-            profilePrivateUseCase.execute()
-        }.onSuccess {
+        profilePrivateUseCase().onSuccess {
             event(PrivacyEvent.ProfileData(it))
         }
     }
 
     fun saveInfo(email: String) = viewModelScope.launch {
-        val state = emailCheckUseCase.execute(email)
-        if (state.isDuplicated) {
-            event(EditEvent.AlreadyEmail)
-        } else {
-            event(EditEvent.Success)
+        emailCheckUseCase(email).onSuccess {
+            if (it.isDuplicated) {
+                event(EditEvent.AlreadyEmail)
+            } else {
+                event(EditEvent.Success)
+            }
         }
     }
 
     fun giftStamp() = viewModelScope.launch {
-        giftStampUseCase.execute()
+        giftStampUseCase()
         stamp = 0
     }
 

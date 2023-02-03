@@ -46,9 +46,7 @@ class PayViewModel @Inject constructor(
     val couponEventFlow = _couponEventFlow.asEventFlow()
 
     fun init() = viewModelScope.launch {
-        kotlin.runCatching {
-            initOrderInfoUseCase.execute()
-        }.onSuccess {
+        initOrderInfoUseCase().onSuccess {
             defaultAddress = it.address
             if (it.address == null && address == null) {
                 event(Event.NoAddressInitInfo(it))
@@ -61,10 +59,8 @@ class PayViewModel @Inject constructor(
                 event(Event.InitInfo(it))
             }
             if (orderNumber == null) {
-                kotlin.runCatching {
-                    createOrderUseCase.execute()
-                }.onSuccess {
-                    orderNumber = createOrderUseCase.execute().orderId
+                createOrderUseCase().onSuccess { order ->
+                    orderNumber = order.orderId
                 }
             }
         }.onFailure {
@@ -81,9 +77,7 @@ class PayViewModel @Inject constructor(
     }
 
     fun availableCoupon() = viewModelScope.launch {
-        kotlin.runCatching {
-            availableCouponUseCase.execute(currentItemId!!)
-        }.onSuccess {
+        availableCouponUseCase(currentItemId!!).onSuccess {
             val data =
                 it.filter { selectCouponList.find { coupon -> coupon.couponId == it.id } == null }
             event(CouponEvent.Coupon(data))
@@ -92,16 +86,12 @@ class PayViewModel @Inject constructor(
 
     fun buyBread() = viewModelScope.launch {
         if (!address!!.isBasic) {
-            kotlin.runCatching {
-                newAddressUseCase.execute(address!!)
-            }.onSuccess {
+            newAddressUseCase(address!!).onSuccess {
                 realBuy()
             }.onFailure {
             }
         } else if (defaultAddress == null) {
-            kotlin.runCatching {
-                changeAddressUseCase.execute(address!!)
-            }.onSuccess {
+            changeAddressUseCase(address!!).onSuccess {
                 realBuy()
             }
         } else {
@@ -110,44 +100,40 @@ class PayViewModel @Inject constructor(
     }
 
     fun cancelBuy() = viewModelScope.launch {
-        kotlin.runCatching {
-            buyBreadUseCase.execute(BuyBreadParam(
-                false,
-                address!!,
-                orderNumber!!,
-                shoppingList.mapIndexed { i, data ->
-                    BuyBreadParam.BuyItem(
-                        data.breadId,
-                        data.count,
-                        (data.price + (data.extraMoney ?: 0)) * data.count,
-                        selectCouponList.find { it.id == i }?.discountPrice,
-                        data.unit,
-                        data.age,
-                        selectCouponList.find { it.id == i }?.couponId)
-                }
-            ))
-        }.onFailure {
+        buyBreadUseCase(BuyBreadParam(
+            false,
+            address!!,
+            orderNumber!!,
+            shoppingList.mapIndexed { i, data ->
+                BuyBreadParam.BuyItem(
+                    data.breadId,
+                    data.count,
+                    (data.price + (data.extraMoney ?: 0)) * data.count,
+                    selectCouponList.find { it.id == i }?.discountPrice,
+                    data.unit,
+                    data.age,
+                    selectCouponList.find { it.id == i }?.couponId)
+            }
+        )).onFailure {
         }
     }
 
     private fun realBuy() = viewModelScope.launch {
-        kotlin.runCatching {
-            buyBreadUseCase.execute(BuyBreadParam(
-                true,
-                address!!,
-                orderNumber!!,
-                shoppingList.mapIndexed { i, data ->
-                    BuyBreadParam.BuyItem(
-                        data.breadId,
-                        data.count,
-                        (data.price + (data.extraMoney ?: 0)) * data.count,
-                        selectCouponList.find { it.id == i }?.discountPrice,
-                        data.unit,
-                        data.age,
-                        selectCouponList.find { it.id == i }?.couponId)
-                }
-            ))
-        }.onSuccess {
+        buyBreadUseCase(BuyBreadParam(
+            true,
+            address!!,
+            orderNumber!!,
+            shoppingList.mapIndexed { i, data ->
+                BuyBreadParam.BuyItem(
+                    data.breadId,
+                    data.count,
+                    (data.price + (data.extraMoney ?: 0)) * data.count,
+                    selectCouponList.find { it.id == i }?.discountPrice,
+                    data.unit,
+                    data.age,
+                    selectCouponList.find { it.id == i }?.couponId)
+            }
+        )).onSuccess {
             orderNumber = null
             event(Event.SuccessPay)
         }.onFailure {

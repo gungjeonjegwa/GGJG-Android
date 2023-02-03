@@ -35,9 +35,7 @@ class HomeViewModel @Inject constructor(
 
     fun allBread() = viewModelScope.launch {
         if (!isLast) {
-            kotlin.runCatching {
-                allBreadUseCase.execute(page.toString(), "10")
-            }.onSuccess {
+            allBreadUseCase(page.toString(), "10").onSuccess {
                 if (page == 0) {
                     event(Event.Bread(it.breadList))
                 } else {
@@ -58,9 +56,7 @@ class HomeViewModel @Inject constructor(
             else -> "BREAD"
         }
         if (!isLast) {
-            kotlin.runCatching {
-                categoryBreadUseCase.execute(page.toString(), "10", category)
-            }.onSuccess {
+            categoryBreadUseCase(page.toString(), "10", category).onSuccess {
                 if (page == 0) {
                     event(Event.Bread(it.breadList))
                 } else {
@@ -75,13 +71,11 @@ class HomeViewModel @Inject constructor(
     }
 
     fun like(id: String) = viewModelScope.launch {
-        likeBreadUseCase.execute(id)
+        likeBreadUseCase(id)
     }
 
     fun getBanner() = viewModelScope.launch {
-        kotlin.runCatching {
-            bannerUseCase.execute()
-        }.onSuccess {
+        bannerUseCase().onSuccess {
             event(Event.Banner(it))
         }
     }

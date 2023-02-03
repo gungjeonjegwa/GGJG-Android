@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CouponViewModel @Inject constructor(
     private val enrollCouponUseCase: EnrollCouponUseCase,
-    private val allCouponUseCase: AllCouponUseCase
+    private val allCouponUseCase: AllCouponUseCase,
 ) : ViewModel() {
     companion object {
         var couponList = listOf<String>()
@@ -27,9 +27,7 @@ class CouponViewModel @Inject constructor(
     val addEventFlow = _addEventFlow.asEventFlow()
 
     fun allCoupon() = viewModelScope.launch {
-        kotlin.runCatching {
-            allCouponUseCase.execute()
-        }.onSuccess {
+        allCouponUseCase().onSuccess {
             event(Event.CouponList(it))
         }
     }
@@ -43,9 +41,7 @@ class CouponViewModel @Inject constructor(
                 if (it == "") {
                     errorCnt++
                 } else {
-                    kotlin.runCatching {
-                        enrollCouponUseCase.execute(it)
-                    }.onFailure {
+                    enrollCouponUseCase(it).onFailure {
                         errorCnt++
                     }
                 }

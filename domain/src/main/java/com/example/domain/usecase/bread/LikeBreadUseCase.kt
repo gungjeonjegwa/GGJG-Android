@@ -6,6 +6,7 @@ import javax.inject.Inject
 class LikeBreadUseCase @Inject constructor(
     private val breadRepository: BreadRepository,
 ) {
-    suspend fun execute(id: String) =
+    suspend operator fun invoke(id: String) = kotlin.runCatching {
         breadRepository.likeBread(id)
+    }
 }

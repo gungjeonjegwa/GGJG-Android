@@ -34,27 +34,21 @@ class SearchViewModel @Inject constructor(
     }
 
     fun recentSearch() = viewModelScope.launch {
-        kotlin.runCatching {
-            getRecentSearchUseCase.execute()
-        }.onSuccess {
+        getRecentSearchUseCase().onSuccess {
             event(Event.RecentSearch(it))
         }
     }
 
     fun search() = viewModelScope.launch {
         if (!search.isNullOrBlank()) {
-            kotlin.runCatching {
-                searchUseCase.execute(search!!)
-            }.onSuccess {
+            searchUseCase(search!!).onSuccess {
                 event(SearchingEvent.Search(it))
             }
         }
     }
 
     fun like(id: String) = viewModelScope.launch {
-        kotlin.runCatching {
-            likeBreadUseCase.execute(id)
-        }
+        likeBreadUseCase(id)
     }
 
     fun searchResult() = viewModelScope.launch {
@@ -64,18 +58,14 @@ class SearchViewModel @Inject constructor(
 
     private fun realSearch() = viewModelScope.launch {
         if (!search.isNullOrBlank()) {
-            kotlin.runCatching {
-                resultBreadUseCase.execute(search!!)
-            }.onSuccess {
+            resultBreadUseCase(search!!).onSuccess {
                 event(SearchResultEvent.SearchResult(it))
             }
         }
     }
 
     fun deleteRecentSearch(search: String) = viewModelScope.launch {
-        kotlin.runCatching {
-            deleteRecentSearchUseCase.execute(search)
-        }.onSuccess {
+        deleteRecentSearchUseCase(search).onSuccess {
             event(Event.SuccessDelete)
         }
     }

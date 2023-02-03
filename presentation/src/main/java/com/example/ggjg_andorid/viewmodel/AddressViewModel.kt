@@ -72,9 +72,7 @@ class AddressViewModel @Inject constructor(
     }
 
     fun recentSearch() = viewModelScope.launch {
-        kotlin.runCatching {
-            recentAddressUseCase.execute()
-        }.onSuccess {
+        recentAddressUseCase().onSuccess {
             if (it.isNotEmpty()) {
                 event(ChangeEvent.RecentSearch((it)))
             } else {

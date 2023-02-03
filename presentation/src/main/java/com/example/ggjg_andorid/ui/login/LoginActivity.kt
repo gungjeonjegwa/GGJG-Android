@@ -4,6 +4,7 @@ import android.content.Intent
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.ActivityLoginBinding
@@ -93,10 +94,12 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                 startActivity(Intent(this, RegisterActivity::class.java))
             }
             R.id.findIdBtn -> {
-                startActivity(Intent(this, FindIdActivity::class.java))
+                Toast.makeText(this, "지금은 지원되지 않는 기능입니다.", Toast.LENGTH_SHORT).show()
+//                startActivity(Intent(this, FindIdActivity::class.java))
             }
             R.id.findPwBtn -> {
-                startActivity(Intent(this, FindPwActivity::class.java))
+                Toast.makeText(this, "지금은 지원되지 않는 기능입니다.", Toast.LENGTH_SHORT).show()
+//                startActivity(Intent(this, FindPwActivity::class.java))
             }
             R.id.loginBtn -> {
                 loginViewModel.login(binding.editId.text.toString(), binding.editPw.text.toString())

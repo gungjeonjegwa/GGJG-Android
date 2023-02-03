@@ -2,6 +2,7 @@ package com.example.ggjg_andorid.ui.order
 
 import android.content.Context
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -54,18 +55,21 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(R.layout.fragment_order
                 }
 
                 override fun cancel(item: MyOrderListEntity) {
-                    requireActivity().findNavController(R.id.mainContainer)
-                        .navigate(R.id.action_orderFragment_to_orderCancelFragment)
+                    Toast.makeText(context, "지금은 지원되지 않는 기능입니다.", Toast.LENGTH_SHORT).show()
+//                    requireActivity().findNavController(R.id.mainContainer)
+//                        .navigate(R.id.action_orderFragment_to_orderCancelFragment)
                 }
 
                 override fun recall(item: MyOrderListEntity) {
-                    requireActivity().findNavController(R.id.mainContainer)
-                        .navigate(R.id.action_orderFragment_to_orderRecallFragment)
+                    Toast.makeText(context, "지금은 지원되지 않는 기능입니다.", Toast.LENGTH_SHORT).show()
+//                    requireActivity().findNavController(R.id.mainContainer)
+//                        .navigate(R.id.action_orderFragment_to_orderRecallFragment)
                 }
 
                 override fun review(item: MyOrderListEntity) {
-                    requireActivity().findNavController(R.id.mainContainer)
-                        .navigate(R.id.action_orderFragment_to_orderReviewFragment)
+                    Toast.makeText(context, "지금은 지원되지 않는 기능입니다.", Toast.LENGTH_SHORT).show()
+//                    requireActivity().findNavController(R.id.mainContainer)
+//                        .navigate(R.id.action_orderFragment_to_orderReviewFragment)
                 }
             })
         }

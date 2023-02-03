@@ -11,8 +11,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val isLoginUseCase: IsLoginUseCase
-): ViewModel() {
+    private val isLoginUseCase: IsLoginUseCase,
+) : ViewModel() {
 
     private val _eventFlow = MutableEventFlow<Event>()
     val eventFlow = _eventFlow.asEventFlow()
@@ -23,7 +23,9 @@ class MainViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            isLogin = isLoginUseCase.execute()
+            isLoginUseCase().onSuccess {
+                isLogin = it
+            }
         }
     }
 
@@ -34,7 +36,8 @@ class MainViewModel @Inject constructor(
     private fun event(event: Event) = viewModelScope.launch {
         _eventFlow.emit(event)
     }
+
     sealed class Event {
-        data class IsHiddenNav(val status: Boolean): Event()
+        data class IsHiddenNav(val status: Boolean) : Event()
     }
 }

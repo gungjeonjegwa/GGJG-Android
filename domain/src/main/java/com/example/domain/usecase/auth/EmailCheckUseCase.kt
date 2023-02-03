@@ -4,8 +4,9 @@ import com.example.domain.repository.AuthRepository
 import javax.inject.Inject
 
 class EmailCheckUseCase @Inject constructor(
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
 ) {
-    suspend fun execute(email: String) =
+    suspend operator fun invoke(email: String) = kotlin.runCatching {
         authRepository.emailCheck(email)
+    }
 }

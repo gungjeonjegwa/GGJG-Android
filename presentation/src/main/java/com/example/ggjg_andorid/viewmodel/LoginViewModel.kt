@@ -21,14 +21,12 @@ class LoginViewModel @Inject constructor(
     val eventFlow = _eventFlow.asEventFlow()
 
     fun login(id: String, pw: String) = viewModelScope.launch {
-        kotlin.runCatching {
-            loginUseCase.execute(
-                LoginParam(
-                    id, pw
-                )
+        loginUseCase(
+            LoginParam(
+                id, pw
             )
-        }.onSuccess {
-            saveTokenUseCase.execute(it.accessToken, it.refreshToken, it.expiredAt)
+        ).onSuccess {
+            saveTokenUseCase(it.accessToken, it.refreshToken, it.expiredAt)
             MainViewModel.isLogin = true
             event(Event.Success)
         }.onFailure {

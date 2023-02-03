@@ -6,6 +6,7 @@ import javax.inject.Inject
 class ResultBreadUseCase @Inject constructor(
     private val breadRepository: BreadRepository,
 ) {
-    suspend fun execute(title: String) =
+    suspend operator fun invoke(title: String) = kotlin.runCatching {
         breadRepository.resultBread(title)
+    }
 }

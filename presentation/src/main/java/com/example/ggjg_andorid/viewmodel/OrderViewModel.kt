@@ -15,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class OrderViewModel @Inject constructor(
     private val myOrderListUseCase: MyOrderListUseCase,
-    private val detailOrderUseCase: DetailOrderUseCase
+    private val detailOrderUseCase: DetailOrderUseCase,
 ) : ViewModel() {
     private val _eventFlow = MutableEventFlow<Event>()
     val eventFlow = _eventFlow.asEventFlow()
@@ -28,20 +28,15 @@ class OrderViewModel @Inject constructor(
     }
 
     fun myOrderList() = viewModelScope.launch {
-        kotlin.runCatching {
-            myOrderListUseCase.execute()
-        }.onSuccess {
+        myOrderListUseCase().onSuccess {
             event(Event.OrderList(it))
         }
     }
 
     fun detailOrder() = viewModelScope.launch {
-        kotlin.runCatching {
-            detailOrderUseCase.execute(id)
-        }.onSuccess {
+        detailOrderUseCase(id).onSuccess {
             event(DetailEvent.DetailOrder(it))
         }.onFailure {
-            println("안녕 $it , $id")
         }
     }
 

@@ -5,8 +5,9 @@ import com.example.domain.repository.BasketRepository
 import javax.inject.Inject
 
 class MakeBasketUseCase @Inject constructor(
-    private val basketRepository: BasketRepository
+    private val basketRepository: BasketRepository,
 ) {
-    suspend fun execute(makeBasketParam: List<MakeBasketParam>) =
+    suspend operator fun invoke(makeBasketParam: List<MakeBasketParam>) = kotlin.runCatching {
         basketRepository.makeBasket(makeBasketParam)
+    }
 }

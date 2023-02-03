@@ -6,6 +6,7 @@ import javax.inject.Inject
 class EnrollCouponUseCase @Inject constructor(
     private val couponRepository: CouponRepository,
 ) {
-    suspend fun execute(code: String) =
+    suspend operator fun invoke(code: String) = kotlin.runCatching {
         couponRepository.enrollCoupon(code)
+    }
 }

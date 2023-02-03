@@ -25,16 +25,14 @@ class DetailViewModel @Inject constructor(
     }
 
     fun detailBread() = viewModelScope.launch {
-        kotlin.runCatching {
-            detailBreadUseCase.execute(id)
-        }.onSuccess {
+        detailBreadUseCase(id).onSuccess {
             event(Event.DetailBread(it))
         }.onFailure {
         }
     }
 
     fun like() = viewModelScope.launch {
-        likeBreadUseCase.execute(id)
+        likeBreadUseCase(id)
     }
 
     fun listReview() = viewModelScope.launch {

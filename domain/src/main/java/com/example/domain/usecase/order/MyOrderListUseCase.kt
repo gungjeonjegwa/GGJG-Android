@@ -4,8 +4,9 @@ import com.example.domain.repository.OrderRepository
 import javax.inject.Inject
 
 class MyOrderListUseCase @Inject constructor(
-    private val orderRepository: OrderRepository
+    private val orderRepository: OrderRepository,
 ) {
-    suspend fun execute() =
+    suspend operator fun invoke() = kotlin.runCatching {
         orderRepository.myOrderList()
+    }
 }

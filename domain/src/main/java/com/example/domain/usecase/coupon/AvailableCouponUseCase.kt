@@ -6,6 +6,7 @@ import javax.inject.Inject
 class AvailableCouponUseCase @Inject constructor(
     private val couponRepository: CouponRepository,
 ) {
-    suspend fun execute(id: String) =
+    suspend operator fun invoke(id: String) = kotlin.runCatching {
         couponRepository.availableCoupon(id)
+    }
 }

@@ -6,6 +6,7 @@ import javax.inject.Inject
 class ProfileUseCase @Inject constructor(
     private val authRepository: AuthRepository,
 ) {
-    suspend fun execute() =
+    suspend operator fun invoke() = kotlin.runCatching {
         authRepository.profile()
+    }
 }

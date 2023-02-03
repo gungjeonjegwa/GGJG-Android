@@ -16,7 +16,7 @@ import javax.inject.Inject
 class RegisterViewModel @Inject constructor(
     private val signUpUseCase: SignUpUseCase,
     private val emailCheckUseCase: EmailCheckUseCase,
-    private val idCheckUseCase: IdCheckUseCase
+    private val idCheckUseCase: IdCheckUseCase,
 ) : ViewModel() {
 
     private val _eventFlow = MutableEventFlow<Event>()
@@ -38,31 +38,25 @@ class RegisterViewModel @Inject constructor(
     }
 
     fun signUp() = viewModelScope.launch {
-        kotlin.runCatching {
-            signUpUseCase.execute(
-                SignUpParam(
-                    id, pw, name, phone, email
-                )
+        signUpUseCase(
+            SignUpParam(
+                id, pw, name, phone, email
             )
-        }.onSuccess {
+        ).onSuccess {
             event(Event.Success)
         }.onFailure {
         }
     }
 
     fun emailCheck(email: String) = viewModelScope.launch {
-        kotlin.runCatching {
-            emailCheckUseCase.execute(email)
-        }.onSuccess {
+        emailCheckUseCase(email).onSuccess {
             event(RegisterFirstEvent.EmailCheck(!it.isDuplicated))
         }.onFailure {
         }
     }
 
     fun idCheck(id: String) = viewModelScope.launch {
-        kotlin.runCatching {
-            idCheckUseCase.execute(id)
-        }.onSuccess {
+        idCheckUseCase(id).onSuccess {
             event(RegisterSecondEvent.IdCheck(!it.isDuplicated))
         }
     }

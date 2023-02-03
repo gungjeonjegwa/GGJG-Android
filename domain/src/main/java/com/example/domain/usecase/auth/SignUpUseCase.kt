@@ -5,8 +5,9 @@ import com.example.domain.repository.AuthRepository
 import javax.inject.Inject
 
 class SignUpUseCase @Inject constructor(
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
 ) {
-    suspend fun execute(signUpParam: SignUpParam) =
+    suspend operator fun invoke(signUpParam: SignUpParam) = kotlin.runCatching {
         authRepository.signUp(signUpParam)
+    }
 }
