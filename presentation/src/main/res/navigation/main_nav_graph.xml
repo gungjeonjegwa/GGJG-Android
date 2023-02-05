@@ -14,8 +14,8 @@
             android:id="@+id/action_homeFragment_to_detailBreadFragment"
             app:destination="@id/detailBreadFragment"
             app:enterAnim="@anim/enter_right"
-            app:exitAnim="@anim/enter_right"
-            app:popEnterAnim="@anim/enter_left"
+            app:exitAnim="@anim/idle_anim"
+            app:popEnterAnim="@anim/idle_anim"
             app:popExitAnim="@anim/enter_left" />
     </fragment>
     <fragment
@@ -27,8 +27,8 @@
             android:id="@+id/action_searchFragment_to_detailBreadFragment"
             app:destination="@id/detailBreadFragment"
             app:enterAnim="@anim/enter_right"
-            app:exitAnim="@anim/enter_right"
-            app:popEnterAnim="@anim/enter_left"
+            app:exitAnim="@anim/idle_anim"
+            app:popEnterAnim="@anim/idle_anim"
             app:popExitAnim="@anim/enter_left" />
     </fragment>
     <fragment
@@ -40,8 +40,8 @@
             android:id="@+id/action_shoppingListFragment_to_payFragment"
             app:destination="@id/payFragment"
             app:enterAnim="@anim/enter_right"
-            app:exitAnim="@anim/enter_right"
-            app:popEnterAnim="@anim/enter_left"
+            app:exitAnim="@anim/idle_anim"
+            app:popEnterAnim="@anim/idle_anim"
             app:popExitAnim="@anim/enter_left" />
     </fragment>
     <fragment
@@ -53,8 +53,8 @@
             android:id="@+id/action_favoriteFragment_to_detailBreadFragment"
             app:destination="@id/detailBreadFragment"
             app:enterAnim="@anim/enter_right"
-            app:exitAnim="@anim/enter_right"
-            app:popEnterAnim="@anim/enter_left"
+            app:exitAnim="@anim/idle_anim"
+            app:popEnterAnim="@anim/idle_anim"
             app:popExitAnim="@anim/enter_left" />
     </fragment>
     <fragment
@@ -66,29 +66,29 @@
             android:id="@+id/action_myPageFragment_to_couponFragment"
             app:destination="@id/couponFragment"
             app:enterAnim="@anim/enter_right"
-            app:exitAnim="@anim/enter_right"
-            app:popEnterAnim="@anim/enter_left"
+            app:exitAnim="@anim/idle_anim"
+            app:popEnterAnim="@anim/idle_anim"
             app:popExitAnim="@anim/enter_left" />
         <action
             android:id="@+id/action_myPageFragment_to_myPagePrivacyFragment"
             app:destination="@id/myPagePrivacyFragment"
             app:enterAnim="@anim/enter_right"
-            app:exitAnim="@anim/enter_right"
-            app:popEnterAnim="@anim/enter_left"
+            app:exitAnim="@anim/idle_anim"
+            app:popEnterAnim="@anim/idle_anim"
             app:popExitAnim="@anim/enter_left" />
         <action
             android:id="@+id/action_myPageFragment_to_orderFragment"
             app:destination="@id/orderFragment"
             app:enterAnim="@anim/enter_right"
-            app:exitAnim="@anim/enter_right"
-            app:popEnterAnim="@anim/enter_left"
+            app:exitAnim="@anim/idle_anim"
+            app:popEnterAnim="@anim/idle_anim"
             app:popExitAnim="@anim/enter_left" />
         <action
             android:id="@+id/action_myPageFragment_to_presentFragment"
             app:destination="@id/presentFragment"
             app:enterAnim="@anim/enter_right"
-            app:exitAnim="@anim/enter_right"
-            app:popEnterAnim="@anim/enter_left"
+            app:exitAnim="@anim/idle_anim"
+            app:popEnterAnim="@anim/idle_anim"
             app:popExitAnim="@anim/enter_left" />
     </fragment>
     <fragment
@@ -100,22 +100,22 @@
             android:id="@+id/action_payFragment_to_changeAddressFragment"
             app:destination="@id/changeAddressFragment"
             app:enterAnim="@anim/enter_right"
-            app:exitAnim="@anim/enter_right"
-            app:popEnterAnim="@anim/enter_left"
+            app:exitAnim="@anim/idle_anim"
+            app:popEnterAnim="@anim/idle_anim"
             app:popExitAnim="@anim/enter_left" />
         <action
             android:id="@+id/action_payFragment_to_searchAddressFragment"
             app:destination="@id/searchAddressFragment"
             app:enterAnim="@anim/enter_right"
-            app:exitAnim="@anim/enter_right"
-            app:popEnterAnim="@anim/enter_left"
+            app:exitAnim="@anim/idle_anim"
+            app:popEnterAnim="@anim/idle_anim"
             app:popExitAnim="@anim/enter_left" />
         <action
             android:id="@+id/action_payFragment_to_selectCouponFragment"
             app:destination="@id/selectCouponFragment"
             app:enterAnim="@anim/enter_right"
-            app:exitAnim="@anim/enter_right"
-            app:popEnterAnim="@anim/enter_left"
+            app:exitAnim="@anim/idle_anim"
+            app:popEnterAnim="@anim/idle_anim"
             app:popExitAnim="@anim/enter_left" />
     </fragment>
     <fragment
@@ -127,15 +127,15 @@
             android:id="@+id/action_detailBreadFragment_to_payFragment"
             app:destination="@id/payFragment"
             app:enterAnim="@anim/enter_right"
-            app:exitAnim="@anim/enter_right"
-            app:popEnterAnim="@anim/enter_left"
+            app:exitAnim="@anim/idle_anim"
+            app:popEnterAnim="@anim/idle_anim"
             app:popExitAnim="@anim/enter_left" />
         <action
             android:id="@+id/action_detailBreadFragment_to_QAFragment"
             app:destination="@id/QAFragment"
             app:enterAnim="@anim/enter_right"
-            app:exitAnim="@anim/enter_right"
-            app:popEnterAnim="@anim/enter_left"
+            app:exitAnim="@anim/idle_anim"
+            app:popEnterAnim="@anim/idle_anim"
             app:popExitAnim="@anim/enter_left" />
     </fragment>
     <fragment
@@ -147,8 +147,8 @@
             android:id="@+id/action_searchAddressFragment_to_detailAddressFragment"
             app:destination="@id/detailAddressFragment"
             app:enterAnim="@anim/enter_right"
-            app:exitAnim="@anim/enter_right"
-            app:popEnterAnim="@anim/enter_left"
+            app:exitAnim="@anim/idle_anim"
+            app:popEnterAnim="@anim/idle_anim"
             app:popExitAnim="@anim/enter_left" />
     </fragment>
     <fragment
@@ -160,8 +160,8 @@
             android:id="@+id/action_changeAddressFragment_to_searchAddressFragment"
             app:destination="@id/searchAddressFragment"
             app:enterAnim="@anim/enter_right"
-            app:exitAnim="@anim/enter_right"
-            app:popEnterAnim="@anim/enter_left"
+            app:exitAnim="@anim/idle_anim"
+            app:popEnterAnim="@anim/idle_anim"
             app:popExitAnim="@anim/enter_left" />
     </fragment>
     <fragment
@@ -178,22 +178,22 @@
             android:id="@+id/action_myPagePrivacyFragment_to_myPageEditFragment"
             app:destination="@id/myPageEditFragment"
             app:enterAnim="@anim/enter_right"
-            app:exitAnim="@anim/enter_right"
-            app:popEnterAnim="@anim/enter_left"
+            app:exitAnim="@anim/idle_anim"
+            app:popEnterAnim="@anim/idle_anim"
             app:popExitAnim="@anim/enter_left" />
         <action
             android:id="@+id/action_myPagePrivacyFragment_to_searchAddressFragment"
             app:destination="@id/searchAddressFragment"
             app:enterAnim="@anim/enter_right"
-            app:exitAnim="@anim/enter_right"
-            app:popEnterAnim="@anim/enter_left"
+            app:exitAnim="@anim/idle_anim"
+            app:popEnterAnim="@anim/idle_anim"
             app:popExitAnim="@anim/enter_left" />
         <action
             android:id="@+id/action_myPagePrivacyFragment_to_changeAddressFragment"
             app:destination="@id/changeAddressFragment"
             app:enterAnim="@anim/enter_right"
-            app:exitAnim="@anim/enter_right"
-            app:popEnterAnim="@anim/enter_left"
+            app:exitAnim="@anim/idle_anim"
+            app:popEnterAnim="@anim/idle_anim"
             app:popExitAnim="@anim/enter_left" />
     </fragment>
     <fragment
@@ -205,8 +205,8 @@
             android:id="@+id/action_couponFragment_to_addCouponFragment"
             app:destination="@id/addCouponFragment"
             app:enterAnim="@anim/enter_right"
-            app:exitAnim="@anim/enter_right"
-            app:popEnterAnim="@anim/enter_left"
+            app:exitAnim="@anim/idle_anim"
+            app:popEnterAnim="@anim/idle_anim"
             app:popExitAnim="@anim/enter_left" />
     </fragment>
     <fragment
@@ -228,29 +228,29 @@
             android:id="@+id/action_orderFragment_to_orderDetailFragment"
             app:destination="@id/orderDetailFragment"
             app:enterAnim="@anim/enter_right"
-            app:exitAnim="@anim/enter_right"
-            app:popEnterAnim="@anim/enter_left"
+            app:exitAnim="@anim/idle_anim"
+            app:popEnterAnim="@anim/idle_anim"
             app:popExitAnim="@anim/enter_left" />
         <action
             android:id="@+id/action_orderFragment_to_orderCancelFragment"
             app:destination="@id/orderCancelFragment"
             app:enterAnim="@anim/enter_right"
-            app:exitAnim="@anim/enter_right"
-            app:popEnterAnim="@anim/enter_left"
+            app:exitAnim="@anim/idle_anim"
+            app:popEnterAnim="@anim/idle_anim"
             app:popExitAnim="@anim/enter_left" />
         <action
             android:id="@+id/action_orderFragment_to_orderReviewFragment"
             app:destination="@id/orderReviewFragment"
             app:enterAnim="@anim/enter_right"
-            app:exitAnim="@anim/enter_right"
-            app:popEnterAnim="@anim/enter_left"
+            app:exitAnim="@anim/idle_anim"
+            app:popEnterAnim="@anim/idle_anim"
             app:popExitAnim="@anim/enter_left" />
         <action
             android:id="@+id/action_orderFragment_to_orderRecallFragment"
             app:destination="@id/orderRecallFragment"
             app:enterAnim="@anim/enter_right"
-            app:exitAnim="@anim/enter_right"
-            app:popEnterAnim="@anim/enter_left"
+            app:exitAnim="@anim/idle_anim"
+            app:popEnterAnim="@anim/idle_anim"
             app:popExitAnim="@anim/enter_left" />
     </fragment>
     <fragment
@@ -277,8 +277,8 @@
             android:id="@+id/action_orderReviewFragment_to_imageSelectorFragment"
             app:destination="@id/imageSelectorFragment"
             app:enterAnim="@anim/enter_up"
-            app:exitAnim="@anim/enter_up"
-            app:popEnterAnim="@anim/enter_down"
+            app:exitAnim="@anim/idle_anim"
+            app:popEnterAnim="@anim/idle_anim"
             app:popExitAnim="@anim/enter_down" />
     </fragment>
     <fragment
