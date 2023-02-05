@@ -42,7 +42,7 @@ fun String.toOrderDate(): String {
 
 fun String.getDirectoryPaths(): List<String> {
     var directoryList = listOf<String>()
-    File(this).listFiles().forEach {
+    File(this).listFiles()?.forEach {
         if (it.isDirectory) {
             directoryList = directoryList.plus(it.absolutePath)
         }
@@ -52,7 +52,7 @@ fun String.getDirectoryPaths(): List<String> {
 
 fun String.getFilePaths(): List<String> {
     var directoryList = listOf<String>()
-    File(this).listFiles().forEach {
+    File(this).listFiles()?.forEach {
         if (it.isFile) {
             directoryList = directoryList.plus(it.absolutePath)
         }
