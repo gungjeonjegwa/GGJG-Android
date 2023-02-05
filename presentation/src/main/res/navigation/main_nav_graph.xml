@@ -12,16 +12,24 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_detailBreadFragment"
-            app:destination="@id/detailBreadFragment" />
+            app:destination="@id/detailBreadFragment"
+            app:enterAnim="@anim/enter_right"
+            app:exitAnim="@anim/enter_right"
+            app:popEnterAnim="@anim/enter_left"
+            app:popExitAnim="@anim/enter_left" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.example.ggjg_andorid.ui.search.SearchFragment"
         android:label="SearchFragment"
-        tools:layout="@layout/fragment_search" >
+        tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_detailBreadFragment"
-            app:destination="@id/detailBreadFragment" />
+            app:destination="@id/detailBreadFragment"
+            app:enterAnim="@anim/enter_right"
+            app:exitAnim="@anim/enter_right"
+            app:popEnterAnim="@anim/enter_left"
+            app:popExitAnim="@anim/enter_left" />
     </fragment>
     <fragment
         android:id="@+id/shoppingListFragment"
@@ -30,7 +38,11 @@
         tools:layout="@layout/fragment_shopping_list">
         <action
             android:id="@+id/action_shoppingListFragment_to_payFragment"
-            app:destination="@id/payFragment" />
+            app:destination="@id/payFragment"
+            app:enterAnim="@anim/enter_right"
+            app:exitAnim="@anim/enter_right"
+            app:popEnterAnim="@anim/enter_left"
+            app:popExitAnim="@anim/enter_left" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
@@ -39,7 +51,11 @@
         tools:layout="@layout/fragment_favorite">
         <action
             android:id="@+id/action_favoriteFragment_to_detailBreadFragment"
-            app:destination="@id/detailBreadFragment" />
+            app:destination="@id/detailBreadFragment"
+            app:enterAnim="@anim/enter_right"
+            app:exitAnim="@anim/enter_right"
+            app:popEnterAnim="@anim/enter_left"
+            app:popExitAnim="@anim/enter_left" />
     </fragment>
     <fragment
         android:id="@+id/myPageFragment"
@@ -48,16 +64,32 @@
         tools:layout="@layout/fragment_my_page">
         <action
             android:id="@+id/action_myPageFragment_to_couponFragment"
-            app:destination="@id/couponFragment" />
+            app:destination="@id/couponFragment"
+            app:enterAnim="@anim/enter_right"
+            app:exitAnim="@anim/enter_right"
+            app:popEnterAnim="@anim/enter_left"
+            app:popExitAnim="@anim/enter_left" />
         <action
             android:id="@+id/action_myPageFragment_to_myPagePrivacyFragment"
-            app:destination="@id/myPagePrivacyFragment" />
+            app:destination="@id/myPagePrivacyFragment"
+            app:enterAnim="@anim/enter_right"
+            app:exitAnim="@anim/enter_right"
+            app:popEnterAnim="@anim/enter_left"
+            app:popExitAnim="@anim/enter_left" />
         <action
             android:id="@+id/action_myPageFragment_to_orderFragment"
-            app:destination="@id/orderFragment" />
+            app:destination="@id/orderFragment"
+            app:enterAnim="@anim/enter_right"
+            app:exitAnim="@anim/enter_right"
+            app:popEnterAnim="@anim/enter_left"
+            app:popExitAnim="@anim/enter_left" />
         <action
             android:id="@+id/action_myPageFragment_to_presentFragment"
-            app:destination="@id/presentFragment" />
+            app:destination="@id/presentFragment"
+            app:enterAnim="@anim/enter_right"
+            app:exitAnim="@anim/enter_right"
+            app:popEnterAnim="@anim/enter_left"
+            app:popExitAnim="@anim/enter_left" />
     </fragment>
     <fragment
         android:id="@+id/payFragment"
@@ -66,13 +98,25 @@
         tools:layout="@layout/fragment_pay">
         <action
             android:id="@+id/action_payFragment_to_changeAddressFragment"
-            app:destination="@id/changeAddressFragment" />
+            app:destination="@id/changeAddressFragment"
+            app:enterAnim="@anim/enter_right"
+            app:exitAnim="@anim/enter_right"
+            app:popEnterAnim="@anim/enter_left"
+            app:popExitAnim="@anim/enter_left" />
         <action
             android:id="@+id/action_payFragment_to_searchAddressFragment"
-            app:destination="@id/searchAddressFragment" />
+            app:destination="@id/searchAddressFragment"
+            app:enterAnim="@anim/enter_right"
+            app:exitAnim="@anim/enter_right"
+            app:popEnterAnim="@anim/enter_left"
+            app:popExitAnim="@anim/enter_left" />
         <action
             android:id="@+id/action_payFragment_to_selectCouponFragment"
-            app:destination="@id/selectCouponFragment" />
+            app:destination="@id/selectCouponFragment"
+            app:enterAnim="@anim/enter_right"
+            app:exitAnim="@anim/enter_right"
+            app:popEnterAnim="@anim/enter_left"
+            app:popExitAnim="@anim/enter_left" />
     </fragment>
     <fragment
         android:id="@+id/detailBreadFragment"
@@ -81,10 +125,18 @@
         tools:layout="@layout/fragment_detail_bread">
         <action
             android:id="@+id/action_detailBreadFragment_to_payFragment"
-            app:destination="@id/payFragment" />
+            app:destination="@id/payFragment"
+            app:enterAnim="@anim/enter_right"
+            app:exitAnim="@anim/enter_right"
+            app:popEnterAnim="@anim/enter_left"
+            app:popExitAnim="@anim/enter_left" />
         <action
             android:id="@+id/action_detailBreadFragment_to_QAFragment"
-            app:destination="@id/QAFragment" />
+            app:destination="@id/QAFragment"
+            app:enterAnim="@anim/enter_right"
+            app:exitAnim="@anim/enter_right"
+            app:popEnterAnim="@anim/enter_left"
+            app:popExitAnim="@anim/enter_left" />
     </fragment>
     <fragment
         android:id="@+id/searchAddressFragment"
@@ -93,7 +145,11 @@
         tools:layout="@layout/fragment_address_search">
         <action
             android:id="@+id/action_searchAddressFragment_to_detailAddressFragment"
-            app:destination="@id/detailAddressFragment" />
+            app:destination="@id/detailAddressFragment"
+            app:enterAnim="@anim/enter_right"
+            app:exitAnim="@anim/enter_right"
+            app:popEnterAnim="@anim/enter_left"
+            app:popExitAnim="@anim/enter_left" />
     </fragment>
     <fragment
         android:id="@+id/changeAddressFragment"
@@ -102,7 +158,11 @@
         tools:layout="@layout/fragment_address_change">
         <action
             android:id="@+id/action_changeAddressFragment_to_searchAddressFragment"
-            app:destination="@id/searchAddressFragment" />
+            app:destination="@id/searchAddressFragment"
+            app:enterAnim="@anim/enter_right"
+            app:exitAnim="@anim/enter_right"
+            app:popEnterAnim="@anim/enter_left"
+            app:popExitAnim="@anim/enter_left" />
     </fragment>
     <fragment
         android:id="@+id/detailAddressFragment"
@@ -116,13 +176,25 @@
         tools:layout="@layout/fragment_my_page_privacy">
         <action
             android:id="@+id/action_myPagePrivacyFragment_to_myPageEditFragment"
-            app:destination="@id/myPageEditFragment" />
+            app:destination="@id/myPageEditFragment"
+            app:enterAnim="@anim/enter_right"
+            app:exitAnim="@anim/enter_right"
+            app:popEnterAnim="@anim/enter_left"
+            app:popExitAnim="@anim/enter_left" />
         <action
             android:id="@+id/action_myPagePrivacyFragment_to_searchAddressFragment"
-            app:destination="@id/searchAddressFragment" />
+            app:destination="@id/searchAddressFragment"
+            app:enterAnim="@anim/enter_right"
+            app:exitAnim="@anim/enter_right"
+            app:popEnterAnim="@anim/enter_left"
+            app:popExitAnim="@anim/enter_left" />
         <action
             android:id="@+id/action_myPagePrivacyFragment_to_changeAddressFragment"
-            app:destination="@id/changeAddressFragment" />
+            app:destination="@id/changeAddressFragment"
+            app:enterAnim="@anim/enter_right"
+            app:exitAnim="@anim/enter_right"
+            app:popEnterAnim="@anim/enter_left"
+            app:popExitAnim="@anim/enter_left" />
     </fragment>
     <fragment
         android:id="@+id/couponFragment"
@@ -131,7 +203,11 @@
         tools:layout="@layout/fragment_coupon">
         <action
             android:id="@+id/action_couponFragment_to_addCouponFragment"
-            app:destination="@id/addCouponFragment" />
+            app:destination="@id/addCouponFragment"
+            app:enterAnim="@anim/enter_right"
+            app:exitAnim="@anim/enter_right"
+            app:popEnterAnim="@anim/enter_left"
+            app:popExitAnim="@anim/enter_left" />
     </fragment>
     <fragment
         android:id="@+id/addCouponFragment"
@@ -150,16 +226,32 @@
         tools:layout="@layout/fragment_order">
         <action
             android:id="@+id/action_orderFragment_to_orderDetailFragment"
-            app:destination="@id/orderDetailFragment" />
+            app:destination="@id/orderDetailFragment"
+            app:enterAnim="@anim/enter_right"
+            app:exitAnim="@anim/enter_right"
+            app:popEnterAnim="@anim/enter_left"
+            app:popExitAnim="@anim/enter_left" />
         <action
             android:id="@+id/action_orderFragment_to_orderCancelFragment"
-            app:destination="@id/orderCancelFragment" />
+            app:destination="@id/orderCancelFragment"
+            app:enterAnim="@anim/enter_right"
+            app:exitAnim="@anim/enter_right"
+            app:popEnterAnim="@anim/enter_left"
+            app:popExitAnim="@anim/enter_left" />
         <action
             android:id="@+id/action_orderFragment_to_orderReviewFragment"
-            app:destination="@id/orderReviewFragment" />
+            app:destination="@id/orderReviewFragment"
+            app:enterAnim="@anim/enter_right"
+            app:exitAnim="@anim/enter_right"
+            app:popEnterAnim="@anim/enter_left"
+            app:popExitAnim="@anim/enter_left" />
         <action
             android:id="@+id/action_orderFragment_to_orderRecallFragment"
-            app:destination="@id/orderRecallFragment" />
+            app:destination="@id/orderRecallFragment"
+            app:enterAnim="@anim/enter_right"
+            app:exitAnim="@anim/enter_right"
+            app:popEnterAnim="@anim/enter_left"
+            app:popExitAnim="@anim/enter_left" />
     </fragment>
     <fragment
         android:id="@+id/orderDetailFragment"
@@ -183,7 +275,11 @@
         tools:layout="@layout/fragment_order_review">
         <action
             android:id="@+id/action_orderReviewFragment_to_imageSelectorFragment"
-            app:destination="@id/imageSelectorFragment" />
+            app:destination="@id/imageSelectorFragment"
+            app:enterAnim="@anim/enter_up"
+            app:exitAnim="@anim/enter_up"
+            app:popEnterAnim="@anim/enter_down"
+            app:popExitAnim="@anim/enter_down" />
     </fragment>
     <fragment
         android:id="@+id/QAFragment"
