@@ -34,17 +34,11 @@ android {
 }
 
 dependencies {
-
-    implementation(Dependency.AndroidX.CORE_KTX)
-    implementation(Dependency.AndroidX.APP_COMPAT)
-    implementation(Dependency.AndroidX.CONSTRAINT_LAYOUT)
-
     implementation(Dependency.Hilt.HILT_ANDROID)
     implementation(Dependency.Hilt.HILT_ANDROID_COMPILER)
 
-    implementation(Dependency.Google.MATERIAL)
-
     testImplementation(Dependency.UnitTest.JUNIT)
+    testImplementation(Dependency.UnitTest.MOCKITO)
 
     androidTestImplementation(Dependency.AndroidTest.ANDROID_JUNIT)
     androidTestImplementation(Dependency.AndroidTest.ESPRESSO_CORE)
