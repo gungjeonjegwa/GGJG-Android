@@ -97,7 +97,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
             object : EndlessRecyclerViewScrollListener(layoutManager) {
                 override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
                     if (!HomeViewModel.isLast) {
-                        binding.moreProgress.setVisible()
+                        moreProgress.setVisible()
                         Handler().postDelayed({
                             categoryList.forEach {
                                 if (it.isSelected) {

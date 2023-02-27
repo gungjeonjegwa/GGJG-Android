@@ -33,14 +33,14 @@ class MyPageEditFragment : BaseFragment<FragmentMyPageEditBinding>(R.layout.frag
     }
 
     private fun initView() = binding.apply {
-        keyboardShow(requireActivity(), binding.writeName)
-        listOf(binding.writeName, binding.writeEmail, binding.writePhone).forEach {
+        keyboardShow(requireActivity(), writeName)
+        listOf(writeName, writeEmail, writePhone).forEach {
             it.setOnTextChanged { _, _, _, _ ->
-                saveBtn.changeActivatedWithEnabled(!binding.writeName.text.isNullOrBlank() && !binding.writeEmail.text.isNullOrBlank())
-                if (it.id == R.id.writePhone && !binding.errorPhoneTxt.text.isNullOrBlank()) {
-                    binding.errorPhoneTxt.text = null
-                } else if (it.id == R.id.writeEmail && !binding.errorEmailTxt.text.isNullOrBlank()) {
-                    binding.errorEmailTxt.text = null
+                saveBtn.changeActivatedWithEnabled(!writeName.text.isNullOrBlank() && !writeEmail.text.isNullOrBlank())
+                if (it.id == R.id.writePhone && !errorPhoneTxt.text.isNullOrBlank()) {
+                    errorPhoneTxt.text = null
+                } else if (it.id == R.id.writeEmail && !errorEmailTxt.text.isNullOrBlank()) {
+                    errorEmailTxt.text = null
                 }
             }
             it.setOnFocusChangeListener { _, b ->

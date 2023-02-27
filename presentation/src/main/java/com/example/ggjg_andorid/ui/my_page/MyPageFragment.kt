@@ -58,7 +58,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
 
     private fun initView() = binding.apply {
         profileViewModel.profile()
-        binding.myPage = this@MyPageFragment
+        myPage = this@MyPageFragment
         repeatOnStart {
             profileViewModel.eventFlow.collect { event -> handleEvent(event) }
         }

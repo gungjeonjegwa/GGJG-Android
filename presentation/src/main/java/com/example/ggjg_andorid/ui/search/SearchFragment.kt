@@ -67,7 +67,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
             setOnEditorActionListener { _, i, _ ->
                 when (i) {
                     IME_ACTION_SEARCH -> {
-                        keyboardHide(requireActivity(), listOf(binding.searchBread))
+                        keyboardHide(requireActivity(), listOf(searchBread))
                         searchViewModel.searchResult()
                         viewFragment(SearchResultFragment())
                     }

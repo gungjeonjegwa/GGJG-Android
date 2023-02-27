@@ -45,10 +45,10 @@ class RegisterFirstFragment :
         listOf(writeName, writePhone, writeEmail).forEach {
             it.setOnTextChanged { p0, _, _, _ ->
                 nextBtn.changeActivatedWithEnabled(!writeName.text.isNullOrBlank() && !writeEmail.text.isNullOrBlank())
-                if (it.id == R.id.writePhone && !binding.errorPhoneTxt.text.isNullOrBlank()) {
-                    binding.errorPhoneTxt.text = null
-                } else if (it.id == R.id.writeEmail && !binding.errorEmailTxt.text.isNullOrBlank()) {
-                    binding.errorEmailTxt.text = null
+                if (it.id == R.id.writePhone && !errorPhoneTxt.text.isNullOrBlank()) {
+                    errorPhoneTxt.text = null
+                } else if (it.id == R.id.writeEmail && !errorEmailTxt.text.isNullOrBlank()) {
+                    errorEmailTxt.text = null
                 }
             }
             it.setOnFocusChangeListener { _, b ->
