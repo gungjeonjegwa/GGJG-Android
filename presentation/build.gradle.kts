@@ -94,8 +94,6 @@ dependencies {
     implementation(Dependency.RxJava.RX_BINDING)
 
     implementation(Dependency.Lottie.LOTTIE)
-
-    implementation(Dependency.Retrofit.RETROFIT_CONVERTER_GSON)
 }
 
 fun getApiKey(propertyKey: String): String {
