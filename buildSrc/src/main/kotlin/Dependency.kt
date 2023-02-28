@@ -29,6 +29,7 @@ object Dependency {
 
         const val PAGING = "androidx.paging:paging-runtime-ktx:${Version.PAGING}"
         const val REFRESH = "androidx.swiperefreshlayout:swiperefreshlayout:${Version.REFRESH}"
+        const val PREFERENCE_KTX = "androidx.preference:preference-ktx:${Version.PREFERENCE_KTX}"
     }
 
     object Hilt {
@@ -87,5 +88,9 @@ object Dependency {
 
     object Lottie {
         const val LOTTIE = "com.airbnb.android:lottie:${Version.LOTTIE}"
+    }
+
+    object JavaX {
+        const val INJECT = "javax.inject:javax.inject:${Version.INJECT}"
     }
 }
