@@ -18,7 +18,6 @@ android {
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "BASE_URL", getApiKey("BASE_URL"))
         buildConfigField("String", "PAY_ID", getApiKey("PAY_ID"))
     }
 
@@ -57,10 +56,10 @@ android {
 
 dependencies {
     implementation(project(":domain"))
+    implementation(project(":di"))
 
     implementation(Dependency.AndroidX.CORE_KTX)
     implementation(Dependency.AndroidX.APP_COMPAT)
-    implementation(Dependency.AndroidX.CORE_KTX)
     implementation(Dependency.AndroidX.FRAGMENT_KTX)
     implementation(Dependency.AndroidX.CONSTRAINT_LAYOUT)
     implementation(Dependency.AndroidX.LIFECYCLE_VIEWMODEL_KTX)
@@ -74,16 +73,8 @@ dependencies {
     implementation(Dependency.Hilt.HILT_ANDROID)
     kapt(Dependency.Hilt.HILT_ANDROID_COMPILER)
 
-    implementation(Dependency.Room.ROOM)
-    kapt(Dependency.Room.ROOM_COMPILER)
-
     implementation(Dependency.Google.MATERIAL)
     implementation(Dependency.Google.FLEX_BOX)
-
-    implementation(Dependency.Retrofit.RETROFIT)
-    implementation(Dependency.Retrofit.RETROFIT_CONVERTER_GSON)
-    implementation(Dependency.Retrofit.OKHTTP)
-    implementation(Dependency.Retrofit.OKHTTP_LOGGING_INTERCEPTOR)
 
     testImplementation(Dependency.UnitTest.JUNIT)
     testImplementation(Dependency.UnitTest.MOCKITO)
@@ -103,6 +94,8 @@ dependencies {
     implementation(Dependency.RxJava.RX_BINDING)
 
     implementation(Dependency.Lottie.LOTTIE)
+
+    implementation(Dependency.Retrofit.RETROFIT_CONVERTER_GSON)
 }
 
 fun getApiKey(propertyKey: String): String {

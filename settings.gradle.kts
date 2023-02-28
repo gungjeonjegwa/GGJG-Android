@@ -16,3 +16,4 @@ rootProject.name = "GGJG-Andorid"
 include(":presentation")
 include(":data")
 include(":domain")
+include(":di")
