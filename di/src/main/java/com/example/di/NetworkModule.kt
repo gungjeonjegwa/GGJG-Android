@@ -1,5 +1,6 @@
 package com.example.di
 
+import android.util.Log
 import com.example.data.interceptor.AuthorizationInterceptor
 import com.example.data.remote.api.*
 import dagger.Module
@@ -7,6 +8,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
@@ -14,8 +16,15 @@ import java.util.concurrent.TimeUnit
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
+
+    @Provides
+    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor =
+        HttpLoggingInterceptor { message -> Log.v("HTTP", message) }
+            .setLevel(HttpLoggingInterceptor.Level.BODY)
+
     @Provides
     fun provideOkhttpClient(
+        httpLoggingInterceptor: HttpLoggingInterceptor,
         authorizationInterceptor: AuthorizationInterceptor,
     ): OkHttpClient {
         return OkHttpClient.Builder()
@@ -23,6 +32,7 @@ object NetworkModule {
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
             .addInterceptor(authorizationInterceptor)
+            .addInterceptor(httpLoggingInterceptor)
             .build()
     }
 
