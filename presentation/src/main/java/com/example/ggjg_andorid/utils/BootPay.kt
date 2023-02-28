@@ -2,7 +2,6 @@ package com.example.ggjg_andorid.utils
 
 import android.content.Context
 import androidx.fragment.app.FragmentManager
-import com.example.data.utils.removeDot
 import com.example.ggjg_andorid.BuildConfig
 import com.example.ggjg_andorid.viewmodel.PayViewModel
 import com.google.gson.JsonObject

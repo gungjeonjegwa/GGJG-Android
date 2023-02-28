@@ -59,3 +59,7 @@ fun String.getFilePaths(): List<String> {
     }
     return directoryList
 }
+
+fun String.removeDot(): String {
+    return this.replace("^\"|\"$".toRegex(), "")
+}

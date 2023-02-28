@@ -2,11 +2,11 @@ package com.example.ggjg_andorid.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.data.utils.removeDot
 import com.example.domain.model.AddressModel
 import com.example.domain.usecase.auth.RecentAddressUseCase
 import com.example.ggjg_andorid.utils.MutableEventFlow
 import com.example.ggjg_andorid.utils.asEventFlow
+import com.example.ggjg_andorid.utils.removeDot
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
