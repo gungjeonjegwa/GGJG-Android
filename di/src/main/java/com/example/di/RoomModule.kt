@@ -1,4 +1,4 @@
-package com.example.ggjg_andorid.di
+package com.example.di
 
 import android.content.Context
 import androidx.room.Room

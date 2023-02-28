@@ -1,4 +1,4 @@
-package com.example.ggjg_andorid.di
+package com.example.di
 
 import com.example.data.local.storage.AuthStorage
 import com.example.data.local.storage.AuthStorageImpl

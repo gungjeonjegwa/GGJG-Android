@@ -1,8 +1,7 @@
-package com.example.ggjg_andorid.di
+package com.example.di
 
 import com.example.data.interceptor.AuthorizationInterceptor
 import com.example.data.remote.api.*
-import com.example.ggjg_andorid.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
