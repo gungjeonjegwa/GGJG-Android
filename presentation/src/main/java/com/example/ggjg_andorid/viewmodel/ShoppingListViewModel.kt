@@ -3,7 +3,6 @@ package com.example.ggjg_andorid.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.entity.basket.MyBasketEntity
-import com.example.domain.usecase.auth.IsLoginUseCase
 import com.example.domain.usecase.basket.DeleteBasketUseCase
 import com.example.domain.usecase.basket.MinusBasketUseCase
 import com.example.domain.usecase.basket.MyBasketUseCase

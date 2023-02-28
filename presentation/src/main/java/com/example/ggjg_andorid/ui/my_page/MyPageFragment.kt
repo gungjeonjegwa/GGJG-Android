@@ -4,7 +4,6 @@ import android.animation.Animator
 import android.content.Intent
 import android.os.Handler
 import android.view.View
-import android.view.animation.Animation.AnimationListener
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
@@ -69,16 +68,16 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
                     presentLottie.apply {
                         setVisible()
                         addAnimatorListener(object : Animator.AnimatorListener {
-                            override fun onAnimationStart(p0: Animator?) {
+                            override fun onAnimationStart(p0: Animator) {
                                 Handler().postDelayed({
                                     requireActivity().findNavController(R.id.mainContainer)
                                         .navigate(R.id.action_myPageFragment_to_presentFragment)
                                 }, 1700)
                             }
 
-                            override fun onAnimationRepeat(p0: Animator?) = Unit
-                            override fun onAnimationCancel(p0: Animator?) = Unit
-                            override fun onAnimationEnd(p0: Animator?) = Unit
+                            override fun onAnimationRepeat(p0: Animator) = Unit
+                            override fun onAnimationCancel(p0: Animator) = Unit
+                            override fun onAnimationEnd(p0: Animator) = Unit
                         })
                         playAnimation()
                     }

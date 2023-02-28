@@ -3,15 +3,11 @@ package com.example.ggjg_andorid.ui.image
 import android.view.View
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.room.Index.Order
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.adapter.ImageAdapter
 import com.example.ggjg_andorid.adapter.decorator.ImageListDecorator
 import com.example.ggjg_andorid.databinding.FragmentImageSelectorBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
-import com.example.ggjg_andorid.utils.FilePaths
-import com.example.ggjg_andorid.utils.getDirectoryPaths
-import com.example.ggjg_andorid.utils.getFilePaths
 import com.example.ggjg_andorid.utils.getImageDirectory
 import com.example.ggjg_andorid.viewmodel.OrderViewModel
 

@@ -4,7 +4,6 @@ import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.entity.bread.BannerEntity
-import com.example.domain.entity.bread.BreadEntity
 import com.example.domain.model.BreadModel
 import com.example.domain.usecase.bread.AllBreadUseCase
 import com.example.domain.usecase.bread.BannerUseCase
