@@ -6,6 +6,8 @@ import com.example.data.utils.removeDot
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -16,7 +18,7 @@ class AuthorizationInterceptor @Inject constructor(
 ) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
-        val path = request.url().encodedPath()
+        val path = request.url.encodedPath
         val ignorePath = listOf(
             "/users/signup",
             "/users/signin",
@@ -36,13 +38,13 @@ class AuthorizationInterceptor @Inject constructor(
                 val client = OkHttpClient()
                 val request = Request.Builder()
                     .url("${BuildConfig.BASE_URL}users/refresh")
-                    .post(RequestBody.create(MediaType.parse("application/json"), ""))
-                    .addHeader("refreshToken", authDataStorage.getRefreshToken())
+                    .post("".toRequestBody("application/json".toMediaTypeOrNull()))
+                    .addHeader("refreshToken", "${authDataStorage.getRefreshToken()}")
                     .build()
                 val jsonParser = JsonParser()
                 val response = client.newCall(request).execute()
                 if (response.isSuccessful) {
-                    val token = jsonParser.parse(response.body()!!.string()) as JsonObject
+                    val token = jsonParser.parse(response.body!!.string()) as JsonObject
                     authDataStorage.setAccessToken(token["accessToken"].toString().removeDot())
                     authDataStorage.setRefreshToken(token["refreshToken"].toString().removeDot())
                     authDataStorage.setExpiredAt(token["expiredAt"].toString().removeDot())
