@@ -33,4 +33,9 @@ abstract class RemoteDataSourceModule {
     abstract fun provideCouponDataSource(
         couponDataSourceImpl: CouponDataSourceImpl,
     ): CouponDataSource
+
+    @Binds
+    abstract fun provideAddressDataSource(
+        addressDataSourceImpl: AddressDataSourceImpl,
+    ): AddressDataSource
 }

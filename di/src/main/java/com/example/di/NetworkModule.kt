@@ -72,4 +72,8 @@ object NetworkModule {
     @Provides
     fun provideCouponAPI(retrofit: Retrofit): CouponAPI =
         retrofit.create(CouponAPI::class.java)
+
+    @Provides
+    fun provideAddressAPI(retrofit: Retrofit): AddressAPI =
+        retrofit.create(AddressAPI::class.java)
 }
