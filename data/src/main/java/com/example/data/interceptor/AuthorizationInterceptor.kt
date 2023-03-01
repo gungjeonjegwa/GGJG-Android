@@ -2,15 +2,13 @@ package com.example.data.interceptor
 
 import com.example.data.BuildConfig
 import com.example.data.local.storage.AuthStorage
-import com.example.data.utils.removeDot
+import com.example.data.remote.response.auth.LoginResponse
 import com.example.domain.exception.TokenErrorException
-import com.google.gson.JsonObject
-import com.google.gson.JsonParser
+import com.google.gson.Gson
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
-import java.time.LocalDateTime
-import java.time.ZoneId
+import java.time.*
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
@@ -35,20 +33,22 @@ class AuthorizationInterceptor @Inject constructor(
                 DateTimeFormatter.ISO_ZONED_DATE_TIME
             )
             val currentTime = LocalDateTime.now(ZoneId.systemDefault())
-            if (currentTime.isAfter(expiredAt)) {
+            if (currentTime.isBefore(expiredAt)) {
                 val client = OkHttpClient()
                 val request = Request.Builder()
                     .url("${BuildConfig.BASE_URL}users/refresh")
                     .post("".toRequestBody("application/json".toMediaTypeOrNull()))
                     .addHeader("refreshToken", "${authDataStorage.getRefreshToken()}")
                     .build()
-                val jsonParser = JsonParser()
                 val response = client.newCall(request).execute()
                 if (response.isSuccessful) {
-                    val token = jsonParser.parse(response.body!!.string()) as JsonObject
-                    authDataStorage.setAccessToken(token["accessToken"].toString().removeDot())
-                    authDataStorage.setRefreshToken(token["refreshToken"].toString().removeDot())
-                    authDataStorage.setExpiredAt(token["expiredAt"].toString().removeDot())
+                    val token = Gson().fromJson(
+                        response.body!!.string(),
+                        LoginResponse::class.java
+                    )
+                    authDataStorage.setAccessToken(token = token.accessToken)
+                    authDataStorage.setRefreshToken(token = token.refreshToken)
+                    authDataStorage.setExpiredAt(expiredAt = token.expiredAt)
                 } else throw TokenErrorException()
             } else throw TokenErrorException()
             return chain.proceed(
