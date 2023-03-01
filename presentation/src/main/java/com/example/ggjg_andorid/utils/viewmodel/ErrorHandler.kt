@@ -1,0 +1,47 @@
+package com.example.ggjg_andorid.utils.viewmodel
+
+import android.util.Log
+import com.example.domain.exception.ConflictException
+import com.example.domain.exception.MoreDataException
+import com.example.domain.exception.NotFoundException
+import com.example.domain.exception.TokenErrorException
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
+
+suspend fun Throwable.errorHandling(
+    moreDataAction: suspend () -> Unit = {},
+    tokenErrorAction: suspend () -> Unit = {},
+    notFoundAction: suspend () -> Unit = {},
+    conflictAction: suspend () -> Unit = {},
+    unknownAction: suspend () -> Unit = {},
+): ErrorEvent =
+    when (this) {
+        is MoreDataException -> {
+            errorLog("MoreDataException", message)
+            moreDataAction()
+            ErrorEvent.MoreDataError
+        }
+        is TokenErrorException -> {
+            errorLog("TokenErrorException", message)
+            tokenErrorAction()
+            ErrorEvent.TokenError
+        }
+        is NotFoundException -> {
+            errorLog("NotFoundException", message)
+            notFoundAction()
+            ErrorEvent.NotFoundError
+        }
+        is ConflictException -> {
+            errorLog("ConflictException", message)
+            conflictAction()
+            ErrorEvent.ConflictError
+        }
+        else -> {
+            errorLog("UnKnownException", message)
+            unknownAction()
+            ErrorEvent.UnknownError
+        }
+    }
+
+private fun errorLog(tag: String, msg: String?) {
+    Log.d("ErrorHandling-$tag", msg ?: "알 수 없는 오류")
+}
