@@ -3,6 +3,7 @@ package com.example.data.interceptor
 import com.example.data.BuildConfig
 import com.example.data.local.storage.AuthStorage
 import com.example.data.utils.removeDot
+import com.example.domain.exception.TokenErrorException
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import okhttp3.*
@@ -48,12 +49,8 @@ class AuthorizationInterceptor @Inject constructor(
                     authDataStorage.setAccessToken(token["accessToken"].toString().removeDot())
                     authDataStorage.setRefreshToken(token["refreshToken"].toString().removeDot())
                     authDataStorage.setExpiredAt(token["expiredAt"].toString().removeDot())
-                } else {
-                    authDataStorage.setAccessToken(null)
-                    authDataStorage.setRefreshToken(null)
-                    authDataStorage.setExpiredAt(null)
-                }
-            }
+                } else throw TokenErrorException()
+            } else throw TokenErrorException()
             return chain.proceed(
                 request.newBuilder().addHeader(
                     "Authorization",
