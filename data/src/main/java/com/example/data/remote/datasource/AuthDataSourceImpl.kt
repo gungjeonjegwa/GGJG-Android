@@ -8,64 +8,53 @@ import com.example.data.remote.response.auth.CheckResponse
 import com.example.data.remote.response.auth.LoginResponse
 import com.example.data.remote.response.auth.ProfilePrivateResponse
 import com.example.data.remote.response.auth.ProfileResponse
-import com.example.data.utils.HttpHandler
+import com.example.data.utils.GGJGApiCall
 import javax.inject.Inject
 
 class AuthDataSourceImpl @Inject constructor(
     private val authAPI: AuthAPI,
 ) : AuthDataSource {
-    override suspend fun signUp(signUpRequest: SignUpRequest) =
-        HttpHandler<Unit>()
-            .httpRequest { authAPI.signUp(signUpRequest) }
-            .sendRequest()
+    override suspend fun signUp(signUpRequest: SignUpRequest) = GGJGApiCall {
+        authAPI.signUp(signUpRequest = signUpRequest)
+    }
 
-    override suspend fun login(loginRequest: LoginRequest): LoginResponse =
-        HttpHandler<LoginResponse>()
-            .httpRequest { authAPI.login(loginRequest) }
-            .sendRequest()
+    override suspend fun login(loginRequest: LoginRequest): LoginResponse = GGJGApiCall {
+        authAPI.login(loginRequest = loginRequest)
+    }
 
-    override suspend fun logout() =
-        HttpHandler<Unit>()
-            .httpRequest { authAPI.logout() }
-            .sendRequest()
+    override suspend fun logout() = GGJGApiCall {
+        authAPI.logout()
+    }
 
-    override suspend fun idCheck(id: String): CheckResponse =
-        HttpHandler<CheckResponse>()
-            .httpRequest { authAPI.idCheck(id) }
-            .sendRequest()
+    override suspend fun idCheck(id: String): CheckResponse = GGJGApiCall {
+        authAPI.idCheck(id = id)
+    }
 
-    override suspend fun emailCheck(email: String): CheckResponse =
-        HttpHandler<CheckResponse>()
-            .httpRequest { authAPI.emailCheck(email) }
-            .sendRequest()
+    override suspend fun emailCheck(email: String): CheckResponse = GGJGApiCall {
+        authAPI.emailCheck(email = email)
+    }
 
-    override suspend fun changeAddress(address: AddressModel) =
-        HttpHandler<Unit>()
-            .httpRequest { authAPI.changeAddress(address) }
-            .sendRequest()
+    override suspend fun changeAddress(address: AddressModel) = GGJGApiCall {
+        authAPI.changeAddress(address = address)
+    }
 
-    override suspend fun recentAddress(): List<AddressModel> =
-        HttpHandler<List<AddressModel>>()
-            .httpRequest { authAPI.recentAddress() }
-            .sendRequest()
+    override suspend fun recentAddress(): List<AddressModel> = GGJGApiCall {
+        authAPI.recentAddress()
+    }
 
-    override suspend fun newAddress(address: AddressModel) =
-        HttpHandler<Unit>()
-            .httpRequest { authAPI.newAddress(address) }
-            .sendRequest()
+    override suspend fun newAddress(address: AddressModel) = GGJGApiCall {
+        authAPI.newAddress(address = address)
+    }
 
-    override suspend fun profile(): ProfileResponse =
-        HttpHandler<ProfileResponse>()
-            .httpRequest { authAPI.profile() }
-            .sendRequest()
+    override suspend fun profile(): ProfileResponse = GGJGApiCall {
+        authAPI.profile()
+    }
 
-    override suspend fun profilePrivate(): ProfilePrivateResponse =
-        HttpHandler<ProfilePrivateResponse>()
-            .httpRequest { authAPI.profilePrivate() }
-            .sendRequest()
+    override suspend fun profilePrivate(): ProfilePrivateResponse = GGJGApiCall {
+        authAPI.profilePrivate()
+    }
 
-    override suspend fun giftStamp() =
-        HttpHandler<Unit>()
-            .httpRequest { authAPI.giftStamp() }
-            .sendRequest()
+    override suspend fun giftStamp() = GGJGApiCall {
+        authAPI.giftStamp()
+    }
 }

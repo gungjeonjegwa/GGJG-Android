@@ -3,53 +3,45 @@ package com.example.data.remote.datasource
 import com.example.data.remote.api.BreadAPI
 import com.example.data.remote.model.BreadModel
 import com.example.data.remote.response.bread.*
-import com.example.data.utils.HttpHandler
+import com.example.data.utils.GGJGApiCall
 import javax.inject.Inject
 
 class BreadDataSourceImpl @Inject constructor(
     private val breadAPI: BreadAPI,
 ) : BreadDataSource {
-    override suspend fun allBread(page: String, size: String): BreadResponse =
-        HttpHandler<BreadResponse>()
-            .httpRequest { breadAPI.allBread(page, size) }
-            .sendRequest()
+    override suspend fun allBread(page: String, size: String): BreadResponse = GGJGApiCall {
+        breadAPI.allBread(page = page, size = size)
+    }
 
     override suspend fun categoryBread(
         page: String,
         size: String,
         category: String,
-    ): BreadResponse =
-        HttpHandler<BreadResponse>()
-            .httpRequest { breadAPI.categoryBread(page, size, category) }
-            .sendRequest()
+    ): BreadResponse = GGJGApiCall {
+        breadAPI.categoryBread(page = page, size = size, category = category)
+    }
 
-    override suspend fun detailBread(id: String): DetailBreadResponse =
-        HttpHandler<DetailBreadResponse>()
-            .httpRequest { breadAPI.detailBread(id) }
-            .sendRequest()
+    override suspend fun detailBread(id: String): DetailBreadResponse = GGJGApiCall {
+        breadAPI.detailBread(id = id)
+    }
 
-    override suspend fun likeBread(id: String) =
-        HttpHandler<Unit>()
-            .httpRequest { breadAPI.likeBread(id) }
-            .sendRequest()
+    override suspend fun likeBread(id: String) = GGJGApiCall {
+        breadAPI.likeBread(id = id)
+    }
 
-    override suspend fun allLikeBread(): List<BreadModel> =
-        HttpHandler<List<BreadModel>>()
-            .httpRequest { breadAPI.allLikeBread() }
-            .sendRequest()
+    override suspend fun allLikeBread(): List<BreadModel> = GGJGApiCall {
+        breadAPI.allLikeBread()
+    }
 
-    override suspend fun banner(): List<BannerResponse> =
-        HttpHandler<List<BannerResponse>>()
-            .httpRequest { breadAPI.banner() }
-            .sendRequest()
+    override suspend fun banner(): List<BannerResponse> = GGJGApiCall {
+        breadAPI.banner()
+    }
 
-    override suspend fun searchBread(title: String): List<SearchResponse> =
-        HttpHandler<List<SearchResponse>>()
-            .httpRequest { breadAPI.searchBread(title) }
-            .sendRequest()
+    override suspend fun searchBread(title: String): List<SearchResponse> = GGJGApiCall {
+        breadAPI.searchBread(title = title)
+    }
 
-    override suspend fun resultBread(title: String): List<BreadModel> =
-        HttpHandler<List<BreadModel>>()
-            .httpRequest { breadAPI.resultBread(title) }
-            .sendRequest()
+    override suspend fun resultBread(title: String): List<BreadModel> = GGJGApiCall {
+        breadAPI.resultBread(title = title)
+    }
 }
