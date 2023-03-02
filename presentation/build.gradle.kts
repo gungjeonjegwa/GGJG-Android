@@ -70,6 +70,8 @@ dependencies {
     implementation(Dependency.Kotlin.COROUTINES_CORE)
     implementation(Dependency.Kotlin.COROUTINES_ANDROID)
 
+    implementation(Dependency.Retrofit.RETROFIT_CONVERTER_GSON)
+
     implementation(Dependency.Hilt.HILT_ANDROID)
     kapt(Dependency.Hilt.HILT_ANDROID_COMPILER)
 
