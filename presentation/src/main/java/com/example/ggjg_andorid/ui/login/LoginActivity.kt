@@ -13,6 +13,7 @@ import com.example.ggjg_andorid.ui.findId.FindIdActivity
 import com.example.ggjg_andorid.ui.findPw.FindPwActivity
 import com.example.ggjg_andorid.ui.register.RegisterActivity
 import com.example.ggjg_andorid.utils.*
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
 import com.example.ggjg_andorid.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,6 +27,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         repeatOnStart {
             loginViewModel.eventFlow.collect { event -> handleEvent(event) }
         }
+        repeatOnStart {
+            loginViewModel.errorEventFlow.collect { event -> handleEvent(event) }
+        }
     }
 
     private fun handleEvent(event: LoginViewModel.Event) = when (event) {
@@ -33,13 +37,18 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             setResult(1)
             finish()
         }
-        is LoginViewModel.Event.Failure -> {
-            binding.editPw.setText(null)
+    }
+
+    private fun handleEvent(event: ErrorEvent) = when (event) {
+        is ErrorEvent.NotFoundError -> {
+            binding.editPw.text = null
             binding.errorTxt.onError(
                 getString(R.string.login_wrong),
                 binding.editId,
                 this,
             )
+        }
+        else -> {
         }
     }
 
