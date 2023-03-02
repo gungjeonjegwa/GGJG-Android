@@ -4,6 +4,7 @@ import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.entity.bread.BannerEntity
+import com.example.domain.exception.TokenErrorException
 import com.example.domain.model.BreadModel
 import com.example.domain.usecase.bread.AllBreadUseCase
 import com.example.domain.usecase.bread.BannerUseCase
@@ -12,6 +13,8 @@ import com.example.domain.usecase.bread.LikeBreadUseCase
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.utils.MutableEventFlow
 import com.example.ggjg_andorid.utils.asEventFlow
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
+import com.example.ggjg_andorid.utils.viewmodel.errorHandling
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -26,6 +29,8 @@ class HomeViewModel @Inject constructor(
 
     private val _eventFlow = MutableEventFlow<Event>()
     val eventFlow = _eventFlow.asEventFlow()
+    private val _errorEventFlow = MutableEventFlow<ErrorEvent>()
+    val errorEventFlow = _errorEventFlow.asEventFlow()
 
     companion object {
         var page = 0
@@ -42,6 +47,8 @@ class HomeViewModel @Inject constructor(
                 }
                 isLast = it.isLast
                 page++
+            }.onFailure {
+                event(it.errorHandling())
             }
         }
     }
@@ -64,23 +71,31 @@ class HomeViewModel @Inject constructor(
                 isLast = it.isLast
                 page++
             }.onFailure {
-
+                event(it.errorHandling())
             }
         }
     }
 
     fun like(id: String) = viewModelScope.launch {
-        likeBreadUseCase(id)
+        likeBreadUseCase(id).onFailure {
+            event(it.errorHandling())
+        }
     }
 
     fun getBanner() = viewModelScope.launch {
         bannerUseCase().onSuccess {
             event(Event.Banner(it))
+        }.onFailure {
+            event(it.errorHandling())
         }
     }
 
     private fun event(event: Event) = viewModelScope.launch {
         _eventFlow.emit(event)
+    }
+
+    private fun event(event: ErrorEvent) = viewModelScope.launch {
+        _errorEventFlow.emit(event)
     }
 
     sealed class Event {

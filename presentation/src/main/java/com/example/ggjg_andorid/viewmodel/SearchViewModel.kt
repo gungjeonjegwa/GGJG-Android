@@ -9,6 +9,8 @@ import com.example.domain.usecase.bread.*
 import com.example.ggjg_andorid.adapter.RecentSearchAdapter
 import com.example.ggjg_andorid.utils.MutableEventFlow
 import com.example.ggjg_andorid.utils.asEventFlow
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
+import com.example.ggjg_andorid.utils.viewmodel.errorHandling
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -27,6 +29,8 @@ class SearchViewModel @Inject constructor(
     val searchingEventFlow = _searchingEventFlow.asEventFlow()
     private val _searchResultEventFlow = MutableEventFlow<SearchResultEvent>()
     val searchResultEventFlow = _searchResultEventFlow.asEventFlow()
+    private val _errorEventFlow = MutableEventFlow<ErrorEvent>()
+    val errorEventFlow = _errorEventFlow.asEventFlow()
 
     companion object {
         val adapter = RecentSearchAdapter()
@@ -36,6 +40,8 @@ class SearchViewModel @Inject constructor(
     fun recentSearch() = viewModelScope.launch {
         getRecentSearchUseCase().onSuccess {
             event(Event.RecentSearch(it))
+        }.onFailure {
+            event(it.errorHandling())
         }
     }
 
@@ -43,6 +49,8 @@ class SearchViewModel @Inject constructor(
         if (!search.isNullOrBlank()) {
             searchUseCase(search!!).onSuccess {
                 event(SearchingEvent.Search(it))
+            }.onFailure {
+                event(it.errorHandling())
             }
         }
     }
@@ -60,6 +68,8 @@ class SearchViewModel @Inject constructor(
         if (!search.isNullOrBlank()) {
             resultBreadUseCase(search!!).onSuccess {
                 event(SearchResultEvent.SearchResult(it))
+            }.onFailure {
+                event(it.errorHandling())
             }
         }
     }
@@ -67,6 +77,8 @@ class SearchViewModel @Inject constructor(
     fun deleteRecentSearch(search: String) = viewModelScope.launch {
         deleteRecentSearchUseCase(search).onSuccess {
             event(Event.SuccessDelete)
+        }.onFailure {
+            event(it.errorHandling())
         }
     }
 
@@ -80,6 +92,10 @@ class SearchViewModel @Inject constructor(
 
     private fun event(event: SearchResultEvent) = viewModelScope.launch {
         _searchResultEventFlow.emit(event)
+    }
+
+    private fun event(event: ErrorEvent) = viewModelScope.launch {
+        _errorEventFlow.emit(event)
     }
 
     sealed class Event {

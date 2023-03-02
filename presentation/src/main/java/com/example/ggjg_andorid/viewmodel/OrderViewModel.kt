@@ -8,6 +8,8 @@ import com.example.domain.usecase.order.DetailOrderUseCase
 import com.example.domain.usecase.order.MyOrderListUseCase
 import com.example.ggjg_andorid.utils.MutableEventFlow
 import com.example.ggjg_andorid.utils.asEventFlow
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
+import com.example.ggjg_andorid.utils.viewmodel.errorHandling
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -21,6 +23,8 @@ class OrderViewModel @Inject constructor(
     val eventFlow = _eventFlow.asEventFlow()
     private val _detailEventFlow = MutableEventFlow<DetailEvent>()
     val detailEventFlow = _detailEventFlow.asEventFlow()
+    private val _errorEventFlow = MutableEventFlow<ErrorEvent>()
+    val errorEventFlow = _errorEventFlow.asEventFlow()
 
     companion object {
         var id = ""
@@ -30,6 +34,8 @@ class OrderViewModel @Inject constructor(
     fun myOrderList() = viewModelScope.launch {
         myOrderListUseCase().onSuccess {
             event(Event.OrderList(it))
+        }.onFailure {
+            event(it.errorHandling())
         }
     }
 
@@ -37,6 +43,7 @@ class OrderViewModel @Inject constructor(
         detailOrderUseCase(id).onSuccess {
             event(DetailEvent.DetailOrder(it))
         }.onFailure {
+            event(it.errorHandling())
         }
     }
 
@@ -46,6 +53,10 @@ class OrderViewModel @Inject constructor(
 
     private fun event(event: DetailEvent) = viewModelScope.launch {
         _detailEventFlow.emit(event)
+    }
+
+    private fun event(event: ErrorEvent) = viewModelScope.launch {
+        _errorEventFlow.emit(event)
     }
 
     sealed class Event {

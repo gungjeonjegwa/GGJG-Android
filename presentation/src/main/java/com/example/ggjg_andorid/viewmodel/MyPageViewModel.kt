@@ -8,6 +8,8 @@ import com.example.domain.model.AddressModel
 import com.example.domain.usecase.auth.*
 import com.example.ggjg_andorid.utils.MutableEventFlow
 import com.example.ggjg_andorid.utils.asEventFlow
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
+import com.example.ggjg_andorid.utils.viewmodel.errorHandling
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -32,15 +34,21 @@ class MyPageViewModel @Inject constructor(
     val editEventFlow = _editEventFlow.asEventFlow()
     private val _privacyEventFlow = MutableEventFlow<PrivacyEvent>()
     val privacyEventFlow = _privacyEventFlow.asEventFlow()
+    private val _errorEventFlow = MutableEventFlow<ErrorEvent>()
+    val errorEventFlow = _errorEventFlow.asEventFlow()
 
     fun changeAddress() = viewModelScope.launch {
-        changeAddressUseCase(AddressModel(
-            PayViewModel.address!!.zipcode,
-            PayViewModel.address!!.road,
-            PayViewModel.address!!.landNumber,
-            PayViewModel.address!!.detailAddress,
-            true
-        ))
+        changeAddressUseCase(
+            AddressModel(
+                PayViewModel.address!!.zipcode,
+                PayViewModel.address!!.road,
+                PayViewModel.address!!.landNumber,
+                PayViewModel.address!!.detailAddress,
+                true
+            )
+        ).onFailure {
+            event(it.errorHandling())
+        }
         PayViewModel.defaultAddress = PayViewModel.address
         profilePrivate()
     }
@@ -51,18 +59,23 @@ class MyPageViewModel @Inject constructor(
             MainViewModel.isLogin = false
             event(Event.Success)
         }.onFailure {
+            event(it.errorHandling())
         }
     }
 
     fun profile() = viewModelScope.launch {
         profileUseCase().onSuccess {
             event(Event.Profile(it))
+        }.onFailure {
+            event(it.errorHandling())
         }
     }
 
     fun profilePrivate() = viewModelScope.launch {
         profilePrivateUseCase().onSuccess {
             event(PrivacyEvent.ProfileData(it))
+        }.onFailure {
+            event(it.errorHandling())
         }
     }
 
@@ -73,11 +86,15 @@ class MyPageViewModel @Inject constructor(
             } else {
                 event(EditEvent.Success)
             }
+        }.onFailure {
+            event(it.errorHandling())
         }
     }
 
     fun giftStamp() = viewModelScope.launch {
-        giftStampUseCase()
+        giftStampUseCase().onFailure {
+            event(it.errorHandling())
+        }
         stamp = 0
     }
 
@@ -91,6 +108,10 @@ class MyPageViewModel @Inject constructor(
 
     fun event(event: PrivacyEvent) = viewModelScope.launch {
         _privacyEventFlow.emit(event)
+    }
+
+    fun event(event: ErrorEvent) = viewModelScope.launch {
+        _errorEventFlow.emit(event)
     }
 
     sealed class Event {

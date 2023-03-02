@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.domain.usecase.auth.IsLoginUseCase
 import com.example.ggjg_andorid.utils.MutableEventFlow
 import com.example.ggjg_andorid.utils.asEventFlow
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
+import com.example.ggjg_andorid.utils.viewmodel.errorHandling
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,6 +18,8 @@ class MainViewModel @Inject constructor(
 
     private val _eventFlow = MutableEventFlow<Event>()
     val eventFlow = _eventFlow.asEventFlow()
+    private val _errorEventFlow = MutableEventFlow<ErrorEvent>()
+    val errorEventFlow = _errorEventFlow.asEventFlow()
 
     companion object {
         var isLogin = false
@@ -25,6 +29,8 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch {
             isLoginUseCase().onSuccess {
                 isLogin = it
+            }.onFailure {
+                event(it.errorHandling())
             }
         }
     }
@@ -35,6 +41,10 @@ class MainViewModel @Inject constructor(
 
     private fun event(event: Event) = viewModelScope.launch {
         _eventFlow.emit(event)
+    }
+
+    private fun event(event: ErrorEvent) = viewModelScope.launch {
+        _errorEventFlow.emit(event)
     }
 
     sealed class Event {

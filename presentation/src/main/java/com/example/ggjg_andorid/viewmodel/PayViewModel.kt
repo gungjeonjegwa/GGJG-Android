@@ -16,6 +16,8 @@ import com.example.domain.usecase.order.InitOrderInfoUseCase
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.utils.MutableEventFlow
 import com.example.ggjg_andorid.utils.asEventFlow
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
+import com.example.ggjg_andorid.utils.viewmodel.errorHandling
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -44,6 +46,8 @@ class PayViewModel @Inject constructor(
     val eventFlow = _eventFlow.asEventFlow()
     private val _couponEventFlow = MutableEventFlow<CouponEvent>()
     val couponEventFlow = _couponEventFlow.asEventFlow()
+    private val _errorEventFlow = MutableEventFlow<ErrorEvent>()
+    val errorEventFlow = _errorEventFlow.asEventFlow()
 
     fun init() = viewModelScope.launch {
         initOrderInfoUseCase().onSuccess {
@@ -64,7 +68,7 @@ class PayViewModel @Inject constructor(
                 }
             }
         }.onFailure {
-
+            event(it.errorHandling())
         }
     }
 
@@ -81,6 +85,8 @@ class PayViewModel @Inject constructor(
             val data =
                 it.filter { selectCouponList.find { coupon -> coupon.couponId == it.id } == null }
             event(CouponEvent.Coupon(data))
+        }.onFailure {
+            event(it.errorHandling())
         }
     }
 
@@ -89,10 +95,13 @@ class PayViewModel @Inject constructor(
             newAddressUseCase(address!!).onSuccess {
                 realBuy()
             }.onFailure {
+                event(it.errorHandling())
             }
         } else if (defaultAddress == null) {
             changeAddressUseCase(address!!).onSuccess {
                 realBuy()
+            }.onFailure {
+                event(it.errorHandling())
             }
         } else {
             realBuy()
@@ -102,7 +111,7 @@ class PayViewModel @Inject constructor(
     fun cancelBuy() = viewModelScope.launch {
         buyBreadUseCase(BuyBreadParam(
             false,
-            address!!,
+            address ?: AddressModel("", "", "", "", false),
             orderNumber!!,
             shoppingList.mapIndexed { i, data ->
                 BuyBreadParam.BuyItem(
@@ -112,9 +121,11 @@ class PayViewModel @Inject constructor(
                     selectCouponList.find { it.id == i }?.discountPrice,
                     data.unit,
                     data.age,
-                    selectCouponList.find { it.id == i }?.couponId)
+                    selectCouponList.find { it.id == i }?.couponId
+                )
             }
         )).onFailure {
+            event(it.errorHandling())
         }
     }
 
@@ -131,12 +142,14 @@ class PayViewModel @Inject constructor(
                     selectCouponList.find { it.id == i }?.discountPrice,
                     data.unit,
                     data.age,
-                    selectCouponList.find { it.id == i }?.couponId)
+                    selectCouponList.find { it.id == i }?.couponId
+                )
             }
         )).onSuccess {
             orderNumber = null
             event(Event.SuccessPay)
         }.onFailure {
+            event(it.errorHandling())
         }
     }
 
@@ -146,6 +159,10 @@ class PayViewModel @Inject constructor(
 
     private fun event(event: CouponEvent) = viewModelScope.launch {
         _couponEventFlow.emit(event)
+    }
+
+    private fun event(event: ErrorEvent) = viewModelScope.launch {
+        _errorEventFlow.emit(event)
     }
 
     sealed class Event {

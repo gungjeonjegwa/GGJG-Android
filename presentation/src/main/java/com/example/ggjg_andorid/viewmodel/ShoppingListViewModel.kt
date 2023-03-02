@@ -9,6 +9,8 @@ import com.example.domain.usecase.basket.MyBasketUseCase
 import com.example.domain.usecase.basket.PlusBasketUseCase
 import com.example.ggjg_andorid.utils.MutableEventFlow
 import com.example.ggjg_andorid.utils.asEventFlow
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
+import com.example.ggjg_andorid.utils.viewmodel.errorHandling
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -23,6 +25,8 @@ class ShoppingListViewModel @Inject constructor(
 
     private val _eventFlow = MutableEventFlow<Event>()
     val eventFlow = _eventFlow.asEventFlow()
+    private val _errorEventFlow = MutableEventFlow<ErrorEvent>()
+    val errorEventFlow = _errorEventFlow.asEventFlow()
 
     companion object {
         var allBreadList = listOf<MyBasketEntity>()
@@ -38,23 +42,34 @@ class ShoppingListViewModel @Inject constructor(
             }
             event(Event.MyBasket(it))
         }.onFailure {
+            event(it.errorHandling())
         }
     }
 
     fun changeBasket(id: String, isPlus: Boolean = true) = viewModelScope.launch {
         if (isPlus) {
-            plusBasketUseCase(id)
+            plusBasketUseCase(id).onFailure {
+                event(it.errorHandling())
+            }
         } else {
-            minusBasketUseCase(id)
+            minusBasketUseCase(id).onFailure {
+                event(it.errorHandling())
+            }
         }
     }
 
     fun deleteBasket(id: String) = viewModelScope.launch {
-        deleteBasketUseCase(id)
+        deleteBasketUseCase(id).onFailure {
+            event(it.errorHandling())
+        }
     }
 
     private fun event(event: Event) = viewModelScope.launch {
         _eventFlow.emit(event)
+    }
+
+    private fun event(event: ErrorEvent) = viewModelScope.launch {
+        _errorEventFlow.emit(event)
     }
 
     sealed class Event {

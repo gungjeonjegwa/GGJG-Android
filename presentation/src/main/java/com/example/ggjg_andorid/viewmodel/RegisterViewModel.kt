@@ -8,6 +8,8 @@ import com.example.domain.usecase.auth.IdCheckUseCase
 import com.example.domain.usecase.auth.SignUpUseCase
 import com.example.ggjg_andorid.utils.MutableEventFlow
 import com.example.ggjg_andorid.utils.asEventFlow
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
+import com.example.ggjg_andorid.utils.viewmodel.errorHandling
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -21,12 +23,12 @@ class RegisterViewModel @Inject constructor(
 
     private val _eventFlow = MutableEventFlow<Event>()
     val eventFlow = _eventFlow.asEventFlow()
-
     private val _registerFirstEventFlow = MutableEventFlow<RegisterFirstEvent>()
     val registerFirstEventFlow = _registerFirstEventFlow.asEventFlow()
-
     private val _registerSecondEventFlow = MutableEventFlow<RegisterSecondEvent>()
     val registerSecondEventFlow = _registerSecondEventFlow.asEventFlow()
+    private val _errorEventFlow = MutableEventFlow<ErrorEvent>()
+    val errorEventFlow = _errorEventFlow.asEventFlow()
 
     companion object {
         var name = ""
@@ -45,6 +47,7 @@ class RegisterViewModel @Inject constructor(
         ).onSuccess {
             event(Event.Success)
         }.onFailure {
+            event(it.errorHandling())
         }
     }
 
@@ -52,12 +55,15 @@ class RegisterViewModel @Inject constructor(
         emailCheckUseCase(email).onSuccess {
             event(RegisterFirstEvent.EmailCheck(!it.isDuplicated))
         }.onFailure {
+            event(it.errorHandling())
         }
     }
 
     fun idCheck(id: String) = viewModelScope.launch {
         idCheckUseCase(id).onSuccess {
             event(RegisterSecondEvent.IdCheck(!it.isDuplicated))
+        }.onFailure {
+            event(it.errorHandling())
         }
     }
 
@@ -71,6 +77,10 @@ class RegisterViewModel @Inject constructor(
 
     fun event(event: RegisterSecondEvent) = viewModelScope.launch {
         _registerSecondEventFlow.emit(event)
+    }
+
+    fun event(event: ErrorEvent) = viewModelScope.launch {
+        _errorEventFlow.emit(event)
     }
 
     sealed class Event {

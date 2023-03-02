@@ -7,6 +7,8 @@ import com.example.domain.usecase.coupon.AllCouponUseCase
 import com.example.domain.usecase.coupon.EnrollCouponUseCase
 import com.example.ggjg_andorid.utils.MutableEventFlow
 import com.example.ggjg_andorid.utils.asEventFlow
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
+import com.example.ggjg_andorid.utils.viewmodel.errorHandling
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -25,10 +27,14 @@ class CouponViewModel @Inject constructor(
     val eventFlow = _eventFlow.asEventFlow()
     private val _addEventFlow = MutableEventFlow<AddEvent>()
     val addEventFlow = _addEventFlow.asEventFlow()
+    private val _errorEventFlow = MutableEventFlow<ErrorEvent>()
+    val errorEventFlow = _errorEventFlow.asEventFlow()
 
     fun allCoupon() = viewModelScope.launch {
         allCouponUseCase().onSuccess {
             event(Event.CouponList(it))
+        }.onFailure {
+            event(it.errorHandling())
         }
     }
 
@@ -41,8 +47,9 @@ class CouponViewModel @Inject constructor(
                 if (it == "") {
                     errorCnt++
                 } else {
-                    enrollCouponUseCase(it).onFailure {
+                    enrollCouponUseCase(it).onFailure { error ->
                         errorCnt++
+                        event(error.errorHandling())
                     }
                 }
             }
@@ -60,6 +67,10 @@ class CouponViewModel @Inject constructor(
 
     private fun event(event: AddEvent) = viewModelScope.launch {
         _addEventFlow.emit(event)
+    }
+
+    private fun event(event: ErrorEvent) = viewModelScope.launch {
+        _errorEventFlow.emit(event)
     }
 
     sealed class Event {

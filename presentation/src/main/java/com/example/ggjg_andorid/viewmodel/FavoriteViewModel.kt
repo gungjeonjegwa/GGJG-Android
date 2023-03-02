@@ -7,6 +7,8 @@ import com.example.domain.usecase.bread.AllLikeBreadUseCase
 import com.example.domain.usecase.bread.LikeBreadUseCase
 import com.example.ggjg_andorid.utils.MutableEventFlow
 import com.example.ggjg_andorid.utils.asEventFlow
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
+import com.example.ggjg_andorid.utils.viewmodel.errorHandling
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,6 +21,8 @@ class FavoriteViewModel @Inject constructor(
 
     private val _eventFlow = MutableEventFlow<Event>()
     val eventFlow = _eventFlow.asEventFlow()
+    private val _errorEventFlow = MutableEventFlow<ErrorEvent>()
+    val errorEventFlow = _errorEventFlow.asEventFlow()
 
     fun getLikeBread() = viewModelScope.launch {
         allLikeBreadUseCase().onSuccess {
@@ -27,15 +31,23 @@ class FavoriteViewModel @Inject constructor(
             } else {
                 event(Event.Empty)
             }
+        }.onFailure {
+            event(it.errorHandling())
         }
     }
 
     fun delete(id: String) = viewModelScope.launch {
-        likeBreadUseCase(id)
+        likeBreadUseCase(id).onFailure {
+            event(it.errorHandling())
+        }
     }
 
     private fun event(event: Event) = viewModelScope.launch {
         _eventFlow.emit(event)
+    }
+
+    private fun event(event: ErrorEvent) = viewModelScope.launch {
+        _errorEventFlow.emit(event)
     }
 
     sealed class Event {
