@@ -4,11 +4,16 @@ import android.content.Context
 import androidx.fragment.app.FragmentManager
 import com.example.ggjg_andorid.BuildConfig
 import com.example.ggjg_andorid.viewmodel.PayViewModel
-import com.google.gson.JsonObject
-import com.google.gson.JsonParser
+import com.google.gson.Gson
+import com.google.gson.annotations.SerializedName
 import kr.co.bootpay.android.Bootpay
 import kr.co.bootpay.android.events.BootpayEventListener
 import kr.co.bootpay.android.models.Payload
+
+data class BootPayEvent(
+    @SerializedName("event")
+    val event: String,
+)
 
 fun bootPayPayload(title: String, price: Double): Payload {
     return Payload().setApplicationId(BuildConfig.PAY_ID)
@@ -36,9 +41,11 @@ fun bootPayCreate(
 
             override fun onClose(data: String?) {
                 Bootpay.removePaymentWindow()
-                val jsonParser = JsonParser()
-                val result = ((jsonParser.parse(data) as JsonObject)["event"]).toString().removeDot()
-                if (result == "done") {
+                val result = Gson().fromJson(
+                    data,
+                    BootPayEvent::class.java
+                )
+                if (result.event == "done") {
                     onPayedEvent()
                 }
             }
