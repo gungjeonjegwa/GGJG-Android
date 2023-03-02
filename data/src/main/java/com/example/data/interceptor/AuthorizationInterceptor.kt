@@ -3,6 +3,7 @@ package com.example.data.interceptor
 import com.example.data.BuildConfig
 import com.example.data.local.storage.AuthStorage
 import com.example.data.remote.response.auth.LoginResponse
+import com.example.domain.exception.NeedLoginException
 import com.example.domain.exception.TokenErrorException
 import com.google.gson.Gson
 import okhttp3.*
@@ -49,8 +50,8 @@ class AuthorizationInterceptor @Inject constructor(
                     authDataStorage.setAccessToken(token = token.accessToken)
                     authDataStorage.setRefreshToken(token = token.refreshToken)
                     authDataStorage.setExpiredAt(expiredAt = token.expiredAt)
-                } else throw TokenErrorException()
-            } else throw TokenErrorException()
+                } else throw NeedLoginException()
+            } else throw NeedLoginException()
             return chain.proceed(
                 request.newBuilder().addHeader(
                     "Authorization",

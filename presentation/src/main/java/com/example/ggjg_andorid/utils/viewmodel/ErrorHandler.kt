@@ -1,10 +1,7 @@
 package com.example.ggjg_andorid.utils.viewmodel
 
 import android.util.Log
-import com.example.domain.exception.ConflictException
-import com.example.domain.exception.MoreDataException
-import com.example.domain.exception.NotFoundException
-import com.example.domain.exception.TokenErrorException
+import com.example.domain.exception.*
 import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
 
 suspend fun Throwable.errorHandling(
@@ -20,7 +17,7 @@ suspend fun Throwable.errorHandling(
             moreDataAction()
             ErrorEvent.MoreDataError
         }
-        is TokenErrorException -> {
+        is TokenErrorException, is NeedLoginException -> {
             errorLog("TokenErrorException", message)
             tokenErrorAction()
             ErrorEvent.TokenError

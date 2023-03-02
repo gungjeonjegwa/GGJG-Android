@@ -20,5 +20,7 @@ suspend inline fun <T> GGJGApiCall(
             409 -> ConflictException()
             else -> UnknownException()
         }
+    } catch (e: NeedLoginException) {
+        throw e
     }
 }
