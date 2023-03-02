@@ -58,12 +58,6 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
     }
 
     private fun handleEvent(event: PayDialogViewModel.Event) = when (event) {
-        is PayDialogViewModel.Event.AlreadyShoppingList -> {
-            dialog?.dismiss()
-            PayDialogViewModel.breadList = listOf()
-            Toast.makeText(context, getString(R.string.already_shopping_list), Toast.LENGTH_SHORT)
-                .show()
-        }
         is PayDialogViewModel.Event.SuccessMoveShoppingList -> {
             dialog?.dismiss()
             PayDialogViewModel.breadList = listOf()
@@ -73,6 +67,12 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
     }
 
     private fun handleEvent(event: ErrorEvent) = when (event) {
+        is ErrorEvent.ConflictError -> {
+            dialog?.dismiss()
+            PayDialogViewModel.breadList = listOf()
+            Toast.makeText(context, getString(R.string.already_shopping_list), Toast.LENGTH_SHORT)
+                .show()
+        }
         else -> {
 
         }

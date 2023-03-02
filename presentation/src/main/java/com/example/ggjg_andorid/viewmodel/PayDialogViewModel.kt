@@ -49,6 +49,5 @@ class PayDialogViewModel @Inject constructor(
 
     sealed class Event {
         object SuccessMoveShoppingList : Event()
-        object AlreadyShoppingList : Event()
     }
 }
