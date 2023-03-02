@@ -12,6 +12,7 @@ import com.example.ggjg_andorid.adapter.OrderAdapter
 import com.example.ggjg_andorid.databinding.FragmentOrderBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.utils.repeatOnStart
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
 import com.example.ggjg_andorid.viewmodel.MainViewModel
 import com.example.ggjg_andorid.viewmodel.OrderViewModel
 
@@ -36,11 +37,20 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(R.layout.fragment_order
         repeatOnStart {
             orderViewModel.eventFlow.collect { event -> handleEvent(event) }
         }
+        repeatOnStart {
+            orderViewModel.errorEventFlow.collect { event -> handleEvent(event) }
+        }
     }
 
     private fun handleEvent(event: OrderViewModel.Event) = when (event) {
         is OrderViewModel.Event.OrderList -> {
             orderAdapter.submitList(event.data)
+        }
+    }
+
+    private fun handleEvent(event: ErrorEvent) = when (event) {
+        else -> {
+
         }
     }
 

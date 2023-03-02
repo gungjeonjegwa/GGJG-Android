@@ -22,9 +22,11 @@ import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.utils.Extension.customTopScroll
 import com.example.ggjg_andorid.utils.repeatOnStart
 import com.example.ggjg_andorid.utils.setVisible
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
 import com.example.ggjg_andorid.viewmodel.DetailViewModel
 import com.example.ggjg_andorid.viewmodel.HomeViewModel
 import com.example.ggjg_andorid.viewmodel.MainViewModel
+import kotlinx.coroutines.flow.collect
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
     SwipeRefreshLayout.OnRefreshListener {
@@ -62,6 +64,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
         repeatOnStart {
             homeViewModel.eventFlow.collect { event -> handleEvent(event) }
         }
+        repeatOnStart {
+            homeViewModel.errorEventFlow.collect { event -> handleEvent(event) }
+        }
     }
 
     private fun handleEvent(event: HomeViewModel.Event) = when (event) {
@@ -80,6 +85,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
         }
     }
 
+    private fun handleEvent(event: ErrorEvent) = when (event) {
+        else -> {
+
+        }
+    }
+
     private fun initView() = binding.apply {
         val deviceWidth = requireContext().resources.displayMetrics.widthPixels
         val bannerLayoutParams = bannerContainer.layoutParams
@@ -92,7 +103,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
         layoutManager =
             if (deviceWidth <= 1080) GridLayoutManager(requireContext(), 2) else GridLayoutManager(
                 requireContext(),
-                3)
+                3
+            )
         listener =
             object : EndlessRecyclerViewScrollListener(layoutManager) {
                 override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {

@@ -17,6 +17,9 @@ class MyPageEditFragment : BaseFragment<FragmentMyPageEditBinding>(R.layout.frag
         repeatOnStart {
             myPageViewModel.editEventFlow.collect { event -> handleEvent(event) }
         }
+        repeatOnStart {
+            myPageViewModel.editEventFlow.collect { event -> handleEvent(event) }
+        }
     }
 
     private fun handleEvent(event: MyPageViewModel.EditEvent) = when (event) {

@@ -9,6 +9,7 @@ import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.FragmentRegisterSecondBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.utils.*
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
 import com.example.ggjg_andorid.viewmodel.RegisterViewModel
 
 class RegisterSecondFragment :
@@ -19,6 +20,9 @@ class RegisterSecondFragment :
         initView()
         repeatOnStart {
             registerViewModel.registerSecondEventFlow.collect { event -> handleEvent(event) }
+        }
+        repeatOnStart {
+            registerViewModel.errorEventFlow.collect { event -> handleEvent(event) }
         }
     }
 
@@ -42,6 +46,10 @@ class RegisterSecondFragment :
                 )
             }
         }
+    }
+
+    private fun handleEvent(event: ErrorEvent) = when (event) {
+        else -> {}
     }
 
     private fun initView() = binding.apply {

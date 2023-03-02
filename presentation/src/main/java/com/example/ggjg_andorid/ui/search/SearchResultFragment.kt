@@ -10,6 +10,7 @@ import com.example.ggjg_andorid.adapter.decorator.BreadListDecorator
 import com.example.ggjg_andorid.databinding.FragmentSearchResultBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.utils.repeatOnStart
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
 import com.example.ggjg_andorid.viewmodel.DetailViewModel
 import com.example.ggjg_andorid.viewmodel.MainViewModel
 import com.example.ggjg_andorid.viewmodel.SearchViewModel
@@ -25,11 +26,20 @@ class SearchResultFragment :
         repeatOnStart {
             searchViewModel.searchResultEventFlow.collect { event -> handleEvent(event) }
         }
+        repeatOnStart {
+            searchViewModel.errorEventFlow.collect { event -> handleEvent(event) }
+        }
     }
 
     private fun handleEvent(event: SearchViewModel.SearchResultEvent) = when (event) {
         is SearchViewModel.SearchResultEvent.SearchResult -> {
             searchResultAdapter.submitList(event.data)
+        }
+    }
+
+    private fun handleEvent(event: ErrorEvent) = when (event) {
+        else -> {
+
         }
     }
 
@@ -51,10 +61,13 @@ class SearchResultFragment :
         searchList.apply {
             itemAnimator = null
             adapter = searchResultAdapter
-            layoutManager = if (deviceWidth <= 1080) GridLayoutManager(requireContext(),
-                2) else GridLayoutManager(
+            layoutManager = if (deviceWidth <= 1080) GridLayoutManager(
                 requireContext(),
-                3)
+                2
+            ) else GridLayoutManager(
+                requireContext(),
+                3
+            )
             addItemDecoration(BreadListDecorator(context))
         }
     }

@@ -13,6 +13,7 @@ import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.utils.keyboardHide
 import com.example.ggjg_andorid.utils.repeatOnStart
 import com.example.ggjg_andorid.utils.setVisible
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
 import com.example.ggjg_andorid.viewmodel.CouponViewModel
 
 class AddCouponFragment : BaseFragment<FragmentCouponAddBinding>(R.layout.fragment_coupon_add) {
@@ -34,6 +35,9 @@ class AddCouponFragment : BaseFragment<FragmentCouponAddBinding>(R.layout.fragme
         repeatOnStart {
             couponViewModel.addEventFlow.collect { event -> handleEvent(event) }
         }
+        repeatOnStart {
+            couponViewModel.errorEventFlow.collect { event -> handleEvent(event) }
+        }
     }
 
     private fun handleEvent(event: CouponViewModel.AddEvent) = when (event) {
@@ -51,6 +55,10 @@ class AddCouponFragment : BaseFragment<FragmentCouponAddBinding>(R.layout.fragme
             Toast.makeText(context, "쿠폰 입력에 성공했습니다.", Toast.LENGTH_SHORT).show()
             requireActivity().findNavController(R.id.mainContainer).popBackStack()
         }
+    }
+
+    private fun handleEvent(event: ErrorEvent) = when (event) {
+        else -> {}
     }
 
     private fun initView() = binding.apply {

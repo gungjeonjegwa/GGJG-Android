@@ -2,13 +2,11 @@ package com.example.ggjg_andorid.ui.address
 
 import android.view.View
 import androidx.navigation.findNavController
-import com.example.domain.entity.order.InitOrderEntity
 import com.example.domain.model.AddressModel
 import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.FragmentAddressDetailBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.viewmodel.AddressViewModel
-import com.example.ggjg_andorid.viewmodel.MyPageViewModel
 import com.example.ggjg_andorid.viewmodel.PayViewModel
 
 class DetailAddressFragment :

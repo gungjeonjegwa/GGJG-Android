@@ -13,6 +13,7 @@ import com.example.ggjg_andorid.ui.agree_notice.InformationUseNoticeActivity
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.utils.repeatOnStart
 import com.example.ggjg_andorid.utils.setVisible
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
 import com.example.ggjg_andorid.viewmodel.*
 
 class MyPagePrivacyFragment :
@@ -38,6 +39,9 @@ class MyPagePrivacyFragment :
         repeatOnStart {
             myPageViewModel.privacyEventFlow.collect { event -> handleEvent(event) }
         }
+        repeatOnStart {
+            myPageViewModel.errorEventFlow.collect { event -> handleEvent(event) }
+        }
     }
 
     private fun handleEvent(event: MyPageViewModel.PrivacyEvent) = when (event) {
@@ -59,6 +63,12 @@ class MyPagePrivacyFragment :
                     setOrderAddressBtn.setVisible()
                 }
             }
+        }
+    }
+
+    private fun handleEvent(event: ErrorEvent) = when(event) {
+        else -> {
+
         }
     }
 
@@ -101,8 +111,12 @@ class MyPagePrivacyFragment :
                 requireActivity().startActivity(Intent(context, AgreementActivity::class.java))
             }
             R.id.informationUseBtn -> {
-                requireActivity().startActivity(Intent(context,
-                    InformationUseNoticeActivity::class.java))
+                requireActivity().startActivity(
+                    Intent(
+                        context,
+                        InformationUseNoticeActivity::class.java
+                    )
+                )
             }
             R.id.setOrderAddressBtn -> {
                 requireActivity().findNavController(R.id.mainContainer)

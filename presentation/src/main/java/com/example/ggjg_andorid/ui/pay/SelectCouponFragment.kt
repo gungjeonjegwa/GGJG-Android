@@ -10,6 +10,7 @@ import com.example.ggjg_andorid.adapter.CouponAdapter
 import com.example.ggjg_andorid.databinding.FragmentSelectCouponBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.utils.repeatOnStart
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
 import com.example.ggjg_andorid.viewmodel.PayViewModel
 
 class SelectCouponFragment :
@@ -23,11 +24,20 @@ class SelectCouponFragment :
         repeatOnStart {
             payViewModel.couponEventFlow.collect { event -> handleEvent(event) }
         }
+        repeatOnStart {
+            payViewModel.errorEventFlow.collect { event -> handleEvent(event) }
+        }
     }
 
     private fun handleEvent(event: PayViewModel.CouponEvent) = when (event) {
         is PayViewModel.CouponEvent.Coupon -> {
             couponAdapter.submitList(event.data)
+        }
+    }
+
+    private fun handleEvent(event: ErrorEvent) = when (event) {
+        else -> {
+
         }
     }
 
@@ -37,24 +47,28 @@ class SelectCouponFragment :
                 override fun click(item: CouponEntity) {
                     if (PayViewModel.selectCouponList.find { it.id == PayViewModel.currentItemPosition } != null) {
                         PayViewModel.selectCouponList =
-                            PayViewModel.selectCouponList.plus(PayViewModel.BuyCoupon(
-                                PayViewModel.currentItemPosition,
-                                item.id,
-                                item.price,
-                                0,
-                                item.type
-                            ))
+                            PayViewModel.selectCouponList.plus(
+                                PayViewModel.BuyCoupon(
+                                    PayViewModel.currentItemPosition,
+                                    item.id,
+                                    item.price,
+                                    0,
+                                    item.type
+                                )
+                            )
                     } else {
                         PayViewModel.selectCouponList =
                             PayViewModel.selectCouponList.filter { it.id != PayViewModel.currentItemPosition }
                         PayViewModel.selectCouponList =
-                            PayViewModel.selectCouponList.plus(PayViewModel.BuyCoupon(
-                                PayViewModel.currentItemPosition,
-                                item.id,
-                                item.price,
-                                0,
-                                item.type
-                            ))
+                            PayViewModel.selectCouponList.plus(
+                                PayViewModel.BuyCoupon(
+                                    PayViewModel.currentItemPosition,
+                                    item.id,
+                                    item.price,
+                                    0,
+                                    item.type
+                                )
+                            )
                     }
                     requireActivity().findNavController(R.id.mainContainer).popBackStack()
                 }

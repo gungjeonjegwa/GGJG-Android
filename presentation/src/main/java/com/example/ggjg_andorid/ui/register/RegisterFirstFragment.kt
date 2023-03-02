@@ -6,6 +6,7 @@ import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.FragmentRegisterFirstBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.utils.*
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
 import com.example.ggjg_andorid.viewmodel.RegisterViewModel
 
 class RegisterFirstFragment :
@@ -16,11 +17,14 @@ class RegisterFirstFragment :
         binding.registerFirst = this
         initView()
         repeatOnStart {
-            registerViewModel.registerFirstEventFlow.collect { event -> eventHandler(event) }
+            registerViewModel.registerFirstEventFlow.collect { event -> handleEvent(event) }
+        }
+        repeatOnStart {
+            registerViewModel.errorEventFlow.collect { event -> handleEvent(event) }
         }
     }
 
-    private fun eventHandler(event: RegisterViewModel.RegisterFirstEvent) = when (event) {
+    private fun handleEvent(event: RegisterViewModel.RegisterFirstEvent) = when (event) {
         is RegisterViewModel.RegisterFirstEvent.EmailCheck -> {
             if (event.state) {
                 RegisterViewModel.apply {
@@ -38,6 +42,10 @@ class RegisterFirstFragment :
                 )
             }
         }
+    }
+
+    private fun handleEvent(event: ErrorEvent) = when (event) {
+        else -> {}
     }
 
     private fun initView() = binding.apply {

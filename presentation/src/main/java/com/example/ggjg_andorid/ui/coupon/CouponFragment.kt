@@ -10,6 +10,7 @@ import com.example.ggjg_andorid.adapter.CouponAdapter
 import com.example.ggjg_andorid.databinding.FragmentCouponBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.utils.repeatOnStart
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
 import com.example.ggjg_andorid.viewmodel.CouponViewModel
 import com.example.ggjg_andorid.viewmodel.MainViewModel
 
@@ -34,12 +35,19 @@ class CouponFragment : BaseFragment<FragmentCouponBinding>(R.layout.fragment_cou
         initView()
         mainViewModel.hiddenNav(true)
         repeatOnStart { couponViewModel.eventFlow.collect { event -> handleEvent(event) } }
+        repeatOnStart { couponViewModel.errorEventFlow.collect { event -> handleEvent(event) } }
     }
 
     private fun handleEvent(event: CouponViewModel.Event) = when (event) {
         is CouponViewModel.Event.CouponList -> {
             binding.haveCouponTxt.text = "${event.data.size}장"
             couponAdapter.submitList(event.data)
+        }
+    }
+
+    private fun handleEvent(event: ErrorEvent) = when (event) {
+        else -> {
+
         }
     }
 

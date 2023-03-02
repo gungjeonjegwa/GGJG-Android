@@ -15,6 +15,7 @@ import com.example.ggjg_andorid.ui.login.LoginActivity
 import com.example.ggjg_andorid.utils.Extension.customTopScroll
 import com.example.ggjg_andorid.utils.repeatOnStart
 import com.example.ggjg_andorid.utils.setVisible
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
 import com.example.ggjg_andorid.viewmodel.DetailViewModel
 import com.example.ggjg_andorid.viewmodel.FavoriteViewModel
 import com.example.ggjg_andorid.viewmodel.MainViewModel
@@ -46,11 +47,20 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment
         }
     }
 
+    private fun handleEvent(event: ErrorEvent) = when (event) {
+        else -> {
+
+        }
+    }
+
     private fun initView() = binding.apply {
         favoriteViewModel.getLikeBread()
         favorite = this@FavoriteFragment
         repeatOnStart {
             favoriteViewModel.eventFlow.collect { event -> handleEvent(event) }
+        }
+        repeatOnStart {
+            favoriteViewModel.errorEventFlow.collect { event -> handleEvent(event) }
         }
         breadAdapter = BreadListAdapter().apply {
             setItemOnClickListener(object : BreadListAdapter.OnItemClickListener {
@@ -70,10 +80,13 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment
         favoriteList.apply {
             itemAnimator = null
             adapter = breadAdapter
-            layoutManager = if (deviceWidth <= 1080) GridLayoutManager(requireContext(),
-                2) else GridLayoutManager(
+            layoutManager = if (deviceWidth <= 1080) GridLayoutManager(
                 requireContext(),
-                3)
+                2
+            ) else GridLayoutManager(
+                requireContext(),
+                3
+            )
             addItemDecoration(BreadListDecorator(context))
         }
     }

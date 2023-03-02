@@ -23,6 +23,7 @@ import com.example.ggjg_andorid.utils.changeActivatedWithEnabled
 import com.example.ggjg_andorid.utils.heartChange
 import com.example.ggjg_andorid.utils.repeatOnStart
 import com.example.ggjg_andorid.utils.setVisible
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
 import com.example.ggjg_andorid.viewmodel.DetailViewModel
 import com.example.ggjg_andorid.viewmodel.MainViewModel
 import com.example.ggjg_andorid.viewmodel.PayDialogViewModel
@@ -52,6 +53,9 @@ class DetailBreadFragment :
         initView()
         repeatOnStart {
             detailViewModel.eventFlow.collect { event -> handleEvent(event) }
+        }
+        repeatOnStart {
+            detailViewModel.errorEventFlow.collect { event -> handleEvent(event) }
         }
     }
 
@@ -128,6 +132,12 @@ class DetailBreadFragment :
             binding.noneQa.setVisible(false)
             binding.noneReview.setVisible(false)
             binding.reviewListLayout.setVisible()
+        }
+    }
+
+    private fun handleEvent(event: ErrorEvent) = when (event) {
+        else -> {
+
         }
     }
 

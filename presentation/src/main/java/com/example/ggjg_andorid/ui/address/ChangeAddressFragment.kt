@@ -11,6 +11,7 @@ import com.example.ggjg_andorid.databinding.FragmentAddressChangeBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.utils.repeatOnStart
 import com.example.ggjg_andorid.utils.setVisible
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
 import com.example.ggjg_andorid.viewmodel.AddressViewModel
 import com.example.ggjg_andorid.viewmodel.PayViewModel
 
@@ -25,6 +26,9 @@ class ChangeAddressFragment :
         repeatOnStart {
             addressViewModel.changeEventFlow.collect { event -> handleEvent(event) }
         }
+        repeatOnStart {
+            addressViewModel.errorEventFlow.collect { event -> handleEvent(event) }
+        }
     }
 
     private fun handleEvent(event: AddressViewModel.ChangeEvent) = when (event) {
@@ -34,6 +38,12 @@ class ChangeAddressFragment :
         }
         is AddressViewModel.ChangeEvent.NoSearch -> {
             binding.noRecentAddress.setVisible()
+        }
+    }
+
+    private fun handleEvent(event: ErrorEvent) = when (event) {
+        else -> {
+
         }
     }
 

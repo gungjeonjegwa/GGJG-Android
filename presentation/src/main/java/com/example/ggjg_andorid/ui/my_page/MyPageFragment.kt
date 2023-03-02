@@ -15,6 +15,7 @@ import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.ui.login.LoginActivity
 import com.example.ggjg_andorid.utils.repeatOnStart
 import com.example.ggjg_andorid.utils.setVisible
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
 import com.example.ggjg_andorid.viewmodel.MainViewModel
 import com.example.ggjg_andorid.viewmodel.MyPageViewModel
 
@@ -55,11 +56,20 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
         }
     }
 
+    private fun handleEvent(event: ErrorEvent) = when (event) {
+        else -> {
+
+        }
+    }
+
     private fun initView() = binding.apply {
         profileViewModel.profile()
         myPage = this@MyPageFragment
         repeatOnStart {
             profileViewModel.eventFlow.collect { event -> handleEvent(event) }
+        }
+        repeatOnStart {
+            profileViewModel.errorEventFlow.collect { event -> handleEvent(event) }
         }
         stampAdapter = StampAdapter().apply {
             setItemOnClickListener(object : StampAdapter.OnItemClickListener {

@@ -15,6 +15,7 @@ import com.example.ggjg_andorid.ui.login.LoginActivity
 import com.example.ggjg_andorid.utils.changeActivatedWithEnabled
 import com.example.ggjg_andorid.utils.repeatOnStart
 import com.example.ggjg_andorid.utils.setVisible
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
 import com.example.ggjg_andorid.viewmodel.MainViewModel
 import com.example.ggjg_andorid.viewmodel.PayViewModel
 import com.example.ggjg_andorid.viewmodel.ShoppingListViewModel
@@ -44,6 +45,9 @@ class ShoppingListFragment :
             repeatOnStart {
                 shoppingListViewModel.eventFlow.collect { event -> handleEvent(event) }
             }
+            repeatOnStart {
+                shoppingListViewModel.errorEventFlow.collect { event -> handleEvent(event) }
+            }
         } else {
             this.startActivityForResult(
                 Intent(
@@ -66,6 +70,10 @@ class ShoppingListFragment :
                 binding.paymentLayout.setVisible()
             }
         }
+    }
+
+    private fun handleEvent(event: ErrorEvent) = when (event) {
+        else -> {}
     }
 
     private fun initView() = binding.apply {

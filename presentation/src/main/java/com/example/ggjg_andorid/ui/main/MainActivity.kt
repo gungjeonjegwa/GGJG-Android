@@ -8,6 +8,7 @@ import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.ActivityMainBinding
 import com.example.ggjg_andorid.ui.base.BaseActivity
 import com.example.ggjg_andorid.utils.repeatOnStart
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
 import com.example.ggjg_andorid.viewmodel.MainViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,6 +22,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         repeatOnStart {
             mainViewModel.eventFlow.collect { event -> handleEvent(event) }
         }
+        repeatOnStart {
+            mainViewModel.errorEventFlow.collect { event -> handleEvent(event) }
+        }
     }
 
     private fun handleEvent(event: MainViewModel.Event) = when (event) {
@@ -31,6 +35,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 binding.bottomNavTopLine.setGuidelinePercent(0.93f)
                 binding.bottomNav.visibility = View.VISIBLE
             }
+        }
+    }
+
+    private fun handleEvent(event: ErrorEvent) = when (event) {
+        else -> {
+
         }
     }
 

@@ -11,6 +11,7 @@ import com.example.ggjg_andorid.databinding.FragmentAddressSearchBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.utils.repeatOnStart
 import com.example.ggjg_andorid.utils.setVisible
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
 import com.example.ggjg_andorid.viewmodel.AddressViewModel
 import com.jakewharton.rxbinding3.widget.textChanges
 import io.reactivex.schedulers.Schedulers
@@ -27,6 +28,9 @@ class SearchAddressFragment :
         repeatOnStart {
             addressViewModel.searchEventFlow.collect { event -> handleEvent(event) }
         }
+        repeatOnStart {
+            addressViewModel.errorEventFlow.collect { event -> handleEvent(event) }
+        }
     }
 
     private fun handleEvent(event: AddressViewModel.SearchEvent) = when (event) {
@@ -38,6 +42,12 @@ class SearchAddressFragment :
                 binding.noSearchTxt.setVisible(false)
                 addressAdapter.submitList(event.data)
             }
+        }
+    }
+
+    private fun handleEvent(event: ErrorEvent) = when (event) {
+        else -> {
+
         }
     }
 

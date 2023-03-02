@@ -8,6 +8,7 @@ import com.example.ggjg_andorid.adapter.SearchAdapter
 import com.example.ggjg_andorid.databinding.FragmentSearchingBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.utils.repeatOnStart
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
 import com.example.ggjg_andorid.viewmodel.MainViewModel
 import com.example.ggjg_andorid.viewmodel.SearchViewModel
 
@@ -22,12 +23,19 @@ class SearchingFragment : BaseFragment<FragmentSearchingBinding>(R.layout.fragme
         repeatOnStart {
             searchViewModel.searchingEventFlow.collect { event -> handleEvent(event) }
         }
+        repeatOnStart {
+            searchViewModel.errorEventFlow.collect { event -> handleEvent(event) }
+        }
     }
 
     private fun handleEvent(event: SearchViewModel.SearchingEvent) = when (event) {
         is SearchViewModel.SearchingEvent.Search -> {
             searchAdapter.submitList(event.data)
         }
+    }
+
+    private fun handleEvent(event: ErrorEvent) = when (event) {
+        else -> {}
     }
 
     private fun initView() = binding.apply {

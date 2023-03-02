@@ -9,6 +9,7 @@ import com.example.ggjg_andorid.adapter.OrderDetailAdapter
 import com.example.ggjg_andorid.databinding.FragmentOrderDetailBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.utils.repeatOnStart
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
 import com.example.ggjg_andorid.viewmodel.OrderViewModel
 import java.text.DecimalFormat
 
@@ -22,6 +23,9 @@ class OrderDetailFragment :
         initView()
         repeatOnStart {
             orderViewModel.detailEventFlow.collect { event -> handleEvent(event) }
+        }
+        repeatOnStart {
+            orderViewModel.errorEventFlow.collect { event -> handleEvent(event) }
         }
     }
 
@@ -48,6 +52,12 @@ class OrderDetailFragment :
                 }
             }
             adapter.submitList(event.data.items)
+        }
+    }
+
+    private fun handleEvent(event: ErrorEvent) = when (event) {
+        else -> {
+
         }
     }
 

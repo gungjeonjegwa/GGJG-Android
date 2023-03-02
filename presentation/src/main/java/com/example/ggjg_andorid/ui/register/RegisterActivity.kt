@@ -5,6 +5,7 @@ import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.ActivityRegisterBinding
 import com.example.ggjg_andorid.ui.base.BaseActivity
 import com.example.ggjg_andorid.utils.repeatOnStart
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
 import com.example.ggjg_andorid.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -15,6 +16,9 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
         repeatOnStart {
             registerViewModel.eventFlow.collect { event -> handleEvent(event) }
         }
+        repeatOnStart {
+            registerViewModel.errorEventFlow.collect { event -> handleEvent(event) }
+        }
         supportFragmentManager.beginTransaction()
             .replace(R.id.registerContainer, RegisterFirstFragment()).commit()
     }
@@ -23,5 +27,9 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
         is RegisterViewModel.Event.Success -> {
             finish()
         }
+    }
+
+    private fun handleEvent(event: ErrorEvent) = when (event) {
+        else -> {}
     }
 }

@@ -11,6 +11,7 @@ import com.example.ggjg_andorid.R
 import com.example.ggjg_andorid.databinding.FragmentSearchBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.utils.*
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
 import com.example.ggjg_andorid.viewmodel.SearchViewModel
 import com.jakewharton.rxbinding3.widget.textChanges
 import io.reactivex.schedulers.Schedulers
@@ -24,6 +25,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         initView()
         repeatOnStart {
             searchViewModel.eventFlow.collect { event -> handleEvent(event) }
+        }
+        repeatOnStart {
+            searchViewModel.errorEventFlow.collect { event -> handleEvent(event) }
         }
     }
 
@@ -39,6 +43,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
             keyboardHide(requireActivity(), listOf(binding.searchBread))
             viewFragment(SearchResultFragment())
         }
+    }
+
+    private fun handleEvent(event: ErrorEvent) = when (event) {
+        else -> {}
     }
 
     private fun initView() = binding.apply {

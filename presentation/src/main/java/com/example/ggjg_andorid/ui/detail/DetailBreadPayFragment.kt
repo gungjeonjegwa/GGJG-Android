@@ -18,6 +18,7 @@ import com.example.ggjg_andorid.adapter.SizeOptionAdapter
 import com.example.ggjg_andorid.databinding.FragmentDetailBreadPayBinding
 import com.example.ggjg_andorid.utils.repeatOnStart
 import com.example.ggjg_andorid.utils.setVisible
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
 import com.example.ggjg_andorid.viewmodel.PayDialogViewModel
 import com.example.ggjg_andorid.viewmodel.PayViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -50,6 +51,9 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
         repeatOnStart {
             payViewModel.eventFlow.collect { event -> handleEvent(event) }
         }
+        repeatOnStart {
+            payViewModel.errorEventFlow.collect { event -> handleEvent(event) }
+        }
         return binding.root
     }
 
@@ -65,6 +69,12 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
             PayDialogViewModel.breadList = listOf()
             Toast.makeText(context, getString(R.string.add_shopping_list), Toast.LENGTH_SHORT)
                 .show()
+        }
+    }
+
+    private fun handleEvent(event: ErrorEvent) = when (event) {
+        else -> {
+
         }
     }
 
@@ -126,9 +136,11 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
                                     binding.sizeOptionBtn.setTextColor(requireContext().getColor(R.color.black))
                                     PayDialogViewModel.size = item
                                 } else {
-                                    Toast.makeText(context,
+                                    Toast.makeText(
+                                        context,
                                         getString(R.string.select_already_option),
-                                        Toast.LENGTH_SHORT).show()
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                     sizeOptionBtn.text = getString(R.string.select_option)
                                     sizeOptionBtn.setTextColor(requireContext().getColor(R.color.dark_gray))
                                 }
@@ -215,9 +227,11 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
             }
             R.id.ageOptionBtn -> {
                 if (PayDialogViewModel.size == null) {
-                    Toast.makeText(context,
+                    Toast.makeText(
+                        context,
                         getString(R.string.select_first_option),
-                        Toast.LENGTH_SHORT).show()
+                        Toast.LENGTH_SHORT
+                    ).show()
                 } else {
                     ageOptionClick(false)
                 }

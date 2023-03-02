@@ -16,6 +16,7 @@ import com.example.ggjg_andorid.databinding.FragmentPayBinding
 import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.utils.*
 import com.example.ggjg_andorid.utils.Extension.toTotalMoney
+import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
 import com.example.ggjg_andorid.viewmodel.AddressViewModel
 import com.example.ggjg_andorid.viewmodel.PayViewModel
 import java.text.DecimalFormat
@@ -53,11 +54,14 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
         AddressViewModel.isPayment = true
         payViewModel.init()
         repeatOnStart {
-            payViewModel.eventFlow.collect { event -> eventHandler(event) }
+            payViewModel.eventFlow.collect { event -> handleEvent(event) }
+        }
+        repeatOnStart {
+            payViewModel.errorEventFlow.collect { event -> handleEvent(event) }
         }
     }
 
-    private fun eventHandler(event: PayViewModel.Event) = when (event) {
+    private fun handleEvent(event: PayViewModel.Event) = when (event) {
         is PayViewModel.Event.InitInfo -> {
             binding.phoneTxt.text = "(${event.data.phone})"
             binding.nameTxt.text = event.data.name
@@ -69,6 +73,12 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
         is PayViewModel.Event.SuccessPay -> {
             Toast.makeText(context, "결제가 완료되었습니다.", Toast.LENGTH_SHORT).show()
             requireActivity().findNavController(R.id.mainContainer).popBackStack()
+        }
+    }
+
+    private fun handleEvent(event: ErrorEvent) = when (event) {
+        else -> {
+
         }
     }
 
@@ -121,7 +131,8 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
                 discount =
                     if (coupon.type == "NORMAL") coupon.price else (it.price.toTotalMoney(
                         it.extraMoney,
-                        it.count) * (coupon.price.toFloat() / 100)).roundToInt()
+                        it.count
+                    ) * (coupon.price.toFloat() / 100)).roundToInt()
                 PayViewModel.selectCouponList.map { selectCoupon ->
                     if (selectCoupon.id == coupon.id) {
                         selectCoupon.discountPrice =
@@ -132,8 +143,10 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
 
             if (!it.isSoldOut) {
                 totalAmount += it.count
-                totalMoney += it.price.toTotalMoney(it.extraMoney,
-                    it.count) - discount
+                totalMoney += it.price.toTotalMoney(
+                    it.extraMoney,
+                    it.count
+                ) - discount
             }
         }
         deliveryCostTxt.text = getString(R.string.delivery_cost_default)
@@ -150,10 +163,12 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
             }
             R.id.payPhoneBtn, R.id.payCardBtn, R.id.payTransferBtn, R.id.payKakaoBtn -> {
                 binding.payBtn.changeActivatedWithEnabled(!binding.orderAddressTxt.text.isNullOrBlank())
-                listOf(binding.payPhoneBtn,
+                listOf(
+                    binding.payPhoneBtn,
                     binding.payCardBtn,
                     binding.payTransferBtn,
-                    binding.payKakaoBtn).forEach {
+                    binding.payKakaoBtn
+                ).forEach {
                     it.isActivated = it == view
                     if (it.isActivated) {
                         payViewModel.setPayMethod(it.id)
@@ -166,9 +181,11 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
                 } else {
                     "${PayViewModel.shoppingList[0].title} 외 ${PayViewModel.shoppingList.size - 1}개"
                 }
-                bootPayCreate(requireActivity().supportFragmentManager,
+                bootPayCreate(
+                    requireActivity().supportFragmentManager,
                     requireContext(),
-                    bootPayPayload(title, totalMoney.toDouble())) {
+                    bootPayPayload(title, totalMoney.toDouble())
+                ) {
                     payViewModel.buyBread()
                 }
             }
