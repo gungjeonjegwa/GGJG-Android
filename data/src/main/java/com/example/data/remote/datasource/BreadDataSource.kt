@@ -4,8 +4,8 @@ import com.example.data.remote.model.BreadModel
 import com.example.data.remote.response.bread.*
 
 interface BreadDataSource {
-    suspend fun allBread(page: String, size: String): BreadResponse
-    suspend fun categoryBread(page: String, size: String, category: String): BreadResponse
+    suspend fun allBread(page: Int): BreadResponse
+    suspend fun categoryBread(page: Int, category: String): BreadResponse
     suspend fun detailBread(id: String): DetailBreadResponse
     suspend fun likeBread(id: String)
     suspend fun allLikeBread(): List<BreadModel>

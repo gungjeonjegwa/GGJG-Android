@@ -9,17 +9,14 @@ import javax.inject.Inject
 class BreadDataSourceImpl @Inject constructor(
     private val breadAPI: BreadAPI,
 ) : BreadDataSource {
-    override suspend fun allBread(page: String, size: String): BreadResponse = GGJGApiCall {
-        breadAPI.allBread(page = page, size = size)
+    override suspend fun allBread(page: Int): BreadResponse = GGJGApiCall {
+        breadAPI.allBread(page = page)
     }
 
-    override suspend fun categoryBread(
-        page: String,
-        size: String,
-        category: String,
-    ): BreadResponse = GGJGApiCall {
-        breadAPI.categoryBread(page = page, size = size, category = category)
-    }
+    override suspend fun categoryBread(page: Int, category: String): BreadResponse =
+        GGJGApiCall {
+            breadAPI.categoryBread(page = page, category = category)
+        }
 
     override suspend fun detailBread(id: String): DetailBreadResponse = GGJGApiCall {
         breadAPI.detailBread(id = id)

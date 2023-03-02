@@ -41,7 +41,7 @@ class HomeViewModel @Inject constructor(
 
     fun allBread() = viewModelScope.launch {
         if (!isLast) {
-            allBreadUseCase(page.toString(), "10").onSuccess {
+            allBreadUseCase(page = page).onSuccess {
                 if (page == 0) {
                     event(Event.Bread(it.breadList))
                 } else {
@@ -67,7 +67,7 @@ class HomeViewModel @Inject constructor(
             else -> "BREAD"
         }
         if (!isLast) {
-            categoryBreadUseCase(page.toString(), "10", category).onSuccess {
+            categoryBreadUseCase(page = page, category = category).onSuccess {
                 if (page == 0) {
                     event(Event.Bread(it.breadList))
                 } else {

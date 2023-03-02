@@ -5,8 +5,8 @@ import com.example.domain.model.BreadModel
 
 
 interface BreadRepository {
-    suspend fun allBread(page: String, size: String): BreadEntity
-    suspend fun categoryBread(page: String, size: String, category: String): BreadEntity
+    suspend fun allBread(page: Int): BreadEntity
+    suspend fun categoryBread(page: Int, category: String): BreadEntity
     suspend fun detailBread(id: String): DetailBreadEntity
     suspend fun likeBread(id: String)
     suspend fun allLikeBread(): List<BreadModel>

@@ -10,14 +10,14 @@ import retrofit2.http.Query
 interface BreadAPI {
     @GET("/bread")
     suspend fun allBread(
-        @Query("page") page: String,
-        @Query("size") size: String,
+        @Query("page") page: Int,
+        @Query("size") size: Int = 10,
     ): BreadResponse
 
     @GET("/bread/kind")
     suspend fun categoryBread(
-        @Query("page") page: String,
-        @Query("size") size: String,
+        @Query("page") page: Int,
+        @Query("size") size: Int = 10,
         @Query("category") category: String,
     ): BreadResponse
 

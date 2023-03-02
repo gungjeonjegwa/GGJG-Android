@@ -14,17 +14,17 @@ class BreadRepositoryImpl @Inject constructor(
     private val breadDataSource: BreadDataSource,
     private val localBreadDataSource: LocalBreadDataSource,
 ) : BreadRepository {
-    override suspend fun allBread(page: String, size: String): BreadEntity =
-        breadDataSource.allBread(page, size).toEntity()
+    override suspend fun allBread(page: Int): BreadEntity =
+        breadDataSource.allBread(page = page).toEntity()
 
-    override suspend fun categoryBread(page: String, size: String, category: String): BreadEntity =
-        breadDataSource.categoryBread(page, size, category).toEntity()
+    override suspend fun categoryBread(page: Int, category: String): BreadEntity =
+        breadDataSource.categoryBread(page = page, category = category).toEntity()
 
     override suspend fun detailBread(id: String): DetailBreadEntity =
-        breadDataSource.detailBread(id).toEntity()
+        breadDataSource.detailBread(id = id).toEntity()
 
     override suspend fun likeBread(id: String) =
-        breadDataSource.likeBread(id)
+        breadDataSource.likeBread(id = id)
 
     override suspend fun allLikeBread(): List<BreadModel> =
         breadDataSource.allLikeBread().map { it.toEntity() }
@@ -33,15 +33,15 @@ class BreadRepositoryImpl @Inject constructor(
         breadDataSource.banner().map { it.toEntity() }
 
     override suspend fun searchBread(title: String): List<SearchEntity> =
-        breadDataSource.searchBread(title).map { it.toEntity() }
+        breadDataSource.searchBread(title = title).map { it.toEntity() }
 
     override suspend fun resultBread(title: String): List<BreadModel> {
         localBreadDataSource.searchBread(com.example.data.local.entity.RecentSearchEntity(title))
-        return breadDataSource.resultBread(title).map { it.toEntity() }
+        return breadDataSource.resultBread(title = title).map { it.toEntity() }
     }
 
     override suspend fun deleteSearch(search: String) =
-        localBreadDataSource.deleteSearch(search)
+        localBreadDataSource.deleteSearch(search = search)
 
     override suspend fun getRecentSearch(): List<RecentSearchEntity?> =
         localBreadDataSource.getRecentSearch().map { it?.toEntity() }
