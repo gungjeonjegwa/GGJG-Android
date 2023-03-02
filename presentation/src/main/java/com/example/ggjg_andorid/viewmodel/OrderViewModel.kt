@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.entity.order.DetailOrderEntity
 import com.example.domain.entity.order.MyOrderListEntity
+import com.example.domain.usecase.auth.SaveTokenUseCase
 import com.example.domain.usecase.order.DetailOrderUseCase
 import com.example.domain.usecase.order.MyOrderListUseCase
 import com.example.ggjg_andorid.utils.MutableEventFlow
@@ -18,6 +19,7 @@ import javax.inject.Inject
 class OrderViewModel @Inject constructor(
     private val myOrderListUseCase: MyOrderListUseCase,
     private val detailOrderUseCase: DetailOrderUseCase,
+    private val saveTokenUseCase: SaveTokenUseCase,
 ) : ViewModel() {
     private val _eventFlow = MutableEventFlow<Event>()
     val eventFlow = _eventFlow.asEventFlow()
@@ -35,7 +37,10 @@ class OrderViewModel @Inject constructor(
         myOrderListUseCase().onSuccess {
             event(Event.OrderList(it))
         }.onFailure {
-            event(it.errorHandling())
+            event(it.errorHandling(tokenErrorAction = {
+                MainViewModel.isLogin = false
+                saveTokenUseCase()
+            }))
         }
     }
 
@@ -43,7 +48,10 @@ class OrderViewModel @Inject constructor(
         detailOrderUseCase(id).onSuccess {
             event(DetailEvent.DetailOrder(it))
         }.onFailure {
-            event(it.errorHandling())
+            event(it.errorHandling(tokenErrorAction = {
+                MainViewModel.isLogin = false
+                saveTokenUseCase()
+            }))
         }
     }
 

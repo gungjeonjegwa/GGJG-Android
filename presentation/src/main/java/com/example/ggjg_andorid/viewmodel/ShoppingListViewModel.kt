@@ -3,6 +3,7 @@ package com.example.ggjg_andorid.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.entity.basket.MyBasketEntity
+import com.example.domain.usecase.auth.SaveTokenUseCase
 import com.example.domain.usecase.basket.DeleteBasketUseCase
 import com.example.domain.usecase.basket.MinusBasketUseCase
 import com.example.domain.usecase.basket.MyBasketUseCase
@@ -21,6 +22,7 @@ class ShoppingListViewModel @Inject constructor(
     private val plusBasketUseCase: PlusBasketUseCase,
     private val minusBasketUseCase: MinusBasketUseCase,
     private val deleteBasketUseCase: DeleteBasketUseCase,
+    private val saveTokenUseCase: SaveTokenUseCase,
 ) : ViewModel() {
 
     private val _eventFlow = MutableEventFlow<Event>()
@@ -42,25 +44,37 @@ class ShoppingListViewModel @Inject constructor(
             }
             event(Event.MyBasket(it))
         }.onFailure {
-            event(it.errorHandling())
+            event(it.errorHandling(tokenErrorAction = {
+                MainViewModel.isLogin = false
+                saveTokenUseCase()
+            }))
         }
     }
 
     fun changeBasket(id: String, isPlus: Boolean = true) = viewModelScope.launch {
         if (isPlus) {
             plusBasketUseCase(id).onFailure {
-                event(it.errorHandling())
+                event(it.errorHandling(tokenErrorAction = {
+                    MainViewModel.isLogin = false
+                    saveTokenUseCase()
+                }))
             }
         } else {
             minusBasketUseCase(id).onFailure {
-                event(it.errorHandling())
+                event(it.errorHandling(tokenErrorAction = {
+                    MainViewModel.isLogin = false
+                    saveTokenUseCase()
+                }))
             }
         }
     }
 
     fun deleteBasket(id: String) = viewModelScope.launch {
         deleteBasketUseCase(id).onFailure {
-            event(it.errorHandling())
+            event(it.errorHandling(tokenErrorAction = {
+                MainViewModel.isLogin = false
+                saveTokenUseCase()
+            }))
         }
     }
 

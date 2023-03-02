@@ -3,6 +3,7 @@ package com.example.ggjg_andorid.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.entity.bread.DetailBreadEntity
+import com.example.domain.usecase.auth.SaveTokenUseCase
 import com.example.domain.usecase.bread.DetailBreadUseCase
 import com.example.domain.usecase.bread.LikeBreadUseCase
 import com.example.ggjg_andorid.utils.MutableEventFlow
@@ -17,6 +18,7 @@ import javax.inject.Inject
 class DetailViewModel @Inject constructor(
     private val detailBreadUseCase: DetailBreadUseCase,
     private val likeBreadUseCase: LikeBreadUseCase,
+    private val saveTokenUseCase: SaveTokenUseCase,
 ) : ViewModel() {
     private val _eventFlow = MutableEventFlow<Event>()
     val eventFlow = _eventFlow.asEventFlow()
@@ -31,13 +33,19 @@ class DetailViewModel @Inject constructor(
         detailBreadUseCase(id).onSuccess {
             event(Event.DetailBread(it))
         }.onFailure {
-            event(it.errorHandling())
+            event(it.errorHandling(tokenErrorAction = {
+                MainViewModel.isLogin = false
+                saveTokenUseCase()
+            }))
         }
     }
 
     fun like() = viewModelScope.launch {
         likeBreadUseCase(id).onFailure {
-            event(it.errorHandling())
+            event(it.errorHandling(tokenErrorAction = {
+                MainViewModel.isLogin = false
+                saveTokenUseCase()
+            }))
         }
     }
 

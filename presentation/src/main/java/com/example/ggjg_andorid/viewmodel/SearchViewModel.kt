@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.domain.entity.bread.RecentSearchEntity
 import com.example.domain.entity.bread.SearchEntity
 import com.example.domain.model.BreadModel
+import com.example.domain.usecase.auth.SaveTokenUseCase
 import com.example.domain.usecase.bread.*
 import com.example.ggjg_andorid.adapter.RecentSearchAdapter
 import com.example.ggjg_andorid.utils.MutableEventFlow
@@ -22,6 +23,7 @@ class SearchViewModel @Inject constructor(
     private val deleteRecentSearchUseCase: DeleteRecentSearchUseCase,
     private val resultBreadUseCase: ResultBreadUseCase,
     private val likeBreadUseCase: LikeBreadUseCase,
+    private val saveTokenUseCase: SaveTokenUseCase,
 ) : ViewModel() {
     private val _eventFlow = MutableEventFlow<Event>()
     val eventFlow = _eventFlow.asEventFlow()
@@ -41,7 +43,10 @@ class SearchViewModel @Inject constructor(
         getRecentSearchUseCase().onSuccess {
             event(Event.RecentSearch(it))
         }.onFailure {
-            event(it.errorHandling())
+            event(it.errorHandling(tokenErrorAction = {
+                MainViewModel.isLogin = false
+                saveTokenUseCase()
+            }))
         }
     }
 
@@ -50,7 +55,10 @@ class SearchViewModel @Inject constructor(
             searchUseCase(search!!).onSuccess {
                 event(SearchingEvent.Search(it))
             }.onFailure {
-                event(it.errorHandling())
+                event(it.errorHandling(tokenErrorAction = {
+                    MainViewModel.isLogin = false
+                    saveTokenUseCase()
+                }))
             }
         }
     }
@@ -69,7 +77,10 @@ class SearchViewModel @Inject constructor(
             resultBreadUseCase(search!!).onSuccess {
                 event(SearchResultEvent.SearchResult(it))
             }.onFailure {
-                event(it.errorHandling())
+                event(it.errorHandling(tokenErrorAction = {
+                    MainViewModel.isLogin = false
+                    saveTokenUseCase()
+                }))
             }
         }
     }
@@ -78,7 +89,10 @@ class SearchViewModel @Inject constructor(
         deleteRecentSearchUseCase(search).onSuccess {
             event(Event.SuccessDelete)
         }.onFailure {
-            event(it.errorHandling())
+            event(it.errorHandling(tokenErrorAction = {
+                MainViewModel.isLogin = false
+                saveTokenUseCase()
+            }))
         }
     }
 

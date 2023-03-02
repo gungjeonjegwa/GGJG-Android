@@ -3,6 +3,7 @@ package com.example.ggjg_andorid.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.usecase.auth.IsLoginUseCase
+import com.example.domain.usecase.auth.SaveTokenUseCase
 import com.example.ggjg_andorid.utils.MutableEventFlow
 import com.example.ggjg_andorid.utils.asEventFlow
 import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
@@ -14,6 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val isLoginUseCase: IsLoginUseCase,
+    private val saveTokenUseCase: SaveTokenUseCase,
 ) : ViewModel() {
 
     private val _eventFlow = MutableEventFlow<Event>()
@@ -30,7 +32,10 @@ class MainViewModel @Inject constructor(
             isLoginUseCase().onSuccess {
                 isLogin = it
             }.onFailure {
-                event(it.errorHandling())
+                event(it.errorHandling(tokenErrorAction = {
+                    MainViewModel.isLogin = false
+                    saveTokenUseCase()
+                }))
             }
         }
     }

@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.domain.entity.bread.BannerEntity
 import com.example.domain.exception.TokenErrorException
 import com.example.domain.model.BreadModel
+import com.example.domain.usecase.auth.SaveTokenUseCase
 import com.example.domain.usecase.bread.AllBreadUseCase
 import com.example.domain.usecase.bread.BannerUseCase
 import com.example.domain.usecase.bread.CategoryBreadUseCase
@@ -25,6 +26,7 @@ class HomeViewModel @Inject constructor(
     private val categoryBreadUseCase: CategoryBreadUseCase,
     private val likeBreadUseCase: LikeBreadUseCase,
     private val bannerUseCase: BannerUseCase,
+    private val saveTokenUseCase: SaveTokenUseCase,
 ) : ViewModel() {
 
     private val _eventFlow = MutableEventFlow<Event>()
@@ -48,7 +50,10 @@ class HomeViewModel @Inject constructor(
                 isLast = it.isLast
                 page++
             }.onFailure {
-                event(it.errorHandling())
+                event(it.errorHandling(tokenErrorAction = {
+                    MainViewModel.isLogin = false
+                    saveTokenUseCase()
+                }))
             }
         }
     }
@@ -71,14 +76,20 @@ class HomeViewModel @Inject constructor(
                 isLast = it.isLast
                 page++
             }.onFailure {
-                event(it.errorHandling())
+                event(it.errorHandling(tokenErrorAction = {
+                    MainViewModel.isLogin = false
+                    saveTokenUseCase()
+                }))
             }
         }
     }
 
     fun like(id: String) = viewModelScope.launch {
         likeBreadUseCase(id).onFailure {
-            event(it.errorHandling())
+            event(it.errorHandling(tokenErrorAction = {
+                MainViewModel.isLogin = false
+                saveTokenUseCase()
+            }))
         }
     }
 
@@ -86,7 +97,10 @@ class HomeViewModel @Inject constructor(
         bannerUseCase().onSuccess {
             event(Event.Banner(it))
         }.onFailure {
-            event(it.errorHandling())
+            event(it.errorHandling(tokenErrorAction = {
+                MainViewModel.isLogin = false
+                saveTokenUseCase()
+            }))
         }
     }
 

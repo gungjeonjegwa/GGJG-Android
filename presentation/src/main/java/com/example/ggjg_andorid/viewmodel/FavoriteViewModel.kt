@@ -3,6 +3,7 @@ package com.example.ggjg_andorid.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.model.BreadModel
+import com.example.domain.usecase.auth.SaveTokenUseCase
 import com.example.domain.usecase.bread.AllLikeBreadUseCase
 import com.example.domain.usecase.bread.LikeBreadUseCase
 import com.example.ggjg_andorid.utils.MutableEventFlow
@@ -17,6 +18,7 @@ import javax.inject.Inject
 class FavoriteViewModel @Inject constructor(
     private val allLikeBreadUseCase: AllLikeBreadUseCase,
     private val likeBreadUseCase: LikeBreadUseCase,
+    private val saveTokenUseCase: SaveTokenUseCase,
 ) : ViewModel() {
 
     private val _eventFlow = MutableEventFlow<Event>()
@@ -32,13 +34,19 @@ class FavoriteViewModel @Inject constructor(
                 event(Event.Empty)
             }
         }.onFailure {
-            event(it.errorHandling())
+            event(it.errorHandling(tokenErrorAction = {
+                MainViewModel.isLogin = false
+                saveTokenUseCase()
+            }))
         }
     }
 
     fun delete(id: String) = viewModelScope.launch {
         likeBreadUseCase(id).onFailure {
-            event(it.errorHandling())
+            event(it.errorHandling(tokenErrorAction = {
+                MainViewModel.isLogin = false
+                saveTokenUseCase()
+            }))
         }
     }
 

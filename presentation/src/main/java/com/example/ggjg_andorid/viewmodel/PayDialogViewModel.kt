@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.entity.bread.DetailBreadEntity
 import com.example.domain.param.basket.MakeBasketParam
+import com.example.domain.usecase.auth.SaveTokenUseCase
 import com.example.domain.usecase.basket.MakeBasketUseCase
 import com.example.ggjg_andorid.utils.MutableEventFlow
 import com.example.ggjg_andorid.utils.asEventFlow
@@ -16,6 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class PayDialogViewModel @Inject constructor(
     private val makeBasketUseCase: MakeBasketUseCase,
+    private val saveTokenUseCase: SaveTokenUseCase,
 ) : ViewModel() {
     private val _eventFlow = MutableEventFlow<Event>()
     val eventFlow = _eventFlow.asEventFlow()
@@ -33,7 +35,7 @@ class PayDialogViewModel @Inject constructor(
             breadList = listOf()
             event(Event.SuccessMoveShoppingList)
         }.onFailure {
-            event(it.errorHandling())
+            event(it.errorHandling(tokenErrorAction = { saveTokenUseCase() }))
         }
     }
 

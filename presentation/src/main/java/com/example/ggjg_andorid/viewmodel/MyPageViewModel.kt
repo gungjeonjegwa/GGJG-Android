@@ -47,7 +47,10 @@ class MyPageViewModel @Inject constructor(
                 true
             )
         ).onFailure {
-            event(it.errorHandling())
+            event(it.errorHandling(tokenErrorAction = {
+                MainViewModel.isLogin = false
+                saveTokenUseCase()
+            }))
         }
         PayViewModel.defaultAddress = PayViewModel.address
         profilePrivate()
@@ -59,7 +62,10 @@ class MyPageViewModel @Inject constructor(
             MainViewModel.isLogin = false
             event(Event.Success)
         }.onFailure {
-            event(it.errorHandling())
+            event(it.errorHandling(tokenErrorAction = {
+                MainViewModel.isLogin = false
+                saveTokenUseCase()
+            }))
         }
     }
 
@@ -67,7 +73,10 @@ class MyPageViewModel @Inject constructor(
         profileUseCase().onSuccess {
             event(Event.Profile(it))
         }.onFailure {
-            event(it.errorHandling())
+            event(it.errorHandling(tokenErrorAction = {
+                MainViewModel.isLogin = false
+                saveTokenUseCase()
+            }))
         }
     }
 
@@ -75,7 +84,10 @@ class MyPageViewModel @Inject constructor(
         profilePrivateUseCase().onSuccess {
             event(PrivacyEvent.ProfileData(it))
         }.onFailure {
-            event(it.errorHandling())
+            event(it.errorHandling(tokenErrorAction = {
+                MainViewModel.isLogin = false
+                saveTokenUseCase()
+            }))
         }
     }
 
@@ -87,13 +99,19 @@ class MyPageViewModel @Inject constructor(
                 event(EditEvent.Success)
             }
         }.onFailure {
-            event(it.errorHandling())
+            event(it.errorHandling(tokenErrorAction = {
+                MainViewModel.isLogin = false
+                saveTokenUseCase()
+            }))
         }
     }
 
     fun giftStamp() = viewModelScope.launch {
         giftStampUseCase().onFailure {
-            event(it.errorHandling())
+            event(it.errorHandling(tokenErrorAction = {
+                MainViewModel.isLogin = false
+                saveTokenUseCase()
+            }))
         }
         stamp = 0
     }

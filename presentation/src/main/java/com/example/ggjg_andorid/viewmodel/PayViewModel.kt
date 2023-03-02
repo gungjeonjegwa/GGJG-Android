@@ -9,6 +9,7 @@ import com.example.domain.model.AddressModel
 import com.example.domain.param.order.BuyBreadParam
 import com.example.domain.usecase.auth.ChangeAddressUseCase
 import com.example.domain.usecase.auth.NewAddressUseCase
+import com.example.domain.usecase.auth.SaveTokenUseCase
 import com.example.domain.usecase.coupon.AvailableCouponUseCase
 import com.example.domain.usecase.order.BuyBreadUseCase
 import com.example.domain.usecase.order.CreateOrderUseCase
@@ -30,6 +31,7 @@ class PayViewModel @Inject constructor(
     private val newAddressUseCase: NewAddressUseCase,
     private val availableCouponUseCase: AvailableCouponUseCase,
     private val changeAddressUseCase: ChangeAddressUseCase,
+    private val saveTokenUseCase: SaveTokenUseCase,
 ) : ViewModel() {
     companion object {
         var shoppingList = listOf<MyBasketEntity>()
@@ -68,7 +70,10 @@ class PayViewModel @Inject constructor(
                 }
             }
         }.onFailure {
-            event(it.errorHandling())
+            event(it.errorHandling(tokenErrorAction = {
+                MainViewModel.isLogin = false
+                saveTokenUseCase()
+            }))
         }
     }
 
@@ -86,7 +91,10 @@ class PayViewModel @Inject constructor(
                 it.filter { selectCouponList.find { coupon -> coupon.couponId == it.id } == null }
             event(CouponEvent.Coupon(data))
         }.onFailure {
-            event(it.errorHandling())
+            event(it.errorHandling(tokenErrorAction = {
+                MainViewModel.isLogin = false
+                saveTokenUseCase()
+            }))
         }
     }
 
@@ -95,13 +103,19 @@ class PayViewModel @Inject constructor(
             newAddressUseCase(address!!).onSuccess {
                 realBuy()
             }.onFailure {
-                event(it.errorHandling())
+                event(it.errorHandling(tokenErrorAction = {
+                    MainViewModel.isLogin = false
+                    saveTokenUseCase()
+                }))
             }
         } else if (defaultAddress == null) {
             changeAddressUseCase(address!!).onSuccess {
                 realBuy()
             }.onFailure {
-                event(it.errorHandling())
+                event(it.errorHandling(tokenErrorAction = {
+                    MainViewModel.isLogin = false
+                    saveTokenUseCase()
+                }))
             }
         } else {
             realBuy()
@@ -125,7 +139,10 @@ class PayViewModel @Inject constructor(
                 )
             }
         )).onFailure {
-            event(it.errorHandling())
+            event(it.errorHandling(tokenErrorAction = {
+                MainViewModel.isLogin = false
+                saveTokenUseCase()
+            }))
         }
     }
 
@@ -149,7 +166,10 @@ class PayViewModel @Inject constructor(
             orderNumber = null
             event(Event.SuccessPay)
         }.onFailure {
-            event(it.errorHandling())
+            event(it.errorHandling(tokenErrorAction = {
+                MainViewModel.isLogin = false
+                saveTokenUseCase()
+            }))
         }
     }
 

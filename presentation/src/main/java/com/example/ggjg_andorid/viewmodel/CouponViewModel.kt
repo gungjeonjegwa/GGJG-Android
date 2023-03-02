@@ -3,6 +3,7 @@ package com.example.ggjg_andorid.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.entity.coupon.CouponEntity
+import com.example.domain.usecase.auth.SaveTokenUseCase
 import com.example.domain.usecase.coupon.AllCouponUseCase
 import com.example.domain.usecase.coupon.EnrollCouponUseCase
 import com.example.ggjg_andorid.utils.MutableEventFlow
@@ -17,6 +18,7 @@ import javax.inject.Inject
 class CouponViewModel @Inject constructor(
     private val enrollCouponUseCase: EnrollCouponUseCase,
     private val allCouponUseCase: AllCouponUseCase,
+    private val saveTokenUseCase: SaveTokenUseCase,
 ) : ViewModel() {
     companion object {
         var couponList = listOf<String>()
@@ -34,7 +36,10 @@ class CouponViewModel @Inject constructor(
         allCouponUseCase().onSuccess {
             event(Event.CouponList(it))
         }.onFailure {
-            event(it.errorHandling())
+            event(it.errorHandling(tokenErrorAction = {
+                MainViewModel.isLogin = false
+                saveTokenUseCase()
+            }))
         }
     }
 
@@ -49,7 +54,10 @@ class CouponViewModel @Inject constructor(
                 } else {
                     enrollCouponUseCase(it).onFailure { error ->
                         errorCnt++
-                        event(error.errorHandling())
+                        event(error.errorHandling(tokenErrorAction = {
+                            MainViewModel.isLogin = false
+                            saveTokenUseCase()
+                        }))
                     }
                 }
             }

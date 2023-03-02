@@ -34,7 +34,10 @@ class LoginViewModel @Inject constructor(
             MainViewModel.isLogin = true
             event(Event.Success)
         }.onFailure {
-            event(it.errorHandling())
+            event(it.errorHandling(tokenErrorAction = {
+                MainViewModel.isLogin = false
+                saveTokenUseCase()
+            }))
         }
     }
 

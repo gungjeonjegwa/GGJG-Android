@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.domain.model.AddressModel
 import com.example.domain.usecase.address.GetAddressUseCase
 import com.example.domain.usecase.auth.RecentAddressUseCase
+import com.example.domain.usecase.auth.SaveTokenUseCase
 import com.example.ggjg_andorid.utils.MutableEventFlow
 import com.example.ggjg_andorid.utils.asEventFlow
 import com.example.ggjg_andorid.utils.viewmodel.ErrorEvent
@@ -17,6 +18,7 @@ import javax.inject.Inject
 class AddressViewModel @Inject constructor(
     private val recentAddressUseCase: RecentAddressUseCase,
     private val getAddressUseCase: GetAddressUseCase,
+    private val saveTokenUseCase: SaveTokenUseCase,
 ) : ViewModel() {
     private val _searchEventFlow = MutableEventFlow<SearchEvent>()
     val searchEventFlow = _searchEventFlow.asEventFlow()
@@ -36,7 +38,10 @@ class AddressViewModel @Inject constructor(
             .onSuccess {
                 event(SearchEvent.AddressList(it))
             }.onFailure {
-                event(it.errorHandling())
+                event(it.errorHandling(tokenErrorAction = {
+                    MainViewModel.isLogin = false
+                    saveTokenUseCase()
+                }))
             }
     }
 
@@ -48,7 +53,10 @@ class AddressViewModel @Inject constructor(
                 event(ChangeEvent.NoSearch)
             }
         }.onFailure {
-            event(it.errorHandling())
+            event(it.errorHandling(tokenErrorAction = {
+                MainViewModel.isLogin = false
+                saveTokenUseCase()
+            }))
         }
     }
 

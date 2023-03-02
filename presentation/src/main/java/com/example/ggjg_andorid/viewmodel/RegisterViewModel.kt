@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.domain.param.auth.SignUpParam
 import com.example.domain.usecase.auth.EmailCheckUseCase
 import com.example.domain.usecase.auth.IdCheckUseCase
+import com.example.domain.usecase.auth.SaveTokenUseCase
 import com.example.domain.usecase.auth.SignUpUseCase
 import com.example.ggjg_andorid.utils.MutableEventFlow
 import com.example.ggjg_andorid.utils.asEventFlow
@@ -19,6 +20,7 @@ class RegisterViewModel @Inject constructor(
     private val signUpUseCase: SignUpUseCase,
     private val emailCheckUseCase: EmailCheckUseCase,
     private val idCheckUseCase: IdCheckUseCase,
+    private val saveTokenUseCase: SaveTokenUseCase,
 ) : ViewModel() {
 
     private val _eventFlow = MutableEventFlow<Event>()
@@ -47,7 +49,10 @@ class RegisterViewModel @Inject constructor(
         ).onSuccess {
             event(Event.Success)
         }.onFailure {
-            event(it.errorHandling())
+            event(it.errorHandling(tokenErrorAction = {
+                MainViewModel.isLogin = false
+                saveTokenUseCase()
+            }))
         }
     }
 
@@ -55,7 +60,10 @@ class RegisterViewModel @Inject constructor(
         emailCheckUseCase(email).onSuccess {
             event(RegisterFirstEvent.EmailCheck(!it.isDuplicated))
         }.onFailure {
-            event(it.errorHandling())
+            event(it.errorHandling(tokenErrorAction = {
+                MainViewModel.isLogin = false
+                saveTokenUseCase()
+            }))
         }
     }
 
@@ -63,7 +71,10 @@ class RegisterViewModel @Inject constructor(
         idCheckUseCase(id).onSuccess {
             event(RegisterSecondEvent.IdCheck(!it.isDuplicated))
         }.onFailure {
-            event(it.errorHandling())
+            event(it.errorHandling(tokenErrorAction = {
+                MainViewModel.isLogin = false
+                saveTokenUseCase()
+            }))
         }
     }
 
