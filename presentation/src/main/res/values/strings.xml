@@ -1,8 +1,8 @@
 <resources>
     <!--    기타 단어-->
-    <string name="request_phone">ex)010-1234-1234</string>
+    <string name="request_phone" translatable="false">ex)010-1234-1234</string>
     <string name="pay_card">ISP / 앱카드결제</string>
-    <string name="sold_out">SOLD OUT</string>
+    <string name="sold_out" translatable="false">SOLD OUT</string>
     <string name="request_pw_option">8~30자 이내 특수문자 1개</string>
     <string name="add">+ 추가하기</string>
     <string name="delivery_cost_default">+3,000원</string>
@@ -40,7 +40,7 @@
     <string name="change_and_recall_info">교환및 반품 정보 ></string>
     <string name="change_recall_notice">교환 및 반품 안내</string>
     <string name="change_recall_address">교환 및 반품 주소</string>
-    <string name="app_name">궁전제과</string>
+    <string name="app_name" translatable="false">궁전제과</string>
     <string name="delivery_default">기본배송</string>
     <string name="delivery_default_address">기본배송지</string>
     <string name="etc">기타</string>
