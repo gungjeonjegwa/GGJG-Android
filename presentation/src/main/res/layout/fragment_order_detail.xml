@@ -275,7 +275,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    app:layout_constraintBottom_toBottomOf="@id/orderPersonDivide"
+                    app:layout_constraintBottom_toTopOf="@id/orderPerson"
                     app:layout_constraintTop_toTopOf="@id/orderAddressDivide" />
 
                 <TextView
