@@ -90,13 +90,14 @@
 
         <TextView
             android:id="@+id/noSearchTxt"
-            style="@style/Medium14"
+            style="@style/Medium16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="32dp"
             android:text="@string/no_search"
-            android:textColor="@color/gray"
+            android:textColor="@color/dark_gray"
             android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/endLine"
             app:layout_constraintStart_toStartOf="@id/startLine"
             app:layout_constraintTop_toBottomOf="@id/searchDivide" />
 
