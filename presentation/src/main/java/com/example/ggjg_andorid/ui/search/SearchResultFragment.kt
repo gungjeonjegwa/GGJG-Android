@@ -1,5 +1,6 @@
 package com.example.ggjg_andorid.ui.search
 
+import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -33,7 +34,11 @@ class SearchResultFragment :
 
     private fun handleEvent(event: SearchViewModel.SearchResultEvent) = when (event) {
         is SearchViewModel.SearchResultEvent.SearchResult -> {
-            searchResultAdapter.submitList(event.data)
+            if (event.data.isEmpty()) {
+                binding.noSearchTxt.visibility = View.VISIBLE
+            } else {
+                searchResultAdapter.submitList(event.data)
+            }
         }
     }
 
