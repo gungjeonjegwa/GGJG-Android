@@ -45,18 +45,21 @@ class DetailBreadFragment :
         super.onDetach()
     }
 
-    override fun createView() {
-        binding.detailBread = this
+    override fun onCreate() {
         mainViewModel.hiddenNav(true)
         detailViewModel.detailBread()
         detailViewModel.listReview()
-        initView()
         repeatOnStart {
             detailViewModel.eventFlow.collect { event -> handleEvent(event) }
         }
         repeatOnStart {
             detailViewModel.errorEventFlow.collect { event -> handleEvent(event) }
         }
+    }
+
+    override fun createView() {
+        binding.detailBread = this
+        initView()
     }
 
     private fun handleEvent(event: DetailViewModel.Event) = when (event) {
