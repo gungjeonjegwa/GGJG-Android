@@ -12,16 +12,18 @@ import com.example.ggjg_andorid.viewmodel.RegisterViewModel
 class RegisterFirstFragment :
     BaseFragment<FragmentRegisterFirstBinding>(R.layout.fragment_register_first) {
     private val registerViewModel by activityViewModels<RegisterViewModel>()
-
-    override fun createView() {
-        binding.registerFirst = this
-        initView()
+    override fun onCreate() {
         repeatOnStart {
             registerViewModel.registerFirstEventFlow.collect { event -> handleEvent(event) }
         }
         repeatOnStart {
             registerViewModel.errorEventFlow.collect { event -> handleEvent(event) }
         }
+    }
+
+    override fun createView() {
+        binding.registerFirst = this
+        initView()
     }
 
     private fun handleEvent(event: RegisterViewModel.RegisterFirstEvent) = when (event) {
