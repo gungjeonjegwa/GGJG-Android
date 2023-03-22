@@ -3,7 +3,7 @@ package com.ggjg.presentation.utils.extension
 import android.app.Activity
 import android.widget.EditText
 import android.widget.TextView
-import com.example.presentation.utils.keyboardShow
+import com.ggjg.presentation.utils.keyboardShow
 
 fun TextView.onError(error: String, editText: EditText, context: Activity) {
     this.text = error

@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.example.presentation.utils.Extension.toPx
+import com.ggjg.presentation.utils.extension.toPx
 
 class ImageListDecorator(val context: Context): RecyclerView.ItemDecoration() {
     override fun getItemOffsets(

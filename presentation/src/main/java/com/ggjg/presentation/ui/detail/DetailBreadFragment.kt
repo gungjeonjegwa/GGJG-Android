@@ -10,8 +10,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
-import com.example.presentation.ui.detail.DetailBreadPayFragment
-import com.example.presentation.ui.login.LoginActivity
 import com.ggjg.presentation.R
 import com.ggjg.presentation.adapter.DetailBannerAdapter
 import com.ggjg.presentation.adapter.DetailBreadInfoImgAdapter
@@ -19,6 +17,7 @@ import com.ggjg.presentation.databinding.FragmentDetailBreadBinding
 import com.ggjg.presentation.ui.agree_notice.ChangeAndRecallActivity
 import com.ggjg.presentation.ui.agree_notice.DeliveryAndPayActivity
 import com.ggjg.presentation.ui.base.BaseFragment
+import com.ggjg.presentation.ui.login.LoginActivity
 import com.ggjg.presentation.utils.extension.changeActivatedWithEnabled
 import com.ggjg.presentation.utils.extension.heartChange
 import com.ggjg.presentation.utils.extension.repeatOnStart

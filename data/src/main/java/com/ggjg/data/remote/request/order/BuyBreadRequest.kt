@@ -1,6 +1,7 @@
 package com.ggjg.data.remote.request.order
 
 import com.ggjg.data.remote.model.AddressModel
+import com.ggjg.data.remote.model.toRequest
 import com.ggjg.domain.param.order.BuyBreadParam
 import com.google.gson.annotations.SerializedName
 

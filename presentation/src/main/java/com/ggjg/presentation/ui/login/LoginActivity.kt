@@ -6,10 +6,10 @@ import android.text.method.PasswordTransformationMethod
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
-import com.example.presentation.ui.register.RegisterActivity
 import com.ggjg.presentation.R
 import com.ggjg.presentation.databinding.ActivityLoginBinding
 import com.ggjg.presentation.ui.base.BaseActivity
+import com.ggjg.presentation.ui.register.RegisterActivity
 import com.ggjg.presentation.utils.extension.*
 import com.ggjg.presentation.utils.keyboardHide
 import com.ggjg.presentation.utils.keyboardShow
