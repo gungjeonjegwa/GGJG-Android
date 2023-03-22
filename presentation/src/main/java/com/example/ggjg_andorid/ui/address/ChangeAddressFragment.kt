@@ -19,16 +19,19 @@ class ChangeAddressFragment :
     BaseFragment<FragmentAddressChangeBinding>(R.layout.fragment_address_change) {
     private val addressViewModel by activityViewModels<AddressViewModel>()
     private lateinit var addressAdapter: AddressAdapter
-    override fun createView() {
-        binding.changeAddress = this
+    override fun onCreate() {
         addressViewModel.recentSearch()
-        initView()
         repeatOnStart {
             addressViewModel.changeEventFlow.collect { event -> handleEvent(event) }
         }
         repeatOnStart {
             addressViewModel.errorEventFlow.collect { event -> handleEvent(event) }
         }
+    }
+
+    override fun createView() {
+        binding.changeAddress = this
+        initView()
     }
 
     private fun handleEvent(event: AddressViewModel.ChangeEvent) = when (event) {

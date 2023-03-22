@@ -21,16 +21,18 @@ class SearchAddressFragment :
     BaseFragment<FragmentAddressSearchBinding>(R.layout.fragment_address_search) {
     private val addressViewModel by activityViewModels<AddressViewModel>()
     private lateinit var addressAdapter: AddressAdapter
-
-    override fun createView() {
-        binding.addressSearch = this
-        initView()
+    override fun onCreate() {
         repeatOnStart {
             addressViewModel.searchEventFlow.collect { event -> handleEvent(event) }
         }
         repeatOnStart {
             addressViewModel.errorEventFlow.collect { event -> handleEvent(event) }
         }
+    }
+
+    override fun createView() {
+        binding.addressSearch = this
+        initView()
     }
 
     private fun handleEvent(event: AddressViewModel.SearchEvent) = when (event) {

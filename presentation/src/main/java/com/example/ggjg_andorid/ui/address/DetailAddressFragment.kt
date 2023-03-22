@@ -11,6 +11,10 @@ import com.example.ggjg_andorid.viewmodel.PayViewModel
 
 class DetailAddressFragment :
     BaseFragment<FragmentAddressDetailBinding>(R.layout.fragment_address_detail) {
+    override fun onCreate() {
+
+    }
+
     override fun createView() {
         binding.detailAddress = this
         initView()
