@@ -76,6 +76,11 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment
                 override fun like(item: BreadModel) {
                     favoriteViewModel.delete(item.id)
                     breadAdapter.submitList(breadAdapter.currentList.filter { it.id != item.id })
+                    if (breadAdapter.currentList.size <= 1) {
+                        binding.favoriteScrollView.setVisible(false)
+                        binding.topScrollBtn.setVisible(false)
+                        binding.emptyFavoriteTxt.setVisible()
+                    }
                 }
             })
         }
