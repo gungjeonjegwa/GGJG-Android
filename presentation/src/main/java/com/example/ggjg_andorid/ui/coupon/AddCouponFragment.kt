@@ -28,16 +28,19 @@ class AddCouponFragment : BaseFragment<FragmentCouponAddBinding>(R.layout.fragme
         super.onDetach()
     }
 
-    override fun createView() {
-        binding.addCoupon = this
-        CouponViewModel.couponList = listOf("")
-        initView()
+    override fun onCreate() {
         repeatOnStart {
             couponViewModel.addEventFlow.collect { event -> handleEvent(event) }
         }
         repeatOnStart {
             couponViewModel.errorEventFlow.collect { event -> handleEvent(event) }
         }
+    }
+
+    override fun createView() {
+        binding.addCoupon = this
+        CouponViewModel.couponList = listOf("")
+        initView()
     }
 
     private fun handleEvent(event: CouponViewModel.AddEvent) = when (event) {
