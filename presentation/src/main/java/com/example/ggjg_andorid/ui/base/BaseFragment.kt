@@ -9,25 +9,31 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 
-abstract class BaseFragment <B: ViewDataBinding>(
-    @LayoutRes private val layoutRes: Int
-): Fragment(){
+abstract class BaseFragment<B : ViewDataBinding>(
+    @LayoutRes private val layoutRes: Int,
+) : Fragment() {
     val binding get() = mBinding!!
-    private var mBinding: B ?= null
+    private var mBinding: B? = null
 
     var savedInstanceState: Bundle? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         this.savedInstanceState = savedInstanceState
         mBinding = DataBindingUtil.inflate(inflater, layoutRes, container, false)
         createView()
         return binding.root
+    }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        onCreate()
     }
 
     abstract fun createView()
+
+    abstract fun onCreate()
 }
