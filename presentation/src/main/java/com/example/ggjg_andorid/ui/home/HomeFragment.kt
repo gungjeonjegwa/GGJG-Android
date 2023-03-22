@@ -135,7 +135,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
             }
         })
         scrollView.run {
-            header = binding.menuBar
+            header = menuBar
         }
         categoryList.forEach {
             it.setOnClickListener { tag ->
