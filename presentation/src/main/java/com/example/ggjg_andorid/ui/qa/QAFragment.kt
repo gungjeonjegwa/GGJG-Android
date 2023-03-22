@@ -8,7 +8,11 @@ import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.utils.changeActivatedWithEnabled
 import com.example.ggjg_andorid.utils.setOnTextChanged
 
-class QAFragment: BaseFragment<FragmentQaBinding> (R.layout.fragment_qa) {
+class QAFragment : BaseFragment<FragmentQaBinding>(R.layout.fragment_qa) {
+    override fun onCreate() {
+
+    }
+
     override fun createView() {
         binding.qa = this
         initView()
