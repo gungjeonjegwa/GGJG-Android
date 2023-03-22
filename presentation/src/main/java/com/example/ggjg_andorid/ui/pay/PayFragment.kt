@@ -48,10 +48,7 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
         viewTotal()
     }
 
-    override fun createView() {
-        binding.pay = this
-        initView()
-        AddressViewModel.isPayment = true
+    override fun onCreate() {
         payViewModel.init()
         repeatOnStart {
             payViewModel.eventFlow.collect { event -> handleEvent(event) }
@@ -59,6 +56,12 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
         repeatOnStart {
             payViewModel.errorEventFlow.collect { event -> handleEvent(event) }
         }
+    }
+
+    override fun createView() {
+        binding.pay = this
+        initView()
+        AddressViewModel.isPayment = true
     }
 
     private fun handleEvent(event: PayViewModel.Event) = when (event) {

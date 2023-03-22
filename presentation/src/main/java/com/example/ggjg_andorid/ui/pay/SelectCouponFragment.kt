@@ -17,9 +17,7 @@ class SelectCouponFragment :
     BaseFragment<FragmentSelectCouponBinding>(R.layout.fragment_select_coupon) {
     private val payViewModel by activityViewModels<PayViewModel>()
     private lateinit var couponAdapter: CouponAdapter
-    override fun createView() {
-        binding.selectCoupon = this
-        initView()
+    override fun onCreate() {
         payViewModel.availableCoupon()
         repeatOnStart {
             payViewModel.couponEventFlow.collect { event -> handleEvent(event) }
@@ -27,6 +25,11 @@ class SelectCouponFragment :
         repeatOnStart {
             payViewModel.errorEventFlow.collect { event -> handleEvent(event) }
         }
+    }
+
+    override fun createView() {
+        binding.selectCoupon = this
+        initView()
     }
 
     private fun handleEvent(event: PayViewModel.CouponEvent) = when (event) {
