@@ -204,10 +204,11 @@
                 <TextView
                     android:id="@+id/deliveryCostTxt"
                     style="@style/Regular14"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@{breadData.deliveryPrice}"
                     android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="@id/endLine"
                     app:layout_constraintStart_toStartOf="@id/optionStartLine"
                     app:layout_constraintTop_toTopOf="@id/deliveryCost" />
 
@@ -220,15 +221,16 @@
                     android:text="@string/storage"
                     android:textColor="@color/dark_gray"
                     app:layout_constraintStart_toStartOf="@id/startLine"
-                    app:layout_constraintTop_toBottomOf="@id/deliveryCost" />
+                    app:layout_constraintTop_toBottomOf="@id/deliveryCostTxt" />
 
                 <TextView
                     android:id="@+id/storageTxt"
                     style="@style/Regular14"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@{breadData.storage}"
                     android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="@id/endLine"
                     app:layout_constraintStart_toStartOf="@id/optionStartLine"
                     app:layout_constraintTop_toTopOf="@id/storage" />
 
@@ -241,15 +243,16 @@
                     android:text="@string/expiration_date"
                     android:textColor="@color/dark_gray"
                     app:layout_constraintStart_toStartOf="@id/startLine"
-                    app:layout_constraintTop_toBottomOf="@id/storage" />
+                    app:layout_constraintTop_toBottomOf="@id/storageTxt" />
 
                 <TextView
                     android:id="@+id/expirationDateTxt"
                     style="@style/Regular14"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@{breadData.expirationDate}"
                     android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="@id/endLine"
                     app:layout_constraintStart_toStartOf="@id/optionStartLine"
                     app:layout_constraintTop_toTopOf="@id/expirationDate" />
 
@@ -263,16 +266,17 @@
                     android:textColor="@color/dark_gray"
                     android:visibility="gone"
                     app:layout_constraintStart_toStartOf="@id/startLine"
-                    app:layout_constraintTop_toBottomOf="@id/expirationDate" />
+                    app:layout_constraintTop_toBottomOf="@id/expirationDateTxt" />
 
                 <TextView
                     android:id="@+id/sizeTxt"
                     style="@style/Regular14"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@{breadData.size}"
                     android:textColor="@color/black"
                     android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@id/endLine"
                     app:layout_constraintStart_toStartOf="@id/optionStartLine"
                     app:layout_constraintTop_toTopOf="@id/size" />
 
@@ -282,7 +286,7 @@
                     android:layout_height="16dp"
                     android:layout_marginTop="24dp"
                     android:background="@color/light_gray"
-                    app:layout_constraintTop_toBottomOf="@id/size" />
+                    app:layout_constraintTop_toBottomOf="@id/sizeTxt" />
 
                 <TextView
                     android:id="@+id/warning"
@@ -297,10 +301,11 @@
 
                 <TextView
                     android:id="@+id/warningTxt"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:textColor="@color/very_dark_gray"
+                    app:layout_constraintEnd_toEndOf="@id/endLine"
                     app:layout_constraintStart_toStartOf="@id/startLine"
                     app:layout_constraintTop_toBottomOf="@id/warning" />
 
@@ -326,12 +331,12 @@
                 <TextView
                     android:id="@+id/itemInfoTxt"
                     style="@style/Medium14"
-                    android:visibility="gone"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:gravity="center_horizontal"
                     android:textColor="@color/dark_red"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="@id/endLine"
                     app:layout_constraintStart_toStartOf="@id/startLine"
                     app:layout_constraintTop_toBottomOf="@id/itemInfo" />
