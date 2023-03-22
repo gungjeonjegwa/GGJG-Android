@@ -31,15 +31,18 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(R.layout.fragment_order
         super.onAttach(context)
     }
 
-    override fun createView() {
-        binding.order = this
-        initView()
+    override fun onCreate() {
         repeatOnStart {
             orderViewModel.eventFlow.collect { event -> handleEvent(event) }
         }
         repeatOnStart {
             orderViewModel.errorEventFlow.collect { event -> handleEvent(event) }
         }
+    }
+
+    override fun createView() {
+        binding.order = this
+        initView()
     }
 
     private fun handleEvent(event: OrderViewModel.Event) = when (event) {

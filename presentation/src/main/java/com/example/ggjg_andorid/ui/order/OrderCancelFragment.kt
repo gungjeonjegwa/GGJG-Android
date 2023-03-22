@@ -9,6 +9,10 @@ import com.example.ggjg_andorid.utils.changeActivatedWithEnabled
 
 class OrderCancelFragment :
     BaseFragment<FragmentOrderCancelBinding>(R.layout.fragment_order_cancel) {
+    override fun onCreate() {
+
+    }
+
     override fun createView() {
         binding.orderCancel = this
         initView()
@@ -16,12 +20,14 @@ class OrderCancelFragment :
 
     private fun initView() = binding.apply {
         val optionList = listOf(justBtn, couponBtn, optionBtn, delayBtn, addressBtn, etcBtn)
-        listOf(justLayout,
+        listOf(
+            justLayout,
             couponLayout,
             optionLayout,
             delayLayout,
             addressLayout,
-            etcLayout).forEachIndexed { i, v ->
+            etcLayout
+        ).forEachIndexed { i, v ->
             v.setOnClickListener {
                 optionList.forEachIndexed { o_i, o_v ->
                     o_v.isSelected = i == o_i

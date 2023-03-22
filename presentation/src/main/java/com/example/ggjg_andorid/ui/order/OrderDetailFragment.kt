@@ -17,16 +17,19 @@ class OrderDetailFragment :
     BaseFragment<FragmentOrderDetailBinding>(R.layout.fragment_order_detail) {
     private val orderViewModel by activityViewModels<OrderViewModel>()
     private lateinit var adapter: OrderDetailAdapter
-    override fun createView() {
-        binding.orderDetail = this
+    override fun onCreate() {
         orderViewModel.detailOrder()
-        initView()
         repeatOnStart {
             orderViewModel.detailEventFlow.collect { event -> handleEvent(event) }
         }
         repeatOnStart {
             orderViewModel.errorEventFlow.collect { event -> handleEvent(event) }
         }
+    }
+
+    override fun createView() {
+        binding.orderDetail = this
+        initView()
     }
 
     private fun handleEvent(event: OrderViewModel.DetailEvent) = when (event) {

@@ -15,6 +15,9 @@ import com.example.ggjg_andorid.viewmodel.OrderViewModel
 class OrderReviewFragment :
     BaseFragment<FragmentOrderReviewBinding>(R.layout.fragment_order_review) {
     private lateinit var reviewImageAdapter: ReviewImageAdapter
+    override fun onCreate() {
+
+    }
 
     override fun createView() {
         binding.reviewOrder = this

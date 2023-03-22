@@ -9,6 +9,10 @@ import com.example.ggjg_andorid.utils.changeActivatedWithEnabled
 
 class OrderRecallFragment :
     BaseFragment<FragmentOrderRecallBinding>(R.layout.fragment_order_recall) {
+    override fun onCreate() {
+        
+    }
+
     override fun createView() {
         binding.orderRecall = this
         initView()
@@ -16,13 +20,15 @@ class OrderRecallFragment :
 
     private fun initView() = binding.apply {
         val optionList = listOf(sizeBtn, mixBtn, destroyBtn, expiredBtn, agingBtn, etcBtn)
-        listOf(sizeLayout,
+        listOf(
+            sizeLayout,
             mixLayout,
             destroyLayout,
             expiredLayout,
             agingLayout,
             etcLayout,
-            etcLayout).forEachIndexed { i, v ->
+            etcLayout
+        ).forEachIndexed { i, v ->
             v.setOnClickListener {
                 optionList.forEachIndexed { o_i, o_v ->
                     o_v.isSelected = i == o_i
