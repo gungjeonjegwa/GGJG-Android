@@ -18,7 +18,6 @@ class OrderDetailFragment :
     private val orderViewModel by activityViewModels<OrderViewModel>()
     private lateinit var adapter: OrderDetailAdapter
     override fun onCreate() {
-        orderViewModel.detailOrder()
         repeatOnStart {
             orderViewModel.detailEventFlow.collect { event -> handleEvent(event) }
         }
@@ -28,6 +27,7 @@ class OrderDetailFragment :
     }
 
     override fun createView() {
+        orderViewModel.detailOrder()
         binding.orderDetail = this
         initView()
     }

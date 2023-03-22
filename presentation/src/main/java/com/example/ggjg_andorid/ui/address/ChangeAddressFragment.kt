@@ -20,7 +20,6 @@ class ChangeAddressFragment :
     private val addressViewModel by activityViewModels<AddressViewModel>()
     private lateinit var addressAdapter: AddressAdapter
     override fun onCreate() {
-        addressViewModel.recentSearch()
         repeatOnStart {
             addressViewModel.changeEventFlow.collect { event -> handleEvent(event) }
         }
@@ -30,6 +29,7 @@ class ChangeAddressFragment :
     }
 
     override fun createView() {
+        addressViewModel.recentSearch()
         binding.changeAddress = this
         initView()
     }

@@ -18,7 +18,6 @@ class SelectCouponFragment :
     private val payViewModel by activityViewModels<PayViewModel>()
     private lateinit var couponAdapter: CouponAdapter
     override fun onCreate() {
-        payViewModel.availableCoupon()
         repeatOnStart {
             payViewModel.couponEventFlow.collect { event -> handleEvent(event) }
         }
@@ -28,6 +27,7 @@ class SelectCouponFragment :
     }
 
     override fun createView() {
+        payViewModel.availableCoupon()
         binding.selectCoupon = this
         initView()
     }

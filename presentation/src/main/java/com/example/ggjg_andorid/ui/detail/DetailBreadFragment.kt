@@ -46,9 +46,6 @@ class DetailBreadFragment :
     }
 
     override fun onCreate() {
-        mainViewModel.hiddenNav(true)
-        detailViewModel.detailBread()
-        detailViewModel.listReview()
         repeatOnStart {
             detailViewModel.eventFlow.collect { event -> handleEvent(event) }
         }
@@ -58,6 +55,9 @@ class DetailBreadFragment :
     }
 
     override fun createView() {
+        mainViewModel.hiddenNav(true)
+        detailViewModel.detailBread()
+        detailViewModel.listReview()
         binding.detailBread = this
         initView()
     }

@@ -30,13 +30,13 @@ class CouponFragment : BaseFragment<FragmentCouponBinding>(R.layout.fragment_cou
     }
 
     override fun onCreate() {
-        couponViewModel.allCoupon()
-        mainViewModel.hiddenNav(true)
         repeatOnStart { couponViewModel.eventFlow.collect { event -> handleEvent(event) } }
         repeatOnStart { couponViewModel.errorEventFlow.collect { event -> handleEvent(event) } }
     }
 
     override fun createView() {
+        couponViewModel.allCoupon()
+        mainViewModel.hiddenNav(true)
         binding.coupon = this
         initView()
     }

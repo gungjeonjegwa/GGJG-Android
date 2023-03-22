@@ -16,11 +16,11 @@ class SearchRecentFragment :
     private val searchViewModel by activityViewModels<SearchViewModel>()
     private lateinit var adapter: RecentSearchAdapter
     override fun onCreate() {
-        searchViewModel.recentSearch()
-        mainViewModel.hiddenNav(true)
     }
 
     override fun createView() {
+        searchViewModel.recentSearch()
+        mainViewModel.hiddenNav(true)
         initAdapter()
     }
 
