@@ -1,6 +1,6 @@
 package com.ggjg.domain.usecase.bread
 
-import com.example.domain.repository.BreadRepository
+import com.ggjg.domain.repository.BreadRepository
 import org.junit.Test
 import org.mockito.kotlin.mock
 
