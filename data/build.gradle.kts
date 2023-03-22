@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.data"
+    namespace = "com.ggjg.data"
     compileSdk = Version.COMPILE_SDK_VERSION
 
     defaultConfig {
