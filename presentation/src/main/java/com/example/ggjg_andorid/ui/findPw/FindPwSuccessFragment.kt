@@ -7,6 +7,10 @@ import com.example.ggjg_andorid.ui.base.BaseFragment
 
 class FindPwSuccessFragment :
     BaseFragment<FragmentFindPwSuccessBinding>(R.layout.fragment_find_pw_success) {
+    override fun onCreate() {
+        
+    }
+
     override fun createView() {
         binding.findPwSuccess = this
     }

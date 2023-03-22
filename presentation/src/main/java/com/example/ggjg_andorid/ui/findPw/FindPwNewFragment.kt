@@ -11,6 +11,10 @@ import com.example.ggjg_andorid.ui.base.BaseFragment
 import com.example.ggjg_andorid.utils.*
 
 class FindPwNewFragment : BaseFragment<FragmentFindPwNewBinding>(R.layout.fragment_find_pw_new) {
+    override fun onCreate() {
+
+    }
+
     override fun createView() {
         binding.findPwNew = this
         initView()
