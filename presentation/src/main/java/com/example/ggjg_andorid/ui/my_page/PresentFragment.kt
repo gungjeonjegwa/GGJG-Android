@@ -20,6 +20,11 @@ class PresentFragment : BaseFragment<FragmentPresentBinding>(R.layout.fragment_p
         super.onDetach()
         mainViewModel.hiddenNav(false)
     }
+
+    override fun onCreate() {
+        
+    }
+
     override fun createView() {
         binding.present = this
     }

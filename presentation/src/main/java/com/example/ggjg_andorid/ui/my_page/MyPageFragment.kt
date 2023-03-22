@@ -22,6 +22,15 @@ import com.example.ggjg_andorid.viewmodel.MyPageViewModel
 class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
     private val profileViewModel by activityViewModels<MyPageViewModel>()
     private lateinit var stampAdapter: StampAdapter
+    override fun onCreate() {
+        repeatOnStart {
+            profileViewModel.eventFlow.collect { event -> handleEvent(event) }
+        }
+        repeatOnStart {
+            profileViewModel.errorEventFlow.collect { event -> handleEvent(event) }
+        }
+    }
+
     override fun createView() {
         if (MainViewModel.isLogin) {
             initView()
@@ -65,12 +74,6 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
     private fun initView() = binding.apply {
         profileViewModel.profile()
         myPage = this@MyPageFragment
-        repeatOnStart {
-            profileViewModel.eventFlow.collect { event -> handleEvent(event) }
-        }
-        repeatOnStart {
-            profileViewModel.errorEventFlow.collect { event -> handleEvent(event) }
-        }
         stampAdapter = StampAdapter().apply {
             setItemOnClickListener(object : StampAdapter.OnItemClickListener {
                 override fun click() {

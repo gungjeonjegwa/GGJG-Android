@@ -11,15 +11,18 @@ import com.example.ggjg_andorid.viewmodel.MyPageViewModel
 
 class MyPageEditFragment : BaseFragment<FragmentMyPageEditBinding>(R.layout.fragment_my_page_edit) {
     private val myPageViewModel by activityViewModels<MyPageViewModel>()
+    override fun onCreate() {
+        repeatOnStart {
+            myPageViewModel.editEventFlow.collect { event -> handleEvent(event) }
+        }
+        repeatOnStart {
+            myPageViewModel.editEventFlow.collect { event -> handleEvent(event) }
+        }
+    }
+
     override fun createView() {
         binding.myPageEdit = this
         initView()
-        repeatOnStart {
-            myPageViewModel.editEventFlow.collect { event -> handleEvent(event) }
-        }
-        repeatOnStart {
-            myPageViewModel.editEventFlow.collect { event -> handleEvent(event) }
-        }
     }
 
     private fun handleEvent(event: MyPageViewModel.EditEvent) = when (event) {

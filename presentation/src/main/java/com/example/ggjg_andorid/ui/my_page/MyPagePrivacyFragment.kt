@@ -31,17 +31,20 @@ class MyPagePrivacyFragment :
         super.onDetach()
     }
 
-    override fun createView() {
-        binding.myPagePrivacy = this
-        AddressViewModel.isPayment = false
-        mainViewModel.hiddenNav(true)
-        initView()
+    override fun onCreate() {
         repeatOnStart {
             myPageViewModel.privacyEventFlow.collect { event -> handleEvent(event) }
         }
         repeatOnStart {
             myPageViewModel.errorEventFlow.collect { event -> handleEvent(event) }
         }
+    }
+
+    override fun createView() {
+        binding.myPagePrivacy = this
+        AddressViewModel.isPayment = false
+        mainViewModel.hiddenNav(true)
+        initView()
     }
 
     private fun handleEvent(event: MyPageViewModel.PrivacyEvent) = when (event) {
