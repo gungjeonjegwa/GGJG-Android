@@ -110,17 +110,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
                 override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
                     if (!HomeViewModel.isLast) {
                         moreProgress.setVisible()
-                        Handler().postDelayed({
-                            categoryList.forEach {
-                                if (it.isSelected) {
-                                    if (it == allBtn) {
-                                        homeViewModel.allBread()
-                                    } else {
-                                        homeViewModel.categoryBread(it)
-                                    }
+                        categoryList.forEach {
+                            if (it.isSelected) {
+                                if (it == allBtn) {
+                                    homeViewModel.allBread()
+                                } else {
+                                    homeViewModel.categoryBread(it)
                                 }
                             }
-                        }, 1000)
+                        }
                     }
                 }
             }
