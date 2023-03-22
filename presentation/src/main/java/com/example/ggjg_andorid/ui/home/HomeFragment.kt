@@ -51,22 +51,25 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
         binding.scrollView.scrollTo(0, 0)
     }
 
-    override fun createView() {
-        HomeViewModel.apply {
-            page = 0
-            isLast = false
-        }
-        binding.home = this
+    override fun onCreate() {
         mainViewModel.hiddenNav(false)
         homeViewModel.getBanner()
         homeViewModel.allBread()
-        initView()
         repeatOnStart {
             homeViewModel.eventFlow.collect { event -> handleEvent(event) }
         }
         repeatOnStart {
             homeViewModel.errorEventFlow.collect { event -> handleEvent(event) }
         }
+    }
+
+    override fun createView() {
+        HomeViewModel.apply {
+            page = 0
+            isLast = false
+        }
+        binding.home = this
+        initView()
     }
 
     private fun handleEvent(event: HomeViewModel.Event) = when (event) {
