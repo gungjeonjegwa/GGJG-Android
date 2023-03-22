@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.di"
+    namespace = "com.ggjg.di"
     compileSdk = Version.COMPILE_SDK_VERSION
 
     defaultConfig {
@@ -20,7 +20,8 @@ android {
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

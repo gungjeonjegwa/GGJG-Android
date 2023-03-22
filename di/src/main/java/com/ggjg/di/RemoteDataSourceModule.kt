@@ -1,6 +1,6 @@
-package com.example.di
+package com.ggjg.di
 
-import com.example.data.remote.datasource.*
+import com.ggjg.data.remote.datasource.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

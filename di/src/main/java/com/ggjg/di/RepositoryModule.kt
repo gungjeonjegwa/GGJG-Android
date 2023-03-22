@@ -1,7 +1,7 @@
-package com.example.di
+package com.ggjg.di
 
-import com.example.data.repository.*
-import com.example.domain.repository.*
+import com.ggjg.data.repository.*
+import com.ggjg.domain.repository.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

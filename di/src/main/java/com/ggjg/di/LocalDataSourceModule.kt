@@ -1,9 +1,9 @@
-package com.example.di
+package com.ggjg.di
 
-import com.example.data.local.datasorce.LocalAuthDataSource
-import com.example.data.local.datasorce.LocalAuthDataSourceImpl
-import com.example.data.local.datasorce.LocalBreadDataSource
-import com.example.data.local.datasorce.LocalBreadDataSourceImpl
+import com.ggjg.data.local.datasorce.LocalAuthDataSource
+import com.ggjg.data.local.datasorce.LocalAuthDataSourceImpl
+import com.ggjg.data.local.datasorce.LocalBreadDataSource
+import com.ggjg.data.local.datasorce.LocalBreadDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

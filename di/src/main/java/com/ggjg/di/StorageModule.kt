@@ -1,7 +1,7 @@
-package com.example.di
+package com.ggjg.di
 
-import com.example.data.local.storage.AuthStorage
-import com.example.data.local.storage.AuthStorageImpl
+import com.ggjg.data.local.storage.AuthStorage
+import com.ggjg.data.local.storage.AuthStorageImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

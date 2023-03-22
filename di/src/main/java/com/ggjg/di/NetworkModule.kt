@@ -1,8 +1,8 @@
-package com.example.di
+package com.ggjg.di
 
 import android.util.Log
-import com.example.data.interceptor.AuthorizationInterceptor
-import com.example.data.remote.api.*
+import com.ggjg.data.interceptor.AuthorizationInterceptor
+import com.ggjg.data.remote.api.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

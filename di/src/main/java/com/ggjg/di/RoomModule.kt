@@ -1,9 +1,9 @@
-package com.example.di
+package com.ggjg.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.data.local.dao.RecentSearchDao
-import com.example.data.local.database.GGJGDataBase
+import com.ggjg.data.local.dao.RecentSearchDao
+import com.ggjg.data.local.database.GGJGDataBase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
