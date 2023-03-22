@@ -14,6 +14,10 @@ import com.example.ggjg_andorid.viewmodel.OrderViewModel
 class ImageSelectorFragment :
     BaseFragment<FragmentImageSelectorBinding>(R.layout.fragment_image_selector) {
     private lateinit var imgAdapter: ImageAdapter
+    override fun onCreate() {
+
+    }
+
     override fun createView() {
         binding.imageSelector = this
         imgAdapter = ImageAdapter().apply {
