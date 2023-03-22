@@ -15,6 +15,10 @@ class FindIdCertifyFragment :
     private lateinit var timer: Timer
     private var second = certifyTime % 60
     private var minute = certifyTime / 60
+    override fun onCreate() {
+
+    }
+
     override fun createView() {
         binding.findIdCertify = this
         initView()

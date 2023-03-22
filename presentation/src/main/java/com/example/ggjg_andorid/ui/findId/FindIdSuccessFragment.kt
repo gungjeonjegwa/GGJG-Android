@@ -10,6 +10,10 @@ import com.example.ggjg_andorid.ui.base.BaseFragment
 
 class FindIdSuccessFragment :
     BaseFragment<FragmentFindIdSuccessBinding>(R.layout.fragment_find_id_success) {
+    override fun onCreate() {
+
+    }
+
     override fun createView() {
         binding.findIdSuccess = this
         (requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).setPrimaryClip(
