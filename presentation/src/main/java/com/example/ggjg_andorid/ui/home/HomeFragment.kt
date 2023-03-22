@@ -52,15 +52,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
     }
 
     override fun onCreate() {
-        mainViewModel.hiddenNav(false)
-        homeViewModel.getBanner()
-        homeViewModel.allBread()
         repeatOnStart {
             homeViewModel.eventFlow.collect { event -> handleEvent(event) }
         }
         repeatOnStart {
             homeViewModel.errorEventFlow.collect { event -> handleEvent(event) }
         }
+        observeCategory()
     }
 
     override fun createView() {
@@ -68,6 +66,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
             page = 0
             isLast = false
         }
+        mainViewModel.hiddenNav(false)
+        homeViewModel.getBanner()
+        homeViewModel.getBread()
         binding.home = this
         initView()
     }
@@ -94,15 +95,25 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
         }
     }
 
+    private fun observeCategory() = homeViewModel.category.observe(this) {
+        homeViewModel.getBread()
+    }
+
     private fun initView() = binding.apply {
+        categoryList = listOf(allBtn, breadBtn, cakeBtn, cookieBtn, presentBtn)
+        if (homeViewModel.category.value == null) {
+            allBtn.isSelected = true
+        } else {
+            categoryList.forEach { view ->
+                view.isSelected = view.id == homeViewModel.category.value
+            }
+        }
         val deviceWidth = requireContext().resources.displayMetrics.widthPixels
         val bannerLayoutParams = bannerContainer.layoutParams
         bannerLayoutParams.height =
             (requireContext().resources.displayMetrics.heightPixels * 0.3).toInt()
         swipeLayout.setOnRefreshListener(this@HomeFragment)
         bannerContainer.layoutParams = bannerLayoutParams
-        allBtn.isSelected = true
-        categoryList = listOf(allBtn, breadBtn, cakeBtn, cookieBtn, presentBtn)
         layoutManager =
             if (deviceWidth <= 1080) GridLayoutManager(requireContext(), 2) else GridLayoutManager(
                 requireContext(),
@@ -113,15 +124,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
                 override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
                     if (!HomeViewModel.isLast) {
                         moreProgress.setVisible()
-                        categoryList.forEach {
-                            if (it.isSelected) {
-                                if (it == allBtn) {
-                                    homeViewModel.allBread()
-                                } else {
-                                    homeViewModel.categoryBread(it)
-                                }
-                            }
-                        }
+                        homeViewModel.getBread()
                     }
                 }
             }
@@ -147,13 +150,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
                     page = 0
                     isLast = false
                 }
-                if (tag.id != R.id.allBtn) {
-                    homeViewModel.categoryBread(tag)
-                } else {
-                    homeViewModel.allBread()
-                }
+                homeViewModel.setCategory(tag.id)
                 categoryList.forEach { view ->
-                    view.isSelected = view == tag
+                    view.isSelected = view.id == homeViewModel.category.value
                 }
             }
         }
@@ -226,14 +225,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
             isLast = false
         }
         listener.resetState()
-        categoryList.forEach {
-            if (it.isSelected) {
-                if (it == binding.allBtn) {
-                    homeViewModel.allBread()
-                } else {
-                    homeViewModel.categoryBread(it)
-                }
-            }
-        }
+        homeViewModel.getBread()
     }
 }

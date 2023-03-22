@@ -1,9 +1,12 @@
 package com.example.ggjg_andorid.viewmodel
 
 import android.view.View
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.entity.bread.BannerEntity
+import com.example.domain.entity.bread.BreadEntity
 import com.example.domain.exception.TokenErrorException
 import com.example.domain.model.BreadModel
 import com.example.domain.usecase.auth.SaveTokenUseCase
@@ -33,53 +36,41 @@ class HomeViewModel @Inject constructor(
     val eventFlow = _eventFlow.asEventFlow()
     private val _errorEventFlow = MutableEventFlow<ErrorEvent>()
     val errorEventFlow = _errorEventFlow.asEventFlow()
+    private val _category = MutableLiveData<Int?>()
+    val category: LiveData<Int?> get() = _category
 
     companion object {
         var page = 0
         var isLast = false
     }
 
-    fun allBread() = viewModelScope.launch {
-        if (!isLast) {
-            allBreadUseCase(page = page).onSuccess {
-                if (page == 0) {
-                    event(Event.Bread(it.breadList))
-                } else {
-                    event(Event.AddBread(it.breadList))
-                }
-                isLast = it.isLast
-                page++
-            }.onFailure {
-                event(it.errorHandling(tokenErrorAction = {
-                    MainViewModel.isLogin = false
-                    saveTokenUseCase()
-                }))
-            }
-        }
-    }
-
-    fun categoryBread(view: View) = viewModelScope.launch {
-        val category = when (view.id) {
+    fun getBread() = viewModelScope.launch {
+        val category = when (_category.value) {
             R.id.breadBtn -> "BREAD"
             R.id.cakeBtn -> "CAKE"
             R.id.cookieBtn -> "COOKIE"
             R.id.presentBtn -> "PRESENT"
-            else -> "BREAD"
+            else -> null
         }
         if (!isLast) {
-            categoryBreadUseCase(page = page, category = category).onSuccess {
-                if (page == 0) {
-                    event(Event.Bread(it.breadList))
-                } else {
-                    event(Event.AddBread(it.breadList))
+            if (category == null) {
+                allBreadUseCase(page = page).onSuccess {
+                    emitBread(data = it)
+                }.onFailure {
+                    event(it.errorHandling(tokenErrorAction = {
+                        MainViewModel.isLogin = false
+                        saveTokenUseCase()
+                    }))
                 }
-                isLast = it.isLast
-                page++
-            }.onFailure {
-                event(it.errorHandling(tokenErrorAction = {
-                    MainViewModel.isLogin = false
-                    saveTokenUseCase()
-                }))
+            } else {
+                categoryBreadUseCase(page = page, category = category).onSuccess {
+                    emitBread(data = it)
+                }.onFailure {
+                    event(it.errorHandling(tokenErrorAction = {
+                        MainViewModel.isLogin = false
+                        saveTokenUseCase()
+                    }))
+                }
             }
         }
     }
@@ -93,6 +84,10 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    fun setCategory(viewId: Int) {
+        _category.value = viewId
+    }
+
     fun getBanner() = viewModelScope.launch {
         bannerUseCase().onSuccess {
             event(Event.Banner(it))
@@ -102,6 +97,16 @@ class HomeViewModel @Inject constructor(
                 saveTokenUseCase()
             }))
         }
+    }
+
+    private fun emitBread(data: BreadEntity) {
+        if (page == 0) {
+            event(Event.Bread(data.breadList))
+        } else {
+            event(Event.AddBread(data.breadList))
+        }
+        isLast = data.isLast
+        page++
     }
 
     private fun event(event: Event) = viewModelScope.launch {
