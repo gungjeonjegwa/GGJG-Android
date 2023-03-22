@@ -21,15 +21,18 @@ class SearchResultFragment :
     private val mainViewModel by activityViewModels<MainViewModel>()
     private val searchViewModel by activityViewModels<SearchViewModel>()
     private lateinit var searchResultAdapter: BreadListAdapter
-    override fun createView() {
-        mainViewModel.hiddenNav(false)
-        initView()
+    override fun onCreate() {
         repeatOnStart {
             searchViewModel.searchResultEventFlow.collect { event -> handleEvent(event) }
         }
         repeatOnStart {
             searchViewModel.errorEventFlow.collect { event -> handleEvent(event) }
         }
+    }
+
+    override fun createView() {
+        mainViewModel.hiddenNav(false)
+        initView()
     }
 
     private fun handleEvent(event: SearchViewModel.SearchResultEvent) = when (event) {

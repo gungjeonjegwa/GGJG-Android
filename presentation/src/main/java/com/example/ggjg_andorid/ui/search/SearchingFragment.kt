@@ -16,16 +16,18 @@ class SearchingFragment : BaseFragment<FragmentSearchingBinding>(R.layout.fragme
     private val mainViewModel by activityViewModels<MainViewModel>()
     private val searchViewModel by activityViewModels<SearchViewModel>()
     private lateinit var searchAdapter: SearchAdapter
-
-    override fun createView() {
-        mainViewModel.hiddenNav(true)
-        initView()
+    override fun onCreate() {
         repeatOnStart {
             searchViewModel.searchingEventFlow.collect { event -> handleEvent(event) }
         }
         repeatOnStart {
             searchViewModel.errorEventFlow.collect { event -> handleEvent(event) }
         }
+    }
+
+    override fun createView() {
+        mainViewModel.hiddenNav(true)
+        initView()
     }
 
     private fun handleEvent(event: SearchViewModel.SearchingEvent) = when (event) {

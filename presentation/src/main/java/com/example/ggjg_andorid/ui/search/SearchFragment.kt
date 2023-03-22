@@ -19,16 +19,18 @@ import java.util.concurrent.TimeUnit
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_search) {
     private val searchViewModel by activityViewModels<SearchViewModel>()
-
-    override fun createView() {
-        binding.search = this
-        initView()
+    override fun onCreate() {
         repeatOnStart {
             searchViewModel.eventFlow.collect { event -> handleEvent(event) }
         }
         repeatOnStart {
             searchViewModel.errorEventFlow.collect { event -> handleEvent(event) }
         }
+    }
+
+    override fun createView() {
+        binding.search = this
+        initView()
     }
 
     private fun handleEvent(event: SearchViewModel.Event) = when (event) {
