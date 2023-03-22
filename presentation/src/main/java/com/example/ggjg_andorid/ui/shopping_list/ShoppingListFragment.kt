@@ -39,16 +39,18 @@ class ShoppingListFragment :
         }
     }
 
+    override fun onCreate() {
+        repeatOnStart {
+            shoppingListViewModel.eventFlow.collect { event -> handleEvent(event) }
+        }
+        repeatOnStart {
+            shoppingListViewModel.errorEventFlow.collect { event -> handleEvent(event) }
+        }
+    }
+
     override fun createView() {
         binding.shoppingList = this
-        if (MainViewModel.isLogin) {
-            repeatOnStart {
-                shoppingListViewModel.eventFlow.collect { event -> handleEvent(event) }
-            }
-            repeatOnStart {
-                shoppingListViewModel.errorEventFlow.collect { event -> handleEvent(event) }
-            }
-        } else {
+        if (!MainViewModel.isLogin) {
             this.startActivityForResult(
                 Intent(
                     requireActivity(),
