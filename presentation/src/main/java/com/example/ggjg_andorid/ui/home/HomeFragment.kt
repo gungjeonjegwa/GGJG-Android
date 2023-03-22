@@ -82,10 +82,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
         is HomeViewModel.Event.Bread -> {
             binding.swipeLayout.isRefreshing = false
             adapter.submitList(event.breadList)
+            binding.moreProgress.setVisible(false)
         }
         is HomeViewModel.Event.AddBread -> {
             adapter.submitList(adapter.currentList.plus(event.breadList))
             binding.moreProgress.setVisible(false)
+        }
+        HomeViewModel.Event.Loading -> {
+            binding.moreProgress.setVisible()
         }
     }
 

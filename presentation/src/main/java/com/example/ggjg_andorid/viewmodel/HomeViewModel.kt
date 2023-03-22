@@ -53,6 +53,7 @@ class HomeViewModel @Inject constructor(
             else -> null
         }
         if (!isLast) {
+            event(Event.Loading)
             if (category == null) {
                 allBreadUseCase(page = page).onSuccess {
                     emitBread(data = it)
@@ -121,5 +122,6 @@ class HomeViewModel @Inject constructor(
         data class Banner(val bannerList: List<BannerEntity>) : Event()
         data class Bread(val breadList: List<BreadModel>) : Event()
         data class AddBread(val breadList: List<BreadModel>) : Event()
+        object Loading : Event()
     }
 }

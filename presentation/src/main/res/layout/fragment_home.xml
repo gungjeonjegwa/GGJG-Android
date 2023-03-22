@@ -194,6 +194,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/transparent"
+                        android:visibility="gone"
                         app:layout_constraintTop_toBottomOf="@id/breadList" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.example.ggjg_andorid.utils.custom_view.CustomScrollView>
