@@ -1,10 +1,10 @@
 package com.ggjg.data.repository
 
-import com.example.data.local.datasorce.LocalBreadDataSource
-import com.example.data.remote.datasource.BreadDataSource
-import com.example.data.remote.response.bread.BreadResponse
-import com.example.data.remote.response.bread.toEntity
-import com.example.domain.repository.BreadRepository
+import com.ggjg.data.local.datasorce.LocalBreadDataSource
+import com.ggjg.data.remote.datasource.BreadDataSource
+import com.ggjg.data.remote.response.bread.BreadResponse
+import com.ggjg.data.remote.response.bread.toEntity
+import com.ggjg.domain.repository.BreadRepository
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -24,8 +24,8 @@ class BreadRepositoryUnitTest {
     @Test
     fun testAllBread() {
         runBlocking {
-            whenever(remoteBreadDataSource.allBread("0", "10")).thenReturn(breadResponse)
-            val result = breadRepository.allBread("0", "10")
+            whenever(remoteBreadDataSource.allBread(0)).thenReturn(breadResponse)
+            val result = breadRepository.allBread(0)
             assertEquals(result, breadResponse.toEntity())
         }
     }

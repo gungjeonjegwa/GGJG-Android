@@ -1,9 +1,9 @@
 package com.ggjg.data.datasource
 
-import com.example.data.remote.api.BreadAPI
-import com.example.data.remote.datasource.BreadDataSource
-import com.example.data.remote.datasource.BreadDataSourceImpl
-import com.example.data.remote.response.bread.BreadResponse
+import com.ggjg.data.remote.api.BreadAPI
+import com.ggjg.data.remote.datasource.BreadDataSource
+import com.ggjg.data.remote.datasource.BreadDataSourceImpl
+import com.ggjg.data.remote.response.bread.BreadResponse
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -20,8 +20,8 @@ class RemoteBreadDataSourceUnitTest {
     @Test
     fun testAllBread() {
         runBlocking {
-            whenever(breadAPI.allBread("0", "10")).thenReturn(breadResponse)
-            val result = remoteBreadDataSource.allBread("0", "10")
+            whenever(breadAPI.allBread(0, 10)).thenReturn(breadResponse)
+            val result = remoteBreadDataSource.allBread(0)
             assertEquals(result, breadResponse)
         }
     }
