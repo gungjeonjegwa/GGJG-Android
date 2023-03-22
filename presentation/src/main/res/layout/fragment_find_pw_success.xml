@@ -6,7 +6,7 @@
 
         <variable
             name="findPwSuccess"
-            type="com.example.ggjg_andorid.ui.findPw.FindPwSuccessFragment" />
+            type="com.ggjg.presentation.ui.findPw.FindPwSuccessFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

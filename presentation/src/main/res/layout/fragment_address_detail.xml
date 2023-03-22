@@ -6,7 +6,7 @@
 
         <variable
             name="detailAddress"
-            type="com.example.ggjg_andorid.ui.address.DetailAddressFragment" />
+            type="com.ggjg.presentation.ui.address.DetailAddressFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

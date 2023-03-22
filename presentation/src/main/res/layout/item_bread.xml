@@ -6,7 +6,7 @@
 
         <variable
             name="bread"
-            type="com.example.domain.model.BreadModel" />
+            type="com.ggjg.domain.model.BreadModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

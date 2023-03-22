@@ -6,7 +6,7 @@
 
         <variable
             name="orderCancel"
-            type="com.example.ggjg_andorid.ui.order.OrderCancelFragment" />
+            type="com.ggjg.presentation.ui.order.OrderCancelFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

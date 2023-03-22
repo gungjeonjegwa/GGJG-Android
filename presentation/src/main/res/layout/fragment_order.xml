@@ -6,7 +6,7 @@
 
         <variable
             name="order"
-            type="com.example.ggjg_andorid.ui.order.OrderFragment" />
+            type="com.ggjg.presentation.ui.order.OrderFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

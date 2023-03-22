@@ -6,7 +6,7 @@
 
         <variable
             name="detailBreadPay"
-            type="com.example.ggjg_andorid.ui.detail.DetailBreadPayFragment" />
+            type="com.ggjg.presentation.ui.detail.DetailBreadPayFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

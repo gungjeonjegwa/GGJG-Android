@@ -6,7 +6,7 @@
 
         <variable
             name="myPagePrivacy"
-            type="com.example.ggjg_andorid.ui.my_page.MyPagePrivacyFragment" />
+            type="com.ggjg.presentation.ui.my_page.MyPagePrivacyFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

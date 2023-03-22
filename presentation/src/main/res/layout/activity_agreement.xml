@@ -6,7 +6,7 @@
 
         <variable
             name="agreementDetail"
-            type="com.example.ggjg_andorid.ui.agree_notice.AgreementActivity" />
+            type="com.ggjg.presentation.ui.agree_notice.AgreementActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

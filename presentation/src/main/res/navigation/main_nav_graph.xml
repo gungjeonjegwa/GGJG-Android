@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.ggjg_andorid.ui.home.HomeFragment"
+        android:name="com.ggjg.presentation.ui.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.ggjg_andorid.ui.search.SearchFragment"
+        android:name="com.ggjg.presentation.ui.search.SearchFragment"
         android:label="SearchFragment"
         tools:layout="@layout/fragment_search">
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/shoppingListFragment"
-        android:name="com.example.ggjg_andorid.ui.shopping_list.ShoppingListFragment"
+        android:name="com.ggjg.presentation.ui.shopping_list.ShoppingListFragment"
         android:label="ShoppingListFragment"
         tools:layout="@layout/fragment_shopping_list">
         <action
@@ -46,7 +46,7 @@
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
-        android:name="com.example.ggjg_andorid.ui.favorite.FavoriteFragment"
+        android:name="com.ggjg.presentation.ui.favorite.FavoriteFragment"
         android:label="FavoriteFragment"
         tools:layout="@layout/fragment_favorite">
         <action
@@ -59,7 +59,7 @@
     </fragment>
     <fragment
         android:id="@+id/myPageFragment"
-        android:name="com.example.ggjg_andorid.ui.my_page.MyPageFragment"
+        android:name="com.ggjg.presentation.ui.my_page.MyPageFragment"
         android:label="MyPageFragment"
         tools:layout="@layout/fragment_my_page">
         <action
@@ -93,7 +93,7 @@
     </fragment>
     <fragment
         android:id="@+id/payFragment"
-        android:name="com.example.ggjg_andorid.ui.pay.PayFragment"
+        android:name="com.ggjg.presentation.ui.pay.PayFragment"
         android:label="PayFragment"
         tools:layout="@layout/fragment_pay">
         <action
@@ -120,7 +120,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailBreadFragment"
-        android:name="com.example.ggjg_andorid.ui.detail.DetailBreadFragment"
+        android:name="com.ggjg.presentation.ui.detail.DetailBreadFragment"
         android:label="DetailBreadFragment"
         tools:layout="@layout/fragment_detail_bread">
         <action
@@ -140,7 +140,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchAddressFragment"
-        android:name="com.example.ggjg_andorid.ui.address.SearchAddressFragment"
+        android:name="com.ggjg.presentation.ui.address.SearchAddressFragment"
         android:label="SearchAddressFragment"
         tools:layout="@layout/fragment_address_search">
         <action
@@ -153,7 +153,7 @@
     </fragment>
     <fragment
         android:id="@+id/changeAddressFragment"
-        android:name="com.example.ggjg_andorid.ui.address.ChangeAddressFragment"
+        android:name="com.ggjg.presentation.ui.address.ChangeAddressFragment"
         android:label="ChangeAddressFragment"
         tools:layout="@layout/fragment_address_change">
         <action
@@ -166,12 +166,12 @@
     </fragment>
     <fragment
         android:id="@+id/detailAddressFragment"
-        android:name="com.example.ggjg_andorid.ui.address.DetailAddressFragment"
+        android:name="com.ggjg.presentation.ui.address.DetailAddressFragment"
         android:label="DetailAddressFragment"
         tools:layout="@layout/fragment_address_detail" />
     <fragment
         android:id="@+id/myPagePrivacyFragment"
-        android:name="com.example.ggjg_andorid.ui.my_page.MyPagePrivacyFragment"
+        android:name="com.ggjg.presentation.ui.my_page.MyPagePrivacyFragment"
         android:label="MyPagePrivacyFragment"
         tools:layout="@layout/fragment_my_page_privacy">
         <action
@@ -198,7 +198,7 @@
     </fragment>
     <fragment
         android:id="@+id/couponFragment"
-        android:name="com.example.ggjg_andorid.ui.coupon.CouponFragment"
+        android:name="com.ggjg.presentation.ui.coupon.CouponFragment"
         android:label="CouponFragment"
         tools:layout="@layout/fragment_coupon">
         <action
@@ -211,17 +211,17 @@
     </fragment>
     <fragment
         android:id="@+id/addCouponFragment"
-        android:name="com.example.ggjg_andorid.ui.coupon.AddCouponFragment"
+        android:name="com.ggjg.presentation.ui.coupon.AddCouponFragment"
         android:label="AddCouponFragment"
         tools:layout="@layout/fragment_coupon_add" />
     <fragment
         android:id="@+id/myPageEditFragment"
-        android:name="com.example.ggjg_andorid.ui.my_page.MyPageEditFragment"
+        android:name="com.ggjg.presentation.ui.my_page.MyPageEditFragment"
         android:label="MyPageEditFragment"
         tools:layout="@layout/fragment_my_page_edit" />
     <fragment
         android:id="@+id/orderFragment"
-        android:name="com.example.ggjg_andorid.ui.order.OrderFragment"
+        android:name="com.ggjg.presentation.ui.order.OrderFragment"
         android:label="OrderFragment"
         tools:layout="@layout/fragment_order">
         <action
@@ -255,22 +255,22 @@
     </fragment>
     <fragment
         android:id="@+id/orderDetailFragment"
-        android:name="com.example.ggjg_andorid.ui.order.OrderDetailFragment"
+        android:name="com.ggjg.presentation.ui.order.OrderDetailFragment"
         android:label="OrderDetailFragment"
         tools:layout="@layout/fragment_order_detail" />
     <fragment
         android:id="@+id/orderCancelFragment"
-        android:name="com.example.ggjg_andorid.ui.order.OrderCancelFragment"
+        android:name="com.ggjg.presentation.ui.order.OrderCancelFragment"
         android:label="OrderCancelFragment"
         tools:layout="@layout/fragment_order_cancel" />
     <fragment
         android:id="@+id/orderRecallFragment"
-        android:name="com.example.ggjg_andorid.ui.order.OrderRecallFragment"
+        android:name="com.ggjg.presentation.ui.order.OrderRecallFragment"
         android:label="OrderRecallFragment"
         tools:layout="@layout/fragment_order_recall" />
     <fragment
         android:id="@+id/orderReviewFragment"
-        android:name="com.example.ggjg_andorid.ui.order.OrderReviewFragment"
+        android:name="com.ggjg.presentation.ui.order.OrderReviewFragment"
         android:label="OrderReviewFragment"
         tools:layout="@layout/fragment_order_review">
         <action
@@ -283,22 +283,22 @@
     </fragment>
     <fragment
         android:id="@+id/QAFragment"
-        android:name="com.example.ggjg_andorid.ui.qa.QAFragment"
+        android:name="com.ggjg.presentation.ui.qa.QAFragment"
         android:label="QAFragment"
         tools:layout="@layout/fragment_qa" />
     <fragment
         android:id="@+id/imageSelectorFragment"
-        android:name="com.example.ggjg_andorid.ui.image.ImageSelectorFragment"
+        android:name="com.ggjg.presentation.ui.image.ImageSelectorFragment"
         android:label="ImageSelectorFragment"
         tools:layout="@layout/fragment_image_selector" />
     <fragment
         android:id="@+id/selectCouponFragment"
-        android:name="com.example.ggjg_andorid.ui.pay.SelectCouponFragment"
+        android:name="com.ggjg.presentation.ui.pay.SelectCouponFragment"
         android:label="SelectCouponFragment"
         tools:layout="@layout/fragment_select_coupon" />
     <fragment
         android:id="@+id/presentFragment"
-        android:name="com.example.ggjg_andorid.ui.my_page.PresentFragment"
+        android:name="com.ggjg.presentation.ui.my_page.PresentFragment"
         android:label="PresentFragment"
         tools:layout="@layout/fragment_present" />
 </navigation>

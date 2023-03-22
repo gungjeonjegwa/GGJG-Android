@@ -6,7 +6,7 @@
 
         <variable
             name="pay"
-            type="com.example.ggjg_andorid.ui.pay.PayFragment" />
+            type="com.ggjg.presentation.ui.pay.PayFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

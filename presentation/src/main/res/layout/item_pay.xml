@@ -6,7 +6,7 @@
 
         <variable
             name="myBasketEntity"
-            type="com.example.domain.entity.basket.MyBasketEntity" />
+            type="com.ggjg.domain.entity.basket.MyBasketEntity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

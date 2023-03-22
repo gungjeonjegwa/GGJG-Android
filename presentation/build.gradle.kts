@@ -8,11 +8,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.ggjg_andorid"
+    namespace = "com.ggjg.presentation"
     compileSdk = Version.COMPILE_SDK_VERSION
 
     defaultConfig {
-        applicationId = "com.example.ggjg_andorid"
+        applicationId = "com.ggjg.presentation"
         minSdk = Version.MIN_SDK_VERSION
         targetSdk = Version.TARGET_SDK_VERSION
         versionCode = 1
@@ -23,7 +23,8 @@ android {
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

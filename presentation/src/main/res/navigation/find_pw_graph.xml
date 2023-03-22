@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/findPwFragment"
-        android:name="com.example.ggjg_andorid.ui.findPw.FindPwFragment"
+        android:name="com.ggjg.presentation.ui.findPw.FindPwFragment"
         android:label="FindPwFragment"
         tools:layout="@layout/fragment_find_pw" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/findPwCertifyFragment"
-        android:name="com.example.ggjg_andorid.ui.findPw.FindPwCertifyFragment"
+        android:name="com.ggjg.presentation.ui.findPw.FindPwCertifyFragment"
         android:label="FindPwCertifyFragment"
         tools:layout="@layout/fragment_find_pw_certify" >
         <action
@@ -26,7 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/findPwNewFragment"
-        android:name="com.example.ggjg_andorid.ui.findPw.FindPwNewFragment"
+        android:name="com.ggjg.presentation.ui.findPw.FindPwNewFragment"
         android:label="FindPwNewFragment"
         tools:layout="@layout/fragment_find_pw_new" >
         <action
@@ -35,7 +35,7 @@
     </fragment>
     <fragment
         android:id="@+id/findPwSuccessFragment"
-        android:name="com.example.ggjg_andorid.ui.findPw.FindPwSuccessFragment"
+        android:name="com.ggjg.presentation.ui.findPw.FindPwSuccessFragment"
         android:label="FindPwSuccessFragment"
         tools:layout="@layout/fragment_find_pw_success" />
 </navigation>

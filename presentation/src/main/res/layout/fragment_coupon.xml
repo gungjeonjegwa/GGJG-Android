@@ -6,7 +6,7 @@
 
         <variable
             name="coupon"
-            type="com.example.ggjg_andorid.ui.coupon.CouponFragment" />
+            type="com.ggjg.presentation.ui.coupon.CouponFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -6,7 +6,7 @@
 
         <variable
             name="agreement"
-            type="com.example.ggjg_andorid.ui.register.AgreementFragment" />
+            type="com.ggjg.presentation.ui.register.AgreementFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

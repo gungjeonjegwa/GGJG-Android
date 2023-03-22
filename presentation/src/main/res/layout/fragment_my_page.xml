@@ -6,7 +6,7 @@
 
         <variable
             name="myPage"
-            type="com.example.ggjg_andorid.ui.my_page.MyPageFragment" />
+            type="com.ggjg.presentation.ui.my_page.MyPageFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

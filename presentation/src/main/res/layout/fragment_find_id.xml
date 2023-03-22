@@ -6,7 +6,7 @@
 
         <variable
             name="findId"
-            type="com.example.ggjg_andorid.ui.findId.FindIdFragment" />
+            type="com.ggjg.presentation.ui.findId.FindIdFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

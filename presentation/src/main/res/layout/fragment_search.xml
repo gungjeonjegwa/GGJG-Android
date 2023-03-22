@@ -6,7 +6,7 @@
 
         <variable
             name="search"
-            type="com.example.ggjg_andorid.ui.search.SearchFragment" />
+            type="com.ggjg.presentation.ui.search.SearchFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

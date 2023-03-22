@@ -6,7 +6,7 @@
 
         <variable
             name="registerSecond"
-            type="com.example.ggjg_andorid.ui.register.RegisterSecondFragment" />
+            type="com.ggjg.presentation.ui.register.RegisterSecondFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

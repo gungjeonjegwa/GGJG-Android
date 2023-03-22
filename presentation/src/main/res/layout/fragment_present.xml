@@ -6,7 +6,7 @@
 
         <variable
             name="present"
-            type="com.example.ggjg_andorid.ui.my_page.PresentFragment" />
+            type="com.ggjg.presentation.ui.my_page.PresentFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

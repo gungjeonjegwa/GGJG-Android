@@ -6,7 +6,7 @@
 
         <variable
             name="myPageEdit"
-            type="com.example.ggjg_andorid.ui.my_page.MyPageEditFragment" />
+            type="com.ggjg.presentation.ui.my_page.MyPageEditFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -6,7 +6,7 @@
 
         <variable
             name="changeAddress"
-            type="com.example.ggjg_andorid.ui.address.ChangeAddressFragment" />
+            type="com.ggjg.presentation.ui.address.ChangeAddressFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

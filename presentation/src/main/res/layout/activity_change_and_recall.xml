@@ -6,7 +6,7 @@
 
         <variable
             name="detailChangeAndRecall"
-            type="com.example.ggjg_andorid.ui.agree_notice.ChangeAndRecallActivity" />
+            type="com.ggjg.presentation.ui.agree_notice.ChangeAndRecallActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

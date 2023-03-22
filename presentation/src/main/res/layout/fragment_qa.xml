@@ -6,7 +6,7 @@
 
         <variable
             name="qa"
-            type="com.example.ggjg_andorid.ui.qa.QAFragment" />
+            type="com.ggjg.presentation.ui.qa.QAFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

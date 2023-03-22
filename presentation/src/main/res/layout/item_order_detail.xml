@@ -6,7 +6,7 @@
 
         <variable
             name="buyItem"
-            type="com.example.domain.entity.order.DetailOrderEntity.BuyItem" />
+            type="com.ggjg.domain.entity.order.DetailOrderEntity.BuyItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

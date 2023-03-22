@@ -6,7 +6,7 @@
 
         <variable
             name="findIdCertify"
-            type="com.example.ggjg_andorid.ui.findId.FindIdCertifyFragment" />
+            type="com.ggjg.presentation.ui.findId.FindIdCertifyFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -6,7 +6,7 @@
 
         <variable
             name="findPwCertify"
-            type="com.example.ggjg_andorid.ui.findPw.FindPwCertifyFragment" />
+            type="com.ggjg.presentation.ui.findPw.FindPwCertifyFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

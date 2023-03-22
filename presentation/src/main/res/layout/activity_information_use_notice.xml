@@ -6,7 +6,7 @@
 
         <variable
             name="informationUseNotice"
-            type="com.example.ggjg_andorid.ui.agree_notice.InformationUseNoticeActivity" />
+            type="com.ggjg.presentation.ui.agree_notice.InformationUseNoticeActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

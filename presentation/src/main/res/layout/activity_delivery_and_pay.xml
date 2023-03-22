@@ -6,7 +6,7 @@
 
         <variable
             name="detailDeliveryAndPay"
-            type="com.example.ggjg_andorid.ui.agree_notice.DeliveryAndPayActivity" />
+            type="com.ggjg.presentation.ui.agree_notice.DeliveryAndPayActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

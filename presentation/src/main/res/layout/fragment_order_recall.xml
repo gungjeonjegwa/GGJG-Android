@@ -6,7 +6,7 @@
 
         <variable
             name="orderRecall"
-            type="com.example.ggjg_andorid.ui.order.OrderRecallFragment" />
+            type="com.ggjg.presentation.ui.order.OrderRecallFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

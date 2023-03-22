@@ -6,7 +6,7 @@
 
         <variable
             name="findPwNew"
-            type="com.example.ggjg_andorid.ui.findPw.FindPwNewFragment" />
+            type="com.ggjg.presentation.ui.findPw.FindPwNewFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -6,7 +6,7 @@
 
         <variable
             name="home"
-            type="com.example.ggjg_andorid.ui.home.HomeFragment" />
+            type="com.ggjg.presentation.ui.home.HomeFragment" />
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.example.ggjg_andorid.utils.custom_view.CustomScrollView
+            <com.ggjg.presentation.utils.custom_view.CustomScrollView
                 android:id="@+id/scrollView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -197,7 +197,7 @@
                         android:visibility="gone"
                         app:layout_constraintTop_toBottomOf="@id/breadList" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
-            </com.example.ggjg_andorid.utils.custom_view.CustomScrollView>
+            </com.ggjg.presentation.utils.custom_view.CustomScrollView>
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/topScrollBtnEndLine"
