@@ -23,6 +23,15 @@ import com.example.ggjg_andorid.viewmodel.MainViewModel
 class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment_favorite) {
     private val favoriteViewModel by activityViewModels<FavoriteViewModel>()
     private lateinit var breadAdapter: BreadListAdapter
+    override fun onCreate() {
+        repeatOnStart {
+            favoriteViewModel.eventFlow.collect { event -> handleEvent(event) }
+        }
+        repeatOnStart {
+            favoriteViewModel.errorEventFlow.collect { event -> handleEvent(event) }
+        }
+    }
+
     override fun createView() {
         if (MainViewModel.isLogin) {
             initView()
@@ -56,12 +65,6 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment
     private fun initView() = binding.apply {
         favoriteViewModel.getLikeBread()
         favorite = this@FavoriteFragment
-        repeatOnStart {
-            favoriteViewModel.eventFlow.collect { event -> handleEvent(event) }
-        }
-        repeatOnStart {
-            favoriteViewModel.errorEventFlow.collect { event -> handleEvent(event) }
-        }
         breadAdapter = BreadListAdapter().apply {
             setItemOnClickListener(object : BreadListAdapter.OnItemClickListener {
                 override fun detail(item: BreadModel) {
