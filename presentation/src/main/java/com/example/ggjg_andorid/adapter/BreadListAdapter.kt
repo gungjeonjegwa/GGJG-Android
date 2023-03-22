@@ -27,8 +27,6 @@ class BreadListAdapter :
         val listener: OnItemClickListener,
     ) :
         RecyclerView.ViewHolder(binding.root) {
-        var currentDeliveryView = 0
-
         fun bind(item: BreadModel) = binding.apply {
             bread = item
             val breadImgParams = breadImg.layoutParams
@@ -56,23 +54,23 @@ class BreadListAdapter :
             breadItemLayout.setOnClickListener {
                 listener.detail(item)
             }
-            item.sellDeliveryType.forEach {
-                when (it.type) {
+            item.sellDeliveryType.forEachIndexed { index, item ->
+                when (item.type) {
                     "GWANGJU" -> {
-                        viewDeliveryType(R.drawable.bg_gwangju)
+                        viewDeliveryType(R.drawable.bg_gwangju, index)
                     }
                     "BAEMIN" -> {
-                        viewDeliveryType(R.drawable.bg_baemin)
+                        viewDeliveryType(R.drawable.bg_baemin, index)
                     }
                     else -> {
-                        viewDeliveryType(R.drawable.bg_all_contry)
+                        viewDeliveryType(R.drawable.bg_all_contry, index)
                     }
                 }
             }
         }
 
-        private fun viewDeliveryType(view: Int) {
-            if (currentDeliveryView == 0) {
+        private fun viewDeliveryType(view: Int, index: Int) {
+            if (index == 0) {
                 binding.deliveryOption1.setBackgroundResource(view)
             } else {
                 binding.deliveryOption2.setBackgroundResource(view)
