@@ -10,11 +10,14 @@ import com.ggjg.presentation.databinding.ToastGgjgBinding
 import com.ggjg.presentation.utils.extension.toDp
 
 class GGJGToast {
-    fun createToast(context: Context, message: String): Toast {
+    fun createToast(context: Context, message: String, isSuccess: Boolean): Toast {
         val inflater = LayoutInflater.from(context)
         val binding = ToastGgjgBinding.inflate(inflater)
-        binding.toastImg.load(R.drawable.ic_toast_fail)
-        binding.toastTxt.text = message
+
+        with(binding) {
+            toastImg.load(if (isSuccess) R.drawable.ic_toast_success else R.drawable.ic_toast_fail)
+            toastTxt.text = message
+        }
 
         return Toast(context).apply {
             setGravity(Gravity.TOP or Gravity.CENTER, 0, 40.toDp())
