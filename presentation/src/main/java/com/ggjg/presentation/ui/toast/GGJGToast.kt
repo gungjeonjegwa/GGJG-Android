@@ -9,7 +9,7 @@ import com.ggjg.presentation.R
 import com.ggjg.presentation.databinding.ToastGgjgBinding
 import com.ggjg.presentation.utils.extension.toDp
 
-class GGJGToast {
+object GGJGToast {
     fun createToast(context: Context, message: String, isSuccess: Boolean): Toast {
         val inflater = LayoutInflater.from(context)
         val binding = ToastGgjgBinding.inflate(inflater)
