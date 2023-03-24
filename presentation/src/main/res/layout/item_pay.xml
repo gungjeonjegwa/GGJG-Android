@@ -12,6 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/background"
         android:paddingTop="20dp">
 
         <androidx.constraintlayout.widget.Guideline
@@ -116,11 +117,11 @@
 
         <TextView
             android:id="@+id/couponTxt"
+            style="@style/Regular12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:textColor="@color/gray"
-            style="@style/Regular12"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/selectCouponBtn"
             app:layout_constraintEnd_toStartOf="@id/cancelCouponBtn"
@@ -137,8 +138,8 @@
             android:paddingHorizontal="12.5dp"
             android:paddingVertical="6.5dp"
             android:text="@string/cancel"
-            android:visibility="gone"
             android:textColor="@color/very_dark_gray"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/endLine"
             app:layout_constraintTop_toBottomOf="@id/deliveryInfoTxt" />

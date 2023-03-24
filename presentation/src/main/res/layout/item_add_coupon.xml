@@ -9,7 +9,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="26dp">
+        android:paddingBottom="26dp"
+        android:background="@color/background">
 
         <TextView
             android:id="@+id/couponTxt"
