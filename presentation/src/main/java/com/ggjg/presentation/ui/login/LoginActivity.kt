@@ -10,6 +10,7 @@ import com.ggjg.presentation.R
 import com.ggjg.presentation.databinding.ActivityLoginBinding
 import com.ggjg.presentation.ui.base.BaseActivity
 import com.ggjg.presentation.ui.register.RegisterActivity
+import com.ggjg.presentation.ui.toast.GGJGToast
 import com.ggjg.presentation.utils.extension.*
 import com.ggjg.presentation.utils.keyboardHide
 import com.ggjg.presentation.utils.keyboardShow
@@ -34,6 +35,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
     private fun handleEvent(event: LoginViewModel.Event) = when (event) {
         is LoginViewModel.Event.Success -> {
+            GGJGToast.createToast(this, "로그인 성공", true).show()
             setResult(1)
             finish()
         }
@@ -49,6 +51,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             )
         }
         else -> {
+            GGJGToast.createToast(this, "로그인 도중 오류가 발생했습니다.", false).show()
         }
     }
 
@@ -103,11 +106,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                 startActivity(Intent(this, RegisterActivity::class.java))
             }
             R.id.findIdBtn -> {
-                Toast.makeText(this, "지금은 지원되지 않는 기능입니다.", Toast.LENGTH_SHORT).show()
+                GGJGToast.createToast(this, "지금은 지원되지 않는 기능입니다.", false).show()
 //                startActivity(Intent(this, FindIdActivity::class.java))
             }
             R.id.findPwBtn -> {
-                Toast.makeText(this, "지금은 지원되지 않는 기능입니다.", Toast.LENGTH_SHORT).show()
+                GGJGToast.createToast(this, "지금은 지원되지 않는 기능입니다.", false).show()
 //                startActivity(Intent(this, FindPwActivity::class.java))
             }
             R.id.loginBtn -> {
