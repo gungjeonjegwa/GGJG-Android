@@ -2,7 +2,6 @@ package com.ggjg.presentation.ui.coupon
 
 import android.view.View
 import android.widget.ScrollView
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,6 +10,7 @@ import com.ggjg.presentation.R
 import com.ggjg.presentation.adapter.AddCouponAdapter
 import com.ggjg.presentation.databinding.FragmentCouponAddBinding
 import com.ggjg.presentation.ui.base.BaseFragment
+import com.ggjg.presentation.ui.toast.GGJGToast
 import com.ggjg.presentation.utils.extension.repeatOnStart
 import com.ggjg.presentation.utils.extension.setVisible
 import com.ggjg.presentation.utils.keyboardHide
@@ -49,13 +49,12 @@ class AddCouponFragment : BaseFragment<FragmentCouponAddBinding>(R.layout.fragme
         }
         is CouponViewModel.AddEvent.WrongCoupon -> {
             keyboardHide(requireActivity(), listOf())
-            Toast.makeText(context, "${event.errorCnt}개의 쿠폰 번호가 유효하지 않습니다.", Toast.LENGTH_SHORT)
-                .show()
+            GGJGToast.createToast(requireContext(), "${event.errorCnt}개의 쿠폰 번호가 유효하지 않습니다.", false)
             requireActivity().findNavController(R.id.mainContainer).popBackStack()
         }
         is CouponViewModel.AddEvent.SuccessCoupon -> {
             keyboardHide(requireActivity(), listOf())
-            Toast.makeText(context, "쿠폰 입력에 성공했습니다.", Toast.LENGTH_SHORT).show()
+            GGJGToast.createToast(requireContext(), "쿠폰 입력에 성공했습니다.", true)
             requireActivity().findNavController(R.id.mainContainer).popBackStack()
         }
     }
