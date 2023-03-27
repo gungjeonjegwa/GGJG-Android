@@ -13,6 +13,7 @@ import com.ggjg.presentation.R
 import com.ggjg.presentation.adapter.PayAdapter
 import com.ggjg.presentation.databinding.FragmentPayBinding
 import com.ggjg.presentation.ui.base.BaseFragment
+import com.ggjg.presentation.ui.toast.GGJGToast
 import com.ggjg.presentation.utils.bootPayCreate
 import com.ggjg.presentation.utils.bootPayPayload
 import com.ggjg.presentation.utils.extension.changeActivatedWithEnabled
@@ -181,18 +182,19 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
                 }
             }
             R.id.payBtn -> {
-                val title = if (PayViewModel.shoppingList.size == 1) {
-                    PayViewModel.shoppingList[0].title
-                } else {
-                    "${PayViewModel.shoppingList[0].title} 외 ${PayViewModel.shoppingList.size - 1}개"
-                }
-                bootPayCreate(
-                    requireActivity().supportFragmentManager,
-                    requireContext(),
-                    bootPayPayload(title, totalMoney.toDouble())
-                ) {
-                    payViewModel.buyBread()
-                }
+                GGJGToast.createToast(requireContext(), "현재 지원되지 않는 기능입니다.", false)
+//                val title = if (PayViewModel.shoppingList.size == 1) {
+//                    PayViewModel.shoppingList[0].title
+//                } else {
+//                    "${PayViewModel.shoppingList[0].title} 외 ${PayViewModel.shoppingList.size - 1}개"
+//                }
+//                bootPayCreate(
+//                    requireActivity().supportFragmentManager,
+//                    requireContext(),
+//                    bootPayPayload(title, totalMoney.toDouble())
+//                ) {
+//                    payViewModel.buyBread()
+//                }
             }
             R.id.setOrderAddressBtn -> {
                 requireActivity().findNavController(R.id.mainContainer)
