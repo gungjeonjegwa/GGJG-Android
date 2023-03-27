@@ -4,7 +4,6 @@ import android.animation.Animator
 import android.content.Intent
 import android.os.Handler
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -14,6 +13,7 @@ import com.ggjg.presentation.adapter.StampAdapter
 import com.ggjg.presentation.databinding.FragmentMyPageBinding
 import com.ggjg.presentation.ui.base.BaseFragment
 import com.ggjg.presentation.ui.login.LoginActivity
+import com.ggjg.presentation.ui.toast.GGJGToast
 import com.ggjg.presentation.utils.extension.repeatOnStart
 import com.ggjg.presentation.utils.extension.setVisible
 import com.ggjg.presentation.viewmodel.MainViewModel
@@ -122,7 +122,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
                     .navigate(R.id.action_myPageFragment_to_orderFragment)
             }
             R.id.deleteAuthBtn -> {
-                Toast.makeText(context, "지금은 지원되지 않는 기능입니다.", Toast.LENGTH_SHORT).show()
+                GGJGToast.createToast(requireContext(), "지금은 지원되지 않는 기능입니다.", false)
             }
         }
     }

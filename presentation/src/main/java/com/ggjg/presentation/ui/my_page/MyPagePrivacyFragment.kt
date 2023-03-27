@@ -3,7 +3,6 @@ package com.ggjg.presentation.ui.my_page
 import android.content.Context
 import android.content.Intent
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.ggjg.library.event.ErrorEvent
@@ -12,6 +11,7 @@ import com.ggjg.presentation.databinding.FragmentMyPagePrivacyBinding
 import com.ggjg.presentation.ui.agree_notice.AgreementActivity
 import com.ggjg.presentation.ui.agree_notice.InformationUseNoticeActivity
 import com.ggjg.presentation.ui.base.BaseFragment
+import com.ggjg.presentation.ui.toast.GGJGToast
 import com.ggjg.presentation.utils.extension.repeatOnStart
 import com.ggjg.presentation.utils.extension.setVisible
 import com.ggjg.presentation.viewmodel.*
@@ -95,7 +95,7 @@ class MyPagePrivacyFragment :
                 requireActivity().findNavController(R.id.mainContainer).popBackStack()
             }
             R.id.editBtn -> {
-                Toast.makeText(context, "지금은 지원되지 않는 기능입니다.", Toast.LENGTH_SHORT).show()
+                GGJGToast.createToast(requireContext(), "지금은 지원되지 않는 기능입니다.", false)
 //                requireActivity().findNavController(R.id.mainContainer)
 //                    .navigate(R.id.action_myPagePrivacyFragment_to_myPageEditFragment)
             }
