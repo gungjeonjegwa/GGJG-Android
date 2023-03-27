@@ -2,6 +2,7 @@ package com.ggjg.presentation.ui.register
 
 import android.view.View
 import androidx.fragment.app.activityViewModels
+import com.ggjg.library.event.ErrorEvent
 import com.ggjg.presentation.R
 import com.ggjg.presentation.databinding.FragmentRegisterFirstBinding
 import com.ggjg.presentation.ui.base.BaseFragment
@@ -9,7 +10,6 @@ import com.ggjg.presentation.utils.extension.*
 import com.ggjg.presentation.utils.keyboardHide
 import com.ggjg.presentation.utils.keyboardShow
 import com.ggjg.presentation.viewmodel.RegisterViewModel
-import event.ErrorEvent
 
 class RegisterFirstFragment :
     BaseFragment<FragmentRegisterFirstBinding>(R.layout.fragment_register_first) {

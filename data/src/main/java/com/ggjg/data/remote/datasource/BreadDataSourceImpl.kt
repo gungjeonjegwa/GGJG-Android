@@ -6,7 +6,7 @@ import com.ggjg.data.remote.response.bread.BreadResponse
 import com.ggjg.data.remote.response.bread.DetailBreadResponse
 import com.ggjg.data.remote.response.bread.SearchResponse
 import com.ggjg.data.remote.api.BreadAPI
-import handler.GGJGApiCall
+import com.ggjg.library.handler.GGJGApiCall
 import javax.inject.Inject
 
 class BreadDataSourceImpl @Inject constructor(

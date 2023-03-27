@@ -5,6 +5,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ggjg.domain.model.AddressModel
+import com.ggjg.library.event.ErrorEvent
 import com.ggjg.presentation.R
 import com.ggjg.presentation.adapter.AddressAdapter
 import com.ggjg.presentation.databinding.FragmentAddressChangeBinding
@@ -13,7 +14,6 @@ import com.ggjg.presentation.utils.extension.repeatOnStart
 import com.ggjg.presentation.utils.extension.setVisible
 import com.ggjg.presentation.viewmodel.AddressViewModel
 import com.ggjg.presentation.viewmodel.PayViewModel
-import event.ErrorEvent
 
 class ChangeAddressFragment :
     BaseFragment<FragmentAddressChangeBinding>(R.layout.fragment_address_change) {

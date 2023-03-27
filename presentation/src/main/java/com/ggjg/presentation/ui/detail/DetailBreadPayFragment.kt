@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ggjg.domain.entity.bread.DetailBreadEntity
 import com.ggjg.domain.param.basket.MakeBasketParam
 import com.ggjg.domain.param.basket.toMyBasketEntity
+import com.ggjg.library.event.ErrorEvent
 import com.ggjg.presentation.R
 import com.ggjg.presentation.adapter.AgeOptionAdapter
 import com.ggjg.presentation.adapter.DetailBreadPayAdapter
@@ -21,7 +22,6 @@ import com.ggjg.presentation.utils.extension.setVisible
 import com.ggjg.presentation.viewmodel.PayDialogViewModel
 import com.ggjg.presentation.viewmodel.PayViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import event.ErrorEvent
 import java.text.DecimalFormat
 
 class DetailBreadPayFragment : BottomSheetDialogFragment() {

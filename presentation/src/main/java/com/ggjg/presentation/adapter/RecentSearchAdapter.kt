@@ -20,13 +20,11 @@ class RecentSearchAdapter :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: RecentSearchEntity) = binding.apply {
             recentSearch = item
-            if (listener != null) {
-                deleteRecentSearch.setOnClickListener {
-                    listener.delete(item)
-                }
-                recentSearchTxt.setOnClickListener {
-                    listener.search(item)
-                }
+            deleteRecentSearch.setOnClickListener {
+                listener.delete(item)
+            }
+            recentSearchTxt.setOnClickListener {
+                listener.search(item)
             }
         }
     }

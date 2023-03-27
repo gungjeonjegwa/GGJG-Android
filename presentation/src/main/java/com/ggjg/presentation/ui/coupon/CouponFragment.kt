@@ -5,6 +5,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ggjg.domain.entity.coupon.CouponEntity
+import com.ggjg.library.event.ErrorEvent
 import com.ggjg.presentation.R
 import com.ggjg.presentation.adapter.CouponAdapter
 import com.ggjg.presentation.databinding.FragmentCouponBinding
@@ -12,7 +13,6 @@ import com.ggjg.presentation.ui.base.BaseFragment
 import com.ggjg.presentation.utils.extension.repeatOnStart
 import com.ggjg.presentation.viewmodel.CouponViewModel
 import com.ggjg.presentation.viewmodel.MainViewModel
-import event.ErrorEvent
 
 class CouponFragment : BaseFragment<FragmentCouponBinding>(R.layout.fragment_coupon) {
     private val mainViewModel by activityViewModels<MainViewModel>()

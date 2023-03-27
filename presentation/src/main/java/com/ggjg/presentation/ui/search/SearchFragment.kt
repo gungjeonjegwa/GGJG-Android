@@ -7,6 +7,7 @@ import android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import com.ggjg.library.event.ErrorEvent
 import com.ggjg.presentation.R
 import com.ggjg.presentation.databinding.FragmentSearchBinding
 import com.ggjg.presentation.ui.base.BaseFragment
@@ -17,7 +18,6 @@ import com.ggjg.presentation.utils.keyboardHide
 import com.ggjg.presentation.utils.keyboardShow
 import com.ggjg.presentation.viewmodel.SearchViewModel
 import com.jakewharton.rxbinding3.widget.textChanges
-import event.ErrorEvent
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 

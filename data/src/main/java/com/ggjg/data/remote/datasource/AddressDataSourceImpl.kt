@@ -2,7 +2,7 @@ package com.ggjg.data.remote.datasource
 
 import com.ggjg.data.remote.api.AddressAPI
 import com.ggjg.data.remote.response.address.AddressResponse
-import handler.GGJGApiCall
+import com.ggjg.library.handler.GGJGApiCall
 import javax.inject.Inject
 
 class AddressDataSourceImpl @Inject constructor(

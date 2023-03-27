@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager.widget.ViewPager
 import com.ggjg.domain.model.BreadModel
+import com.ggjg.library.event.ErrorEvent
 import com.ggjg.presentation.R
 import com.ggjg.presentation.adapter.BannerAdapter
 import com.ggjg.presentation.adapter.BreadListAdapter
@@ -24,7 +25,6 @@ import com.ggjg.presentation.utils.extension.setVisible
 import com.ggjg.presentation.viewmodel.DetailViewModel
 import com.ggjg.presentation.viewmodel.HomeViewModel
 import com.ggjg.presentation.viewmodel.MainViewModel
-import event.ErrorEvent
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
     SwipeRefreshLayout.OnRefreshListener {

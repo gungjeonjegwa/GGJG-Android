@@ -8,6 +8,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ggjg.domain.entity.basket.MyBasketEntity
 import com.ggjg.domain.model.AddressModel
+import com.ggjg.library.event.ErrorEvent
 import com.ggjg.presentation.R
 import com.ggjg.presentation.adapter.PayAdapter
 import com.ggjg.presentation.databinding.FragmentPayBinding
@@ -20,7 +21,6 @@ import com.ggjg.presentation.utils.extension.setVisible
 import com.ggjg.presentation.utils.extension.toTotalMoney
 import com.ggjg.presentation.viewmodel.AddressViewModel
 import com.ggjg.presentation.viewmodel.PayViewModel
-import event.ErrorEvent
 import java.text.DecimalFormat
 import kotlin.math.roundToInt
 

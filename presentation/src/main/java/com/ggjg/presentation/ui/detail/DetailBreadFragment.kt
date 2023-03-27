@@ -10,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
+import com.ggjg.library.event.ErrorEvent
 import com.ggjg.presentation.R
 import com.ggjg.presentation.adapter.DetailBannerAdapter
 import com.ggjg.presentation.adapter.DetailBreadInfoImgAdapter
@@ -25,7 +26,6 @@ import com.ggjg.presentation.utils.extension.setVisible
 import com.ggjg.presentation.viewmodel.DetailViewModel
 import com.ggjg.presentation.viewmodel.MainViewModel
 import com.ggjg.presentation.viewmodel.PayDialogViewModel
-import event.ErrorEvent
 
 class DetailBreadFragment :
     BaseFragment<FragmentDetailBreadBinding>(R.layout.fragment_detail_bread) {
@@ -64,7 +64,7 @@ class DetailBreadFragment :
     private fun handleEvent(event: DetailViewModel.Event) = when (event) {
         is DetailViewModel.Event.DetailBread -> {
             PayDialogViewModel.breadData = event.detailBread
-            binding.apply {
+            with(binding) {
                 breadData = event.detailBread
                 warningTxt.text =
                     if (event.detailBread.deliveryNotice == null) "주의사항이 없습니다" else event.detailBread.deliveryNotice

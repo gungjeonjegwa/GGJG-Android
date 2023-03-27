@@ -5,6 +5,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ggjg.domain.model.BreadModel
+import com.ggjg.library.event.ErrorEvent
 import com.ggjg.presentation.R
 import com.ggjg.presentation.adapter.BreadListAdapter
 import com.ggjg.presentation.adapter.decorator.BreadListDecorator
@@ -14,7 +15,6 @@ import com.ggjg.presentation.utils.extension.repeatOnStart
 import com.ggjg.presentation.viewmodel.DetailViewModel
 import com.ggjg.presentation.viewmodel.MainViewModel
 import com.ggjg.presentation.viewmodel.SearchViewModel
-import event.ErrorEvent
 
 class SearchResultFragment :
     BaseFragment<FragmentSearchResultBinding>(R.layout.fragment_search_result) {

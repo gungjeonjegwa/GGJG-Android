@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import com.ggjg.library.event.ErrorEvent
 import com.ggjg.presentation.R
 import com.ggjg.presentation.databinding.FragmentMyPagePrivacyBinding
 import com.ggjg.presentation.ui.agree_notice.AgreementActivity
@@ -14,7 +15,6 @@ import com.ggjg.presentation.ui.base.BaseFragment
 import com.ggjg.presentation.utils.extension.repeatOnStart
 import com.ggjg.presentation.utils.extension.setVisible
 import com.ggjg.presentation.viewmodel.*
-import event.ErrorEvent
 
 class MyPagePrivacyFragment :
     BaseFragment<FragmentMyPagePrivacyBinding>(R.layout.fragment_my_page_privacy) {

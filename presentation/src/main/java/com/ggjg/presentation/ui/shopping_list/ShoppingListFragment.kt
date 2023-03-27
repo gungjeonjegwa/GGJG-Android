@@ -6,6 +6,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ggjg.domain.entity.basket.MyBasketEntity
+import com.ggjg.library.event.ErrorEvent
 import com.ggjg.presentation.R
 import com.ggjg.presentation.adapter.ShoppingListAdapter
 import com.ggjg.presentation.databinding.FragmentShoppingListBinding
@@ -17,7 +18,6 @@ import com.ggjg.presentation.utils.extension.setVisible
 import com.ggjg.presentation.viewmodel.MainViewModel
 import com.ggjg.presentation.viewmodel.PayViewModel
 import com.ggjg.presentation.viewmodel.ShoppingListViewModel
-import event.ErrorEvent
 import java.text.DecimalFormat
 
 class ShoppingListFragment :

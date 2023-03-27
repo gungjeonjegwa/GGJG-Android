@@ -7,11 +7,11 @@ import com.ggjg.domain.entity.order.MyOrderListEntity
 import com.ggjg.domain.usecase.auth.SaveTokenUseCase
 import com.ggjg.domain.usecase.order.DetailOrderUseCase
 import com.ggjg.domain.usecase.order.MyOrderListUseCase
-import com.ggjg.presentation.utils.viewmodel.MutableEventFlow
-import com.ggjg.presentation.utils.viewmodel.asEventFlow
+import com.ggjg.library.event.ErrorEvent
+import com.ggjg.library.handler.errorHandling
+import com.ggjg.library.viewmodel.MutableEventFlow
+import com.ggjg.library.viewmodel.asEventFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
-import event.ErrorEvent
-import handler.errorHandling
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

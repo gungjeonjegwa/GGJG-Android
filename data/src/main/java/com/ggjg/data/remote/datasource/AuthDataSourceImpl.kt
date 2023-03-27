@@ -8,7 +8,7 @@ import com.ggjg.data.remote.response.auth.CheckResponse
 import com.ggjg.data.remote.response.auth.LoginResponse
 import com.ggjg.data.remote.response.auth.ProfilePrivateResponse
 import com.ggjg.data.remote.response.auth.ProfileResponse
-import handler.GGJGApiCall
+import com.ggjg.library.handler.GGJGApiCall
 import javax.inject.Inject
 
 class AuthDataSourceImpl @Inject constructor(

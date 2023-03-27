@@ -4,6 +4,7 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.ggjg.library.event.ErrorEvent
 import com.ggjg.presentation.R
 import com.ggjg.presentation.databinding.ActivityMainBinding
 import com.ggjg.presentation.ui.base.BaseActivity
@@ -11,7 +12,6 @@ import com.ggjg.presentation.utils.extension.repeatOnStart
 import com.ggjg.presentation.viewmodel.MainViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
-import event.ErrorEvent
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {

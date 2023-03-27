@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.ggjg.library.event.ErrorEvent
 import com.ggjg.presentation.R
 import com.ggjg.presentation.adapter.StampAdapter
 import com.ggjg.presentation.databinding.FragmentMyPageBinding
@@ -17,7 +18,6 @@ import com.ggjg.presentation.utils.extension.repeatOnStart
 import com.ggjg.presentation.utils.extension.setVisible
 import com.ggjg.presentation.viewmodel.MainViewModel
 import com.ggjg.presentation.viewmodel.MyPageViewModel
-import event.ErrorEvent
 
 class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
     private val profileViewModel by activityViewModels<MyPageViewModel>()

@@ -5,6 +5,7 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
 import androidx.activity.viewModels
+import com.ggjg.library.event.ErrorEvent
 import com.ggjg.presentation.R
 import com.ggjg.presentation.databinding.ActivityLoginBinding
 import com.ggjg.presentation.ui.base.BaseActivity
@@ -15,7 +16,6 @@ import com.ggjg.presentation.utils.keyboardHide
 import com.ggjg.presentation.utils.keyboardShow
 import com.ggjg.presentation.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import event.ErrorEvent
 
 @AndroidEntryPoint
 class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {

@@ -7,12 +7,12 @@ import com.ggjg.domain.entity.bread.SearchEntity
 import com.ggjg.domain.model.BreadModel
 import com.ggjg.domain.usecase.auth.SaveTokenUseCase
 import com.ggjg.domain.usecase.bread.*
+import com.ggjg.library.event.ErrorEvent
+import com.ggjg.library.handler.errorHandling
+import com.ggjg.library.viewmodel.MutableEventFlow
+import com.ggjg.library.viewmodel.asEventFlow
 import com.ggjg.presentation.adapter.RecentSearchAdapter
-import com.ggjg.presentation.utils.viewmodel.MutableEventFlow
-import com.ggjg.presentation.utils.viewmodel.asEventFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
-import event.ErrorEvent
-import handler.errorHandling
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

@@ -3,8 +3,8 @@ package com.ggjg.data.interceptor
 import com.ggjg.data.BuildConfig
 import com.ggjg.data.local.storage.AuthStorage
 import com.ggjg.data.remote.response.auth.LoginResponse
+import com.ggjg.library.exceion.NeedLoginException
 import com.google.gson.Gson
-import exceion.NeedLoginException
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody

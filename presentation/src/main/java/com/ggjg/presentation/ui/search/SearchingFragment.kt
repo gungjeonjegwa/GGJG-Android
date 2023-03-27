@@ -3,6 +3,7 @@ package com.ggjg.presentation.ui.search
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ggjg.domain.entity.bread.SearchEntity
+import com.ggjg.library.event.ErrorEvent
 import com.ggjg.presentation.R
 import com.ggjg.presentation.adapter.SearchAdapter
 import com.ggjg.presentation.databinding.FragmentSearchingBinding
@@ -10,7 +11,6 @@ import com.ggjg.presentation.ui.base.BaseFragment
 import com.ggjg.presentation.utils.extension.repeatOnStart
 import com.ggjg.presentation.viewmodel.MainViewModel
 import com.ggjg.presentation.viewmodel.SearchViewModel
-import event.ErrorEvent
 
 class SearchingFragment : BaseFragment<FragmentSearchingBinding>(R.layout.fragment_searching) {
     private val mainViewModel by activityViewModels<MainViewModel>()

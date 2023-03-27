@@ -6,6 +6,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ggjg.domain.model.BreadModel
+import com.ggjg.library.event.ErrorEvent
 import com.ggjg.presentation.R
 import com.ggjg.presentation.adapter.BreadListAdapter
 import com.ggjg.presentation.adapter.decorator.BreadListDecorator
@@ -18,7 +19,6 @@ import com.ggjg.presentation.utils.extension.setVisible
 import com.ggjg.presentation.viewmodel.DetailViewModel
 import com.ggjg.presentation.viewmodel.FavoriteViewModel
 import com.ggjg.presentation.viewmodel.MainViewModel
-import event.ErrorEvent
 
 class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment_favorite) {
     private val favoriteViewModel by activityViewModels<FavoriteViewModel>()

@@ -6,7 +6,7 @@ import com.ggjg.data.remote.response.order.DetailOrderResponse
 import com.ggjg.data.remote.response.order.InitOrderInfoResponse
 import com.ggjg.data.remote.response.order.MyOrderListResponse
 import com.ggjg.data.remote.api.OrderAPI
-import handler.GGJGApiCall
+import com.ggjg.library.handler.GGJGApiCall
 import javax.inject.Inject
 
 class OrderDataSourceImpl @Inject constructor(

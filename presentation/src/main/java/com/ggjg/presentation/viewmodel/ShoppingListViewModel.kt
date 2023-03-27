@@ -8,11 +8,11 @@ import com.ggjg.domain.usecase.basket.DeleteBasketUseCase
 import com.ggjg.domain.usecase.basket.MinusBasketUseCase
 import com.ggjg.domain.usecase.basket.MyBasketUseCase
 import com.ggjg.domain.usecase.basket.PlusBasketUseCase
-import com.ggjg.presentation.utils.viewmodel.MutableEventFlow
-import com.ggjg.presentation.utils.viewmodel.asEventFlow
+import com.ggjg.library.event.ErrorEvent
+import com.ggjg.library.handler.errorHandling
+import com.ggjg.library.viewmodel.MutableEventFlow
+import com.ggjg.library.viewmodel.asEventFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
-import event.ErrorEvent
-import handler.errorHandling
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

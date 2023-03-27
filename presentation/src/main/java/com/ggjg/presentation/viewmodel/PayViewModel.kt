@@ -14,12 +14,12 @@ import com.ggjg.domain.usecase.coupon.AvailableCouponUseCase
 import com.ggjg.domain.usecase.order.BuyBreadUseCase
 import com.ggjg.domain.usecase.order.CreateOrderUseCase
 import com.ggjg.domain.usecase.order.InitOrderInfoUseCase
+import com.ggjg.library.event.ErrorEvent
+import com.ggjg.library.handler.errorHandling
+import com.ggjg.library.viewmodel.MutableEventFlow
+import com.ggjg.library.viewmodel.asEventFlow
 import com.ggjg.presentation.R
-import com.ggjg.presentation.utils.viewmodel.MutableEventFlow
-import com.ggjg.presentation.utils.viewmodel.asEventFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
-import event.ErrorEvent
-import handler.errorHandling
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
