@@ -48,6 +48,8 @@ dependencies {
     implementation(Dependency.Retrofit.OKHTTP)
     implementation(Dependency.Retrofit.OKHTTP_LOGGING_INTERCEPTOR)
 
+    implementation(Dependency.GGJG.UTIL)
+
     testImplementation(Dependency.UnitTest.JUNIT)
     testImplementation(Dependency.UnitTest.MOCKITO)
     testImplementation(Dependency.UnitTest.MOCKITO_INLINE)
