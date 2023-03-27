@@ -2,7 +2,6 @@ package com.ggjg.presentation.ui.order
 
 import android.content.Context
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +11,7 @@ import com.ggjg.presentation.R
 import com.ggjg.presentation.adapter.OrderAdapter
 import com.ggjg.presentation.databinding.FragmentOrderBinding
 import com.ggjg.presentation.ui.base.BaseFragment
+import com.ggjg.presentation.ui.toast.GGJGToast
 import com.ggjg.presentation.utils.extension.repeatOnStart
 import com.ggjg.presentation.viewmodel.MainViewModel
 import com.ggjg.presentation.viewmodel.OrderViewModel
@@ -68,19 +68,19 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(R.layout.fragment_order
                 }
 
                 override fun cancel(item: MyOrderListEntity) {
-                    Toast.makeText(context, "지금은 지원되지 않는 기능입니다.", Toast.LENGTH_SHORT).show()
+                    GGJGToast.createToast(requireContext(), "지금은 지원되지 않는 기능입니다.", false)
 //                    requireActivity().findNavController(R.id.mainContainer)
 //                        .navigate(R.id.action_orderFragment_to_orderCancelFragment)
                 }
 
                 override fun recall(item: MyOrderListEntity) {
-                    Toast.makeText(context, "지금은 지원되지 않는 기능입니다.", Toast.LENGTH_SHORT).show()
+                    GGJGToast.createToast(requireContext(), "지금은 지원되지 않는 기능입니다.", false)
 //                    requireActivity().findNavController(R.id.mainContainer)
 //                        .navigate(R.id.action_orderFragment_to_orderRecallFragment)
                 }
 
                 override fun review(item: MyOrderListEntity) {
-                    Toast.makeText(context, "지금은 지원되지 않는 기능입니다.", Toast.LENGTH_SHORT).show()
+                    GGJGToast.createToast(requireContext(), "지금은 지원되지 않는 기능입니다.", false)
 //                    requireActivity().findNavController(R.id.mainContainer)
 //                        .navigate(R.id.action_orderFragment_to_orderReviewFragment)
                 }
