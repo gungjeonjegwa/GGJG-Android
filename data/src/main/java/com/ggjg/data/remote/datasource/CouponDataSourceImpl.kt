@@ -2,7 +2,7 @@ package com.ggjg.data.remote.datasource
 
 import com.ggjg.data.remote.api.CouponAPI
 import com.ggjg.data.remote.response.coupon.CouponResponse
-import com.ggjg.data.utils.GGJGApiCall
+import handler.GGJGApiCall
 import javax.inject.Inject
 
 class CouponDataSourceImpl @Inject constructor(

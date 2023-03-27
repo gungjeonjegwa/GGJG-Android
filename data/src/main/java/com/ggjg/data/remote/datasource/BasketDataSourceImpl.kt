@@ -3,7 +3,7 @@ package com.ggjg.data.remote.datasource
 import com.ggjg.data.remote.request.basket.MakeBasketRequest
 import com.ggjg.data.remote.response.basket.MyBasketResponse
 import com.ggjg.data.remote.api.BasketAPI
-import com.ggjg.data.utils.GGJGApiCall
+import handler.GGJGApiCall
 import javax.inject.Inject
 
 class BasketDataSourceImpl @Inject constructor(
