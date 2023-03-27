@@ -49,5 +49,5 @@ object Version {
 
     const val INJECT = "1"
 
-    const val GGJG_UTIL = "1.0.0"
+    const val GGJG_UTIL = "1.0.1"
 }
