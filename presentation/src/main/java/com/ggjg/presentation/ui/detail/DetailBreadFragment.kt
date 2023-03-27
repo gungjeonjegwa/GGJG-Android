@@ -5,7 +5,6 @@ import android.graphics.Paint
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +18,7 @@ import com.ggjg.presentation.ui.agree_notice.ChangeAndRecallActivity
 import com.ggjg.presentation.ui.agree_notice.DeliveryAndPayActivity
 import com.ggjg.presentation.ui.base.BaseFragment
 import com.ggjg.presentation.ui.login.LoginActivity
+import com.ggjg.presentation.ui.toast.GGJGToast
 import com.ggjg.presentation.utils.extension.changeActivatedWithEnabled
 import com.ggjg.presentation.utils.extension.heartChange
 import com.ggjg.presentation.utils.extension.repeatOnStart
@@ -252,7 +252,7 @@ class DetailBreadFragment :
                 }
             }
             R.id.moveQaBtn -> {
-                Toast.makeText(context, "지금은 지원되지 않는 기능입니다.", Toast.LENGTH_SHORT).show()
+                GGJGToast.createToast(requireContext(), "지금은 지원되지 않는 기능입니다.", false)
 //                requireActivity().findNavController(R.id.mainContainer)
 //                    .navigate(R.id.action_detailBreadFragment_to_QAFragment)
             }

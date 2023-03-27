@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +16,7 @@ import com.ggjg.presentation.adapter.AgeOptionAdapter
 import com.ggjg.presentation.adapter.DetailBreadPayAdapter
 import com.ggjg.presentation.adapter.SizeOptionAdapter
 import com.ggjg.presentation.databinding.FragmentDetailBreadPayBinding
+import com.ggjg.presentation.ui.toast.GGJGToast
 import com.ggjg.presentation.utils.extension.repeatOnStart
 import com.ggjg.presentation.utils.extension.setVisible
 import com.ggjg.presentation.viewmodel.PayDialogViewModel
@@ -61,8 +61,7 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
         is PayDialogViewModel.Event.SuccessMoveShoppingList -> {
             dialog?.dismiss()
             PayDialogViewModel.breadList = listOf()
-            Toast.makeText(context, getString(R.string.add_shopping_list), Toast.LENGTH_SHORT)
-                .show()
+            GGJGToast.createToast(requireContext(), getString(R.string.add_shopping_list), true)
         }
     }
 
@@ -70,8 +69,11 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
         is ErrorEvent.ConflictError -> {
             dialog?.dismiss()
             PayDialogViewModel.breadList = listOf()
-            Toast.makeText(context, getString(R.string.already_shopping_list), Toast.LENGTH_SHORT)
-                .show()
+            GGJGToast.createToast(
+                requireContext(),
+                getString(R.string.already_shopping_list),
+                false
+            )
         }
         else -> {
 
@@ -136,11 +138,11 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
                                     binding.sizeOptionBtn.setTextColor(requireContext().getColor(R.color.black))
                                     PayDialogViewModel.size = item
                                 } else {
-                                    Toast.makeText(
-                                        context,
+                                    GGJGToast.createToast(
+                                        requireContext(),
                                         getString(R.string.select_already_option),
-                                        Toast.LENGTH_SHORT
-                                    ).show()
+                                        false
+                                    )
                                     sizeOptionBtn.text = getString(R.string.select_option)
                                     sizeOptionBtn.setTextColor(requireContext().getColor(R.color.dark_gray))
                                 }
@@ -227,11 +229,11 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
             }
             R.id.ageOptionBtn -> {
                 if (PayDialogViewModel.size == null) {
-                    Toast.makeText(
-                        context,
+                    GGJGToast.createToast(
+                        requireContext(),
                         getString(R.string.select_first_option),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                        false
+                    )
                 } else {
                     ageOptionClick(false)
                 }
