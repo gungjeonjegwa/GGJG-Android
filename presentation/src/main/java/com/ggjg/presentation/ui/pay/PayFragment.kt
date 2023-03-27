@@ -2,7 +2,6 @@ package com.ggjg.presentation.ui.pay
 
 import android.content.Context
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,8 +13,6 @@ import com.ggjg.presentation.adapter.PayAdapter
 import com.ggjg.presentation.databinding.FragmentPayBinding
 import com.ggjg.presentation.ui.base.BaseFragment
 import com.ggjg.presentation.ui.toast.GGJGToast
-import com.ggjg.presentation.utils.bootPayCreate
-import com.ggjg.presentation.utils.bootPayPayload
 import com.ggjg.presentation.utils.extension.changeActivatedWithEnabled
 import com.ggjg.presentation.utils.extension.repeatOnStart
 import com.ggjg.presentation.utils.extension.setVisible
@@ -77,7 +74,7 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
             binding.setOrderAddressBtn.setVisible()
         }
         is PayViewModel.Event.SuccessPay -> {
-            Toast.makeText(context, "결제가 완료되었습니다.", Toast.LENGTH_SHORT).show()
+            GGJGToast.createToast(requireContext(), "결제가 완료되었습니다.", true)
             requireActivity().findNavController(R.id.mainContainer).popBackStack()
         }
     }
