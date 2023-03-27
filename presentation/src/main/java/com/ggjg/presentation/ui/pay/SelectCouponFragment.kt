@@ -10,8 +10,8 @@ import com.ggjg.presentation.adapter.CouponAdapter
 import com.ggjg.presentation.databinding.FragmentSelectCouponBinding
 import com.ggjg.presentation.ui.base.BaseFragment
 import com.ggjg.presentation.utils.extension.repeatOnStart
-import com.ggjg.presentation.utils.viewmodel.ErrorEvent
 import com.ggjg.presentation.viewmodel.PayViewModel
+import event.ErrorEvent
 
 class SelectCouponFragment :
     BaseFragment<FragmentSelectCouponBinding>(R.layout.fragment_select_coupon) {

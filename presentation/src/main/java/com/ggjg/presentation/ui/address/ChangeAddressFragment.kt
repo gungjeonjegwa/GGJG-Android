@@ -11,9 +11,9 @@ import com.ggjg.presentation.databinding.FragmentAddressChangeBinding
 import com.ggjg.presentation.ui.base.BaseFragment
 import com.ggjg.presentation.utils.extension.repeatOnStart
 import com.ggjg.presentation.utils.extension.setVisible
-import com.ggjg.presentation.utils.viewmodel.ErrorEvent
 import com.ggjg.presentation.viewmodel.AddressViewModel
 import com.ggjg.presentation.viewmodel.PayViewModel
+import event.ErrorEvent
 
 class ChangeAddressFragment :
     BaseFragment<FragmentAddressChangeBinding>(R.layout.fragment_address_change) {

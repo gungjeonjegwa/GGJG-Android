@@ -4,11 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ggjg.domain.usecase.auth.IsLoginUseCase
 import com.ggjg.domain.usecase.auth.SaveTokenUseCase
-import com.ggjg.presentation.utils.viewmodel.ErrorEvent
 import com.ggjg.presentation.utils.viewmodel.MutableEventFlow
 import com.ggjg.presentation.utils.viewmodel.asEventFlow
-import com.ggjg.presentation.utils.viewmodel.errorHandling
 import dagger.hilt.android.lifecycle.HiltViewModel
+import event.ErrorEvent
+import handler.errorHandling
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

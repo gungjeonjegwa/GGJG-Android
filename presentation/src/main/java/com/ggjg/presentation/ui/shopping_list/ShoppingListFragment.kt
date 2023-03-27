@@ -14,10 +14,10 @@ import com.ggjg.presentation.ui.login.LoginActivity
 import com.ggjg.presentation.utils.extension.changeActivatedWithEnabled
 import com.ggjg.presentation.utils.extension.repeatOnStart
 import com.ggjg.presentation.utils.extension.setVisible
-import com.ggjg.presentation.utils.viewmodel.ErrorEvent
 import com.ggjg.presentation.viewmodel.MainViewModel
 import com.ggjg.presentation.viewmodel.PayViewModel
 import com.ggjg.presentation.viewmodel.ShoppingListViewModel
+import event.ErrorEvent
 import java.text.DecimalFormat
 
 class ShoppingListFragment :

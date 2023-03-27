@@ -15,9 +15,9 @@ import com.ggjg.presentation.ui.base.BaseFragment
 import com.ggjg.presentation.ui.login.LoginActivity
 import com.ggjg.presentation.utils.extension.repeatOnStart
 import com.ggjg.presentation.utils.extension.setVisible
-import com.ggjg.presentation.utils.viewmodel.ErrorEvent
 import com.ggjg.presentation.viewmodel.MainViewModel
 import com.ggjg.presentation.viewmodel.MyPageViewModel
+import event.ErrorEvent
 
 class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
     private val profileViewModel by activityViewModels<MyPageViewModel>()

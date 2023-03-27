@@ -9,8 +9,8 @@ import com.ggjg.presentation.adapter.OrderDetailAdapter
 import com.ggjg.presentation.databinding.FragmentOrderDetailBinding
 import com.ggjg.presentation.ui.base.BaseFragment
 import com.ggjg.presentation.utils.extension.repeatOnStart
-import com.ggjg.presentation.utils.viewmodel.ErrorEvent
 import com.ggjg.presentation.viewmodel.OrderViewModel
+import event.ErrorEvent
 import java.text.DecimalFormat
 
 class OrderDetailFragment :

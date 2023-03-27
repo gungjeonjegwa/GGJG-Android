@@ -15,10 +15,10 @@ import com.ggjg.presentation.ui.login.LoginActivity
 import com.ggjg.presentation.utils.extension.customTopScroll
 import com.ggjg.presentation.utils.extension.repeatOnStart
 import com.ggjg.presentation.utils.extension.setVisible
-import com.ggjg.presentation.utils.viewmodel.ErrorEvent
 import com.ggjg.presentation.viewmodel.DetailViewModel
 import com.ggjg.presentation.viewmodel.FavoriteViewModel
 import com.ggjg.presentation.viewmodel.MainViewModel
+import event.ErrorEvent
 
 class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment_favorite) {
     private val favoriteViewModel by activityViewModels<FavoriteViewModel>()

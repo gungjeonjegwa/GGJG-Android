@@ -13,8 +13,8 @@ import com.ggjg.presentation.ui.agree_notice.InformationUseNoticeActivity
 import com.ggjg.presentation.ui.base.BaseFragment
 import com.ggjg.presentation.utils.extension.repeatOnStart
 import com.ggjg.presentation.utils.extension.setVisible
-import com.ggjg.presentation.utils.viewmodel.ErrorEvent
 import com.ggjg.presentation.viewmodel.*
+import event.ErrorEvent
 
 class MyPagePrivacyFragment :
     BaseFragment<FragmentMyPagePrivacyBinding>(R.layout.fragment_my_page_privacy) {

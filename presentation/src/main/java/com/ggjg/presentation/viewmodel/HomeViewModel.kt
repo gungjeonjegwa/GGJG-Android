@@ -13,11 +13,11 @@ import com.ggjg.domain.usecase.bread.BannerUseCase
 import com.ggjg.domain.usecase.bread.CategoryBreadUseCase
 import com.ggjg.domain.usecase.bread.LikeBreadUseCase
 import com.ggjg.presentation.R
-import com.ggjg.presentation.utils.viewmodel.ErrorEvent
 import com.ggjg.presentation.utils.viewmodel.MutableEventFlow
 import com.ggjg.presentation.utils.viewmodel.asEventFlow
-import com.ggjg.presentation.utils.viewmodel.errorHandling
 import dagger.hilt.android.lifecycle.HiltViewModel
+import event.ErrorEvent
+import handler.errorHandling
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

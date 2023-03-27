@@ -22,10 +22,10 @@ import com.ggjg.presentation.utils.extension.changeActivatedWithEnabled
 import com.ggjg.presentation.utils.extension.heartChange
 import com.ggjg.presentation.utils.extension.repeatOnStart
 import com.ggjg.presentation.utils.extension.setVisible
-import com.ggjg.presentation.utils.viewmodel.ErrorEvent
 import com.ggjg.presentation.viewmodel.DetailViewModel
 import com.ggjg.presentation.viewmodel.MainViewModel
 import com.ggjg.presentation.viewmodel.PayDialogViewModel
+import event.ErrorEvent
 
 class DetailBreadFragment :
     BaseFragment<FragmentDetailBreadBinding>(R.layout.fragment_detail_bread) {

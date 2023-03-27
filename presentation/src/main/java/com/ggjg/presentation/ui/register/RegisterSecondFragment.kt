@@ -11,8 +11,8 @@ import com.ggjg.presentation.ui.base.BaseFragment
 import com.ggjg.presentation.utils.extension.*
 import com.ggjg.presentation.utils.keyboardHide
 import com.ggjg.presentation.utils.keyboardShow
-import com.ggjg.presentation.utils.viewmodel.ErrorEvent
 import com.ggjg.presentation.viewmodel.RegisterViewModel
+import event.ErrorEvent
 
 class RegisterSecondFragment :
     BaseFragment<FragmentRegisterSecondBinding>(R.layout.fragment_register_second) {

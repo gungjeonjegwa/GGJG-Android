@@ -12,9 +12,9 @@ import com.ggjg.presentation.adapter.OrderAdapter
 import com.ggjg.presentation.databinding.FragmentOrderBinding
 import com.ggjg.presentation.ui.base.BaseFragment
 import com.ggjg.presentation.utils.extension.repeatOnStart
-import com.ggjg.presentation.utils.viewmodel.ErrorEvent
 import com.ggjg.presentation.viewmodel.MainViewModel
 import com.ggjg.presentation.viewmodel.OrderViewModel
+import event.ErrorEvent
 
 class OrderFragment : BaseFragment<FragmentOrderBinding>(R.layout.fragment_order) {
     private val orderViewModel by activityViewModels<OrderViewModel>()

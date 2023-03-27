@@ -6,11 +6,11 @@ import com.ggjg.domain.entity.auth.ProfileEntity
 import com.ggjg.domain.entity.auth.ProfilePrivateEntity
 import com.ggjg.domain.model.AddressModel
 import com.ggjg.domain.usecase.auth.*
-import com.ggjg.presentation.utils.viewmodel.ErrorEvent
 import com.ggjg.presentation.utils.viewmodel.MutableEventFlow
 import com.ggjg.presentation.utils.viewmodel.asEventFlow
-import com.ggjg.presentation.utils.viewmodel.errorHandling
 import dagger.hilt.android.lifecycle.HiltViewModel
+import event.ErrorEvent
+import handler.errorHandling
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

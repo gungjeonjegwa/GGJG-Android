@@ -15,9 +15,9 @@ import com.ggjg.presentation.utils.extension.setOnTextChanged
 import com.ggjg.presentation.utils.extension.setVisible
 import com.ggjg.presentation.utils.keyboardHide
 import com.ggjg.presentation.utils.keyboardShow
-import com.ggjg.presentation.utils.viewmodel.ErrorEvent
 import com.ggjg.presentation.viewmodel.SearchViewModel
 import com.jakewharton.rxbinding3.widget.textChanges
+import event.ErrorEvent
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 

@@ -8,9 +8,9 @@ import com.ggjg.presentation.adapter.SearchAdapter
 import com.ggjg.presentation.databinding.FragmentSearchingBinding
 import com.ggjg.presentation.ui.base.BaseFragment
 import com.ggjg.presentation.utils.extension.repeatOnStart
-import com.ggjg.presentation.utils.viewmodel.ErrorEvent
 import com.ggjg.presentation.viewmodel.MainViewModel
 import com.ggjg.presentation.viewmodel.SearchViewModel
+import event.ErrorEvent
 
 class SearchingFragment : BaseFragment<FragmentSearchingBinding>(R.layout.fragment_searching) {
     private val mainViewModel by activityViewModels<MainViewModel>()

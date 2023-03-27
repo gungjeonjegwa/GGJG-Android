@@ -10,9 +10,9 @@ import com.ggjg.presentation.adapter.CouponAdapter
 import com.ggjg.presentation.databinding.FragmentCouponBinding
 import com.ggjg.presentation.ui.base.BaseFragment
 import com.ggjg.presentation.utils.extension.repeatOnStart
-import com.ggjg.presentation.utils.viewmodel.ErrorEvent
 import com.ggjg.presentation.viewmodel.CouponViewModel
 import com.ggjg.presentation.viewmodel.MainViewModel
+import event.ErrorEvent
 
 class CouponFragment : BaseFragment<FragmentCouponBinding>(R.layout.fragment_coupon) {
     private val mainViewModel by activityViewModels<MainViewModel>()

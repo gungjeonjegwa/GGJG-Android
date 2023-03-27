@@ -7,11 +7,11 @@ import com.ggjg.domain.usecase.auth.EmailCheckUseCase
 import com.ggjg.domain.usecase.auth.IdCheckUseCase
 import com.ggjg.domain.usecase.auth.SaveTokenUseCase
 import com.ggjg.domain.usecase.auth.SignUpUseCase
-import com.ggjg.presentation.utils.viewmodel.ErrorEvent
 import com.ggjg.presentation.utils.viewmodel.MutableEventFlow
 import com.ggjg.presentation.utils.viewmodel.asEventFlow
-import com.ggjg.presentation.utils.viewmodel.errorHandling
 import dagger.hilt.android.lifecycle.HiltViewModel
+import event.ErrorEvent
+import handler.errorHandling
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

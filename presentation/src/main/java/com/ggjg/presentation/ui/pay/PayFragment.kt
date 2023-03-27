@@ -18,9 +18,9 @@ import com.ggjg.presentation.utils.extension.changeActivatedWithEnabled
 import com.ggjg.presentation.utils.extension.repeatOnStart
 import com.ggjg.presentation.utils.extension.setVisible
 import com.ggjg.presentation.utils.extension.toTotalMoney
-import com.ggjg.presentation.utils.viewmodel.ErrorEvent
 import com.ggjg.presentation.viewmodel.AddressViewModel
 import com.ggjg.presentation.viewmodel.PayViewModel
+import event.ErrorEvent
 import java.text.DecimalFormat
 import kotlin.math.roundToInt
 

@@ -5,9 +5,9 @@ import com.ggjg.presentation.R
 import com.ggjg.presentation.databinding.ActivityRegisterBinding
 import com.ggjg.presentation.ui.base.BaseActivity
 import com.ggjg.presentation.utils.extension.repeatOnStart
-import com.ggjg.presentation.utils.viewmodel.ErrorEvent
 import com.ggjg.presentation.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import event.ErrorEvent
 
 @AndroidEntryPoint
 class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity_register) {

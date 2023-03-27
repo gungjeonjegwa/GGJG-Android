@@ -11,10 +11,10 @@ import com.ggjg.presentation.adapter.decorator.BreadListDecorator
 import com.ggjg.presentation.databinding.FragmentSearchResultBinding
 import com.ggjg.presentation.ui.base.BaseFragment
 import com.ggjg.presentation.utils.extension.repeatOnStart
-import com.ggjg.presentation.utils.viewmodel.ErrorEvent
 import com.ggjg.presentation.viewmodel.DetailViewModel
 import com.ggjg.presentation.viewmodel.MainViewModel
 import com.ggjg.presentation.viewmodel.SearchViewModel
+import event.ErrorEvent
 
 class SearchResultFragment :
     BaseFragment<FragmentSearchResultBinding>(R.layout.fragment_search_result) {

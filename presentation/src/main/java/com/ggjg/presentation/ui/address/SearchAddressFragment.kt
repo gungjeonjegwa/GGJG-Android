@@ -11,9 +11,9 @@ import com.ggjg.presentation.databinding.FragmentAddressSearchBinding
 import com.ggjg.presentation.ui.base.BaseFragment
 import com.ggjg.presentation.utils.extension.repeatOnStart
 import com.ggjg.presentation.utils.extension.setVisible
-import com.ggjg.presentation.utils.viewmodel.ErrorEvent
 import com.ggjg.presentation.viewmodel.AddressViewModel
 import com.jakewharton.rxbinding3.widget.textChanges
+import event.ErrorEvent
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 

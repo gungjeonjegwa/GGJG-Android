@@ -8,8 +8,8 @@ import com.ggjg.presentation.ui.base.BaseFragment
 import com.ggjg.presentation.utils.extension.*
 import com.ggjg.presentation.utils.keyboardHide
 import com.ggjg.presentation.utils.keyboardShow
-import com.ggjg.presentation.utils.viewmodel.ErrorEvent
 import com.ggjg.presentation.viewmodel.RegisterViewModel
+import event.ErrorEvent
 
 class RegisterFirstFragment :
     BaseFragment<FragmentRegisterFirstBinding>(R.layout.fragment_register_first) {

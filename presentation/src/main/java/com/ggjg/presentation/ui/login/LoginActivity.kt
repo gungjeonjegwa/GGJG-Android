@@ -4,7 +4,6 @@ import android.content.Intent
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import com.ggjg.presentation.R
 import com.ggjg.presentation.databinding.ActivityLoginBinding
@@ -14,9 +13,9 @@ import com.ggjg.presentation.ui.toast.GGJGToast
 import com.ggjg.presentation.utils.extension.*
 import com.ggjg.presentation.utils.keyboardHide
 import com.ggjg.presentation.utils.keyboardShow
-import com.ggjg.presentation.utils.viewmodel.ErrorEvent
 import com.ggjg.presentation.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import event.ErrorEvent
 
 @AndroidEntryPoint
 class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
