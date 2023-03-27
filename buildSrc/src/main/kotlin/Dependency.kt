@@ -93,4 +93,8 @@ object Dependency {
     object JavaX {
         const val INJECT = "javax.inject:javax.inject:${Version.INJECT}"
     }
+
+    object GGJG {
+        const val UTIL = "com.github.gungjeonjegwa:GGJG-Android-Util:${Version.GGJG_UTIL}"
+    }
 }

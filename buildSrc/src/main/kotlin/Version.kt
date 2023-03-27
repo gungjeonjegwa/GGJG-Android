@@ -48,4 +48,6 @@ object Version {
     const val LOTTIE = "3.0.7"
 
     const val INJECT = "1"
+
+    const val GGJG_UTIL = "1.0.0"
 }
