@@ -29,6 +29,8 @@ class BreadListAdapter :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: BreadModel) = binding.apply {
             bread = item
+            deliveryOption1.background = null
+            deliveryOption2.background = null
             val breadImgParams = breadImg.layoutParams
             breadImgParams.height = (context.resources.displayMetrics.heightPixels * 0.22).toInt()
             breadImg.layoutParams = breadImgParams
@@ -62,7 +64,7 @@ class BreadListAdapter :
                     "BAEMIN" -> {
                         viewDeliveryType(R.drawable.bg_baemin, index)
                     }
-                    else -> {
+                    "ALLCOUNTRY" -> {
                         viewDeliveryType(R.drawable.bg_all_contry, index)
                     }
                 }
