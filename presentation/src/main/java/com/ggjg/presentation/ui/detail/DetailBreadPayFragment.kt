@@ -61,7 +61,7 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
         is PayDialogViewModel.Event.SuccessMoveShoppingList -> {
             dialog?.dismiss()
             PayDialogViewModel.breadList = listOf()
-            GGJGToast.createToast(requireContext(), getString(R.string.add_shopping_list), true)
+            GGJGToast.createText(requireContext(), getString(R.string.add_shopping_list), true)
         }
     }
 
@@ -69,7 +69,7 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
         is ErrorEvent.ConflictError -> {
             dialog?.dismiss()
             PayDialogViewModel.breadList = listOf()
-            GGJGToast.createToast(
+            GGJGToast.createText(
                 requireContext(),
                 getString(R.string.already_shopping_list),
                 false
@@ -138,7 +138,7 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
                                     binding.sizeOptionBtn.setTextColor(requireContext().getColor(R.color.black))
                                     PayDialogViewModel.size = item
                                 } else {
-                                    GGJGToast.createToast(
+                                    GGJGToast.createText(
                                         requireContext(),
                                         getString(R.string.select_already_option),
                                         false
@@ -229,7 +229,7 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
             }
             R.id.ageOptionBtn -> {
                 if (PayDialogViewModel.size == null) {
-                    GGJGToast.createToast(
+                    GGJGToast.createText(
                         requireContext(),
                         getString(R.string.select_first_option),
                         false

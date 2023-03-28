@@ -13,6 +13,8 @@ import com.ggjg.presentation.adapter.PayAdapter
 import com.ggjg.presentation.databinding.FragmentPayBinding
 import com.ggjg.presentation.ui.base.BaseFragment
 import com.ggjg.presentation.ui.toast.GGJGToast
+import com.ggjg.presentation.utils.bootPayCreate
+import com.ggjg.presentation.utils.bootPayPayload
 import com.ggjg.presentation.utils.extension.changeActivatedWithEnabled
 import com.ggjg.presentation.utils.extension.repeatOnStart
 import com.ggjg.presentation.utils.extension.setVisible
@@ -74,7 +76,7 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
             binding.setOrderAddressBtn.setVisible()
         }
         is PayViewModel.Event.SuccessPay -> {
-            GGJGToast.createToast(requireContext(), "결제가 완료되었습니다.", true)
+            GGJGToast.createText(requireContext(), "결제가 완료되었습니다.", true)
             requireActivity().findNavController(R.id.mainContainer).popBackStack()
         }
     }
@@ -179,19 +181,19 @@ class PayFragment : BaseFragment<FragmentPayBinding>(R.layout.fragment_pay) {
                 }
             }
             R.id.payBtn -> {
-                GGJGToast.createToast(requireContext(), "현재 지원되지 않는 기능입니다.", false)
-//                val title = if (PayViewModel.shoppingList.size == 1) {
-//                    PayViewModel.shoppingList[0].title
-//                } else {
-//                    "${PayViewModel.shoppingList[0].title} 외 ${PayViewModel.shoppingList.size - 1}개"
-//                }
-//                bootPayCreate(
-//                    requireActivity().supportFragmentManager,
-//                    requireContext(),
-//                    bootPayPayload(title, totalMoney.toDouble())
-//                ) {
-//                    payViewModel.buyBread()
-//                }
+//                GGJGToast.createText(requireContext(), "현재 지원되지 않는 기능입니다.", false)
+                val title = if (PayViewModel.shoppingList.size == 1) {
+                    PayViewModel.shoppingList[0].title
+                } else {
+                    "${PayViewModel.shoppingList[0].title} 외 ${PayViewModel.shoppingList.size - 1}개"
+                }
+                bootPayCreate(
+                    requireActivity().supportFragmentManager,
+                    requireContext(),
+                    bootPayPayload(title, totalMoney.toDouble())
+                ) {
+                    payViewModel.buyBread()
+                }
             }
             R.id.setOrderAddressBtn -> {
                 requireActivity().findNavController(R.id.mainContainer)

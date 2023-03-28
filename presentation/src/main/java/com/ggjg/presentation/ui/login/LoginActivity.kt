@@ -34,7 +34,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
     private fun handleEvent(event: LoginViewModel.Event) = when (event) {
         is LoginViewModel.Event.Success -> {
-            GGJGToast.createToast(this, "로그인 성공", true).show()
+            GGJGToast.createText(this, "로그인 성공", true)
             setResult(1)
             finish()
         }
@@ -50,7 +50,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             )
         }
         else -> {
-            GGJGToast.createToast(this, "로그인 도중 오류가 발생했습니다.", false).show()
+            GGJGToast.createText(this, "로그인 도중 오류가 발생했습니다.", false)
         }
     }
 
@@ -105,11 +105,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                 startActivity(Intent(this, RegisterActivity::class.java))
             }
             R.id.findIdBtn -> {
-                GGJGToast.createToast(this, "지금은 지원되지 않는 기능입니다.", false).show()
+                GGJGToast.createText(this, "지금은 지원되지 않는 기능입니다.", false)
 //                startActivity(Intent(this, FindIdActivity::class.java))
             }
             R.id.findPwBtn -> {
-                GGJGToast.createToast(this, "지금은 지원되지 않는 기능입니다.", false).show()
+                GGJGToast.createText(this, "지금은 지원되지 않는 기능입니다.", false)
 //                startActivity(Intent(this, FindPwActivity::class.java))
             }
             R.id.loginBtn -> {

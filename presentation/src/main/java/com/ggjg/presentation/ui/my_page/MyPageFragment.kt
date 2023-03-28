@@ -122,7 +122,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
                     .navigate(R.id.action_myPageFragment_to_orderFragment)
             }
             R.id.deleteAuthBtn -> {
-                GGJGToast.createToast(requireContext(), "지금은 지원되지 않는 기능입니다.", false)
+                GGJGToast.createText(requireContext(), "지금은 지원되지 않는 기능입니다.", false)
             }
         }
     }

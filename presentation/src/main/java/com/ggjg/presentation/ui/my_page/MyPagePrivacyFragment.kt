@@ -95,7 +95,7 @@ class MyPagePrivacyFragment :
                 requireActivity().findNavController(R.id.mainContainer).popBackStack()
             }
             R.id.editBtn -> {
-                GGJGToast.createToast(requireContext(), "지금은 지원되지 않는 기능입니다.", false)
+                GGJGToast.createText(requireContext(), "지금은 지원되지 않는 기능입니다.", false)
 //                requireActivity().findNavController(R.id.mainContainer)
 //                    .navigate(R.id.action_myPagePrivacyFragment_to_myPageEditFragment)
             }

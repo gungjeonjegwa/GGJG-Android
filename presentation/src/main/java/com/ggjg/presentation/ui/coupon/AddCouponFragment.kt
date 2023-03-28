@@ -49,12 +49,12 @@ class AddCouponFragment : BaseFragment<FragmentCouponAddBinding>(R.layout.fragme
         }
         is CouponViewModel.AddEvent.WrongCoupon -> {
             keyboardHide(requireActivity(), listOf())
-            GGJGToast.createToast(requireContext(), "${event.errorCnt}개의 쿠폰 번호가 유효하지 않습니다.", false)
+            GGJGToast.createText(requireContext(), "${event.errorCnt}개의 쿠폰 번호가 유효하지 않습니다.", false)
             requireActivity().findNavController(R.id.mainContainer).popBackStack()
         }
         is CouponViewModel.AddEvent.SuccessCoupon -> {
             keyboardHide(requireActivity(), listOf())
-            GGJGToast.createToast(requireContext(), "쿠폰 입력에 성공했습니다.", true)
+            GGJGToast.createText(requireContext(), "쿠폰 입력에 성공했습니다.", true)
             requireActivity().findNavController(R.id.mainContainer).popBackStack()
         }
     }

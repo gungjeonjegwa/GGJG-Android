@@ -68,19 +68,19 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(R.layout.fragment_order
                 }
 
                 override fun cancel(item: MyOrderListEntity) {
-                    GGJGToast.createToast(requireContext(), "지금은 지원되지 않는 기능입니다.", false)
+                    GGJGToast.createText(requireContext(), "지금은 지원되지 않는 기능입니다.", false)
 //                    requireActivity().findNavController(R.id.mainContainer)
 //                        .navigate(R.id.action_orderFragment_to_orderCancelFragment)
                 }
 
                 override fun recall(item: MyOrderListEntity) {
-                    GGJGToast.createToast(requireContext(), "지금은 지원되지 않는 기능입니다.", false)
+                    GGJGToast.createText(requireActivity(), "지금은 지원되지 않는 기능입니다.", false)
 //                    requireActivity().findNavController(R.id.mainContainer)
 //                        .navigate(R.id.action_orderFragment_to_orderRecallFragment)
                 }
 
                 override fun review(item: MyOrderListEntity) {
-                    GGJGToast.createToast(requireContext(), "지금은 지원되지 않는 기능입니다.", false)
+                    GGJGToast.createText(requireActivity(), "지금은 지원되지 않는 기능입니다.", false)
 //                    requireActivity().findNavController(R.id.mainContainer)
 //                        .navigate(R.id.action_orderFragment_to_orderReviewFragment)
                 }
