@@ -95,7 +95,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingVertical="16dp"
-            android:text="@string/name_no_star"
             android:textColor="@color/dark_gray"
             app:layout_constraintEnd_toEndOf="@id/endLine"
             app:layout_constraintTop_toTopOf="@id/basicInfoLayout" />
@@ -116,7 +115,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingVertical="16dp"
-            android:text="@string/name_no_star"
             android:textColor="@color/dark_gray"
             app:layout_constraintEnd_toEndOf="@id/endLine"
             app:layout_constraintTop_toBottomOf="@id/nameTxt" />
@@ -137,7 +135,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingVertical="16dp"
-            android:text="@string/name_no_star"
             android:textColor="@color/dark_gray"
             app:layout_constraintEnd_toEndOf="@id/endLine"
             app:layout_constraintTop_toBottomOf="@id/idTxt" />
@@ -158,7 +155,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingVertical="16dp"
-            android:text="@string/name_no_star"
             android:textColor="@color/dark_gray"
             app:layout_constraintEnd_toEndOf="@id/endLine"
             app:layout_constraintTop_toBottomOf="@id/emailTxt" />
