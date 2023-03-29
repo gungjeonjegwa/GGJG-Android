@@ -69,7 +69,7 @@ class MyPagePrivacyFragment :
         }
     }
 
-    private fun handleEvent(event: ErrorEvent) = when(event) {
+    private fun handleEvent(event: ErrorEvent) = when (event) {
         else -> {
 
         }
@@ -77,7 +77,10 @@ class MyPagePrivacyFragment :
 
     private fun initView() = binding.apply {
         myPageViewModel.profilePrivate()
-        if (PayViewModel.address != null) {
+        if (PayViewModel.address != null && PayViewModel.address?.zipcode?.contains(
+                addressTxt.text
+            ) == false
+        ) {
             myPageViewModel.changeAddress()
             changeAddressBtn.setVisible()
             setOrderAddressBtn.setVisible(false)
