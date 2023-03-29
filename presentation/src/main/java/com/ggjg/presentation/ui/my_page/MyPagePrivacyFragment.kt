@@ -77,18 +77,8 @@ class MyPagePrivacyFragment :
 
     private fun initView() = binding.apply {
         myPageViewModel.profilePrivate()
-        if (PayViewModel.address != null && PayViewModel.address?.zipcode?.contains(
-                addressTxt.text
-            ) == false
-        ) {
+        if (PayViewModel.address != null) {
             myPageViewModel.changeAddress()
-            changeAddressBtn.setVisible()
-            setOrderAddressBtn.setVisible(false)
-            addressTxt.text =
-                "${PayViewModel.address!!.landNumber} ${PayViewModel.address!!.road} (${PayViewModel.address!!.zipcode})"
-            if (!PayViewModel.address!!.detailAddress.isNullOrBlank()) {
-                detailAddressTxt.text = "상세주소 : ${PayViewModel.address!!.detailAddress}"
-            }
         }
     }
 
