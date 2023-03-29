@@ -46,14 +46,15 @@ class MyPageViewModel @Inject constructor(
                 PayViewModel.address!!.detailAddress,
                 true
             )
-        ).onFailure {
+        ).onSuccess {
+            PayViewModel.defaultAddress = PayViewModel.address
+            profilePrivate()
+        }.onFailure {
             event(it.errorHandling(tokenErrorAction = {
                 MainViewModel.isLogin = false
                 saveTokenUseCase()
             }))
         }
-        PayViewModel.defaultAddress = PayViewModel.address
-        profilePrivate()
     }
 
     fun logout() = viewModelScope.launch {
