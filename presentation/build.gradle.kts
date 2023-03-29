@@ -5,6 +5,7 @@ plugins {
     id("dagger.hilt.android.plugin")
     id("kotlin-android")
     id("kotlin-kapt")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -12,7 +13,7 @@ android {
     compileSdk = Version.COMPILE_SDK_VERSION
 
     defaultConfig {
-        applicationId = "com.ggjg.presentation"
+        applicationId = "com.ggjg.client"
         minSdk = Version.MIN_SDK_VERSION
         targetSdk = Version.TARGET_SDK_VERSION
         versionCode = 1
@@ -99,6 +100,8 @@ dependencies {
     implementation(Dependency.Lottie.LOTTIE)
 
     implementation(Dependency.GGJG.UTIL)
+
+    implementation(Dependency.Firebase.MESSAGING)
 }
 
 fun getApiKey(propertyKey: String): String {

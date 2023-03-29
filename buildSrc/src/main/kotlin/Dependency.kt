@@ -5,6 +5,7 @@ object Dependency {
         const val GRADLE_KOTLIN =
             "org.jetbrains.kotlin:kotlin-gradle-plugin:${Version.GRADLE_KOTLIN}"
         const val GRADLE_HILT = "com.google.dagger:hilt-android-gradle-plugin:${Version.HILT}"
+        const val GRADLE_GOOGLE = "com.google.gms:google-services:${Version.GRADLE_GOOGLE}"
     }
 
     object Kotlin {
@@ -96,5 +97,9 @@ object Dependency {
 
     object GGJG {
         const val UTIL = "com.github.gungjeonjegwa:GGJG-Android-Util:${Version.GGJG_UTIL}"
+    }
+
+    object Firebase {
+        const val MESSAGING = "com.google.firebase:firebase-messaging-ktx:${Version.MESSAGING}"
     }
 }

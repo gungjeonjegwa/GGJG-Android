@@ -3,6 +3,7 @@ import org.gradle.api.JavaVersion
 object Version {
     const val GRADLE_ANDROID = "7.2.2"
     const val GRADLE_KOTLIN = "1.6.21"
+    const val GRADLE_GOOGLE = "4.3.15"
 
     val JAVA_VERSION = JavaVersion.VERSION_1_8
     const val KOTLINX_COROUTINES = "1.6.0"
@@ -50,4 +51,6 @@ object Version {
     const val INJECT = "1"
 
     const val GGJG_UTIL = "1.0.1"
+
+    const val MESSAGING = "23.1.2"
 }
