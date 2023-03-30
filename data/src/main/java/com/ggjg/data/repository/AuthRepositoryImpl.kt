@@ -11,6 +11,7 @@ import com.ggjg.domain.entity.auth.LoginEntity
 import com.ggjg.domain.entity.auth.ProfileEntity
 import com.ggjg.domain.entity.auth.ProfilePrivateEntity
 import com.ggjg.domain.model.AddressModel
+import com.ggjg.domain.param.auth.DeviceTokenParam
 import com.ggjg.domain.param.auth.LoginParam
 import com.ggjg.domain.param.auth.SignUpParam
 import com.ggjg.domain.repository.AuthRepository
@@ -58,4 +59,7 @@ class AuthRepositoryImpl @Inject constructor(
 
     override suspend fun isLogin(): Boolean =
         !localAuthDataSource.getAccessToken().isNullOrBlank()
+
+    override suspend fun saveDeviceToken(deviceTokenParam: DeviceTokenParam) =
+        authDataSource.saveDeviceToken(deviceTokenRequest = deviceTokenParam.toRequest())
 }

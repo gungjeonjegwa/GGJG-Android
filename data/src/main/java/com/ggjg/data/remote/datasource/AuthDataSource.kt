@@ -1,6 +1,7 @@
 package com.ggjg.data.remote.datasource
 
 import com.ggjg.data.remote.model.AddressModel
+import com.ggjg.data.remote.request.auth.DeviceTokenRequest
 import com.ggjg.data.remote.request.auth.LoginRequest
 import com.ggjg.data.remote.request.auth.SignUpRequest
 import com.ggjg.data.remote.response.auth.CheckResponse
@@ -20,4 +21,6 @@ interface AuthDataSource {
     suspend fun profile(): ProfileResponse
     suspend fun profilePrivate(): ProfilePrivateResponse
     suspend fun giftStamp()
+
+    suspend fun saveDeviceToken(deviceTokenRequest: DeviceTokenRequest)
 }

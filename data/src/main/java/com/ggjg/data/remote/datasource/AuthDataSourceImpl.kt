@@ -2,6 +2,7 @@ package com.ggjg.data.remote.datasource
 
 import com.ggjg.data.remote.api.AuthAPI
 import com.ggjg.data.remote.model.AddressModel
+import com.ggjg.data.remote.request.auth.DeviceTokenRequest
 import com.ggjg.data.remote.request.auth.LoginRequest
 import com.ggjg.data.remote.request.auth.SignUpRequest
 import com.ggjg.data.remote.response.auth.CheckResponse
@@ -56,5 +57,9 @@ class AuthDataSourceImpl @Inject constructor(
 
     override suspend fun giftStamp() = GGJGApiCall {
         authAPI.giftStamp()
+    }
+
+    override suspend fun saveDeviceToken(deviceTokenRequest: DeviceTokenRequest) = GGJGApiCall {
+        authAPI.saveDeviceToken(deviceTokenRequest = deviceTokenRequest)
     }
 }

@@ -1,6 +1,7 @@
 package com.ggjg.data.remote.api
 
 import com.ggjg.data.remote.model.AddressModel
+import com.ggjg.data.remote.request.auth.DeviceTokenRequest
 import com.ggjg.data.remote.request.auth.LoginRequest
 import com.ggjg.data.remote.request.auth.SignUpRequest
 import com.ggjg.data.remote.response.auth.CheckResponse
@@ -57,4 +58,7 @@ interface AuthAPI {
 
     @GET("/users/profile/giftstamp")
     suspend fun giftStamp()
+
+    @POST("/users/device")
+    suspend fun saveDeviceToken(deviceTokenRequest: DeviceTokenRequest)
 }

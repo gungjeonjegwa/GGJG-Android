@@ -5,6 +5,7 @@ import com.ggjg.domain.entity.auth.LoginEntity
 import com.ggjg.domain.entity.auth.ProfileEntity
 import com.ggjg.domain.entity.auth.ProfilePrivateEntity
 import com.ggjg.domain.model.AddressModel
+import com.ggjg.domain.param.auth.DeviceTokenParam
 import com.ggjg.domain.param.auth.LoginParam
 import com.ggjg.domain.param.auth.SignUpParam
 
@@ -22,4 +23,6 @@ interface AuthRepository {
     suspend fun giftStamp()
     suspend fun saveToken(access: String?, refresh: String?, expiredAt: String?)
     suspend fun isLogin(): Boolean
+
+    suspend fun saveDeviceToken(deviceTokenParam: DeviceTokenParam)
 }
