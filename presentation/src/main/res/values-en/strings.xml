@@ -194,6 +194,7 @@
     <string name="coupon">Coupon</string>
     <string name="add_coupon">Coupon registration</string>
     <string name="coupon_not_apply">Coupon not applied</string>
+    <string name="move_coupon_page">Go to coupon box</string>
     <string name="coupon_code">Coupon code</string>
     <string name="request_coupon_code">Please enter the coupon code.</string>
     <string name="size_korean">Size</string>
