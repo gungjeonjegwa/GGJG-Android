@@ -300,5 +300,10 @@
         android:id="@+id/presentFragment"
         android:name="com.ggjg.presentation.ui.my_page.PresentFragment"
         android:label="PresentFragment"
-        tools:layout="@layout/fragment_present" />
+        tools:layout="@layout/fragment_present" >
+        <action
+            android:id="@+id/action_presentFragment_to_couponFragment"
+            app:destination="@id/couponFragment"
+            app:popUpTo="@id/myPageFragment"/>
+    </fragment>
 </navigation>
