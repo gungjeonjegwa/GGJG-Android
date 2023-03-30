@@ -16,9 +16,9 @@ data class ProfileResponse(
     val deliveryIng: Int,
     @SerializedName("completeDelivery")
     val deliveryComplete: Int,
-    @SerializedName("cancel")
+    @SerializedName("cancelCount")
     val cancel: Int,
-    @SerializedName("return")
+    @SerializedName("returnCount")
     val `return`: Int,
 )
 
