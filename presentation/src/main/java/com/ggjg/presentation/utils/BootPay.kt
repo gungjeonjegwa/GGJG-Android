@@ -41,12 +41,15 @@ fun bootPayCreate(
 
             override fun onClose(data: String?) {
                 Bootpay.removePaymentWindow()
-                val result = Gson().fromJson(
-                    data,
-                    BootPayEvent::class.java
-                )
-                if (result.event == "done") {
-                    onPayedEvent()
+                kotlin.runCatching {
+                    Gson().fromJson(
+                        data,
+                        BootPayEvent::class.java
+                    )
+                }.onSuccess {
+                    if (it.event == "done") {
+                        onPayedEvent()
+                    }
                 }
             }
 
