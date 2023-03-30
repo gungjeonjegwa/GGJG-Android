@@ -255,7 +255,11 @@ class DetailBreadPayFragment : BottomSheetDialogFragment() {
                 }
             }
             R.id.addShoppingListBtn -> {
-                payViewModel.makeBaskets()
+                if (PayDialogViewModel.breadList.isNotEmpty()) {
+                    payViewModel.makeBaskets()
+                } else {
+                    GGJGToast.createText(requireContext(), "상품을 먼저 선택해주세요", false)
+                }
             }
         }
     }
