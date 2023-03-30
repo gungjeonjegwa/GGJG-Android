@@ -31,7 +31,6 @@ class DetailBreadFragment :
     BaseFragment<FragmentDetailBreadBinding>(R.layout.fragment_detail_bread) {
     private val detailViewModel by activityViewModels<DetailViewModel>()
     private val mainViewModel by activityViewModels<MainViewModel>()
-    private var currentDeliveryView = 0
     private val infoImgAdapter = DetailBreadInfoImgAdapter()
     private var max = 0
     override fun onDetach() {
@@ -92,16 +91,16 @@ class DetailBreadFragment :
                 }
                 binding.likeBtn.isActivated = event.detailBread.isLike
                 binding.like.isActivated = event.detailBread.isLike
-                event.detailBread.deliveryType.forEach {
+                event.detailBread.deliveryType.forEachIndexed { index, it ->
                     when (it.sellType) {
                         "GWANGJU" -> {
-                            viewDeliveryType(R.drawable.bg_gwangju)
+                            viewDeliveryType(R.drawable.bg_gwangju, index)
                         }
                         "BAEMIN" -> {
-                            viewDeliveryType(R.drawable.bg_baemin)
+                            viewDeliveryType(R.drawable.bg_baemin, index)
                         }
                         else -> {
-                            viewDeliveryType(R.drawable.bg_all_contry)
+                            viewDeliveryType(R.drawable.bg_all_contry, index)
                         }
                     }
                 }
@@ -143,8 +142,8 @@ class DetailBreadFragment :
         }
     }
 
-    private fun viewDeliveryType(view: Int) {
-        if (currentDeliveryView == 0) {
+    private fun viewDeliveryType(view: Int, index: Int) {
+        if (index == 0) {
             binding.deliveryOption1.setBackgroundResource(view)
         } else {
             binding.deliveryOption2.setBackgroundResource(view)
