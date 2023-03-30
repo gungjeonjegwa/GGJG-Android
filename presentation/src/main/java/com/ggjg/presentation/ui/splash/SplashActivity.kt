@@ -29,7 +29,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             Handler().postDelayed({
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
-            }, 1000)
+            }, 500)
         }
     }
 
