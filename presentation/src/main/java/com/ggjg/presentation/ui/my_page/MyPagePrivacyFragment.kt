@@ -57,6 +57,7 @@ class MyPagePrivacyFragment :
                 if (event.data.address != null) {
                     PayViewModel.defaultAddress = event.data.address
                     changeAddressBtn.setVisible()
+                    setOrderAddressBtn.setVisible(false)
                     addressTxt.text =
                         "${event.data.address!!.landNumber} ${event.data.address!!.road} (${event.data.address!!.zipcode})"
                     if (!event.data.address!!.detailAddress.isNullOrBlank()) {
@@ -64,6 +65,7 @@ class MyPagePrivacyFragment :
                     }
                 } else {
                     setOrderAddressBtn.setVisible()
+                    changeAddressBtn.setVisible(false)
                 }
             }
         }
