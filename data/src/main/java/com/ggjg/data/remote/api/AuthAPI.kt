@@ -60,5 +60,7 @@ interface AuthAPI {
     suspend fun giftStamp()
 
     @POST("/users/device")
-    suspend fun saveDeviceToken(deviceTokenRequest: DeviceTokenRequest)
+    suspend fun saveDeviceToken(
+        @Body deviceTokenRequest: DeviceTokenRequest,
+    )
 }
