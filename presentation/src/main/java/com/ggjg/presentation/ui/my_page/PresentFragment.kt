@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.ggjg.presentation.R
 import com.ggjg.presentation.databinding.FragmentPresentBinding
 import com.ggjg.presentation.ui.base.BaseFragment
@@ -22,7 +23,7 @@ class PresentFragment : BaseFragment<FragmentPresentBinding>(R.layout.fragment_p
     }
 
     override fun onCreate() {
-        
+
     }
 
     override fun createView() {
@@ -32,6 +33,8 @@ class PresentFragment : BaseFragment<FragmentPresentBinding>(R.layout.fragment_p
     fun onClick(view: View) {
         when (view.id) {
             R.id.backBtn -> requireActivity().findNavController(R.id.mainContainer).popBackStack()
+            R.id.moveCouponBtn -> requireActivity().findNavController(R.id.mainContainer)
+                .navigate(R.id.action_presentFragment_to_couponFragment)
         }
     }
 }
